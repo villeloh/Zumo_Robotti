@@ -1,0 +1,1931 @@
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_f2d
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB63:
+  27              		.file 1 "main.c"
+   1:main.c        **** /**
+   2:main.c        **** * @mainpage ZumoBot Project
+   3:main.c        **** * @brief    You can make your own ZumoBot with various sensors.
+   4:main.c        **** * @details  <br><br>
+   5:main.c        ****     <p>
+   6:main.c        ****     <B>General</B><br>
+   7:main.c        ****     You will use Pololu Zumo Shields for your robot project with CY8CKIT-059(PSoC 5LP) from Cypress
+   8:main.c        ****     library has basic methods of various sensors and communications so that you can make what you w
+   9:main.c        ****     <br><br>
+  10:main.c        ****     </p>
+  11:main.c        ****     
+  12:main.c        ****     <p>
+  13:main.c        ****     <B>Sensors</B><br>
+  14:main.c        ****     &nbsp;Included: <br>
+  15:main.c        ****         &nbsp;&nbsp;&nbsp;&nbsp;LSM303D: Accelerometer & Magnetometer<br>
+  16:main.c        ****         &nbsp;&nbsp;&nbsp;&nbsp;L3GD20H: Gyroscope<br>
+  17:main.c        ****         &nbsp;&nbsp;&nbsp;&nbsp;Reflectance sensor<br>
+  18:main.c        ****         &nbsp;&nbsp;&nbsp;&nbsp;Motors
+  19:main.c        ****     &nbsp;Wii nunchuck<br>
+  20:main.c        ****     &nbsp;TSOP-2236: IR Receiver<br>
+  21:main.c        ****     &nbsp;HC-SR04: Ultrasonic sensor<br>
+  22:main.c        ****     &nbsp;APDS-9301: Ambient light sensor<br>
+  23:main.c        ****     &nbsp;IR LED <br><br><br>
+  24:main.c        ****     </p>
+  25:main.c        ****     
+  26:main.c        ****     <p>
+  27:main.c        ****     <B>Communication</B><br>
+  28:main.c        ****     I2C, UART, Serial<br>
+  29:main.c        ****     </p>
+  30:main.c        **** */
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 2
+
+
+  31:main.c        **** 
+  32:main.c        **** #include <project.h>
+  33:main.c        **** #include <stdio.h>
+  34:main.c        **** #include "Motor.h"
+  35:main.c        **** #include "Ultra.h"
+  36:main.c        **** #include "Nunchuk.h"
+  37:main.c        **** #include "Reflectance.h"
+  38:main.c        **** #include "I2C_made.h"
+  39:main.c        **** #include "Gyro.h"
+  40:main.c        **** #include "Accel_magnet.h"
+  41:main.c        **** #include "IR.h"
+  42:main.c        **** #include "Ambient.h"
+  43:main.c        **** #include "Beep.h"
+  44:main.c        **** 
+  45:main.c        **** int rread(void);
+  46:main.c        **** 
+  47:main.c        **** float ADC_result_to_volts(int16 adcresult);
+  48:main.c        **** void Beep(uint32 length, uint8 pitch);
+  49:main.c        **** 
+  50:main.c        **** /**
+  51:main.c        ****  * @file    main.c
+  52:main.c        ****  * @brief   
+  53:main.c        ****  * @details  ** You should enable global interrupt for operating properly. **<br>&nbsp;&nbsp;&nbsp;
+  54:main.c        **** */
+  55:main.c        **** 
+  56:main.c        **** 
+  57:main.c        **** //battery level//
+  58:main.c        **** int main()
+  59:main.c        **** {
+  28              		.loc 1 59 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  60:main.c        ****     CyGlobalIntEnable; 
+  36              		.loc 1 60 0
+  37              	@ 60 "main.c" 1
+  38 0002 62B6     		CPSIE   i
+  39              	@ 0 "" 2
+  61:main.c        ****     UART_1_Start();
+  40              		.loc 1 61 0
+  41              		.thumb
+  42 0004 FFF7FEFF 		bl	UART_1_Start
+  43              	.LVL0:
+  62:main.c        ****     ADC_Battery_Start();        
+  44              		.loc 1 62 0
+  45 0008 FFF7FEFF 		bl	ADC_Battery_Start
+  46              	.LVL1:
+  63:main.c        ****     int16 adcresult = 0;
+  64:main.c        ****     float volts = 0.0;
+  65:main.c        **** 
+  66:main.c        ****     printf("\nBoot\n");
+  47              		.loc 1 66 0
+  48 000c 0E48     		ldr	r0, .L5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 3
+
+
+  49 000e FFF7FEFF 		bl	puts
+  50              	.LVL2:
+  67:main.c        **** 
+  68:main.c        ****     //BatteryLed_Write(1); // Switch led on 
+  69:main.c        ****     BatteryLed_Write(0); // Switch led off 
+  51              		.loc 1 69 0
+  52 0012 0020     		movs	r0, #0
+  53 0014 FFF7FEFF 		bl	BatteryLed_Write
+  54              	.LVL3:
+  55              	.L3:
+  70:main.c        ****     //uint8 button;
+  71:main.c        ****     //button = SW1_Read(); // read SW1 on pSoC board
+  72:main.c        **** 
+  73:main.c        ****     for(;;)
+  74:main.c        ****     {
+  75:main.c        ****         
+  76:main.c        ****         ADC_Battery_StartConvert();
+  56              		.loc 1 76 0
+  57 0018 FFF7FEFF 		bl	ADC_Battery_StartConvert
+  58              	.LVL4:
+  77:main.c        ****         if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) {   // wait for get ADC conver
+  59              		.loc 1 77 0
+  60 001c 0020     		movs	r0, #0
+  61 001e FFF7FEFF 		bl	ADC_Battery_IsEndConversion
+  62              	.LVL5:
+  63 0022 60B1     		cbz	r0, .L2
+  78:main.c        ****             adcresult = ADC_Battery_GetResult16();
+  64              		.loc 1 78 0
+  65 0024 FFF7FEFF 		bl	ADC_Battery_GetResult16
+  66              	.LVL6:
+  67 0028 0446     		mov	r4, r0
+  68              	.LVL7:
+  79:main.c        ****             volts = ADC_result_to_volts(adcresult);                  // convert value to Volts
+  69              		.loc 1 79 0
+  70 002a FFF7FEFF 		bl	ADC_result_to_volts
+  71              	.LVL8:
+  80:main.c        ****             // Beep(40, 15);
+  81:main.c        ****         
+  82:main.c        ****             // If you want to print value
+  83:main.c        ****             printf("%d %f\r\n",adcresult, volts);
+  72              		.loc 1 83 0
+  73 002e FFF7FEFF 		bl	__aeabi_f2d
+  74              	.LVL9:
+  75 0032 0246     		mov	r2, r0
+  76 0034 0B46     		mov	r3, r1
+  77 0036 0548     		ldr	r0, .L5+4
+  78 0038 2146     		mov	r1, r4
+  79 003a FFF7FEFF 		bl	printf
+  80              	.LVL10:
+  81              	.L2:
+  84:main.c        ****         }
+  85:main.c        ****         CyDelay(500);
+  82              		.loc 1 85 0
+  83 003e 4FF4FA70 		mov	r0, #500
+  84 0042 FFF7FEFF 		bl	CyDelay
+  85              	.LVL11:
+  86:main.c        ****         
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 4
+
+
+  87:main.c        ****     }
+  86              		.loc 1 87 0
+  87 0046 E7E7     		b	.L3
+  88              	.L6:
+  89              		.align	2
+  90              	.L5:
+  91 0048 00000000 		.word	.LC0
+  92 004c 08000000 		.word	.LC1
+  93              		.cfi_endproc
+  94              	.LFE63:
+  95              		.size	main, .-main
+  96              		.section	.text._write,"ax",%progbits
+  97              		.align	2
+  98              		.global	_write
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	_write, %function
+ 102              	_write:
+ 103              	.LFB64:
+  88:main.c        ****  }   
+  89:main.c        **** //*/
+  90:main.c        **** 
+  91:main.c        **** 
+  92:main.c        **** /*//ultra sonic sensor//
+  93:main.c        **** int main()
+  94:main.c        **** {
+  95:main.c        ****     CyGlobalIntEnable; 
+  96:main.c        ****     UART_1_Start();
+  97:main.c        ****     Ultra_Start();                          // Ultra Sonic Start function
+  98:main.c        ****     while(1) {
+  99:main.c        ****         //If you want to print out the value  
+ 100:main.c        ****         printf("distance = %5.0f\r\n", Ultra_GetDistance());
+ 101:main.c        ****         CyDelay(1000);
+ 102:main.c        ****     }
+ 103:main.c        **** }   
+ 104:main.c        **** //*/
+ 105:main.c        **** 
+ 106:main.c        **** 
+ 107:main.c        **** /*//nunchuk//
+ 108:main.c        **** int main()
+ 109:main.c        **** {
+ 110:main.c        ****     CyGlobalIntEnable; 
+ 111:main.c        ****     UART_1_Start();
+ 112:main.c        ****   
+ 113:main.c        ****     nunchuk_start();
+ 114:main.c        ****     nunchuk_init();
+ 115:main.c        ****     
+ 116:main.c        ****     for(;;)
+ 117:main.c        ****     {    
+ 118:main.c        ****         nunchuk_read();
+ 119:main.c        ****     }
+ 120:main.c        **** }   
+ 121:main.c        **** //*/
+ 122:main.c        **** 
+ 123:main.c        **** 
+ 124:main.c        **** /*//IR receiver//
+ 125:main.c        **** int main()
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 5
+
+
+ 126:main.c        **** {
+ 127:main.c        ****     CyGlobalIntEnable; 
+ 128:main.c        ****     UART_1_Start();
+ 129:main.c        ****     
+ 130:main.c        ****     unsigned int IR_val; 
+ 131:main.c        ****     
+ 132:main.c        ****     for(;;)
+ 133:main.c        ****     {
+ 134:main.c        ****        IR_val = get_IR();
+ 135:main.c        ****        printf("%x\r\n\n",IR_val);
+ 136:main.c        ****     }    
+ 137:main.c        ****  }   
+ 138:main.c        **** //*/
+ 139:main.c        **** 
+ 140:main.c        **** 
+ 141:main.c        **** /*//Ambient light sensor//
+ 142:main.c        **** int main()
+ 143:main.c        **** {
+ 144:main.c        ****     CyGlobalIntEnable; 
+ 145:main.c        ****     UART_1_Start();
+ 146:main.c        ****     
+ 147:main.c        ****     I2C_Start();
+ 148:main.c        ****     
+ 149:main.c        ****     I2C_write(0x29,0x80,0x00);          // set to power down
+ 150:main.c        ****     I2C_write(0x29,0x80,0x03);          // set to power on
+ 151:main.c        ****     
+ 152:main.c        ****     for(;;)
+ 153:main.c        ****     {    
+ 154:main.c        ****         uint8 Data0Low,Data0High,Data1Low,Data1High;
+ 155:main.c        ****         Data0Low = I2C_read(0x29,CH0_L);
+ 156:main.c        ****         Data0High = I2C_read(0x29,CH0_H);
+ 157:main.c        ****         Data1Low = I2C_read(0x29,CH1_L);
+ 158:main.c        ****         Data1High = I2C_read(0x29,CH1_H);
+ 159:main.c        ****         
+ 160:main.c        ****         uint8 CH0, CH1;
+ 161:main.c        ****         CH0 = convert_raw(Data0Low,Data0High);      // combine Data0
+ 162:main.c        ****         CH1 = convert_raw(Data1Low,Data1High);      // combine Data1
+ 163:main.c        **** 
+ 164:main.c        ****         double Ch0 = CH0;
+ 165:main.c        ****         double Ch1 = CH1;
+ 166:main.c        ****         
+ 167:main.c        ****         double data = 0;
+ 168:main.c        ****         data = getLux(Ch0,Ch1);
+ 169:main.c        ****         
+ 170:main.c        ****         // If you want to print out data
+ 171:main.c        ****         //printf("%lf\r\n",data);    
+ 172:main.c        ****     }    
+ 173:main.c        ****  }   
+ 174:main.c        **** //*/
+ 175:main.c        **** 
+ 176:main.c        **** 
+ 177:main.c        **** /*//accelerometer//
+ 178:main.c        **** int main()
+ 179:main.c        **** {
+ 180:main.c        ****     CyGlobalIntEnable; 
+ 181:main.c        ****     UART_1_Start();
+ 182:main.c        ****   
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 6
+
+
+ 183:main.c        ****     I2C_Start();
+ 184:main.c        ****   
+ 185:main.c        ****     uint8 X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A;
+ 186:main.c        ****     int16 X_AXIS_A, Y_AXIS_A, Z_AXIS_A;
+ 187:main.c        ****     
+ 188:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer
+ 189:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x22);
+ 190:main.c        ****     
+ 191:main.c        ****     
+ 192:main.c        ****     for(;;)
+ 193:main.c        ****     {
+ 194:main.c        ****         //print out accelerometer output
+ 195:main.c        ****         X_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_A);
+ 196:main.c        ****         X_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_A);
+ 197:main.c        ****         X_AXIS_A = convert_raw(X_L_A, X_H_A);
+ 198:main.c        ****         
+ 199:main.c        ****         Y_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_A);
+ 200:main.c        ****         Y_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_A);
+ 201:main.c        ****         Y_AXIS_A = convert_raw(Y_L_A, Y_H_A);
+ 202:main.c        ****         
+ 203:main.c        ****         Z_L_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_A);
+ 204:main.c        ****         Z_H_A = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_A);
+ 205:main.c        ****         Z_AXIS_A = convert_raw(Z_L_A, Z_H_A);
+ 206:main.c        ****         
+ 207:main.c        ****         printf("ACCEL: %d %d %d %d %d %d \r\n", X_L_A, X_H_A, Y_L_A, Y_H_A, Z_L_A, Z_H_A);
+ 208:main.c        ****         value_convert_accel(X_AXIS_A, Y_AXIS_A, Z_AXIS_A);
+ 209:main.c        ****         printf("\n");
+ 210:main.c        ****         
+ 211:main.c        ****         CyDelay(50);
+ 212:main.c        ****     }
+ 213:main.c        **** }   
+ 214:main.c        **** //*/
+ 215:main.c        **** 
+ 216:main.c        **** 
+ 217:main.c        **** /*//reflectance//
+ 218:main.c        **** int main()
+ 219:main.c        **** {
+ 220:main.c        ****     struct sensors_ ref;
+ 221:main.c        ****     struct sensors_ dig;
+ 222:main.c        ****     CyGlobalIntEnable; 
+ 223:main.c        ****     UART_1_Start();
+ 224:main.c        ****   
+ 225:main.c        ****     sensor_isr_StartEx(sensor_isr_handler);
+ 226:main.c        ****     
+ 227:main.c        ****     reflectance_start();
+ 228:main.c        **** 
+ 229:main.c        ****     IR_led_Write(1);
+ 230:main.c        ****     for(;;)
+ 231:main.c        ****     {
+ 232:main.c        ****         reflectance_read(&ref);
+ 233:main.c        ****         printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period o
+ 234:main.c        ****         reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance peri
+ 235:main.c        ****         printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 accor
+ 236:main.c        ****         
+ 237:main.c        ****         CyDelay(500);
+ 238:main.c        ****     }
+ 239:main.c        **** }   
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 7
+
+
+ 240:main.c        **** //*/
+ 241:main.c        **** 
+ 242:main.c        ****  /* //motor//
+ 243:main.c        **** int main()
+ 244:main.c        **** {
+ 245:main.c        ****     CyGlobalIntEnable; 
+ 246:main.c        ****     UART_1_Start();
+ 247:main.c        **** 
+ 248:main.c        ****     motor_start();              // motor start
+ 249:main.c        **** 
+ 250:main.c        ****     motor_forward(100,2000);     // moving forward
+ 251:main.c        ****     motor_turn(200,50,2000);     // turn
+ 252:main.c        ****     motor_turn(50,200,2000);     // turn
+ 253:main.c        ****     motor_backward(100,2000);    // movinb backward
+ 254:main.c        ****        
+ 255:main.c        ****     motor_stop();               // motor stop
+ 256:main.c        ****     
+ 257:main.c        ****     for(;;)
+ 258:main.c        ****     {
+ 259:main.c        **** 
+ 260:main.c        ****     }
+ 261:main.c        **** }
+ 262:main.c        **** //*/
+ 263:main.c        ****     
+ 264:main.c        **** 
+ 265:main.c        **** /*//gyroscope//
+ 266:main.c        **** int main()
+ 267:main.c        **** {
+ 268:main.c        ****     CyGlobalIntEnable; 
+ 269:main.c        ****     UART_1_Start();
+ 270:main.c        ****   
+ 271:main.c        ****     I2C_Start();
+ 272:main.c        ****   
+ 273:main.c        ****     uint8 X_L_G, X_H_G, Y_L_G, Y_H_G, Z_L_G, Z_H_G;
+ 274:main.c        ****     int16 X_AXIS_G, Y_AXIS_G, Z_AXIS_G;
+ 275:main.c        ****     
+ 276:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+ 277:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps 
+ 278:main.c        ****     
+ 279:main.c        ****     for(;;)
+ 280:main.c        ****     {
+ 281:main.c        ****         //print out gyroscope output
+ 282:main.c        ****         X_L_G = I2C_read(GYRO_ADDR, OUT_X_AXIS_L);
+ 283:main.c        ****         X_H_G = I2C_read(GYRO_ADDR, OUT_X_AXIS_H);
+ 284:main.c        ****         X_AXIS_G = convert_raw(X_H_G, X_L_G);
+ 285:main.c        ****         
+ 286:main.c        ****         
+ 287:main.c        ****         Y_L_G = I2C_read(GYRO_ADDR, OUT_Y_AXIS_L);
+ 288:main.c        ****         Y_H_G = I2C_read(GYRO_ADDR, OUT_Y_AXIS_H);
+ 289:main.c        ****         Y_AXIS_G = convert_raw(Y_H_G, Y_L_G);
+ 290:main.c        ****         
+ 291:main.c        ****         
+ 292:main.c        ****         Z_L_G = I2C_read(GYRO_ADDR, OUT_Z_AXIS_L);
+ 293:main.c        ****         Z_H_G = I2C_read(GYRO_ADDR, OUT_Z_AXIS_H);
+ 294:main.c        ****         Z_AXIS_G = convert_raw(Z_H_G, Z_L_G);
+ 295:main.c        ****      
+ 296:main.c        ****         // If you want to print value
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 8
+
+
+ 297:main.c        ****         printf("%d %d %d \r\n", X_AXIS_G, Y_AXIS_G, Z_AXIS_G);
+ 298:main.c        ****         CyDelay(50);
+ 299:main.c        ****     }
+ 300:main.c        **** }   
+ 301:main.c        **** //*/
+ 302:main.c        **** 
+ 303:main.c        **** 
+ 304:main.c        **** /*//magnetometer//
+ 305:main.c        **** int main()
+ 306:main.c        **** {
+ 307:main.c        ****     CyGlobalIntEnable; 
+ 308:main.c        ****     UART_1_Start();
+ 309:main.c        ****   
+ 310:main.c        ****     I2C_Start();
+ 311:main.c        ****    
+ 312:main.c        ****     uint8 X_L_M, X_H_M, Y_L_M, Y_H_M, Z_L_M, Z_H_M;
+ 313:main.c        ****     int16 X_AXIS, Y_AXIS, Z_AXIS;
+ 314:main.c        ****     
+ 315:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL1_REG, 0x0F);             // set gyroscope into active mode
+ 316:main.c        ****     I2C_write(GYRO_ADDR, GYRO_CTRL4_REG, 0x30);             // set full scale selection to 2000dps
+ 317:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL1_REG, 0x37);           // set accelerometer & magnetometer
+ 318:main.c        ****     I2C_write(ACCEL_MAG_ADDR, ACCEL_CTRL7_REG, 0x22);
+ 319:main.c        ****     
+ 320:main.c        ****     
+ 321:main.c        ****     for(;;)
+ 322:main.c        ****     {
+ 323:main.c        ****         X_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_X_L_M);
+ 324:main.c        ****         X_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_X_H_M);
+ 325:main.c        ****         X_AXIS = convert_raw(X_L_M, X_H_M);
+ 326:main.c        ****         
+ 327:main.c        ****         Y_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_Y_L_M);
+ 328:main.c        ****         Y_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_Y_H_M);
+ 329:main.c        ****         Y_AXIS = convert_raw(Y_L_M, Y_H_M);
+ 330:main.c        ****         
+ 331:main.c        ****         Z_L_M = I2C_read(ACCEL_MAG_ADDR, OUT_Z_L_M);
+ 332:main.c        ****         Z_H_M = I2C_read(ACCEL_MAG_ADDR, OUT_Z_H_M);
+ 333:main.c        ****         Z_AXIS = convert_raw(Z_L_M, Z_H_M);
+ 334:main.c        ****         
+ 335:main.c        ****         heading(X_AXIS, Y_AXIS);
+ 336:main.c        ****         printf("MAGNET: %d %d %d %d %d %d \r\n", X_L_M, X_H_M, Y_L_M, Y_H_M, Z_L_M, Z_H_M);
+ 337:main.c        ****         printf("%d %d %d \r\n", X_AXIS,Y_AXIS, Z_AXIS);
+ 338:main.c        ****         CyDelay(50);      
+ 339:main.c        ****     }
+ 340:main.c        **** }   
+ 341:main.c        **** //*/
+ 342:main.c        **** 
+ 343:main.c        **** 
+ 344:main.c        **** #if 0
+ 345:main.c        **** int rread(void)
+ 346:main.c        **** {
+ 347:main.c        ****     SC0_SetDriveMode(PIN_DM_STRONG);
+ 348:main.c        ****     SC0_Write(1);
+ 349:main.c        ****     CyDelayUs(10);
+ 350:main.c        ****     SC0_SetDriveMode(PIN_DM_DIG_HIZ);
+ 351:main.c        ****     Timer_1_Start();
+ 352:main.c        ****     uint16_t start = Timer_1_ReadCounter();
+ 353:main.c        ****     uint16_t end = 0;
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 9
+
+
+ 354:main.c        ****     while(!(Timer_1_ReadStatusRegister() & Timer_1_STATUS_TC)) {
+ 355:main.c        ****         if(SC0_Read() == 0 && end == 0) {
+ 356:main.c        ****             end = Timer_1_ReadCounter();
+ 357:main.c        ****         }
+ 358:main.c        ****     }
+ 359:main.c        ****     Timer_1_Stop();
+ 360:main.c        ****     
+ 361:main.c        ****     return (start - end);
+ 362:main.c        **** }
+ 363:main.c        **** #endif
+ 364:main.c        **** 
+ 365:main.c        **** /* Don't remove the functions below */
+ 366:main.c        **** int _write(int file, char *ptr, int len)
+ 367:main.c        **** {
+ 104              		.loc 1 367 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              	.LVL12:
+ 109 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 110              		.cfi_def_cfa_offset 24
+ 111              		.cfi_offset 3, -24
+ 112              		.cfi_offset 4, -20
+ 113              		.cfi_offset 5, -16
+ 114              		.cfi_offset 6, -12
+ 115              		.cfi_offset 7, -8
+ 116              		.cfi_offset 14, -4
+ 117 0002 0C46     		mov	r4, r1
+ 118 0004 1746     		mov	r7, r2
+ 119              	.LVL13:
+ 368:main.c        ****     (void)file; /* Parameter is not used, suppress unused argument warning */
+ 369:main.c        **** 	int n;
+ 370:main.c        **** 	for(n = 0; n < len; n++) {
+ 120              		.loc 1 370 0
+ 121 0006 0025     		movs	r5, #0
+ 122 0008 0BE0     		b	.L8
+ 123              	.LVL14:
+ 124              	.L10:
+ 371:main.c        ****         if(*ptr == '\n') UART_1_PutChar('\r');
+ 125              		.loc 1 371 0
+ 126 000a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 127 000c 0A2B     		cmp	r3, #10
+ 128 000e 02D1     		bne	.L9
+ 129              		.loc 1 371 0 is_stmt 0 discriminator 1
+ 130 0010 0D20     		movs	r0, #13
+ 131 0012 FFF7FEFF 		bl	UART_1_PutChar
+ 132              	.LVL15:
+ 133              	.L9:
+ 372:main.c        **** 		UART_1_PutChar(*ptr++);
+ 134              		.loc 1 372 0 is_stmt 1 discriminator 2
+ 135 0016 661C     		adds	r6, r4, #1
+ 136              	.LVL16:
+ 137 0018 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 138 001a FFF7FEFF 		bl	UART_1_PutChar
+ 139              	.LVL17:
+ 370:main.c        ****         if(*ptr == '\n') UART_1_PutChar('\r');
+ 140              		.loc 1 370 0 discriminator 2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 10
+
+
+ 141 001e 0135     		adds	r5, r5, #1
+ 142              	.LVL18:
+ 143              		.loc 1 372 0 discriminator 2
+ 144 0020 3446     		mov	r4, r6
+ 145              	.LVL19:
+ 146              	.L8:
+ 370:main.c        ****         if(*ptr == '\n') UART_1_PutChar('\r');
+ 147              		.loc 1 370 0 discriminator 1
+ 148 0022 BD42     		cmp	r5, r7
+ 149 0024 F1DB     		blt	.L10
+ 373:main.c        **** 	}
+ 374:main.c        **** 	return len;
+ 375:main.c        **** }
+ 150              		.loc 1 375 0
+ 151 0026 3846     		mov	r0, r7
+ 152 0028 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 153              		.cfi_endproc
+ 154              	.LFE64:
+ 155              		.size	_write, .-_write
+ 156 002a 00BF     		.section	.text._read,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	_read
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	_read, %function
+ 162              	_read:
+ 163              	.LFB65:
+ 376:main.c        **** 
+ 377:main.c        **** int _read (int file, char *ptr, int count)
+ 378:main.c        **** {
+ 164              		.loc 1 378 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              	.LVL20:
+ 169 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 170              		.cfi_def_cfa_offset 24
+ 171              		.cfi_offset 3, -24
+ 172              		.cfi_offset 4, -20
+ 173              		.cfi_offset 5, -16
+ 174              		.cfi_offset 6, -12
+ 175              		.cfi_offset 7, -8
+ 176              		.cfi_offset 14, -4
+ 177 0002 0F46     		mov	r7, r1
+ 178 0004 1446     		mov	r4, r2
+ 179              	.LVL21:
+ 379:main.c        ****     int chs = 0;
+ 180              		.loc 1 379 0
+ 181 0006 0026     		movs	r6, #0
+ 380:main.c        ****     char ch;
+ 381:main.c        ****  
+ 382:main.c        ****     (void)file; /* Parameter is not used, suppress unused argument warning */
+ 383:main.c        ****     while(count > 0) {
+ 182              		.loc 1 383 0
+ 183 0008 12E0     		b	.L14
+ 184              	.LVL22:
+ 185              	.L17:
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 11
+
+
+ 384:main.c        ****         ch = UART_1_GetChar();
+ 186              		.loc 1 384 0
+ 187 000a FFF7FEFF 		bl	UART_1_GetChar
+ 188              	.LVL23:
+ 385:main.c        ****         if(ch != 0) {
+ 189              		.loc 1 385 0
+ 190 000e 0546     		mov	r5, r0
+ 191 0010 70B1     		cbz	r0, .L14
+ 386:main.c        ****             UART_1_PutChar(ch);
+ 192              		.loc 1 386 0
+ 193 0012 FFF7FEFF 		bl	UART_1_PutChar
+ 194              	.LVL24:
+ 387:main.c        ****             chs++;
+ 195              		.loc 1 387 0
+ 196 0016 0136     		adds	r6, r6, #1
+ 197              	.LVL25:
+ 388:main.c        ****             if(ch == '\r') {
+ 198              		.loc 1 388 0
+ 199 0018 0D2D     		cmp	r5, #13
+ 200 001a 03D1     		bne	.L15
+ 201              	.LVL26:
+ 389:main.c        ****                 ch = '\n';
+ 390:main.c        ****                 UART_1_PutChar(ch);
+ 202              		.loc 1 390 0
+ 203 001c 0A20     		movs	r0, #10
+ 204 001e FFF7FEFF 		bl	UART_1_PutChar
+ 205              	.LVL27:
+ 389:main.c        ****                 ch = '\n';
+ 206              		.loc 1 389 0
+ 207 0022 0A25     		movs	r5, #10
+ 208              	.LVL28:
+ 209              	.L15:
+ 391:main.c        ****             }
+ 392:main.c        ****             *ptr++ = ch;
+ 210              		.loc 1 392 0
+ 211 0024 7B1C     		adds	r3, r7, #1
+ 212              	.LVL29:
+ 213 0026 3D70     		strb	r5, [r7]
+ 393:main.c        ****             count--;
+ 214              		.loc 1 393 0
+ 215 0028 013C     		subs	r4, r4, #1
+ 216              	.LVL30:
+ 394:main.c        ****             if(ch == '\n') break;
+ 217              		.loc 1 394 0
+ 218 002a 0A2D     		cmp	r5, #10
+ 219 002c 02D0     		beq	.L16
+ 392:main.c        ****             count--;
+ 220              		.loc 1 392 0
+ 221 002e 1F46     		mov	r7, r3
+ 222              	.LVL31:
+ 223              	.L14:
+ 383:main.c        ****         ch = UART_1_GetChar();
+ 224              		.loc 1 383 0
+ 225 0030 002C     		cmp	r4, #0
+ 226 0032 EADC     		bgt	.L17
+ 227              	.LVL32:
+ 228              	.L16:
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 12
+
+
+ 395:main.c        ****         }
+ 396:main.c        ****     }
+ 397:main.c        ****     return chs;
+ 398:main.c        **** }
+ 229              		.loc 1 398 0
+ 230 0034 3046     		mov	r0, r6
+ 231 0036 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 232              		.cfi_endproc
+ 233              	.LFE65:
+ 234              		.size	_read, .-_read
+ 235              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 236              		.align	2
+ 237              	.LC0:
+ 238 0000 0A426F6F 		.ascii	"\012Boot\000"
+ 238      7400
+ 239 0006 0000     		.space	2
+ 240              	.LC1:
+ 241 0008 25642025 		.ascii	"%d %f\015\012\000"
+ 241      660D0A00 
+ 242              		.text
+ 243              	.Letext0:
+ 244              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 245              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 246              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 247              		.file 5 "Generated_Source\\PSoC5/UART_1.h"
+ 248              		.file 6 "Generated_Source\\PSoC5/ADC_Battery.h"
+ 249              		.file 7 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 250              		.file 8 "Generated_Source\\PSoC5/BatteryLed.h"
+ 251              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 252              		.file 10 "Generated_Source\\PSoC5/core_cm3.h"
+ 253              		.file 11 "<built-in>"
+ 254              		.section	.debug_info,"",%progbits
+ 255              	.Ldebug_info0:
+ 256 0000 84030000 		.4byte	0x384
+ 257 0004 0400     		.2byte	0x4
+ 258 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 259 000a 04       		.byte	0x4
+ 260 000b 01       		.uleb128 0x1
+ 261 000c EC000000 		.4byte	.LASF36
+ 262 0010 01       		.byte	0x1
+ 263 0011 31020000 		.4byte	.LASF37
+ 264 0015 8F000000 		.4byte	.LASF38
+ 265 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 266 001d 00000000 		.4byte	0
+ 267 0021 00000000 		.4byte	.Ldebug_line0
+ 268 0025 02       		.uleb128 0x2
+ 269 0026 01       		.byte	0x1
+ 270 0027 06       		.byte	0x6
+ 271 0028 72020000 		.4byte	.LASF0
+ 272 002c 02       		.uleb128 0x2
+ 273 002d 01       		.byte	0x1
+ 274 002e 08       		.byte	0x8
+ 275 002f 69000000 		.4byte	.LASF1
+ 276 0033 02       		.uleb128 0x2
+ 277 0034 02       		.byte	0x2
+ 278 0035 05       		.byte	0x5
+ 279 0036 54020000 		.4byte	.LASF2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 13
+
+
+ 280 003a 02       		.uleb128 0x2
+ 281 003b 02       		.byte	0x2
+ 282 003c 07       		.byte	0x7
+ 283 003d 29000000 		.4byte	.LASF3
+ 284 0041 03       		.uleb128 0x3
+ 285 0042 0D000000 		.4byte	.LASF9
+ 286 0046 02       		.byte	0x2
+ 287 0047 3F       		.byte	0x3f
+ 288 0048 4C000000 		.4byte	0x4c
+ 289 004c 02       		.uleb128 0x2
+ 290 004d 04       		.byte	0x4
+ 291 004e 05       		.byte	0x5
+ 292 004f 64020000 		.4byte	.LASF4
+ 293 0053 02       		.uleb128 0x2
+ 294 0054 04       		.byte	0x4
+ 295 0055 07       		.byte	0x7
+ 296 0056 7D000000 		.4byte	.LASF5
+ 297 005a 02       		.uleb128 0x2
+ 298 005b 08       		.byte	0x8
+ 299 005c 05       		.byte	0x5
+ 300 005d 12020000 		.4byte	.LASF6
+ 301 0061 02       		.uleb128 0x2
+ 302 0062 08       		.byte	0x8
+ 303 0063 07       		.byte	0x7
+ 304 0064 AE010000 		.4byte	.LASF7
+ 305 0068 04       		.uleb128 0x4
+ 306 0069 04       		.byte	0x4
+ 307 006a 05       		.byte	0x5
+ 308 006b 696E7400 		.ascii	"int\000"
+ 309 006f 02       		.uleb128 0x2
+ 310 0070 04       		.byte	0x4
+ 311 0071 07       		.byte	0x7
+ 312 0072 89010000 		.4byte	.LASF8
+ 313 0076 03       		.uleb128 0x3
+ 314 0077 50000000 		.4byte	.LASF10
+ 315 007b 03       		.byte	0x3
+ 316 007c 2C       		.byte	0x2c
+ 317 007d 41000000 		.4byte	0x41
+ 318 0081 05       		.uleb128 0x5
+ 319 0082 5E020000 		.4byte	.LASF11
+ 320 0086 04       		.byte	0x4
+ 321 0087 9201     		.2byte	0x192
+ 322 0089 2C000000 		.4byte	0x2c
+ 323 008d 05       		.uleb128 0x5
+ 324 008e E5000000 		.4byte	.LASF12
+ 325 0092 04       		.byte	0x4
+ 326 0093 9401     		.2byte	0x194
+ 327 0095 53000000 		.4byte	0x53
+ 328 0099 05       		.uleb128 0x5
+ 329 009a 77000000 		.4byte	.LASF13
+ 330 009e 04       		.byte	0x4
+ 331 009f 9601     		.2byte	0x196
+ 332 00a1 33000000 		.4byte	0x33
+ 333 00a5 02       		.uleb128 0x2
+ 334 00a6 04       		.byte	0x4
+ 335 00a7 04       		.byte	0x4
+ 336 00a8 5E000000 		.4byte	.LASF14
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 14
+
+
+ 337 00ac 02       		.uleb128 0x2
+ 338 00ad 08       		.byte	0x8
+ 339 00ae 04       		.byte	0x4
+ 340 00af D9000000 		.4byte	.LASF15
+ 341 00b3 02       		.uleb128 0x2
+ 342 00b4 01       		.byte	0x1
+ 343 00b5 08       		.byte	0x8
+ 344 00b6 38020000 		.4byte	.LASF16
+ 345 00ba 02       		.uleb128 0x2
+ 346 00bb 04       		.byte	0x4
+ 347 00bc 07       		.byte	0x7
+ 348 00bd 09020000 		.4byte	.LASF17
+ 349 00c1 06       		.uleb128 0x6
+ 350 00c2 04       		.byte	0x4
+ 351 00c3 B3000000 		.4byte	0xb3
+ 352 00c7 06       		.uleb128 0x6
+ 353 00c8 04       		.byte	0x4
+ 354 00c9 CD000000 		.4byte	0xcd
+ 355 00cd 07       		.uleb128 0x7
+ 356 00ce B3000000 		.4byte	0xb3
+ 357 00d2 02       		.uleb128 0x2
+ 358 00d3 08       		.byte	0x8
+ 359 00d4 04       		.byte	0x4
+ 360 00d5 F6010000 		.4byte	.LASF18
+ 361 00d9 08       		.uleb128 0x8
+ 362 00da E0000000 		.4byte	.LASF39
+ 363 00de 01       		.byte	0x1
+ 364 00df 3A       		.byte	0x3a
+ 365 00e0 68000000 		.4byte	0x68
+ 366 00e4 00000000 		.4byte	.LFB63
+ 367 00e8 50000000 		.4byte	.LFE63-.LFB63
+ 368 00ec 01       		.uleb128 0x1
+ 369 00ed 9C       		.byte	0x9c
+ 370 00ee B4010000 		.4byte	0x1b4
+ 371 00f2 09       		.uleb128 0x9
+ 372 00f3 3D020000 		.4byte	.LASF19
+ 373 00f7 01       		.byte	0x1
+ 374 00f8 3F       		.byte	0x3f
+ 375 00f9 99000000 		.4byte	0x99
+ 376 00fd 00000000 		.4byte	.LLST0
+ 377 0101 09       		.uleb128 0x9
+ 378 0102 F0010000 		.4byte	.LASF20
+ 379 0106 01       		.byte	0x1
+ 380 0107 40       		.byte	0x40
+ 381 0108 A5000000 		.4byte	0xa5
+ 382 010c 1F000000 		.4byte	.LLST1
+ 383 0110 0A       		.uleb128 0xa
+ 384 0111 08000000 		.4byte	.LVL0
+ 385 0115 D0020000 		.4byte	0x2d0
+ 386 0119 0A       		.uleb128 0xa
+ 387 011a 0C000000 		.4byte	.LVL1
+ 388 011e D7020000 		.4byte	0x2d7
+ 389 0122 0B       		.uleb128 0xb
+ 390 0123 12000000 		.4byte	.LVL2
+ 391 0127 DE020000 		.4byte	0x2de
+ 392 012b 39010000 		.4byte	0x139
+ 393 012f 0C       		.uleb128 0xc
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 15
+
+
+ 394 0130 01       		.uleb128 0x1
+ 395 0131 50       		.byte	0x50
+ 396 0132 05       		.uleb128 0x5
+ 397 0133 03       		.byte	0x3
+ 398 0134 00000000 		.4byte	.LC0
+ 399 0138 00       		.byte	0
+ 400 0139 0B       		.uleb128 0xb
+ 401 013a 18000000 		.4byte	.LVL3
+ 402 013e F7020000 		.4byte	0x2f7
+ 403 0142 4C010000 		.4byte	0x14c
+ 404 0146 0C       		.uleb128 0xc
+ 405 0147 01       		.uleb128 0x1
+ 406 0148 50       		.byte	0x50
+ 407 0149 01       		.uleb128 0x1
+ 408 014a 30       		.byte	0x30
+ 409 014b 00       		.byte	0
+ 410 014c 0A       		.uleb128 0xa
+ 411 014d 1C000000 		.4byte	.LVL4
+ 412 0151 08030000 		.4byte	0x308
+ 413 0155 0B       		.uleb128 0xb
+ 414 0156 22000000 		.4byte	.LVL5
+ 415 015a 0F030000 		.4byte	0x30f
+ 416 015e 68010000 		.4byte	0x168
+ 417 0162 0C       		.uleb128 0xc
+ 418 0163 01       		.uleb128 0x1
+ 419 0164 50       		.byte	0x50
+ 420 0165 01       		.uleb128 0x1
+ 421 0166 30       		.byte	0x30
+ 422 0167 00       		.byte	0
+ 423 0168 0A       		.uleb128 0xa
+ 424 0169 28000000 		.4byte	.LVL6
+ 425 016d 24030000 		.4byte	0x324
+ 426 0171 0B       		.uleb128 0xb
+ 427 0172 2E000000 		.4byte	.LVL8
+ 428 0176 2F030000 		.4byte	0x32f
+ 429 017a 85010000 		.4byte	0x185
+ 430 017e 0C       		.uleb128 0xc
+ 431 017f 01       		.uleb128 0x1
+ 432 0180 50       		.byte	0x50
+ 433 0181 02       		.uleb128 0x2
+ 434 0182 74       		.byte	0x74
+ 435 0183 00       		.sleb128 0
+ 436 0184 00       		.byte	0
+ 437 0185 0B       		.uleb128 0xb
+ 438 0186 3E000000 		.4byte	.LVL10
+ 439 018a 44030000 		.4byte	0x344
+ 440 018e A2010000 		.4byte	0x1a2
+ 441 0192 0C       		.uleb128 0xc
+ 442 0193 01       		.uleb128 0x1
+ 443 0194 51       		.byte	0x51
+ 444 0195 02       		.uleb128 0x2
+ 445 0196 74       		.byte	0x74
+ 446 0197 00       		.sleb128 0
+ 447 0198 0C       		.uleb128 0xc
+ 448 0199 01       		.uleb128 0x1
+ 449 019a 50       		.byte	0x50
+ 450 019b 05       		.uleb128 0x5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 16
+
+
+ 451 019c 03       		.byte	0x3
+ 452 019d 08000000 		.4byte	.LC1
+ 453 01a1 00       		.byte	0
+ 454 01a2 0D       		.uleb128 0xd
+ 455 01a3 46000000 		.4byte	.LVL11
+ 456 01a7 5A030000 		.4byte	0x35a
+ 457 01ab 0C       		.uleb128 0xc
+ 458 01ac 01       		.uleb128 0x1
+ 459 01ad 50       		.byte	0x50
+ 460 01ae 03       		.uleb128 0x3
+ 461 01af 0A       		.byte	0xa
+ 462 01b0 F401     		.2byte	0x1f4
+ 463 01b2 00       		.byte	0
+ 464 01b3 00       		.byte	0
+ 465 01b4 0E       		.uleb128 0xe
+ 466 01b5 02020000 		.4byte	.LASF22
+ 467 01b9 01       		.byte	0x1
+ 468 01ba 6E01     		.2byte	0x16e
+ 469 01bc 68000000 		.4byte	0x68
+ 470 01c0 00000000 		.4byte	.LFB64
+ 471 01c4 2A000000 		.4byte	.LFE64-.LFB64
+ 472 01c8 01       		.uleb128 0x1
+ 473 01c9 9C       		.byte	0x9c
+ 474 01ca 29020000 		.4byte	0x229
+ 475 01ce 0F       		.uleb128 0xf
+ 476 01cf 64000000 		.4byte	.LASF21
+ 477 01d3 01       		.byte	0x1
+ 478 01d4 6E01     		.2byte	0x16e
+ 479 01d6 68000000 		.4byte	0x68
+ 480 01da 42000000 		.4byte	.LLST2
+ 481 01de 10       		.uleb128 0x10
+ 482 01df 70747200 		.ascii	"ptr\000"
+ 483 01e3 01       		.byte	0x1
+ 484 01e4 6E01     		.2byte	0x16e
+ 485 01e6 C1000000 		.4byte	0xc1
+ 486 01ea 63000000 		.4byte	.LLST3
+ 487 01ee 10       		.uleb128 0x10
+ 488 01ef 6C656E00 		.ascii	"len\000"
+ 489 01f3 01       		.byte	0x1
+ 490 01f4 6E01     		.2byte	0x16e
+ 491 01f6 68000000 		.4byte	0x68
+ 492 01fa 97000000 		.4byte	.LLST4
+ 493 01fe 11       		.uleb128 0x11
+ 494 01ff 6E00     		.ascii	"n\000"
+ 495 0201 01       		.byte	0x1
+ 496 0202 7101     		.2byte	0x171
+ 497 0204 68000000 		.4byte	0x68
+ 498 0208 B5000000 		.4byte	.LLST5
+ 499 020c 0B       		.uleb128 0xb
+ 500 020d 16000000 		.4byte	.LVL15
+ 501 0211 6B030000 		.4byte	0x36b
+ 502 0215 1F020000 		.4byte	0x21f
+ 503 0219 0C       		.uleb128 0xc
+ 504 021a 01       		.uleb128 0x1
+ 505 021b 50       		.byte	0x50
+ 506 021c 01       		.uleb128 0x1
+ 507 021d 3D       		.byte	0x3d
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 17
+
+
+ 508 021e 00       		.byte	0
+ 509 021f 0A       		.uleb128 0xa
+ 510 0220 1E000000 		.4byte	.LVL17
+ 511 0224 6B030000 		.4byte	0x36b
+ 512 0228 00       		.byte	0
+ 513 0229 0E       		.uleb128 0xe
+ 514 022a 58000000 		.4byte	.LASF23
+ 515 022e 01       		.byte	0x1
+ 516 022f 7901     		.2byte	0x179
+ 517 0231 68000000 		.4byte	0x68
+ 518 0235 00000000 		.4byte	.LFB65
+ 519 0239 38000000 		.4byte	.LFE65-.LFB65
+ 520 023d 01       		.uleb128 0x1
+ 521 023e 9C       		.byte	0x9c
+ 522 023f BF020000 		.4byte	0x2bf
+ 523 0243 0F       		.uleb128 0xf
+ 524 0244 64000000 		.4byte	.LASF21
+ 525 0248 01       		.byte	0x1
+ 526 0249 7901     		.2byte	0x179
+ 527 024b 68000000 		.4byte	0x68
+ 528 024f D4000000 		.4byte	.LLST6
+ 529 0253 10       		.uleb128 0x10
+ 530 0254 70747200 		.ascii	"ptr\000"
+ 531 0258 01       		.byte	0x1
+ 532 0259 7901     		.2byte	0x179
+ 533 025b C1000000 		.4byte	0xc1
+ 534 025f F5000000 		.4byte	.LLST7
+ 535 0263 0F       		.uleb128 0xf
+ 536 0264 4E020000 		.4byte	.LASF24
+ 537 0268 01       		.byte	0x1
+ 538 0269 7901     		.2byte	0x179
+ 539 026b 68000000 		.4byte	0x68
+ 540 026f 29010000 		.4byte	.LLST8
+ 541 0273 11       		.uleb128 0x11
+ 542 0274 63687300 		.ascii	"chs\000"
+ 543 0278 01       		.byte	0x1
+ 544 0279 7B01     		.2byte	0x17b
+ 545 027b 68000000 		.4byte	0x68
+ 546 027f 47010000 		.4byte	.LLST9
+ 547 0283 11       		.uleb128 0x11
+ 548 0284 636800   		.ascii	"ch\000"
+ 549 0287 01       		.byte	0x1
+ 550 0288 7C01     		.2byte	0x17c
+ 551 028a B3000000 		.4byte	0xb3
+ 552 028e 66010000 		.4byte	.LLST10
+ 553 0292 0A       		.uleb128 0xa
+ 554 0293 0E000000 		.4byte	.LVL23
+ 555 0297 7C030000 		.4byte	0x37c
+ 556 029b 0B       		.uleb128 0xb
+ 557 029c 16000000 		.4byte	.LVL24
+ 558 02a0 6B030000 		.4byte	0x36b
+ 559 02a4 AF020000 		.4byte	0x2af
+ 560 02a8 0C       		.uleb128 0xc
+ 561 02a9 01       		.uleb128 0x1
+ 562 02aa 50       		.byte	0x50
+ 563 02ab 02       		.uleb128 0x2
+ 564 02ac 75       		.byte	0x75
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 18
+
+
+ 565 02ad 00       		.sleb128 0
+ 566 02ae 00       		.byte	0
+ 567 02af 0D       		.uleb128 0xd
+ 568 02b0 22000000 		.4byte	.LVL27
+ 569 02b4 6B030000 		.4byte	0x36b
+ 570 02b8 0C       		.uleb128 0xc
+ 571 02b9 01       		.uleb128 0x1
+ 572 02ba 50       		.byte	0x50
+ 573 02bb 01       		.uleb128 0x1
+ 574 02bc 3A       		.byte	0x3a
+ 575 02bd 00       		.byte	0
+ 576 02be 00       		.byte	0
+ 577 02bf 12       		.uleb128 0x12
+ 578 02c0 CC000000 		.4byte	.LASF40
+ 579 02c4 0A       		.byte	0xa
+ 580 02c5 9606     		.2byte	0x696
+ 581 02c7 CB020000 		.4byte	0x2cb
+ 582 02cb 13       		.uleb128 0x13
+ 583 02cc 76000000 		.4byte	0x76
+ 584 02d0 14       		.uleb128 0x14
+ 585 02d1 00000000 		.4byte	.LASF25
+ 586 02d5 05       		.byte	0x5
+ 587 02d6 54       		.byte	0x54
+ 588 02d7 14       		.uleb128 0x14
+ 589 02d8 17000000 		.4byte	.LASF26
+ 590 02dc 06       		.byte	0x6
+ 591 02dd 34       		.byte	0x34
+ 592 02de 15       		.uleb128 0x15
+ 593 02df E1010000 		.4byte	.LASF41
+ 594 02e3 0B       		.byte	0xb
+ 595 02e4 00       		.byte	0
+ 596 02e5 6D020000 		.4byte	.LASF42
+ 597 02e9 68000000 		.4byte	0x68
+ 598 02ed F7020000 		.4byte	0x2f7
+ 599 02f1 16       		.uleb128 0x16
+ 600 02f2 C7000000 		.4byte	0xc7
+ 601 02f6 00       		.byte	0
+ 602 02f7 17       		.uleb128 0x17
+ 603 02f8 20020000 		.4byte	.LASF31
+ 604 02fc 08       		.byte	0x8
+ 605 02fd 26       		.byte	0x26
+ 606 02fe 08030000 		.4byte	0x308
+ 607 0302 16       		.uleb128 0x16
+ 608 0303 81000000 		.4byte	0x81
+ 609 0307 00       		.byte	0
+ 610 0308 14       		.uleb128 0x14
+ 611 0309 7E020000 		.4byte	.LASF27
+ 612 030d 06       		.byte	0x6
+ 613 030e D1       		.byte	0xd1
+ 614 030f 18       		.uleb128 0x18
+ 615 0310 C5010000 		.4byte	.LASF28
+ 616 0314 06       		.byte	0x6
+ 617 0315 39       		.byte	0x39
+ 618 0316 81000000 		.4byte	0x81
+ 619 031a 24030000 		.4byte	0x324
+ 620 031e 16       		.uleb128 0x16
+ 621 031f 81000000 		.4byte	0x81
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 19
+
+
+ 622 0323 00       		.byte	0
+ 623 0324 19       		.uleb128 0x19
+ 624 0325 96010000 		.4byte	.LASF34
+ 625 0329 06       		.byte	0x6
+ 626 032a 3B       		.byte	0x3b
+ 627 032b 99000000 		.4byte	0x99
+ 628 032f 18       		.uleb128 0x18
+ 629 0330 3C000000 		.4byte	.LASF29
+ 630 0334 01       		.byte	0x1
+ 631 0335 2F       		.byte	0x2f
+ 632 0336 A5000000 		.4byte	0xa5
+ 633 033a 44030000 		.4byte	0x344
+ 634 033e 16       		.uleb128 0x16
+ 635 033f 99000000 		.4byte	0x99
+ 636 0343 00       		.byte	0
+ 637 0344 18       		.uleb128 0x18
+ 638 0345 47020000 		.4byte	.LASF30
+ 639 0349 07       		.byte	0x7
+ 640 034a B2       		.byte	0xb2
+ 641 034b 68000000 		.4byte	0x68
+ 642 034f 5A030000 		.4byte	0x35a
+ 643 0353 16       		.uleb128 0x16
+ 644 0354 C7000000 		.4byte	0xc7
+ 645 0358 1A       		.uleb128 0x1a
+ 646 0359 00       		.byte	0
+ 647 035a 17       		.uleb128 0x17
+ 648 035b 97020000 		.4byte	.LASF32
+ 649 035f 09       		.byte	0x9
+ 650 0360 76       		.byte	0x76
+ 651 0361 6B030000 		.4byte	0x36b
+ 652 0365 16       		.uleb128 0x16
+ 653 0366 8D000000 		.4byte	0x8d
+ 654 036a 00       		.byte	0
+ 655 036b 17       		.uleb128 0x17
+ 656 036c 7A010000 		.4byte	.LASF33
+ 657 0370 05       		.byte	0x5
+ 658 0371 8A       		.byte	0x8a
+ 659 0372 7C030000 		.4byte	0x37c
+ 660 0376 16       		.uleb128 0x16
+ 661 0377 81000000 		.4byte	0x81
+ 662 037b 00       		.byte	0
+ 663 037c 19       		.uleb128 0x19
+ 664 037d 9F020000 		.4byte	.LASF35
+ 665 0381 05       		.byte	0x5
+ 666 0382 71       		.byte	0x71
+ 667 0383 81000000 		.4byte	0x81
+ 668 0387 00       		.byte	0
+ 669              		.section	.debug_abbrev,"",%progbits
+ 670              	.Ldebug_abbrev0:
+ 671 0000 01       		.uleb128 0x1
+ 672 0001 11       		.uleb128 0x11
+ 673 0002 01       		.byte	0x1
+ 674 0003 25       		.uleb128 0x25
+ 675 0004 0E       		.uleb128 0xe
+ 676 0005 13       		.uleb128 0x13
+ 677 0006 0B       		.uleb128 0xb
+ 678 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 20
+
+
+ 679 0008 0E       		.uleb128 0xe
+ 680 0009 1B       		.uleb128 0x1b
+ 681 000a 0E       		.uleb128 0xe
+ 682 000b 55       		.uleb128 0x55
+ 683 000c 17       		.uleb128 0x17
+ 684 000d 11       		.uleb128 0x11
+ 685 000e 01       		.uleb128 0x1
+ 686 000f 10       		.uleb128 0x10
+ 687 0010 17       		.uleb128 0x17
+ 688 0011 00       		.byte	0
+ 689 0012 00       		.byte	0
+ 690 0013 02       		.uleb128 0x2
+ 691 0014 24       		.uleb128 0x24
+ 692 0015 00       		.byte	0
+ 693 0016 0B       		.uleb128 0xb
+ 694 0017 0B       		.uleb128 0xb
+ 695 0018 3E       		.uleb128 0x3e
+ 696 0019 0B       		.uleb128 0xb
+ 697 001a 03       		.uleb128 0x3
+ 698 001b 0E       		.uleb128 0xe
+ 699 001c 00       		.byte	0
+ 700 001d 00       		.byte	0
+ 701 001e 03       		.uleb128 0x3
+ 702 001f 16       		.uleb128 0x16
+ 703 0020 00       		.byte	0
+ 704 0021 03       		.uleb128 0x3
+ 705 0022 0E       		.uleb128 0xe
+ 706 0023 3A       		.uleb128 0x3a
+ 707 0024 0B       		.uleb128 0xb
+ 708 0025 3B       		.uleb128 0x3b
+ 709 0026 0B       		.uleb128 0xb
+ 710 0027 49       		.uleb128 0x49
+ 711 0028 13       		.uleb128 0x13
+ 712 0029 00       		.byte	0
+ 713 002a 00       		.byte	0
+ 714 002b 04       		.uleb128 0x4
+ 715 002c 24       		.uleb128 0x24
+ 716 002d 00       		.byte	0
+ 717 002e 0B       		.uleb128 0xb
+ 718 002f 0B       		.uleb128 0xb
+ 719 0030 3E       		.uleb128 0x3e
+ 720 0031 0B       		.uleb128 0xb
+ 721 0032 03       		.uleb128 0x3
+ 722 0033 08       		.uleb128 0x8
+ 723 0034 00       		.byte	0
+ 724 0035 00       		.byte	0
+ 725 0036 05       		.uleb128 0x5
+ 726 0037 16       		.uleb128 0x16
+ 727 0038 00       		.byte	0
+ 728 0039 03       		.uleb128 0x3
+ 729 003a 0E       		.uleb128 0xe
+ 730 003b 3A       		.uleb128 0x3a
+ 731 003c 0B       		.uleb128 0xb
+ 732 003d 3B       		.uleb128 0x3b
+ 733 003e 05       		.uleb128 0x5
+ 734 003f 49       		.uleb128 0x49
+ 735 0040 13       		.uleb128 0x13
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 21
+
+
+ 736 0041 00       		.byte	0
+ 737 0042 00       		.byte	0
+ 738 0043 06       		.uleb128 0x6
+ 739 0044 0F       		.uleb128 0xf
+ 740 0045 00       		.byte	0
+ 741 0046 0B       		.uleb128 0xb
+ 742 0047 0B       		.uleb128 0xb
+ 743 0048 49       		.uleb128 0x49
+ 744 0049 13       		.uleb128 0x13
+ 745 004a 00       		.byte	0
+ 746 004b 00       		.byte	0
+ 747 004c 07       		.uleb128 0x7
+ 748 004d 26       		.uleb128 0x26
+ 749 004e 00       		.byte	0
+ 750 004f 49       		.uleb128 0x49
+ 751 0050 13       		.uleb128 0x13
+ 752 0051 00       		.byte	0
+ 753 0052 00       		.byte	0
+ 754 0053 08       		.uleb128 0x8
+ 755 0054 2E       		.uleb128 0x2e
+ 756 0055 01       		.byte	0x1
+ 757 0056 3F       		.uleb128 0x3f
+ 758 0057 19       		.uleb128 0x19
+ 759 0058 03       		.uleb128 0x3
+ 760 0059 0E       		.uleb128 0xe
+ 761 005a 3A       		.uleb128 0x3a
+ 762 005b 0B       		.uleb128 0xb
+ 763 005c 3B       		.uleb128 0x3b
+ 764 005d 0B       		.uleb128 0xb
+ 765 005e 49       		.uleb128 0x49
+ 766 005f 13       		.uleb128 0x13
+ 767 0060 11       		.uleb128 0x11
+ 768 0061 01       		.uleb128 0x1
+ 769 0062 12       		.uleb128 0x12
+ 770 0063 06       		.uleb128 0x6
+ 771 0064 40       		.uleb128 0x40
+ 772 0065 18       		.uleb128 0x18
+ 773 0066 9642     		.uleb128 0x2116
+ 774 0068 19       		.uleb128 0x19
+ 775 0069 01       		.uleb128 0x1
+ 776 006a 13       		.uleb128 0x13
+ 777 006b 00       		.byte	0
+ 778 006c 00       		.byte	0
+ 779 006d 09       		.uleb128 0x9
+ 780 006e 34       		.uleb128 0x34
+ 781 006f 00       		.byte	0
+ 782 0070 03       		.uleb128 0x3
+ 783 0071 0E       		.uleb128 0xe
+ 784 0072 3A       		.uleb128 0x3a
+ 785 0073 0B       		.uleb128 0xb
+ 786 0074 3B       		.uleb128 0x3b
+ 787 0075 0B       		.uleb128 0xb
+ 788 0076 49       		.uleb128 0x49
+ 789 0077 13       		.uleb128 0x13
+ 790 0078 02       		.uleb128 0x2
+ 791 0079 17       		.uleb128 0x17
+ 792 007a 00       		.byte	0
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 22
+
+
+ 793 007b 00       		.byte	0
+ 794 007c 0A       		.uleb128 0xa
+ 795 007d 898201   		.uleb128 0x4109
+ 796 0080 00       		.byte	0
+ 797 0081 11       		.uleb128 0x11
+ 798 0082 01       		.uleb128 0x1
+ 799 0083 31       		.uleb128 0x31
+ 800 0084 13       		.uleb128 0x13
+ 801 0085 00       		.byte	0
+ 802 0086 00       		.byte	0
+ 803 0087 0B       		.uleb128 0xb
+ 804 0088 898201   		.uleb128 0x4109
+ 805 008b 01       		.byte	0x1
+ 806 008c 11       		.uleb128 0x11
+ 807 008d 01       		.uleb128 0x1
+ 808 008e 31       		.uleb128 0x31
+ 809 008f 13       		.uleb128 0x13
+ 810 0090 01       		.uleb128 0x1
+ 811 0091 13       		.uleb128 0x13
+ 812 0092 00       		.byte	0
+ 813 0093 00       		.byte	0
+ 814 0094 0C       		.uleb128 0xc
+ 815 0095 8A8201   		.uleb128 0x410a
+ 816 0098 00       		.byte	0
+ 817 0099 02       		.uleb128 0x2
+ 818 009a 18       		.uleb128 0x18
+ 819 009b 9142     		.uleb128 0x2111
+ 820 009d 18       		.uleb128 0x18
+ 821 009e 00       		.byte	0
+ 822 009f 00       		.byte	0
+ 823 00a0 0D       		.uleb128 0xd
+ 824 00a1 898201   		.uleb128 0x4109
+ 825 00a4 01       		.byte	0x1
+ 826 00a5 11       		.uleb128 0x11
+ 827 00a6 01       		.uleb128 0x1
+ 828 00a7 31       		.uleb128 0x31
+ 829 00a8 13       		.uleb128 0x13
+ 830 00a9 00       		.byte	0
+ 831 00aa 00       		.byte	0
+ 832 00ab 0E       		.uleb128 0xe
+ 833 00ac 2E       		.uleb128 0x2e
+ 834 00ad 01       		.byte	0x1
+ 835 00ae 3F       		.uleb128 0x3f
+ 836 00af 19       		.uleb128 0x19
+ 837 00b0 03       		.uleb128 0x3
+ 838 00b1 0E       		.uleb128 0xe
+ 839 00b2 3A       		.uleb128 0x3a
+ 840 00b3 0B       		.uleb128 0xb
+ 841 00b4 3B       		.uleb128 0x3b
+ 842 00b5 05       		.uleb128 0x5
+ 843 00b6 27       		.uleb128 0x27
+ 844 00b7 19       		.uleb128 0x19
+ 845 00b8 49       		.uleb128 0x49
+ 846 00b9 13       		.uleb128 0x13
+ 847 00ba 11       		.uleb128 0x11
+ 848 00bb 01       		.uleb128 0x1
+ 849 00bc 12       		.uleb128 0x12
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 23
+
+
+ 850 00bd 06       		.uleb128 0x6
+ 851 00be 40       		.uleb128 0x40
+ 852 00bf 18       		.uleb128 0x18
+ 853 00c0 9742     		.uleb128 0x2117
+ 854 00c2 19       		.uleb128 0x19
+ 855 00c3 01       		.uleb128 0x1
+ 856 00c4 13       		.uleb128 0x13
+ 857 00c5 00       		.byte	0
+ 858 00c6 00       		.byte	0
+ 859 00c7 0F       		.uleb128 0xf
+ 860 00c8 05       		.uleb128 0x5
+ 861 00c9 00       		.byte	0
+ 862 00ca 03       		.uleb128 0x3
+ 863 00cb 0E       		.uleb128 0xe
+ 864 00cc 3A       		.uleb128 0x3a
+ 865 00cd 0B       		.uleb128 0xb
+ 866 00ce 3B       		.uleb128 0x3b
+ 867 00cf 05       		.uleb128 0x5
+ 868 00d0 49       		.uleb128 0x49
+ 869 00d1 13       		.uleb128 0x13
+ 870 00d2 02       		.uleb128 0x2
+ 871 00d3 17       		.uleb128 0x17
+ 872 00d4 00       		.byte	0
+ 873 00d5 00       		.byte	0
+ 874 00d6 10       		.uleb128 0x10
+ 875 00d7 05       		.uleb128 0x5
+ 876 00d8 00       		.byte	0
+ 877 00d9 03       		.uleb128 0x3
+ 878 00da 08       		.uleb128 0x8
+ 879 00db 3A       		.uleb128 0x3a
+ 880 00dc 0B       		.uleb128 0xb
+ 881 00dd 3B       		.uleb128 0x3b
+ 882 00de 05       		.uleb128 0x5
+ 883 00df 49       		.uleb128 0x49
+ 884 00e0 13       		.uleb128 0x13
+ 885 00e1 02       		.uleb128 0x2
+ 886 00e2 17       		.uleb128 0x17
+ 887 00e3 00       		.byte	0
+ 888 00e4 00       		.byte	0
+ 889 00e5 11       		.uleb128 0x11
+ 890 00e6 34       		.uleb128 0x34
+ 891 00e7 00       		.byte	0
+ 892 00e8 03       		.uleb128 0x3
+ 893 00e9 08       		.uleb128 0x8
+ 894 00ea 3A       		.uleb128 0x3a
+ 895 00eb 0B       		.uleb128 0xb
+ 896 00ec 3B       		.uleb128 0x3b
+ 897 00ed 05       		.uleb128 0x5
+ 898 00ee 49       		.uleb128 0x49
+ 899 00ef 13       		.uleb128 0x13
+ 900 00f0 02       		.uleb128 0x2
+ 901 00f1 17       		.uleb128 0x17
+ 902 00f2 00       		.byte	0
+ 903 00f3 00       		.byte	0
+ 904 00f4 12       		.uleb128 0x12
+ 905 00f5 34       		.uleb128 0x34
+ 906 00f6 00       		.byte	0
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 24
+
+
+ 907 00f7 03       		.uleb128 0x3
+ 908 00f8 0E       		.uleb128 0xe
+ 909 00f9 3A       		.uleb128 0x3a
+ 910 00fa 0B       		.uleb128 0xb
+ 911 00fb 3B       		.uleb128 0x3b
+ 912 00fc 05       		.uleb128 0x5
+ 913 00fd 49       		.uleb128 0x49
+ 914 00fe 13       		.uleb128 0x13
+ 915 00ff 3F       		.uleb128 0x3f
+ 916 0100 19       		.uleb128 0x19
+ 917 0101 3C       		.uleb128 0x3c
+ 918 0102 19       		.uleb128 0x19
+ 919 0103 00       		.byte	0
+ 920 0104 00       		.byte	0
+ 921 0105 13       		.uleb128 0x13
+ 922 0106 35       		.uleb128 0x35
+ 923 0107 00       		.byte	0
+ 924 0108 49       		.uleb128 0x49
+ 925 0109 13       		.uleb128 0x13
+ 926 010a 00       		.byte	0
+ 927 010b 00       		.byte	0
+ 928 010c 14       		.uleb128 0x14
+ 929 010d 2E       		.uleb128 0x2e
+ 930 010e 00       		.byte	0
+ 931 010f 3F       		.uleb128 0x3f
+ 932 0110 19       		.uleb128 0x19
+ 933 0111 03       		.uleb128 0x3
+ 934 0112 0E       		.uleb128 0xe
+ 935 0113 3A       		.uleb128 0x3a
+ 936 0114 0B       		.uleb128 0xb
+ 937 0115 3B       		.uleb128 0x3b
+ 938 0116 0B       		.uleb128 0xb
+ 939 0117 27       		.uleb128 0x27
+ 940 0118 19       		.uleb128 0x19
+ 941 0119 3C       		.uleb128 0x3c
+ 942 011a 19       		.uleb128 0x19
+ 943 011b 00       		.byte	0
+ 944 011c 00       		.byte	0
+ 945 011d 15       		.uleb128 0x15
+ 946 011e 2E       		.uleb128 0x2e
+ 947 011f 01       		.byte	0x1
+ 948 0120 3F       		.uleb128 0x3f
+ 949 0121 19       		.uleb128 0x19
+ 950 0122 03       		.uleb128 0x3
+ 951 0123 0E       		.uleb128 0xe
+ 952 0124 3A       		.uleb128 0x3a
+ 953 0125 0B       		.uleb128 0xb
+ 954 0126 3B       		.uleb128 0x3b
+ 955 0127 0B       		.uleb128 0xb
+ 956 0128 6E       		.uleb128 0x6e
+ 957 0129 0E       		.uleb128 0xe
+ 958 012a 27       		.uleb128 0x27
+ 959 012b 19       		.uleb128 0x19
+ 960 012c 49       		.uleb128 0x49
+ 961 012d 13       		.uleb128 0x13
+ 962 012e 3C       		.uleb128 0x3c
+ 963 012f 19       		.uleb128 0x19
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 25
+
+
+ 964 0130 01       		.uleb128 0x1
+ 965 0131 13       		.uleb128 0x13
+ 966 0132 00       		.byte	0
+ 967 0133 00       		.byte	0
+ 968 0134 16       		.uleb128 0x16
+ 969 0135 05       		.uleb128 0x5
+ 970 0136 00       		.byte	0
+ 971 0137 49       		.uleb128 0x49
+ 972 0138 13       		.uleb128 0x13
+ 973 0139 00       		.byte	0
+ 974 013a 00       		.byte	0
+ 975 013b 17       		.uleb128 0x17
+ 976 013c 2E       		.uleb128 0x2e
+ 977 013d 01       		.byte	0x1
+ 978 013e 3F       		.uleb128 0x3f
+ 979 013f 19       		.uleb128 0x19
+ 980 0140 03       		.uleb128 0x3
+ 981 0141 0E       		.uleb128 0xe
+ 982 0142 3A       		.uleb128 0x3a
+ 983 0143 0B       		.uleb128 0xb
+ 984 0144 3B       		.uleb128 0x3b
+ 985 0145 0B       		.uleb128 0xb
+ 986 0146 27       		.uleb128 0x27
+ 987 0147 19       		.uleb128 0x19
+ 988 0148 3C       		.uleb128 0x3c
+ 989 0149 19       		.uleb128 0x19
+ 990 014a 01       		.uleb128 0x1
+ 991 014b 13       		.uleb128 0x13
+ 992 014c 00       		.byte	0
+ 993 014d 00       		.byte	0
+ 994 014e 18       		.uleb128 0x18
+ 995 014f 2E       		.uleb128 0x2e
+ 996 0150 01       		.byte	0x1
+ 997 0151 3F       		.uleb128 0x3f
+ 998 0152 19       		.uleb128 0x19
+ 999 0153 03       		.uleb128 0x3
+ 1000 0154 0E       		.uleb128 0xe
+ 1001 0155 3A       		.uleb128 0x3a
+ 1002 0156 0B       		.uleb128 0xb
+ 1003 0157 3B       		.uleb128 0x3b
+ 1004 0158 0B       		.uleb128 0xb
+ 1005 0159 27       		.uleb128 0x27
+ 1006 015a 19       		.uleb128 0x19
+ 1007 015b 49       		.uleb128 0x49
+ 1008 015c 13       		.uleb128 0x13
+ 1009 015d 3C       		.uleb128 0x3c
+ 1010 015e 19       		.uleb128 0x19
+ 1011 015f 01       		.uleb128 0x1
+ 1012 0160 13       		.uleb128 0x13
+ 1013 0161 00       		.byte	0
+ 1014 0162 00       		.byte	0
+ 1015 0163 19       		.uleb128 0x19
+ 1016 0164 2E       		.uleb128 0x2e
+ 1017 0165 00       		.byte	0
+ 1018 0166 3F       		.uleb128 0x3f
+ 1019 0167 19       		.uleb128 0x19
+ 1020 0168 03       		.uleb128 0x3
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 26
+
+
+ 1021 0169 0E       		.uleb128 0xe
+ 1022 016a 3A       		.uleb128 0x3a
+ 1023 016b 0B       		.uleb128 0xb
+ 1024 016c 3B       		.uleb128 0x3b
+ 1025 016d 0B       		.uleb128 0xb
+ 1026 016e 27       		.uleb128 0x27
+ 1027 016f 19       		.uleb128 0x19
+ 1028 0170 49       		.uleb128 0x49
+ 1029 0171 13       		.uleb128 0x13
+ 1030 0172 3C       		.uleb128 0x3c
+ 1031 0173 19       		.uleb128 0x19
+ 1032 0174 00       		.byte	0
+ 1033 0175 00       		.byte	0
+ 1034 0176 1A       		.uleb128 0x1a
+ 1035 0177 18       		.uleb128 0x18
+ 1036 0178 00       		.byte	0
+ 1037 0179 00       		.byte	0
+ 1038 017a 00       		.byte	0
+ 1039 017b 00       		.byte	0
+ 1040              		.section	.debug_loc,"",%progbits
+ 1041              	.Ldebug_loc0:
+ 1042              	.LLST0:
+ 1043 0000 0C000000 		.4byte	.LVL1
+ 1044 0004 18000000 		.4byte	.LVL3
+ 1045 0008 0200     		.2byte	0x2
+ 1046 000a 30       		.byte	0x30
+ 1047 000b 9F       		.byte	0x9f
+ 1048 000c 2A000000 		.4byte	.LVL7
+ 1049 0010 3E000000 		.4byte	.LVL10
+ 1050 0014 0100     		.2byte	0x1
+ 1051 0016 54       		.byte	0x54
+ 1052 0017 00000000 		.4byte	0
+ 1053 001b 00000000 		.4byte	0
+ 1054              	.LLST1:
+ 1055 001f 0C000000 		.4byte	.LVL1
+ 1056 0023 18000000 		.4byte	.LVL3
+ 1057 0027 0600     		.2byte	0x6
+ 1058 0029 9E       		.byte	0x9e
+ 1059 002a 04       		.uleb128 0x4
+ 1060 002b 00000000 		.4byte	0
+ 1061 002f 2E000000 		.4byte	.LVL8
+ 1062 0033 31000000 		.4byte	.LVL9-1
+ 1063 0037 0100     		.2byte	0x1
+ 1064 0039 50       		.byte	0x50
+ 1065 003a 00000000 		.4byte	0
+ 1066 003e 00000000 		.4byte	0
+ 1067              	.LLST2:
+ 1068 0042 00000000 		.4byte	.LVL12
+ 1069 0046 0A000000 		.4byte	.LVL14
+ 1070 004a 0100     		.2byte	0x1
+ 1071 004c 50       		.byte	0x50
+ 1072 004d 0A000000 		.4byte	.LVL14
+ 1073 0051 2A000000 		.4byte	.LFE64
+ 1074 0055 0400     		.2byte	0x4
+ 1075 0057 F3       		.byte	0xf3
+ 1076 0058 01       		.uleb128 0x1
+ 1077 0059 50       		.byte	0x50
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 27
+
+
+ 1078 005a 9F       		.byte	0x9f
+ 1079 005b 00000000 		.4byte	0
+ 1080 005f 00000000 		.4byte	0
+ 1081              	.LLST3:
+ 1082 0063 00000000 		.4byte	.LVL12
+ 1083 0067 0A000000 		.4byte	.LVL14
+ 1084 006b 0100     		.2byte	0x1
+ 1085 006d 51       		.byte	0x51
+ 1086 006e 0A000000 		.4byte	.LVL14
+ 1087 0072 18000000 		.4byte	.LVL16
+ 1088 0076 0100     		.2byte	0x1
+ 1089 0078 54       		.byte	0x54
+ 1090 0079 18000000 		.4byte	.LVL16
+ 1091 007d 22000000 		.4byte	.LVL19
+ 1092 0081 0100     		.2byte	0x1
+ 1093 0083 56       		.byte	0x56
+ 1094 0084 22000000 		.4byte	.LVL19
+ 1095 0088 2A000000 		.4byte	.LFE64
+ 1096 008c 0100     		.2byte	0x1
+ 1097 008e 54       		.byte	0x54
+ 1098 008f 00000000 		.4byte	0
+ 1099 0093 00000000 		.4byte	0
+ 1100              	.LLST4:
+ 1101 0097 00000000 		.4byte	.LVL12
+ 1102 009b 0A000000 		.4byte	.LVL14
+ 1103 009f 0100     		.2byte	0x1
+ 1104 00a1 52       		.byte	0x52
+ 1105 00a2 0A000000 		.4byte	.LVL14
+ 1106 00a6 2A000000 		.4byte	.LFE64
+ 1107 00aa 0100     		.2byte	0x1
+ 1108 00ac 57       		.byte	0x57
+ 1109 00ad 00000000 		.4byte	0
+ 1110 00b1 00000000 		.4byte	0
+ 1111              	.LLST5:
+ 1112 00b5 06000000 		.4byte	.LVL13
+ 1113 00b9 0A000000 		.4byte	.LVL14
+ 1114 00bd 0200     		.2byte	0x2
+ 1115 00bf 30       		.byte	0x30
+ 1116 00c0 9F       		.byte	0x9f
+ 1117 00c1 0A000000 		.4byte	.LVL14
+ 1118 00c5 2A000000 		.4byte	.LFE64
+ 1119 00c9 0100     		.2byte	0x1
+ 1120 00cb 55       		.byte	0x55
+ 1121 00cc 00000000 		.4byte	0
+ 1122 00d0 00000000 		.4byte	0
+ 1123              	.LLST6:
+ 1124 00d4 00000000 		.4byte	.LVL20
+ 1125 00d8 0A000000 		.4byte	.LVL22
+ 1126 00dc 0100     		.2byte	0x1
+ 1127 00de 50       		.byte	0x50
+ 1128 00df 0A000000 		.4byte	.LVL22
+ 1129 00e3 38000000 		.4byte	.LFE65
+ 1130 00e7 0400     		.2byte	0x4
+ 1131 00e9 F3       		.byte	0xf3
+ 1132 00ea 01       		.uleb128 0x1
+ 1133 00eb 50       		.byte	0x50
+ 1134 00ec 9F       		.byte	0x9f
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 28
+
+
+ 1135 00ed 00000000 		.4byte	0
+ 1136 00f1 00000000 		.4byte	0
+ 1137              	.LLST7:
+ 1138 00f5 00000000 		.4byte	.LVL20
+ 1139 00f9 0A000000 		.4byte	.LVL22
+ 1140 00fd 0100     		.2byte	0x1
+ 1141 00ff 51       		.byte	0x51
+ 1142 0100 0A000000 		.4byte	.LVL22
+ 1143 0104 26000000 		.4byte	.LVL29
+ 1144 0108 0100     		.2byte	0x1
+ 1145 010a 57       		.byte	0x57
+ 1146 010b 26000000 		.4byte	.LVL29
+ 1147 010f 30000000 		.4byte	.LVL31
+ 1148 0113 0100     		.2byte	0x1
+ 1149 0115 53       		.byte	0x53
+ 1150 0116 30000000 		.4byte	.LVL31
+ 1151 011a 34000000 		.4byte	.LVL32
+ 1152 011e 0100     		.2byte	0x1
+ 1153 0120 57       		.byte	0x57
+ 1154 0121 00000000 		.4byte	0
+ 1155 0125 00000000 		.4byte	0
+ 1156              	.LLST8:
+ 1157 0129 00000000 		.4byte	.LVL20
+ 1158 012d 0A000000 		.4byte	.LVL22
+ 1159 0131 0100     		.2byte	0x1
+ 1160 0133 52       		.byte	0x52
+ 1161 0134 0A000000 		.4byte	.LVL22
+ 1162 0138 38000000 		.4byte	.LFE65
+ 1163 013c 0100     		.2byte	0x1
+ 1164 013e 54       		.byte	0x54
+ 1165 013f 00000000 		.4byte	0
+ 1166 0143 00000000 		.4byte	0
+ 1167              	.LLST9:
+ 1168 0147 06000000 		.4byte	.LVL21
+ 1169 014b 0A000000 		.4byte	.LVL22
+ 1170 014f 0200     		.2byte	0x2
+ 1171 0151 30       		.byte	0x30
+ 1172 0152 9F       		.byte	0x9f
+ 1173 0153 0A000000 		.4byte	.LVL22
+ 1174 0157 38000000 		.4byte	.LFE65
+ 1175 015b 0100     		.2byte	0x1
+ 1176 015d 56       		.byte	0x56
+ 1177 015e 00000000 		.4byte	0
+ 1178 0162 00000000 		.4byte	0
+ 1179              	.LLST10:
+ 1180 0166 0E000000 		.4byte	.LVL23
+ 1181 016a 15000000 		.4byte	.LVL24-1
+ 1182 016e 0100     		.2byte	0x1
+ 1183 0170 50       		.byte	0x50
+ 1184 0171 1C000000 		.4byte	.LVL26
+ 1185 0175 24000000 		.4byte	.LVL28
+ 1186 0179 0200     		.2byte	0x2
+ 1187 017b 3A       		.byte	0x3a
+ 1188 017c 9F       		.byte	0x9f
+ 1189 017d 24000000 		.4byte	.LVL28
+ 1190 0181 30000000 		.4byte	.LVL31
+ 1191 0185 0100     		.2byte	0x1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 29
+
+
+ 1192 0187 55       		.byte	0x55
+ 1193 0188 00000000 		.4byte	0
+ 1194 018c 00000000 		.4byte	0
+ 1195              		.section	.debug_aranges,"",%progbits
+ 1196 0000 2C000000 		.4byte	0x2c
+ 1197 0004 0200     		.2byte	0x2
+ 1198 0006 00000000 		.4byte	.Ldebug_info0
+ 1199 000a 04       		.byte	0x4
+ 1200 000b 00       		.byte	0
+ 1201 000c 0000     		.2byte	0
+ 1202 000e 0000     		.2byte	0
+ 1203 0010 00000000 		.4byte	.LFB63
+ 1204 0014 50000000 		.4byte	.LFE63-.LFB63
+ 1205 0018 00000000 		.4byte	.LFB64
+ 1206 001c 2A000000 		.4byte	.LFE64-.LFB64
+ 1207 0020 00000000 		.4byte	.LFB65
+ 1208 0024 38000000 		.4byte	.LFE65-.LFB65
+ 1209 0028 00000000 		.4byte	0
+ 1210 002c 00000000 		.4byte	0
+ 1211              		.section	.debug_ranges,"",%progbits
+ 1212              	.Ldebug_ranges0:
+ 1213 0000 00000000 		.4byte	.LFB63
+ 1214 0004 50000000 		.4byte	.LFE63
+ 1215 0008 00000000 		.4byte	.LFB64
+ 1216 000c 2A000000 		.4byte	.LFE64
+ 1217 0010 00000000 		.4byte	.LFB65
+ 1218 0014 38000000 		.4byte	.LFE65
+ 1219 0018 00000000 		.4byte	0
+ 1220 001c 00000000 		.4byte	0
+ 1221              		.section	.debug_line,"",%progbits
+ 1222              	.Ldebug_line0:
+ 1223 0000 0A020000 		.section	.debug_str,"MS",%progbits,1
+ 1223      02009801 
+ 1223      00000201 
+ 1223      FB0E0D00 
+ 1223      01010101 
+ 1224              	.LASF25:
+ 1225 0000 55415254 		.ascii	"UART_1_Start\000"
+ 1225      5F315F53 
+ 1225      74617274 
+ 1225      00
+ 1226              	.LASF9:
+ 1227 000d 5F5F696E 		.ascii	"__int32_t\000"
+ 1227      7433325F 
+ 1227      7400
+ 1228              	.LASF26:
+ 1229 0017 4144435F 		.ascii	"ADC_Battery_Start\000"
+ 1229      42617474 
+ 1229      6572795F 
+ 1229      53746172 
+ 1229      7400
+ 1230              	.LASF3:
+ 1231 0029 73686F72 		.ascii	"short unsigned int\000"
+ 1231      7420756E 
+ 1231      7369676E 
+ 1231      65642069 
+ 1231      6E7400
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 30
+
+
+ 1232              	.LASF29:
+ 1233 003c 4144435F 		.ascii	"ADC_result_to_volts\000"
+ 1233      72657375 
+ 1233      6C745F74 
+ 1233      6F5F766F 
+ 1233      6C747300 
+ 1234              	.LASF10:
+ 1235 0050 696E7433 		.ascii	"int32_t\000"
+ 1235      325F7400 
+ 1236              	.LASF23:
+ 1237 0058 5F726561 		.ascii	"_read\000"
+ 1237      6400
+ 1238              	.LASF14:
+ 1239 005e 666C6F61 		.ascii	"float\000"
+ 1239      7400
+ 1240              	.LASF21:
+ 1241 0064 66696C65 		.ascii	"file\000"
+ 1241      00
+ 1242              	.LASF1:
+ 1243 0069 756E7369 		.ascii	"unsigned char\000"
+ 1243      676E6564 
+ 1243      20636861 
+ 1243      7200
+ 1244              	.LASF13:
+ 1245 0077 696E7431 		.ascii	"int16\000"
+ 1245      3600
+ 1246              	.LASF5:
+ 1247 007d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1247      20756E73 
+ 1247      69676E65 
+ 1247      6420696E 
+ 1247      7400
+ 1248              	.LASF38:
+ 1249 008f 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo.release04\\Zumo01"
+ 1249      73657273 
+ 1249      5C56696C 
+ 1249      6C65204C 
+ 1249      5C446573 
+ 1250 00bd 5C5A756D 		.ascii	"\\ZumoBot.cydsn\000"
+ 1250      6F426F74 
+ 1250      2E637964 
+ 1250      736E00
+ 1251              	.LASF40:
+ 1252 00cc 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1252      52784275 
+ 1252      66666572 
+ 1252      00
+ 1253              	.LASF15:
+ 1254 00d9 646F7562 		.ascii	"double\000"
+ 1254      6C6500
+ 1255              	.LASF39:
+ 1256 00e0 6D61696E 		.ascii	"main\000"
+ 1256      00
+ 1257              	.LASF12:
+ 1258 00e5 75696E74 		.ascii	"uint32\000"
+ 1258      333200
+ 1259              	.LASF36:
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 31
+
+
+ 1260 00ec 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1260      4320342E 
+ 1260      392E3320 
+ 1260      32303135 
+ 1260      30333033 
+ 1261 011f 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1261      20726576 
+ 1261      6973696F 
+ 1261      6E203232 
+ 1261      31323230 
+ 1262 0152 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1262      66756E63 
+ 1262      74696F6E 
+ 1262      2D736563 
+ 1262      74696F6E 
+ 1263              	.LASF33:
+ 1264 017a 55415254 		.ascii	"UART_1_PutChar\000"
+ 1264      5F315F50 
+ 1264      75744368 
+ 1264      617200
+ 1265              	.LASF8:
+ 1266 0189 756E7369 		.ascii	"unsigned int\000"
+ 1266      676E6564 
+ 1266      20696E74 
+ 1266      00
+ 1267              	.LASF34:
+ 1268 0196 4144435F 		.ascii	"ADC_Battery_GetResult16\000"
+ 1268      42617474 
+ 1268      6572795F 
+ 1268      47657452 
+ 1268      6573756C 
+ 1269              	.LASF7:
+ 1270 01ae 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1270      206C6F6E 
+ 1270      6720756E 
+ 1270      7369676E 
+ 1270      65642069 
+ 1271              	.LASF28:
+ 1272 01c5 4144435F 		.ascii	"ADC_Battery_IsEndConversion\000"
+ 1272      42617474 
+ 1272      6572795F 
+ 1272      4973456E 
+ 1272      64436F6E 
+ 1273              	.LASF41:
+ 1274 01e1 5F5F6275 		.ascii	"__builtin_puts\000"
+ 1274      696C7469 
+ 1274      6E5F7075 
+ 1274      747300
+ 1275              	.LASF20:
+ 1276 01f0 766F6C74 		.ascii	"volts\000"
+ 1276      7300
+ 1277              	.LASF18:
+ 1278 01f6 6C6F6E67 		.ascii	"long double\000"
+ 1278      20646F75 
+ 1278      626C6500 
+ 1279              	.LASF22:
+ 1280 0202 5F777269 		.ascii	"_write\000"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 32
+
+
+ 1280      746500
+ 1281              	.LASF17:
+ 1282 0209 73697A65 		.ascii	"sizetype\000"
+ 1282      74797065 
+ 1282      00
+ 1283              	.LASF6:
+ 1284 0212 6C6F6E67 		.ascii	"long long int\000"
+ 1284      206C6F6E 
+ 1284      6720696E 
+ 1284      7400
+ 1285              	.LASF31:
+ 1286 0220 42617474 		.ascii	"BatteryLed_Write\000"
+ 1286      6572794C 
+ 1286      65645F57 
+ 1286      72697465 
+ 1286      00
+ 1287              	.LASF37:
+ 1288 0231 6D61696E 		.ascii	"main.c\000"
+ 1288      2E6300
+ 1289              	.LASF16:
+ 1290 0238 63686172 		.ascii	"char\000"
+ 1290      00
+ 1291              	.LASF19:
+ 1292 023d 61646372 		.ascii	"adcresult\000"
+ 1292      6573756C 
+ 1292      7400
+ 1293              	.LASF30:
+ 1294 0247 7072696E 		.ascii	"printf\000"
+ 1294      746600
+ 1295              	.LASF24:
+ 1296 024e 636F756E 		.ascii	"count\000"
+ 1296      7400
+ 1297              	.LASF2:
+ 1298 0254 73686F72 		.ascii	"short int\000"
+ 1298      7420696E 
+ 1298      7400
+ 1299              	.LASF11:
+ 1300 025e 75696E74 		.ascii	"uint8\000"
+ 1300      3800
+ 1301              	.LASF4:
+ 1302 0264 6C6F6E67 		.ascii	"long int\000"
+ 1302      20696E74 
+ 1302      00
+ 1303              	.LASF42:
+ 1304 026d 70757473 		.ascii	"puts\000"
+ 1304      00
+ 1305              	.LASF0:
+ 1306 0272 7369676E 		.ascii	"signed char\000"
+ 1306      65642063 
+ 1306      68617200 
+ 1307              	.LASF27:
+ 1308 027e 4144435F 		.ascii	"ADC_Battery_StartConvert\000"
+ 1308      42617474 
+ 1308      6572795F 
+ 1308      53746172 
+ 1308      74436F6E 
+ 1309              	.LASF32:
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccRaoJDh.s 			page 33
+
+
+ 1310 0297 43794465 		.ascii	"CyDelay\000"
+ 1310      6C617900 
+ 1311              	.LASF35:
+ 1312 029f 55415254 		.ascii	"UART_1_GetChar\000"
+ 1312      5F315F47 
+ 1312      65744368 
+ 1312      617200
+ 1313              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

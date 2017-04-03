@@ -1,0 +1,5 @@
+C:\Users\Ville L\Desktop\Zumo.release04\Zumo01\ZumoBot.cydsn\ZumoBot.cyprj|a3aa0186-dfe5-46f4-8dba-7917ff853341
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|e0491238-bf32-499c-b86a-dace66212600
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|74412552-211d-484c-aa57-9e7b4fbde12a
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|8ea43df3-eaab-4540-8170-1793563973dd
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|aec3aa8c-7fa3-4a8a-9369-b608aa5581cd
