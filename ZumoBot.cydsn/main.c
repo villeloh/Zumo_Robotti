@@ -44,8 +44,9 @@
 
 int rread(void);
 
-float ADC_result_to_volts(int16 adcresult);
-void Beep(uint32 length, uint8 pitch);
+void Measure_Voltage();
+
+
 
 /**
  * @file    main.c
@@ -57,11 +58,13 @@ void Beep(uint32 length, uint8 pitch);
 //battery level//
 int main()
 {
+    // 'Time counter' for the voltage measurement interval
+    int cycles = 0;
+    
     CyGlobalIntEnable; 
     UART_1_Start();
     ADC_Battery_Start();        
-    int16 adcresult = 0;
-    float volts = 0.0;
+
 
     printf("\nBoot\n");
 
@@ -70,19 +73,16 @@ int main()
     //uint8 button;
     //button = SW1_Read(); // read SW1 on pSoC board
 
-    for(;;)
-    {
-        
-        ADC_Battery_StartConvert();
-        if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) {   // wait for get ADC converted value
-            adcresult = ADC_Battery_GetResult16();
-            volts = ADC_result_to_volts(adcresult);                  // convert value to Volts
-            // Beep(40, 15);
-        
-            // If you want to print value
-            printf("%d %f\r\n",adcresult, volts);
+    while(1)
+    {    
+        // For measuering the battery voltage at regular intervals. 
+        // 20000 'cycles' should equal 60 seconds, assuming the while loop runs at 1 loop / 3 ms.
+        cycles++;
+        if (cycles >= 20000)
+        {
+            Measure_Voltage();
+            cycles = 0;
         }
-        CyDelay(500);
         
     }
  }   
