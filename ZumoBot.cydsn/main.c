@@ -8,25 +8,12 @@
     library has basic methods of various sensors and communications so that you can make what you want with them. <br> 
     <br><br>
     </p>
+*/
     
-    <p>
-    <B>Sensors</B><br>
-    &nbsp;Included: <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;LSM303D: Accelerometer & Magnetometer<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;L3GD20H: Gyroscope<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Reflectance sensor<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Motors
-    &nbsp;Wii nunchuck<br>
-    &nbsp;TSOP-2236: IR Receiver<br>
-    &nbsp;HC-SR04: Ultrasonic sensor<br>
-    &nbsp;APDS-9301: Ambient light sensor<br>
-    &nbsp;IR LED <br><br><br>
-    </p>
-    
-    <p>
-    <B>Communication</B><br>
-    I2C, UART, Serial<br>
-    </p>
+/**
+ * @file    main.c
+ * @brief   
+ * @details  ** You should enable global interrupt for operating properly. **<br>&nbsp;&nbsp;&nbsp;CyGlobalIntEnable;<br>
 */
 
 #include <project.h>
@@ -43,44 +30,36 @@
 #include "Beep.h"
 
 int rread(void);
-
-void Measure_Voltage();
 void motor_start();
 void motor_forward(uint8 speed,uint32 delay);
 void Custom_forward(uint8 speed,uint32 delay);
 void motor_turn(uint8 l_speed, uint8 r_speed, uint32 delay);
 void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r3);
+void Measure_Voltage();
+void Custom_left_correct(uint8 speed);
+void Custom_right_correct(uint8 speed);
 
 
-/**
- * @file    main.c
- * @brief   
- * @details  ** You should enable global interrupt for operating properly. **<br>&nbsp;&nbsp;&nbsp;CyGlobalIntEnable;<br>
-*/
 
-
-//battery level//
 int main()
 {
     // 'Time counter' for the voltage measurement interval
     int cycles = 0;
-    
-    
+      
     struct sensors_ ref;
     struct sensors_ dig;
     CyGlobalIntEnable; 
     UART_1_Start();
     ADC_Battery_Start();   
-    Measure_Voltage();
+    Measure_Voltage(); // measure battery voltage at robot start
     
-    // motor_start();
+    motor_start();
+    motor_forward(0, 0); // stop the motor at robot start, as it seems to run at a low speed if simply started up
     
-    sensor_isr_StartEx(sensor_isr_handler);
-    
-    reflectance_set_threshold(10000, 5000, 5000, 10000);
-    
+    // Initialize IR sensors
+    sensor_isr_StartEx(sensor_isr_handler); 
+    reflectance_set_threshold(20000, 18000, 18000, 20000);   
     reflectance_start();
-
     IR_led_Write(1);
 
     printf("\nBoot\n");
@@ -90,35 +69,51 @@ int main()
     //uint8 button;
     //button = SW1_Read(); // read SW1 on pSoC board
     
-    /*
-    Custom_forward(128, 2900);
-    motor_forward(0, 0);
-    motor_turn(255, 0, 324);
-    Custom_forward(128, 2840);
-    motor_forward(0, 0);
-    motor_turn(255, 0, 326);
-    Custom_forward(128, 2450);
-    motor_forward(0, 0);
-    motor_turn(255, 0, 420);
-    Custom_forward(128, 1500);
-    motor_forward(0, 0);
-    */
+
     
 
     while(1)
     {    
         
-        reflectance_read(&ref); // raw sensor value; 0 - 22 000
+        reflectance_read(&ref); // raw sensor value; 0 - 24 000
         printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
         reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
         printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
+        CyDelay(500); // comment this delay out when doing movement tests !!!
         
-        CyDelay(500);
+        // Line-following logic (alpha version ... ).
+        // NOTE: due to the calibration of the motors speeds, 248 (255 - 7) is our current max speed!
+        // NOTE#2: I'm not sure if there is a better way of doing things than to continuously call the correction methods in a do-while loop.
+        // It seems horribly inefficient, but it's an easy way to stop the turn exactly when the value of dig.x changes.
+        // If the values that cause the change from 1 to 0 and vice versa are fine-tuned enough, in THEORY these should be the only methods needed.
+        if (dig.l1 == 1)
+        { 
+            // When the robot starts to veer off to the left, do a correction towards the right, until the veering off has been corrected. 
+            // NOTE: the naming of the method is debatable; it corrects a veering off TO the left, so I named it left_correct(); 
+            // otoh the correction is TOWARDS the right, so right_correct could've been equally reasonable.
+            do {
+                Custom_left_correct(240);
+            } while (dig.l1 == 1);
+            Custom_forward(248, 50000);
+                    
+        } else if (dig.r1 == 1) {
+            
+            // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected
+            do {
+                Custom_right_correct(247);
+            } while (dig.r1 == 1);
+            Custom_forward(248, 50000);
+        }
+                
+
                
         // For measuring the battery voltage at regular intervals. 
-        // 30 000000 'cycles' should equal ~80 seconds, assuming the while loop runs at 1 loop / 3 microseconds.
+        // 160 'cycles' should equal ~80 seconds, due to the delay that is used above.
+        // NOTE: the cycle limit will have to be adjusted each time we add delays to the while loop! 
+        // There must be a way around this, but for now we should keep this in mind and adjust it as needed.
+        // NOTE2: If all delays are disabled, change the limit to 30 000 000 !
         cycles++;
-        if (cycles >= 300000000)
+        if (cycles >= 160)
         {
             Measure_Voltage();
             cycles = 0;
@@ -127,8 +122,12 @@ int main()
     }
      
  }   
-//*/
 
+// ===================================================================================================================== //
+// ===================================================================================================================== //
+
+
+//*/
 
 /*//ultra sonic sensor//
 int main()
@@ -380,6 +379,31 @@ int main()
     }
 }   
 //*/
+
+
+/*
+
+
+    <p>
+    <B>Sensors</B><br>
+    &nbsp;Included: <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;LSM303D: Accelerometer & Magnetometer<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;L3GD20H: Gyroscope<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Reflectance sensor<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Motors
+    &nbsp;Wii nunchuck<br>
+    &nbsp;TSOP-2236: IR Receiver<br>
+    &nbsp;HC-SR04: Ultrasonic sensor<br>
+    &nbsp;APDS-9301: Ambient light sensor<br>
+    &nbsp;IR LED <br><br><br>
+    </p>
+    
+    <p>
+    <B>Communication</B><br>
+    I2C, UART, Serial<br>
+    </p>
+
+*/
 
 
 #if 0
