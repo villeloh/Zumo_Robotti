@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
   29:Generated_Source\PSoC5/ADC_Battery_PM.c **** 
   30:Generated_Source\PSoC5/ADC_Battery_PM.c **** /*******************************************************************************
   31:Generated_Source\PSoC5/ADC_Battery_PM.c **** * Function Name: ADC_Battery_SaveConfig
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 2
 
 
   32:Generated_Source\PSoC5/ADC_Battery_PM.c **** ********************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
   47              		@ frame_needed = 0, uses_anonymous_args = 0
   48              		@ link register save eliminated.
   49 0000 7047     		bx	lr
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 3
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 3
 
 
   50              		.cfi_endproc
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
   75              		.loc 1 94 0
   76 000c 0A4B     		ldr	r3, .L9+4
   77 000e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 4
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 4
 
 
   78 0010 13F0010F 		tst	r3, #1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  109:Generated_Source\PSoC5/ADC_Battery_PM.c **** 
  110:Generated_Source\PSoC5/ADC_Battery_PM.c **** 
  111:Generated_Source\PSoC5/ADC_Battery_PM.c **** /*******************************************************************************
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 5
 
 
  112:Generated_Source\PSoC5/ADC_Battery_PM.c **** * Function Name: ADC_Battery_Wakeup
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  143              	.L15:
  144              		.align	2
  145              	.L14:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 6
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 6
 
 
  146 001c 00000000 		.word	.LANCHOR0
@@ -323,17 +323,17 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  165 0006 00000000 		.4byte	.Ldebug_abbrev0
  166 000a 04       		.byte	0x4
  167 000b 01       		.uleb128 0x1
- 168 000c EE000000 		.4byte	.LASF22
+ 168 000c F2000000 		.4byte	.LASF22
  169 0010 01       		.byte	0x1
- 170 0011 FE010000 		.4byte	.LASF23
- 171 0015 97000000 		.4byte	.LASF24
+ 170 0011 02020000 		.4byte	.LASF23
+ 171 0015 B1000000 		.4byte	.LASF24
  172 0019 00000000 		.4byte	.Ldebug_ranges0+0
  173 001d 00000000 		.4byte	0
  174 0021 00000000 		.4byte	.Ldebug_line0
  175 0025 02       		.uleb128 0x2
  176 0026 01       		.byte	0x1
  177 0027 06       		.byte	0x6
- 178 0028 41020000 		.4byte	.LASF0
+ 178 0028 45020000 		.4byte	.LASF0
  179 002c 02       		.uleb128 0x2
  180 002d 01       		.byte	0x1
  181 002e 08       		.byte	0x8
@@ -341,7 +341,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  183 0033 02       		.uleb128 0x2
  184 0034 02       		.byte	0x2
  185 0035 05       		.byte	0x5
- 186 0036 F4010000 		.4byte	.LASF2
+ 186 0036 F8010000 		.4byte	.LASF2
  187 003a 02       		.uleb128 0x2
  188 003b 02       		.byte	0x2
  189 003c 07       		.byte	0x7
@@ -349,7 +349,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  191 0041 02       		.uleb128 0x2
  192 0042 04       		.byte	0x4
  193 0043 05       		.byte	0x5
- 194 0044 2C020000 		.4byte	.LASF4
+ 194 0044 30020000 		.4byte	.LASF4
  195 0048 02       		.uleb128 0x2
  196 0049 04       		.byte	0x4
  197 004a 07       		.byte	0x7
@@ -357,14 +357,14 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  199 004f 02       		.uleb128 0x2
  200 0050 08       		.byte	0x8
  201 0051 05       		.byte	0x5
- 202 0052 CA010000 		.4byte	.LASF6
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 7
+ 202 0052 CE010000 		.4byte	.LASF6
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 7
 
 
  203 0056 02       		.uleb128 0x2
  204 0057 08       		.byte	0x8
  205 0058 07       		.byte	0x7
- 206 0059 89010000 		.4byte	.LASF7
+ 206 0059 8D010000 		.4byte	.LASF7
  207 005d 03       		.uleb128 0x3
  208 005e 04       		.byte	0x4
  209 005f 05       		.byte	0x5
@@ -372,9 +372,9 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  211 0064 02       		.uleb128 0x2
  212 0065 04       		.byte	0x4
  213 0066 07       		.byte	0x7
- 214 0067 7C010000 		.4byte	.LASF8
+ 214 0067 80010000 		.4byte	.LASF8
  215 006b 04       		.uleb128 0x4
- 216 006c 26020000 		.4byte	.LASF12
+ 216 006c 2A020000 		.4byte	.LASF12
  217 0070 02       		.byte	0x2
  218 0071 9201     		.2byte	0x192
  219 0073 2C000000 		.4byte	0x2c
@@ -385,11 +385,11 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  224 007e 02       		.uleb128 0x2
  225 007f 08       		.byte	0x8
  226 0080 04       		.byte	0x4
- 227 0081 D4000000 		.4byte	.LASF10
+ 227 0081 AA000000 		.4byte	.LASF10
  228 0085 02       		.uleb128 0x2
  229 0086 01       		.byte	0x1
  230 0087 08       		.byte	0x8
- 231 0088 D8010000 		.4byte	.LASF11
+ 231 0088 DC010000 		.4byte	.LASF11
  232 008c 04       		.uleb128 0x4
  233 008d 6D000000 		.4byte	.LASF13
  234 0091 02       		.byte	0x2
@@ -403,7 +403,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  242 00a0 2A       		.byte	0x2a
  243 00a1 B2000000 		.4byte	0xb2
  244 00a5 07       		.uleb128 0x7
- 245 00a6 35020000 		.4byte	.LASF25
+ 245 00a6 39020000 		.4byte	.LASF25
  246 00aa 03       		.byte	0x3
  247 00ab 2C       		.byte	0x2c
  248 00ac 6B000000 		.4byte	0x6b
@@ -415,10 +415,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  254 00b8 2D       		.byte	0x2d
  255 00b9 9D000000 		.4byte	0x9d
  256 00bd 09       		.uleb128 0x9
- 257 00be DD010000 		.4byte	.LASF15
+ 257 00be E1010000 		.4byte	.LASF15
  258 00c2 01       		.byte	0x1
  259 00c3 2C       		.byte	0x2c
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 8
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 8
 
 
  260 00c4 00000000 		.4byte	.LFB0
@@ -463,7 +463,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  299 0121 45010000 		.4byte	0x145
  300 0125 00       		.byte	0
  301 0126 0C       		.uleb128 0xc
- 302 0127 4D020000 		.4byte	.LASF26
+ 302 0127 51020000 		.4byte	.LASF26
  303 012b 01       		.byte	0x1
  304 012c 18       		.byte	0x18
  305 012d B2000000 		.4byte	0xb2
@@ -471,18 +471,18 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  307 0132 03       		.byte	0x3
  308 0133 00000000 		.4byte	ADC_Battery_backup
  309 0137 0D       		.uleb128 0xd
- 310 0138 B9010000 		.4byte	.LASF19
+ 310 0138 BD010000 		.4byte	.LASF19
  311 013c 03       		.byte	0x3
  312 013d 35       		.byte	0x35
  313 013e 0D       		.uleb128 0xd
- 314 013f DB000000 		.4byte	.LASF20
+ 314 013f 97000000 		.4byte	.LASF20
  315 0143 03       		.byte	0x3
  316 0144 44       		.byte	0x44
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 9
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 9
 
 
  317 0145 0D       		.uleb128 0xd
- 318 0146 A0010000 		.4byte	.LASF21
+ 318 0146 A4010000 		.4byte	.LASF21
  319 014a 03       		.byte	0x3
  320 014b D1       		.byte	0xd1
  321 014c 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  371 002f 0B       		.uleb128 0xb
  372 0030 3B       		.uleb128 0x3b
  373 0031 05       		.uleb128 0x5
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 10
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 10
 
 
  374 0032 49       		.uleb128 0x49
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  428 0068 00       		.byte	0
  429 0069 3F       		.uleb128 0x3f
  430 006a 19       		.uleb128 0x19
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 11
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 11
 
 
  431 006b 03       		.uleb128 0x3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  485 00a5 00       		.byte	0
  486 00a6 03       		.uleb128 0x3
  487 00a7 0E       		.uleb128 0xe
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 12
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 12
 
 
  488 00a8 3A       		.uleb128 0x3a
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  542 0018 00000000 		.4byte	.LFB3
  543 001c 20000000 		.4byte	.LFE3
  544 0020 00000000 		.4byte	0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 13
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 13
 
 
  545 0024 00000000 		.4byte	0
@@ -776,111 +776,112 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 1
  566      7369676E 
  566      65642069 
  566      6E7400
- 567              	.LASF24:
- 568 0097 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo.release04\\Zumo01"
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 14
+ 567              	.LASF20:
+ 568 0097 4144435F 		.ascii	"ADC_Battery_Enable\000"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 14
 
 
- 568      73657273 
- 568      5C56696C 
- 568      6C65204C 
- 568      5C446573 
- 569 00c5 5C5A756D 		.ascii	"\\ZumoBot.cydsn\000"
- 569      6F426F74 
- 569      2E637964 
- 569      736E00
- 570              	.LASF10:
- 571 00d4 646F7562 		.ascii	"double\000"
- 571      6C6500
- 572              	.LASF20:
- 573 00db 4144435F 		.ascii	"ADC_Battery_Enable\000"
- 573      42617474 
- 573      6572795F 
- 573      456E6162 
- 573      6C6500
+ 568      42617474 
+ 568      6572795F 
+ 568      456E6162 
+ 568      6C6500
+ 569              	.LASF10:
+ 570 00aa 646F7562 		.ascii	"double\000"
+ 570      6C6500
+ 571              	.LASF24:
+ 572 00b1 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo_Robotti\\Zumo_Rob"
+ 572      73657273 
+ 572      5C56696C 
+ 572      6C65204C 
+ 572      5C446573 
+ 573 00df 6F747469 		.ascii	"otti\\ZumoBot.cydsn\000"
+ 573      5C5A756D 
+ 573      6F426F74 
+ 573      2E637964 
+ 573      736E00
  574              	.LASF22:
- 575 00ee 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 575 00f2 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
  575      4320342E 
  575      392E3320 
  575      32303135 
  575      30333033 
- 576 0121 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 576 0125 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
  576      20726576 
  576      6973696F 
  576      6E203232 
  576      31323230 
- 577 0154 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 577 0158 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
  577      66756E63 
  577      74696F6E 
  577      2D736563 
  577      74696F6E 
  578              	.LASF8:
- 579 017c 756E7369 		.ascii	"unsigned int\000"
+ 579 0180 756E7369 		.ascii	"unsigned int\000"
  579      676E6564 
  579      20696E74 
  579      00
  580              	.LASF7:
- 581 0189 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 581 018d 6C6F6E67 		.ascii	"long long unsigned int\000"
  581      206C6F6E 
  581      6720756E 
  581      7369676E 
  581      65642069 
  582              	.LASF21:
- 583 01a0 4144435F 		.ascii	"ADC_Battery_StartConvert\000"
+ 583 01a4 4144435F 		.ascii	"ADC_Battery_StartConvert\000"
  583      42617474 
  583      6572795F 
  583      53746172 
  583      74436F6E 
  584              	.LASF19:
- 585 01b9 4144435F 		.ascii	"ADC_Battery_Stop\000"
+ 585 01bd 4144435F 		.ascii	"ADC_Battery_Stop\000"
  585      42617474 
  585      6572795F 
  585      53746F70 
  585      00
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cckEVpsY.s 			page 15
+
+
  586              	.LASF6:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccyGbUNs.s 			page 15
-
-
- 587 01ca 6C6F6E67 		.ascii	"long long int\000"
+ 587 01ce 6C6F6E67 		.ascii	"long long int\000"
  587      206C6F6E 
  587      6720696E 
  587      7400
  588              	.LASF11:
- 589 01d8 63686172 		.ascii	"char\000"
+ 589 01dc 63686172 		.ascii	"char\000"
  589      00
  590              	.LASF15:
- 591 01dd 4144435F 		.ascii	"ADC_Battery_SaveConfig\000"
+ 591 01e1 4144435F 		.ascii	"ADC_Battery_SaveConfig\000"
  591      42617474 
  591      6572795F 
  591      53617665 
  591      436F6E66 
  592              	.LASF2:
- 593 01f4 73686F72 		.ascii	"short int\000"
+ 593 01f8 73686F72 		.ascii	"short int\000"
  593      7420696E 
  593      7400
  594              	.LASF23:
- 595 01fe 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_Battery_PM.c\000"
+ 595 0202 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_Battery_PM.c\000"
  595      72617465 
  595      645F536F 
  595      75726365 
  595      5C50536F 
  596              	.LASF12:
- 597 0226 75696E74 		.ascii	"uint8\000"
+ 597 022a 75696E74 		.ascii	"uint8\000"
  597      3800
  598              	.LASF4:
- 599 022c 6C6F6E67 		.ascii	"long int\000"
+ 599 0230 6C6F6E67 		.ascii	"long int\000"
  599      20696E74 
  599      00
  600              	.LASF25:
- 601 0235 656E6162 		.ascii	"enableState\000"
+ 601 0239 656E6162 		.ascii	"enableState\000"
  601      6C655374 
  601      61746500 
  602              	.LASF0:
- 603 0241 7369676E 		.ascii	"signed char\000"
+ 603 0245 7369676E 		.ascii	"signed char\000"
  603      65642063 
  603      68617200 
  604              	.LASF26:
- 605 024d 4144435F 		.ascii	"ADC_Battery_backup\000"
+ 605 0251 4144435F 		.ascii	"ADC_Battery_backup\000"
  605      42617474 
  605      6572795F 
  605      6261636B 

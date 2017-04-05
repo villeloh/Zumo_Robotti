@@ -1780,7 +1780,7 @@
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif</v>
 </warp_dep>
-<deps_time v="131356904937454342" />
+<deps_time v="131358457584568012" />
 <top_block v="TopDesign" />
 <last_generation v="0" />
 <pdl_path v="" />
@@ -1972,7 +1972,7 @@
 <file name=".\ZumoLibrary\Reflectance.h" />
 <file name=".\ZumoLibrary\Ultra.h" />
 <file name=".\main.c" />
-<file name=".\CortexM3\ARM_GCC_493\Debug\ADC_redefine.o">
+<file name=".\CortexM3\ARM_GCC_493\Debug\Custom_Motor.o">
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
@@ -2061,9 +2061,193 @@
 <dep name=".\ZumoLibrary\Nunchuk.h" />
 <dep name=".\ZumoLibrary\Reflectance.h" />
 <dep name=".\ZumoLibrary\Ultra.h" />
-<dep name=".\ADC_redefine.c" />
+<dep name=".\Custom_Motor.c" />
 </file>
-<file name=".\ADC_redefine.c" />
+<file name=".\Custom_Motor.c" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\Voltage_Monitoring.o">
+<dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_IRQ.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_theACLK.h" />
+<dep name=".\Generated_Source\PSoC5\BatteryLed.h" />
+<dep name=".\Generated_Source\PSoC5\BatteryLed_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Battery_pin.h" />
+<dep name=".\Generated_Source\PSoC5\Battery_pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer_PWM.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Clock_1.h" />
+<dep name=".\Generated_Source\PSoC5\Clock_2.h" />
+<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
+<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC5\CyLib.h" />
+<dep name=".\Generated_Source\PSoC5\CySpc.h" />
+<dep name=".\Generated_Source\PSoC5\Echo.h" />
+<dep name=".\Generated_Source\PSoC5\Echo_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\I2C.h" />
+<dep name=".\Generated_Source\PSoC5\I2C_PVT.h" />
+<dep name=".\Generated_Source\PSoC5\IR_led.h" />
+<dep name=".\Generated_Source\PSoC5\IR_led_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\IR_receiver.h" />
+<dep name=".\Generated_Source\PSoC5\IR_receiver_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\L1.h" />
+<dep name=".\Generated_Source\PSoC5\L1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\L3.h" />
+<dep name=".\Generated_Source\PSoC5\L3_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirLeft.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirLeft_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirRight.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirRight_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmLeft.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmLeft_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmRight.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmRight_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\PWM.h" />
+<dep name=".\Generated_Source\PSoC5\R1.h" />
+<dep name=".\Generated_Source\PSoC5\R1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\R3.h" />
+<dep name=".\Generated_Source\PSoC5\R3_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SCL_1.h" />
+<dep name=".\Generated_Source\PSoC5\SCL_1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SDA_1.h" />
+<dep name=".\Generated_Source\PSoC5\SDA_1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SW1.h" />
+<dep name=".\Generated_Source\PSoC5\SW1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Timer.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_L1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_L3.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_R1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_R3.h" />
+<dep name=".\Generated_Source\PSoC5\Trig.h" />
+<dep name=".\Generated_Source\PSoC5\Trig_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\UART_1.h" />
+<dep name=".\Generated_Source\PSoC5\UART_1_IntClock.h" />
+<dep name=".\Generated_Source\PSoC5\cmsis_armcc.h" />
+<dep name=".\Generated_Source\PSoC5\cmsis_gcc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC5\cyPm.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC5\cypins.h" />
+<dep name=".\Generated_Source\PSoC5\cytypes.h" />
+<dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\Generated_Source\PSoC5\sensor_isr.h" />
+<dep name=".\Generated_Source\PSoC5\timer_clock_4.h" />
+<dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
+<dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
+<dep name=".\ZumoLibrary\Accel_magnet.h" />
+<dep name=".\ZumoLibrary\Ambient.h" />
+<dep name=".\ZumoLibrary\Beep.h" />
+<dep name=".\ZumoLibrary\Gyro.h" />
+<dep name=".\ZumoLibrary\I2C_made.h" />
+<dep name=".\ZumoLibrary\IR.h" />
+<dep name=".\ZumoLibrary\Motor.h" />
+<dep name=".\ZumoLibrary\Nunchuk.h" />
+<dep name=".\ZumoLibrary\Reflectance.h" />
+<dep name=".\ZumoLibrary\Ultra.h" />
+<dep name=".\Voltage_Monitoring.c" />
+</file>
+<file name=".\Voltage_Monitoring.c" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\Voltage_Management.o">
+<dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_IRQ.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_theACLK.h" />
+<dep name=".\Generated_Source\PSoC5\BatteryLed.h" />
+<dep name=".\Generated_Source\PSoC5\BatteryLed_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Battery_pin.h" />
+<dep name=".\Generated_Source\PSoC5\Battery_pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer_PWM.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Clock_1.h" />
+<dep name=".\Generated_Source\PSoC5\Clock_2.h" />
+<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
+<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC5\CyLib.h" />
+<dep name=".\Generated_Source\PSoC5\CySpc.h" />
+<dep name=".\Generated_Source\PSoC5\Echo.h" />
+<dep name=".\Generated_Source\PSoC5\Echo_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\I2C.h" />
+<dep name=".\Generated_Source\PSoC5\I2C_PVT.h" />
+<dep name=".\Generated_Source\PSoC5\IR_led.h" />
+<dep name=".\Generated_Source\PSoC5\IR_led_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\IR_receiver.h" />
+<dep name=".\Generated_Source\PSoC5\IR_receiver_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\L1.h" />
+<dep name=".\Generated_Source\PSoC5\L1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\L3.h" />
+<dep name=".\Generated_Source\PSoC5\L3_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirLeft.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirLeft_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirRight.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirRight_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmLeft.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmLeft_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmRight.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmRight_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\PWM.h" />
+<dep name=".\Generated_Source\PSoC5\R1.h" />
+<dep name=".\Generated_Source\PSoC5\R1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\R3.h" />
+<dep name=".\Generated_Source\PSoC5\R3_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SCL_1.h" />
+<dep name=".\Generated_Source\PSoC5\SCL_1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SDA_1.h" />
+<dep name=".\Generated_Source\PSoC5\SDA_1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SW1.h" />
+<dep name=".\Generated_Source\PSoC5\SW1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Timer.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_L1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_L3.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_R1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_R3.h" />
+<dep name=".\Generated_Source\PSoC5\Trig.h" />
+<dep name=".\Generated_Source\PSoC5\Trig_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\UART_1.h" />
+<dep name=".\Generated_Source\PSoC5\UART_1_IntClock.h" />
+<dep name=".\Generated_Source\PSoC5\cmsis_armcc.h" />
+<dep name=".\Generated_Source\PSoC5\cmsis_gcc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC5\cyPm.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC5\cypins.h" />
+<dep name=".\Generated_Source\PSoC5\cytypes.h" />
+<dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\Generated_Source\PSoC5\sensor_isr.h" />
+<dep name=".\Generated_Source\PSoC5\timer_clock_4.h" />
+<dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
+<dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
+<dep name=".\ZumoLibrary\Accel_magnet.h" />
+<dep name=".\ZumoLibrary\Ambient.h" />
+<dep name=".\ZumoLibrary\Beep.h" />
+<dep name=".\ZumoLibrary\Gyro.h" />
+<dep name=".\ZumoLibrary\I2C_made.h" />
+<dep name=".\ZumoLibrary\IR.h" />
+<dep name=".\ZumoLibrary\Motor.h" />
+<dep name=".\ZumoLibrary\Nunchuk.h" />
+<dep name=".\ZumoLibrary\Reflectance.h" />
+<dep name=".\ZumoLibrary\Ultra.h" />
+<dep name=".\Voltage_Management.c" />
+</file>
+<file name=".\Voltage_Management.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\ADC_Battery.o">
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.c" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
@@ -2941,8 +3125,8 @@
 </file>
 <file name=".\ZumoLibrary\Accel.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Ambient.o">
-<dep name=".\ZumoLibrary\Ambient.c" />
 <dep name=".\ZumoLibrary\Ambient.h" />
+<dep name=".\ZumoLibrary\Ambient.c" />
 </file>
 <file name=".\ZumoLibrary\Ambient.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Beep.o">
@@ -2954,6 +3138,7 @@
 <dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
 <dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\ZumoLibrary\Beep.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
@@ -3025,7 +3210,6 @@
 <dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
 <dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
 <dep name=".\ZumoLibrary\Beep.c" />
-<dep name=".\ZumoLibrary\Beep.h" />
 </file>
 <file name=".\ZumoLibrary\Beep.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Gyro.o">
@@ -3120,6 +3304,7 @@
 <dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
 <dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\ZumoLibrary\I2C_made.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
@@ -3191,7 +3376,6 @@
 <dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
 <dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
 <dep name=".\ZumoLibrary\I2C_made.c" />
-<dep name=".\ZumoLibrary\I2C_made.h" />
 </file>
 <file name=".\ZumoLibrary\I2C_made.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\IR.o">
@@ -3203,6 +3387,7 @@
 <dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
 <dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\ZumoLibrary\IR.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
@@ -3274,7 +3459,6 @@
 <dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
 <dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
 <dep name=".\ZumoLibrary\IR.c" />
-<dep name=".\ZumoLibrary\IR.h" />
 </file>
 <file name=".\ZumoLibrary\IR.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Magnet.o">
@@ -3369,6 +3553,7 @@
 <dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
 <dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\ZumoLibrary\Motor.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
@@ -3440,7 +3625,6 @@
 <dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
 <dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
 <dep name=".\ZumoLibrary\Motor.c" />
-<dep name=".\ZumoLibrary\Motor.h" />
 </file>
 <file name=".\ZumoLibrary\Motor.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Nunchuk.o">
@@ -3535,6 +3719,7 @@
 <dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
 <dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\ZumoLibrary\Reflectance.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
@@ -3606,7 +3791,6 @@
 <dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
 <dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
 <dep name=".\ZumoLibrary\Reflectance.c" />
-<dep name=".\ZumoLibrary\Reflectance.h" />
 </file>
 <file name=".\ZumoLibrary\Reflectance.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Ultra.o">
@@ -3618,6 +3802,7 @@
 <dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
 <dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
 <dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\ZumoLibrary\Ultra.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
 <dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
@@ -3689,7 +3874,6 @@
 <dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
 <dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
 <dep name=".\ZumoLibrary\Ultra.c" />
-<dep name=".\ZumoLibrary\Ultra.h" />
 </file>
 <file name=".\ZumoLibrary\Ultra.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\CyBootAsmGnu.o">
@@ -3702,6 +3886,98 @@
 <file name=".\Generated_Source\PSoC5\cydevicegnu.inc" />
 <file name=".\Generated_Source\PSoC5\cydevicegnu_trm.inc" />
 <file name=".\Generated_Source\PSoC5\cyfittergnu.inc" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\ADC_redefine.o">
+<dep name=".\Generated_Source\PSoC5\ADC_Battery.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_Bypass_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_IRQ.h" />
+<dep name=".\Generated_Source\PSoC5\ADC_Battery_theACLK.h" />
+<dep name=".\Generated_Source\PSoC5\BatteryLed.h" />
+<dep name=".\Generated_Source\PSoC5\BatteryLed_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Battery_pin.h" />
+<dep name=".\Generated_Source\PSoC5\Battery_pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer_PWM.h" />
+<dep name=".\Generated_Source\PSoC5\Buzzer_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Clock_1.h" />
+<dep name=".\Generated_Source\PSoC5\Clock_2.h" />
+<dep name=".\Generated_Source\PSoC5\CyDmac.h" />
+<dep name=".\Generated_Source\PSoC5\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC5\CyLib.h" />
+<dep name=".\Generated_Source\PSoC5\CySpc.h" />
+<dep name=".\Generated_Source\PSoC5\Echo.h" />
+<dep name=".\Generated_Source\PSoC5\Echo_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\I2C.h" />
+<dep name=".\Generated_Source\PSoC5\I2C_PVT.h" />
+<dep name=".\Generated_Source\PSoC5\IR_led.h" />
+<dep name=".\Generated_Source\PSoC5\IR_led_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\IR_receiver.h" />
+<dep name=".\Generated_Source\PSoC5\IR_receiver_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\L1.h" />
+<dep name=".\Generated_Source\PSoC5\L1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\L3.h" />
+<dep name=".\Generated_Source\PSoC5\L3_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirLeft.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirLeft_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirRight.h" />
+<dep name=".\Generated_Source\PSoC5\MotorDirRight_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmLeft.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmLeft_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmRight.h" />
+<dep name=".\Generated_Source\PSoC5\MotorPwmRight_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\PWM.h" />
+<dep name=".\Generated_Source\PSoC5\R1.h" />
+<dep name=".\Generated_Source\PSoC5\R1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\R3.h" />
+<dep name=".\Generated_Source\PSoC5\R3_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SCL_1.h" />
+<dep name=".\Generated_Source\PSoC5\SCL_1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SDA_1.h" />
+<dep name=".\Generated_Source\PSoC5\SDA_1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\SW1.h" />
+<dep name=".\Generated_Source\PSoC5\SW1_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\Timer.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_L1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_L3.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_R1.h" />
+<dep name=".\Generated_Source\PSoC5\Timer_R3.h" />
+<dep name=".\Generated_Source\PSoC5\Trig.h" />
+<dep name=".\Generated_Source\PSoC5\Trig_aliases.h" />
+<dep name=".\Generated_Source\PSoC5\UART_1.h" />
+<dep name=".\Generated_Source\PSoC5\UART_1_IntClock.h" />
+<dep name=".\Generated_Source\PSoC5\cmsis_armcc.h" />
+<dep name=".\Generated_Source\PSoC5\cmsis_gcc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3.h" />
+<dep name=".\Generated_Source\PSoC5\core_cm3_psoc5.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC5\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC5\cyPm.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice.h" />
+<dep name=".\Generated_Source\PSoC5\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC5\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC5\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC5\cypins.h" />
+<dep name=".\Generated_Source\PSoC5\cytypes.h" />
+<dep name=".\Generated_Source\PSoC5\project.h" />
+<dep name=".\Generated_Source\PSoC5\sensor_isr.h" />
+<dep name=".\Generated_Source\PSoC5\timer_clock_4.h" />
+<dep name=".\Generated_Source\PSoC5\timer_clock_5.h" />
+<dep name=".\Generated_Source\PSoC5\ultra_isr.h" />
+<dep name=".\ZumoLibrary\Accel_magnet.h" />
+<dep name=".\ZumoLibrary\Ambient.h" />
+<dep name=".\ZumoLibrary\Beep.h" />
+<dep name=".\ZumoLibrary\Gyro.h" />
+<dep name=".\ZumoLibrary\I2C_made.h" />
+<dep name=".\ZumoLibrary\IR.h" />
+<dep name=".\ZumoLibrary\Motor.h" />
+<dep name=".\ZumoLibrary\Nunchuk.h" />
+<dep name=".\ZumoLibrary\Reflectance.h" />
+<dep name=".\ZumoLibrary\Ultra.h" />
+<dep name=".\ADC_redefine.c" />
+</file>
+<file name=".\ADC_redefine.c" />
 </CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021>
 </dependency_info>
 </CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256>
@@ -3723,7 +3999,8 @@
 <dep name=".\CortexM3\ARM_GCC_493\Debug\Reflectance.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\Ultra.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\Beep.o" />
-<dep name=".\CortexM3\ARM_GCC_493\Debug\ADC_redefine.o" />
+<dep name=".\CortexM3\ARM_GCC_493\Debug\Voltage_Monitoring.o" />
+<dep name=".\CortexM3\ARM_GCC_493\Debug\Custom_Motor.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\cymetadata.o" />
 <dep name=".\CortexM3\ARM_GCC_493\Debug\PWM.o" />
@@ -3885,14 +4162,18 @@
 <name_val_pair name="Generated_Source\PSoC5\SW1.c" v="-mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
 <name_val_pair name="C:\Users\Ville L\Desktop\Zumo.release04\Zumo01\ZumoBot.cydsn\CortexM3\ARM_GCC_493\Debug\ZumoBot.hex" v="-mcpu=cortex-m3 -mthumb -g -ffunction-sections -Og -ffat-lto-objects -l m -L Generated_Source\PSoC5 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T &quot;C:\Users\Ville L\Desktop\Zumo.release04\Zumo01\ZumoBot.cydsn\Generated_Source\PSoC5\cm3gcc.ld&quot; -u _printf_float -Wl,--gc-sections" />
 <name_val_pair name="ADC_redefine.c" v="-mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name="Voltage_Management.c" v="-mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name="C:\Users\Ville L\Desktop\Zumo_Robotti\Zumo_Robotti\ZumoBot.cydsn\CortexM3\ARM_GCC_493\Debug\ZumoBot.hex" v="-mcpu=cortex-m3 -mthumb -g -ffunction-sections -Og -ffat-lto-objects -l m -L Generated_Source\PSoC5 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T &quot;C:\Users\Ville L\Desktop\Zumo_Robotti\Zumo_Robotti\ZumoBot.cydsn\Generated_Source\PSoC5\cm3gcc.ld&quot; -u _printf_float -Wl,--gc-sections" />
+<name_val_pair name="Voltage_Monitoring.c" v="-mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name="Custom_Motor.c" v="-mcpu=cortex-m3 -mthumb -I.\ZumoLibrary -I. -IGenerated_Source\PSoC5 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
 </name>
 </genericCmdLineData>
-<codeGenCmdLineTag v="-.appdatapath &quot;C:\Users\Ville L\AppData\Local\Cypress Semiconductor\PSoC Creator\4.0&quot; -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p &quot;C:\Users\Ville L\Desktop\Zumo.release04\Zumo01\ZumoBot.cydsn\ZumoBot.cyprj&quot; -d CY8C5888LTI-LP097 -s &quot;C:\Users\Ville L\Desktop\Zumo.release04\Zumo01\ZumoBot.cydsn\Generated_Source\PSoC5&quot; -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE" />
+<codeGenCmdLineTag v="-.appdatapath &quot;C:\Users\Ville L\AppData\Local\Cypress Semiconductor\PSoC Creator\4.0&quot; -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p &quot;C:\Users\Ville L\Desktop\Zumo_Robotti\Zumo_Robotti\ZumoBot.cydsn\ZumoBot.cyprj&quot; -d CY8C5888LTI-LP097 -s &quot;C:\Users\Ville L\Desktop\Zumo_Robotti\Zumo_Robotti\ZumoBot.cydsn\Generated_Source\PSoC5&quot; -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE" />
 </CyGuid_b0374e30-ce3a-47f2-ad85-821643292c68>
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="131356942521444583" />
+<deps_time v="131358558034372647" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 </userData>

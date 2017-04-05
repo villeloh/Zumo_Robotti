@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
   29:Generated_Source\PSoC5/UART_1_PM.c **** 
   30:Generated_Source\PSoC5/UART_1_PM.c **** 
   31:Generated_Source\PSoC5/UART_1_PM.c **** 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 2
 
 
   32:Generated_Source\PSoC5/UART_1_PM.c **** /*******************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
   69:Generated_Source\PSoC5/UART_1_PM.c **** *
   70:Generated_Source\PSoC5/UART_1_PM.c **** * Parameters:
   71:Generated_Source\PSoC5/UART_1_PM.c **** *  None.
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 3
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 3
 
 
   72:Generated_Source\PSoC5/UART_1_PM.c **** *
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  109:Generated_Source\PSoC5/UART_1_PM.c **** *
  110:Generated_Source\PSoC5/UART_1_PM.c **** * Return:
  111:Generated_Source\PSoC5/UART_1_PM.c **** *  None.
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 4
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 4
 
 
  112:Generated_Source\PSoC5/UART_1_PM.c **** *
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  141:Generated_Source\PSoC5/UART_1_PM.c **** 
  142:Generated_Source\PSoC5/UART_1_PM.c ****     UART_1_Stop();
   86              		.loc 1 142 0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 5
 
 
   87 001a FFF7FEFF 		bl	UART_1_Stop
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  110 0000 08B5     		push	{r3, lr}
  111              		.cfi_def_cfa_offset 8
  112              		.cfi_offset 3, -8
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 6
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 6
 
 
  113              		.cfi_offset 14, -4
@@ -353,12 +353,12 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  151 0006 00000000 		.4byte	.Ldebug_abbrev0
  152 000a 04       		.byte	0x4
  153 000b 01       		.uleb128 0x1
- 154 000c DA000000 		.4byte	.LASF24
+ 154 000c DE000000 		.4byte	.LASF24
  155 0010 01       		.byte	0x1
- 156 0011 A3010000 		.4byte	.LASF25
- 157 0015 88000000 		.4byte	.LASF26
+ 156 0011 A7010000 		.4byte	.LASF25
+ 157 0015 9D000000 		.4byte	.LASF26
  158 0019 00000000 		.4byte	.Ldebug_ranges0+0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 7
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 7
 
 
  159 001d 00000000 		.4byte	0
@@ -366,7 +366,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  161 0025 02       		.uleb128 0x2
  162 0026 01       		.byte	0x1
  163 0027 06       		.byte	0x6
- 164 0028 41020000 		.4byte	.LASF0
+ 164 0028 45020000 		.4byte	.LASF0
  165 002c 02       		.uleb128 0x2
  166 002d 01       		.byte	0x1
  167 002e 08       		.byte	0x8
@@ -374,7 +374,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  169 0033 02       		.uleb128 0x2
  170 0034 02       		.byte	0x2
  171 0035 05       		.byte	0x5
- 172 0036 E0010000 		.4byte	.LASF2
+ 172 0036 E4010000 		.4byte	.LASF2
  173 003a 02       		.uleb128 0x2
  174 003b 02       		.byte	0x2
  175 003c 07       		.byte	0x7
@@ -382,7 +382,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  177 0041 02       		.uleb128 0x2
  178 0042 04       		.byte	0x4
  179 0043 05       		.byte	0x5
- 180 0044 0C020000 		.4byte	.LASF4
+ 180 0044 10020000 		.4byte	.LASF4
  181 0048 02       		.uleb128 0x2
  182 0049 04       		.byte	0x4
  183 004a 07       		.byte	0x7
@@ -390,11 +390,11 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  185 004f 02       		.uleb128 0x2
  186 0050 08       		.byte	0x8
  187 0051 05       		.byte	0x5
- 188 0052 95010000 		.4byte	.LASF6
+ 188 0052 99010000 		.4byte	.LASF6
  189 0056 02       		.uleb128 0x2
  190 0057 08       		.byte	0x8
  191 0058 07       		.byte	0x7
- 192 0059 75010000 		.4byte	.LASF7
+ 192 0059 79010000 		.4byte	.LASF7
  193 005d 03       		.uleb128 0x3
  194 005e 04       		.byte	0x4
  195 005f 05       		.byte	0x5
@@ -402,7 +402,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  197 0064 02       		.uleb128 0x2
  198 0065 04       		.byte	0x4
  199 0066 07       		.byte	0x7
- 200 0067 68010000 		.4byte	.LASF8
+ 200 0067 6C010000 		.4byte	.LASF8
  201 006b 04       		.uleb128 0x4
  202 006c 82000000 		.4byte	.LASF12
  203 0070 02       		.byte	0x2
@@ -415,14 +415,14 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  210 007e 02       		.uleb128 0x2
  211 007f 08       		.byte	0x8
  212 0080 04       		.byte	0x4
- 213 0081 C5000000 		.4byte	.LASF10
+ 213 0081 88000000 		.4byte	.LASF10
  214 0085 02       		.uleb128 0x2
  215 0086 01       		.byte	0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 8
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 8
 
 
  216 0087 08       		.byte	0x8
- 217 0088 C6010000 		.4byte	.LASF11
+ 217 0088 CA010000 		.4byte	.LASF11
  218 008c 04       		.uleb128 0x4
  219 008d 5F000000 		.4byte	.LASF13
  220 0091 02       		.byte	0x2
@@ -433,27 +433,27 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  225 009d 02       		.uleb128 0x2
  226 009e 04       		.byte	0x4
  227 009f 07       		.byte	0x7
- 228 00a0 8C010000 		.4byte	.LASF14
+ 228 00a0 90010000 		.4byte	.LASF14
  229 00a4 06       		.uleb128 0x6
- 230 00a5 CB010000 		.4byte	.LASF27
+ 230 00a5 CF010000 		.4byte	.LASF27
  231 00a9 01       		.byte	0x1
  232 00aa 03       		.byte	0x3
  233 00ab 45       		.byte	0x45
  234 00ac BD000000 		.4byte	0xbd
  235 00b0 07       		.uleb128 0x7
- 236 00b1 15020000 		.4byte	.LASF28
+ 236 00b1 19020000 		.4byte	.LASF28
  237 00b5 03       		.byte	0x3
  238 00b6 47       		.byte	0x47
  239 00b7 6B000000 		.4byte	0x6b
  240 00bb 00       		.byte	0
  241 00bc 00       		.byte	0
  242 00bd 08       		.uleb128 0x8
- 243 00be 4D020000 		.4byte	.LASF15
+ 243 00be 51020000 		.4byte	.LASF15
  244 00c2 03       		.byte	0x3
  245 00c3 4D       		.byte	0x4d
  246 00c4 A4000000 		.4byte	0xa4
  247 00c8 09       		.uleb128 0x9
- 248 00c9 2F020000 		.4byte	.LASF16
+ 248 00c9 33020000 		.4byte	.LASF16
  249 00cd 01       		.byte	0x1
  250 00ce 36       		.byte	0x36
  251 00cf 00000000 		.4byte	.LFB0
@@ -469,7 +469,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  261 00e8 01       		.uleb128 0x1
  262 00e9 9C       		.byte	0x9c
  263 00ea 0A       		.uleb128 0xa
- 264 00eb EA010000 		.4byte	.LASF18
+ 264 00eb EE010000 		.4byte	.LASF18
  265 00ef 01       		.byte	0x1
  266 00f0 78       		.byte	0x78
  267 00f1 00000000 		.4byte	.LFB2
@@ -478,14 +478,14 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  270 00fa 9C       		.byte	0x9c
  271 00fb 09010000 		.4byte	0x109
  272 00ff 0B       		.uleb128 0xb
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 9
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 9
 
 
  273 0100 1E000000 		.4byte	.LVL0
  274 0104 4B010000 		.4byte	0x14b
  275 0108 00       		.byte	0
  276 0109 0A       		.uleb128 0xa
- 277 010a CC000000 		.4byte	.LASF19
+ 277 010a 8F000000 		.4byte	.LASF19
  278 010e 01       		.byte	0x1
  279 010f AC       		.byte	0xac
  280 0110 00000000 		.4byte	.LFB3
@@ -520,11 +520,11 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  309 0157 03       		.byte	0x3
  310 0158 75       		.byte	0x75
  311 0159 0D       		.uleb128 0xd
- 312 015a F7010000 		.4byte	.LASF22
+ 312 015a FB010000 		.4byte	.LASF22
  313 015e 03       		.byte	0x3
  314 015f 8F       		.byte	0x8f
  315 0160 0D       		.uleb128 0xd
- 316 0161 21020000 		.4byte	.LASF23
+ 316 0161 25020000 		.4byte	.LASF23
  317 0165 03       		.byte	0x3
  318 0166 5A       		.byte	0x5a
  319 0167 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  327 0005 13       		.uleb128 0x13
  328 0006 0B       		.uleb128 0xb
  329 0007 03       		.uleb128 0x3
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 10
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 10
 
 
  330 0008 0E       		.uleb128 0xe
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  384 003e 13       		.uleb128 0x13
  385 003f 01       		.byte	0x1
  386 0040 03       		.uleb128 0x3
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 11
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 11
 
 
  387 0041 0E       		.uleb128 0xe
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  441 0077 12       		.uleb128 0x12
  442 0078 06       		.uleb128 0x6
  443 0079 40       		.uleb128 0x40
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 12
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 12
 
 
  444 007a 18       		.uleb128 0x18
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  498 00b4 0D       		.uleb128 0xd
  499 00b5 2E       		.uleb128 0x2e
  500 00b6 00       		.byte	0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 13
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 13
 
 
  501 00b7 3F       		.uleb128 0x3f
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  550      5F315F52 
  550      6573746F 
  550      7265436F 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 14
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 14
 
 
  550      6E666967 
@@ -823,121 +823,122 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 1
  567              	.LASF12:
  568 0082 75696E74 		.ascii	"uint8\000"
  568      3800
- 569              	.LASF26:
- 570 0088 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo.release04\\Zumo01"
- 570      73657273 
- 570      5C56696C 
- 570      6C65204C 
- 570      5C446573 
- 571 00b6 5C5A756D 		.ascii	"\\ZumoBot.cydsn\000"
- 571      6F426F74 
- 571      2E637964 
- 571      736E00
- 572              	.LASF10:
- 573 00c5 646F7562 		.ascii	"double\000"
- 573      6C6500
- 574              	.LASF19:
- 575 00cc 55415254 		.ascii	"UART_1_Wakeup\000"
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 15
+ 569              	.LASF10:
+ 570 0088 646F7562 		.ascii	"double\000"
+ 570      6C6500
+ 571              	.LASF19:
+ 572 008f 55415254 		.ascii	"UART_1_Wakeup\000"
+ 572      5F315F57 
+ 572      616B6575 
+ 572      7000
+ 573              	.LASF26:
+ 574 009d 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo_Robotti\\Zumo_Rob"
+ 574      73657273 
+ 574      5C56696C 
+ 574      6C65204C 
+ 574      5C446573 
+ 575 00cb 6F747469 		.ascii	"otti\\ZumoBot.cydsn\000"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 15
 
 
- 575      5F315F57 
- 575      616B6575 
- 575      7000
+ 575      5C5A756D 
+ 575      6F426F74 
+ 575      2E637964 
+ 575      736E00
  576              	.LASF24:
- 577 00da 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 577 00de 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
  577      4320342E 
  577      392E3320 
  577      32303135 
  577      30333033 
- 578 010d 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 578 0111 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
  578      20726576 
  578      6973696F 
  578      6E203232 
  578      31323230 
- 579 0140 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 579 0144 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
  579      66756E63 
  579      74696F6E 
  579      2D736563 
  579      74696F6E 
  580              	.LASF8:
- 581 0168 756E7369 		.ascii	"unsigned int\000"
+ 581 016c 756E7369 		.ascii	"unsigned int\000"
  581      676E6564 
  581      20696E74 
  581      00
  582              	.LASF7:
- 583 0175 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 583 0179 6C6F6E67 		.ascii	"long long unsigned int\000"
  583      206C6F6E 
  583      6720756E 
  583      7369676E 
  583      65642069 
  584              	.LASF14:
- 585 018c 73697A65 		.ascii	"sizetype\000"
+ 585 0190 73697A65 		.ascii	"sizetype\000"
  585      74797065 
  585      00
  586              	.LASF6:
- 587 0195 6C6F6E67 		.ascii	"long long int\000"
+ 587 0199 6C6F6E67 		.ascii	"long long int\000"
  587      206C6F6E 
  587      6720696E 
  587      7400
  588              	.LASF25:
- 589 01a3 47656E65 		.ascii	"Generated_Source\\PSoC5\\UART_1_PM.c\000"
+ 589 01a7 47656E65 		.ascii	"Generated_Source\\PSoC5\\UART_1_PM.c\000"
  589      72617465 
  589      645F536F 
  589      75726365 
  589      5C50536F 
  590              	.LASF11:
- 591 01c6 63686172 		.ascii	"char\000"
+ 591 01ca 63686172 		.ascii	"char\000"
  591      00
  592              	.LASF27:
- 593 01cb 55415254 		.ascii	"UART_1_backupStruct_\000"
+ 593 01cf 55415254 		.ascii	"UART_1_backupStruct_\000"
  593      5F315F62 
  593      61636B75 
  593      70537472 
  593      7563745F 
  594              	.LASF2:
- 595 01e0 73686F72 		.ascii	"short int\000"
+ 595 01e4 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccbgq6ur.s 			page 16
+
+
  595      7420696E 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccaVYv5Z.s 			page 16
-
-
  595      7400
  596              	.LASF18:
- 597 01ea 55415254 		.ascii	"UART_1_Sleep\000"
+ 597 01ee 55415254 		.ascii	"UART_1_Sleep\000"
  597      5F315F53 
  597      6C656570 
  597      00
  598              	.LASF22:
- 599 01f7 55415254 		.ascii	"UART_1_ClearTxBuffer\000"
+ 599 01fb 55415254 		.ascii	"UART_1_ClearTxBuffer\000"
  599      5F315F43 
  599      6C656172 
  599      54784275 
  599      66666572 
  600              	.LASF4:
- 601 020c 6C6F6E67 		.ascii	"long int\000"
+ 601 0210 6C6F6E67 		.ascii	"long int\000"
  601      20696E74 
  601      00
  602              	.LASF28:
- 603 0215 656E6162 		.ascii	"enableState\000"
+ 603 0219 656E6162 		.ascii	"enableState\000"
  603      6C655374 
  603      61746500 
  604              	.LASF23:
- 605 0221 55415254 		.ascii	"UART_1_Enable\000"
+ 605 0225 55415254 		.ascii	"UART_1_Enable\000"
  605      5F315F45 
  605      6E61626C 
  605      6500
  606              	.LASF16:
- 607 022f 55415254 		.ascii	"UART_1_SaveConfig\000"
+ 607 0233 55415254 		.ascii	"UART_1_SaveConfig\000"
  607      5F315F53 
  607      61766543 
  607      6F6E6669 
  607      6700
  608              	.LASF0:
- 609 0241 7369676E 		.ascii	"signed char\000"
+ 609 0245 7369676E 		.ascii	"signed char\000"
  609      65642063 
  609      68617200 
  610              	.LASF15:
- 611 024d 55415254 		.ascii	"UART_1_BACKUP_STRUCT\000"
+ 611 0251 55415254 		.ascii	"UART_1_BACKUP_STRUCT\000"
  611      5F315F42 
  611      41434B55 
  611      505F5354 

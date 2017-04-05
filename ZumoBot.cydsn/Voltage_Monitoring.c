@@ -47,24 +47,29 @@ void Measure_Voltage()
         if (volts >= 5.0)
         { for (i = 0; i < 3; i++) 
             {
-                Beep(80, 15);
+                Beep(80, 60);
+                CyDelay(1000);
             }
         } else if (volts < 5.0 && volts >= 4.5) {
          for (i = 0; i < 6; i++) 
             {
-                Beep(40, 30);
+                Beep(40, 80);
+                CyDelay(1000);
             }            
         } else if (volts < 4.5 && volts >= 4.1) {
         
             for (i = 0; i < 9; i++) 
             {
-                Beep(30, 40);
+                Beep(30, 95);
+                CyDelay(1000);
             }       
-        } else {
+        } else if (volts < 4.1 && volts > 0) {
         
             while (1) 
             {
-                Beep(20, 60);
+                Beep(20, 110);
+                CyDelay(1000);
+                printf("%f \n", volts);
                 printf("DANGER! Battery LOW! Please charge ASAP!!!\n");
             }
        

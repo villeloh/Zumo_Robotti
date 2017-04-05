@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
   35              		.cfi_offset 5, -16
   36              		.cfi_offset 6, -12
   37              		.cfi_offset 7, -8
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 2
 
 
   38              		.cfi_offset 14, -4
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
   82              	.L3:
   31:ZumoLibrary/Reflectance.c ****     }
   32:ZumoLibrary/Reflectance.c ****     
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 3
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 3
 
 
   33:ZumoLibrary/Reflectance.c ****     if(statusR3 & Timer_R3_STATUS_CAPTURE) {
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
   45:ZumoLibrary/Reflectance.c ****     }
   46:ZumoLibrary/Reflectance.c ****     
   47:ZumoLibrary/Reflectance.c ****     if(statusL1 & Timer_L1_STATUS_CAPTURE) {
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 4
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 4
 
 
  125              		.loc 1 47 0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  167 00c0 0120     		movs	r0, #1
  168 00c2 FFF7FEFF 		bl	L3_Write
  169              	.LVL28:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 5
 
 
   60:ZumoLibrary/Reflectance.c ****     L1_SetDriveMode(PIN_DM_STRONG);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  212              	.L12:
  213 0102 00BF     		.align	2
  214              	.L11:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 6
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 6
 
 
  215 0104 00000000 		.word	.LANCHOR0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  255 001c 00000000 		.word	sensor_isr_handler
  256              		.cfi_endproc
  257              	.LFE64:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 7
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 7
 
 
  258              		.size	reflectance_start, .-reflectance_start
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  102:ZumoLibrary/Reflectance.c **** */
  103:ZumoLibrary/Reflectance.c **** void reflectance_digital(struct sensors_ *digital)
  104:ZumoLibrary/Reflectance.c **** {
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 8
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 8
 
 
  296              		.loc 1 104 0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  338 0032 9B88     		ldrh	r3, [r3, #4]
  339 0034 9BB2     		uxth	r3, r3
  340 0036 0C4A     		ldr	r2, .L29+4
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 9
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 9
 
 
  341 0038 9288     		ldrh	r2, [r2, #4]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  126:ZumoLibrary/Reflectance.c **** }
  127:ZumoLibrary/Reflectance.c **** 
  128:ZumoLibrary/Reflectance.c **** void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r3)
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 10
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 10
 
 
  129:ZumoLibrary/Reflectance.c **** {
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  433              		.type	digital_sensor_value, %object
  434              		.size	digital_sensor_value, 8
  435              	digital_sensor_value:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 11
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 11
 
 
  436 0008 00000000 		.space	8
@@ -627,10 +627,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  458 0006 00000000 		.4byte	.Ldebug_abbrev0
  459 000a 04       		.byte	0x4
  460 000b 01       		.uleb128 0x1
- 461 000c 3F030000 		.4byte	.LASF62
+ 461 000c 80030000 		.4byte	.LASF62
  462 0010 01       		.byte	0x1
- 463 0011 3A040000 		.4byte	.LASF63
- 464 0015 CD030000 		.4byte	.LASF64
+ 463 0011 3E040000 		.4byte	.LASF63
+ 464 0015 65020000 		.4byte	.LASF64
  465 0019 00000000 		.4byte	.Ldebug_ranges0+0
  466 001d 00000000 		.4byte	0
  467 0021 00000000 		.4byte	.Ldebug_line0
@@ -656,9 +656,9 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  487 0047 07       		.byte	0x7
  488 0048 0E020000 		.4byte	.LASF3
  489 004c 03       		.uleb128 0x3
- 490 004d 22030000 		.4byte	.LASF5
+ 490 004d 63030000 		.4byte	.LASF5
  491 0051 02       		.byte	0x2
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 12
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 12
 
 
  492 0052 3F       		.byte	0x3f
@@ -675,7 +675,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  503 0069 02       		.uleb128 0x2
  504 006a 04       		.byte	0x4
  505 006b 07       		.byte	0x7
- 506 006c C2020000 		.4byte	.LASF8
+ 506 006c 03030000 		.4byte	.LASF8
  507 0070 02       		.uleb128 0x2
  508 0071 08       		.byte	0x8
  509 0072 05       		.byte	0x5
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  546 00bf 9301     		.2byte	0x193
  547 00c1 45000000 		.4byte	0x45
  548 00c5 02       		.uleb128 0x2
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 13
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 13
 
 
  549 00c6 04       		.byte	0x4
@@ -727,7 +727,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  552 00cc 02       		.uleb128 0x2
  553 00cd 08       		.byte	0x8
  554 00ce 04       		.byte	0x4
- 555 00cf 0A040000 		.4byte	.LASF18
+ 555 00cf 0E040000 		.4byte	.LASF18
  556 00d3 02       		.uleb128 0x2
  557 00d4 01       		.byte	0x1
  558 00d5 08       		.byte	0x8
@@ -746,7 +746,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  571 00ef 07       		.byte	0x7
  572 00f0 3E000000 		.4byte	.LASF21
  573 00f4 08       		.uleb128 0x8
- 574 00f5 9D020000 		.4byte	.LASF65
+ 574 00f5 DE020000 		.4byte	.LASF65
  575 00f9 08       		.byte	0x8
  576 00fa 05       		.byte	0x5
  577 00fb 11       		.byte	0x11
@@ -777,8 +777,8 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  602 012b 06       		.byte	0x6
  603 012c 00       		.byte	0
  604 012d 0A       		.uleb128 0xa
- 605 012e 2C030000 		.4byte	.LASF26
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 14
+ 605 012e 6D030000 		.4byte	.LASF26
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 14
 
 
  606 0132 01       		.byte	0x1
@@ -807,7 +807,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  629 0167 A2000000 		.4byte	0xa2
  630 016b 40000000 		.4byte	.LLST2
  631 016f 0B       		.uleb128 0xb
- 632 0170 E8020000 		.4byte	.LASF25
+ 632 0170 29030000 		.4byte	.LASF25
  633 0174 01       		.byte	0x1
  634 0175 18       		.byte	0x18
  635 0176 A2000000 		.4byte	0xa2
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  660 01c2 9A040000 		.4byte	0x49a
  661 01c6 0C       		.uleb128 0xc
  662 01c7 4C000000 		.4byte	.LVL15
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 15
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 15
 
 
  663 01cb A5040000 		.4byte	0x4a5
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  717 024c 0F050000 		.4byte	0x50f
  718 0250 5A020000 		.4byte	0x25a
  719 0254 0E       		.uleb128 0xe
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 16
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 16
 
 
  720 0255 01       		.uleb128 0x1
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  774 02b8 00       		.byte	0
  775 02b9 0D       		.uleb128 0xd
  776 02ba DE000000 		.4byte	.LVL32
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 17
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 17
 
 
  777 02be DC040000 		.4byte	0x4dc
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  831 0330 4F       		.byte	0x4f
  832 0331 00000000 		.4byte	.LFB64
  833 0335 20000000 		.4byte	.LFE64-.LFB64
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 18
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 18
 
 
  834 0339 01       		.uleb128 0x1
@@ -1049,7 +1049,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  859 0376 9B050000 		.4byte	0x59b
  860 037a 00       		.byte	0
  861 037b 0A       		.uleb128 0xa
- 862 037c 54040000 		.4byte	.LASF28
+ 862 037c 58040000 		.4byte	.LASF28
  863 0380 01       		.byte	0x1
  864 0381 5D       		.byte	0x5d
  865 0382 00000000 		.4byte	.LFB65
@@ -1077,8 +1077,8 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  887 03b6 9C       		.byte	0x9c
  888 03b7 C9030000 		.4byte	0x3c9
  889 03bb 10       		.uleb128 0x10
- 890 03bc F1020000 		.4byte	.LASF31
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 19
+ 890 03bc 32030000 		.4byte	.LASF31
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 19
 
 
  891 03c0 01       		.byte	0x1
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  945 0425 12       		.uleb128 0x12
  946 0426 36020000 		.4byte	.LASF34
  947 042a 01       		.byte	0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 20
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 20
 
 
  948 042b 0C       		.byte	0xc
@@ -1155,7 +1155,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  959 0442 03       		.byte	0x3
  960 0443 00000000 		.4byte	threshold
  961 0447 14       		.uleb128 0x14
- 962 0448 11040000 		.4byte	.LASF66
+ 962 0448 15040000 		.4byte	.LASF66
  963 044c 10       		.byte	0x10
  964 044d 9606     		.2byte	0x696
  965 044f 53040000 		.4byte	0x453
@@ -1167,12 +1167,12 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  971 045e 5E       		.byte	0x5e
  972 045f AD000000 		.4byte	0xad
  973 0463 15       		.uleb128 0x15
- 974 0464 A6020000 		.4byte	.LASF37
+ 974 0464 E7020000 		.4byte	.LASF37
  975 0468 07       		.byte	0x7
  976 0469 5E       		.byte	0x5e
  977 046a AD000000 		.4byte	0xad
  978 046e 15       		.uleb128 0x15
- 979 046f 1E040000 		.4byte	.LASF38
+ 979 046f 22040000 		.4byte	.LASF38
  980 0473 08       		.byte	0x8
  981 0474 5E       		.byte	0x5e
  982 0475 AD000000 		.4byte	0xad
@@ -1182,7 +1182,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  986 047f 5E       		.byte	0x5e
  987 0480 AD000000 		.4byte	0xad
  988 0484 15       		.uleb128 0x15
- 989 0485 F9020000 		.4byte	.LASF40
+ 989 0485 3A030000 		.4byte	.LASF40
  990 0489 06       		.byte	0x6
  991 048a 67       		.byte	0x67
  992 048b B9000000 		.4byte	0xb9
@@ -1197,25 +1197,25 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1001 04a0 67       		.byte	0x67
  1002 04a1 B9000000 		.4byte	0xb9
  1003 04a5 15       		.uleb128 0x15
- 1004 04a6 0D030000 		.4byte	.LASF43
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 21
+ 1004 04a6 4E030000 		.4byte	.LASF43
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 21
 
 
  1005 04aa 07       		.byte	0x7
  1006 04ab 6B       		.byte	0x6b
  1007 04ac B9000000 		.4byte	0xb9
  1008 04b0 15       		.uleb128 0x15
- 1009 04b1 D4020000 		.4byte	.LASF44
+ 1009 04b1 15030000 		.4byte	.LASF44
  1010 04b5 08       		.byte	0x8
  1011 04b6 67       		.byte	0x67
  1012 04b7 B9000000 		.4byte	0xb9
  1013 04bb 15       		.uleb128 0x15
- 1014 04bc 65020000 		.4byte	.LASF45
+ 1014 04bc A6020000 		.4byte	.LASF45
  1015 04c0 08       		.byte	0x8
  1016 04c1 6B       		.byte	0x6b
  1017 04c2 B9000000 		.4byte	0xb9
  1018 04c6 15       		.uleb128 0x15
- 1019 04c7 7A020000 		.4byte	.LASF46
+ 1019 04c7 BB020000 		.4byte	.LASF46
  1020 04cb 09       		.byte	0x9
  1021 04cc 67       		.byte	0x67
  1022 04cd B9000000 		.4byte	0xb9
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1059 051f 00       		.byte	0
  1060 0520 16       		.uleb128 0x16
  1061 0521 68000000 		.4byte	.LASF52
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 22
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 22
 
 
  1062 0525 0C       		.byte	0xc
@@ -1284,7 +1284,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1082 054e AD000000 		.4byte	0xad
  1083 0552 00       		.byte	0
  1084 0553 16       		.uleb128 0x16
- 1085 0554 74040000 		.4byte	.LASF55
+ 1085 0554 78040000 		.4byte	.LASF55
  1086 0558 0D       		.byte	0xd
  1087 0559 26       		.byte	0x26
  1088 055a 64050000 		.4byte	0x564
@@ -1308,7 +1308,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1106 0581 DA000000 		.4byte	0xda
  1107 0585 00       		.byte	0
  1108 0586 18       		.uleb128 0x18
- 1109 0587 65040000 		.4byte	.LASF58
+ 1109 0587 69040000 		.4byte	.LASF58
  1110 058b 06       		.byte	0x6
  1111 058c 5A       		.byte	0x5a
  1112 058d 18       		.uleb128 0x18
@@ -1316,9 +1316,9 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1114 0592 07       		.byte	0x7
  1115 0593 5A       		.byte	0x5a
  1116 0594 18       		.uleb128 0x18
- 1117 0595 8E020000 		.4byte	.LASF60
+ 1117 0595 CF020000 		.4byte	.LASF60
  1118 0599 08       		.byte	0x8
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 23
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 23
 
 
  1119 059a 5A       		.byte	0x5a
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1173 002e 0B       		.uleb128 0xb
  1174 002f 0B       		.uleb128 0xb
  1175 0030 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 24
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 24
 
 
  1176 0031 0B       		.uleb128 0xb
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1230 0067 3A       		.uleb128 0x3a
  1231 0068 0B       		.uleb128 0xb
  1232 0069 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 25
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 25
 
 
  1233 006a 0B       		.uleb128 0xb
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1287 00a3 00       		.byte	0
  1288 00a4 00       		.byte	0
  1289 00a5 0D       		.uleb128 0xd
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 26
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 26
 
 
  1290 00a6 898201   		.uleb128 0x4109
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1344 00e1 3A       		.uleb128 0x3a
  1345 00e2 0B       		.uleb128 0xb
  1346 00e3 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 27
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 27
 
 
  1347 00e4 0B       		.uleb128 0xb
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1401 011a 0B       		.uleb128 0xb
  1402 011b 3B       		.uleb128 0x3b
  1403 011c 0B       		.uleb128 0xb
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 28
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 28
 
 
  1404 011d 27       		.uleb128 0x27
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1458              	.LLST0:
  1459 0000 08000000 		.4byte	.LVL1
  1460 0004 26000000 		.4byte	.LVL9
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 29
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 29
 
 
  1461 0008 0600     		.2byte	0x6
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1515              	.LLST4:
  1516 0070 00000000 		.4byte	.LVL46
  1517 0074 06000000 		.4byte	.LVL47
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 30
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 30
 
 
  1518 0078 0100     		.2byte	0x1
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1565              	.LASF53:
  1566 000f 4C335F57 		.ascii	"L3_Write\000"
  1566      72697465 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 31
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 31
 
 
  1566      00
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1592      74617274 
  1592      457800
  1593              	.LASF41:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 32
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 32
 
 
  1594 00b5 54696D65 		.ascii	"Timer_R1_ReadCapture\000"
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1616      5F537461 
  1616      727400
  1617              	.LASF54:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 33
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 33
 
 
  1618 0164 4C315F53 		.ascii	"L1_SetDriveMode\000"
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1640      72697465 
  1640      00
  1641              	.LASF3:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 34
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 34
 
 
  1642 020e 73686F72 		.ascii	"short unsigned int\000"
@@ -2009,139 +2009,140 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 1
  1651              	.LASF13:
  1652 025d 696E7433 		.ascii	"int32_t\000"
  1652      325F7400 
- 1653              	.LASF45:
- 1654 0265 54696D65 		.ascii	"Timer_L3_ReadCapture\000"
- 1654      725F4C33 
- 1654      5F526561 
- 1654      64436170 
- 1654      74757265 
- 1655              	.LASF46:
- 1656 027a 54696D65 		.ascii	"Timer_L1_ReadPeriod\000"
- 1656      725F4C31 
- 1656      5F526561 
- 1656      64506572 
- 1656      696F6400 
- 1657              	.LASF60:
- 1658 028e 54696D65 		.ascii	"Timer_L3_Start\000"
- 1658      725F4C33 
- 1658      5F537461 
- 1658      727400
- 1659              	.LASF65:
- 1660 029d 73656E73 		.ascii	"sensors_\000"
- 1660      6F72735F 
- 1660      00
- 1661              	.LASF37:
- 1662 02a6 54696D65 		.ascii	"Timer_R3_ReadStatusRegister\000"
- 1662      725F5233 
- 1662      5F526561 
- 1662      64537461 
- 1662      74757352 
- 1663              	.LASF8:
- 1664 02c2 6C6F6E67 		.ascii	"long unsigned int\000"
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 35
+ 1653              	.LASF64:
+ 1654 0265 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo_Robotti\\Zumo_Rob"
+ 1654      73657273 
+ 1654      5C56696C 
+ 1654      6C65204C 
+ 1654      5C446573 
+ 1655 0293 6F747469 		.ascii	"otti\\ZumoBot.cydsn\000"
+ 1655      5C5A756D 
+ 1655      6F426F74 
+ 1655      2E637964 
+ 1655      736E00
+ 1656              	.LASF45:
+ 1657 02a6 54696D65 		.ascii	"Timer_L3_ReadCapture\000"
+ 1657      725F4C33 
+ 1657      5F526561 
+ 1657      64436170 
+ 1657      74757265 
+ 1658              	.LASF46:
+ 1659 02bb 54696D65 		.ascii	"Timer_L1_ReadPeriod\000"
+ 1659      725F4C31 
+ 1659      5F526561 
+ 1659      64506572 
+ 1659      696F6400 
+ 1660              	.LASF60:
+ 1661 02cf 54696D65 		.ascii	"Timer_L3_Start\000"
+ 1661      725F4C33 
+ 1661      5F537461 
+ 1661      727400
+ 1662              	.LASF65:
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 35
 
 
- 1664      20756E73 
- 1664      69676E65 
- 1664      6420696E 
- 1664      7400
- 1665              	.LASF44:
- 1666 02d4 54696D65 		.ascii	"Timer_L3_ReadPeriod\000"
- 1666      725F4C33 
- 1666      5F526561 
- 1666      64506572 
- 1666      696F6400 
- 1667              	.LASF25:
- 1668 02e8 73746174 		.ascii	"statusL1\000"
- 1668      75734C31 
- 1668      00
- 1669              	.LASF31:
- 1670 02f1 64696769 		.ascii	"digital\000"
- 1670      74616C00 
- 1671              	.LASF40:
- 1672 02f9 54696D65 		.ascii	"Timer_R1_ReadPeriod\000"
- 1672      725F5231 
- 1672      5F526561 
- 1672      64506572 
- 1672      696F6400 
- 1673              	.LASF43:
- 1674 030d 54696D65 		.ascii	"Timer_R3_ReadCapture\000"
- 1674      725F5233 
- 1674      5F526561 
- 1674      64436170 
- 1674      74757265 
- 1675              	.LASF5:
- 1676 0322 5F5F696E 		.ascii	"__int32_t\000"
- 1676      7433325F 
- 1676      7400
- 1677              	.LASF26:
- 1678 032c 73656E73 		.ascii	"sensor_isr_handler\000"
- 1678      6F725F69 
- 1678      73725F68 
- 1678      616E646C 
- 1678      657200
- 1679              	.LASF62:
- 1680 033f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1680      4320342E 
- 1680      392E3320 
- 1680      32303135 
- 1680      30333033 
- 1681 0372 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 1681      20726576 
- 1681      6973696F 
- 1681      6E203232 
- 1681      31323230 
- 1682 03a5 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1682      66756E63 
- 1682      74696F6E 
- 1682      2D736563 
- 1682      74696F6E 
- 1683              	.LASF64:
- 1684 03cd 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo.release04\\Zumo01"
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccvc9RTc.s 			page 36
+ 1663 02de 73656E73 		.ascii	"sensors_\000"
+ 1663      6F72735F 
+ 1663      00
+ 1664              	.LASF37:
+ 1665 02e7 54696D65 		.ascii	"Timer_R3_ReadStatusRegister\000"
+ 1665      725F5233 
+ 1665      5F526561 
+ 1665      64537461 
+ 1665      74757352 
+ 1666              	.LASF8:
+ 1667 0303 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1667      20756E73 
+ 1667      69676E65 
+ 1667      6420696E 
+ 1667      7400
+ 1668              	.LASF44:
+ 1669 0315 54696D65 		.ascii	"Timer_L3_ReadPeriod\000"
+ 1669      725F4C33 
+ 1669      5F526561 
+ 1669      64506572 
+ 1669      696F6400 
+ 1670              	.LASF25:
+ 1671 0329 73746174 		.ascii	"statusL1\000"
+ 1671      75734C31 
+ 1671      00
+ 1672              	.LASF31:
+ 1673 0332 64696769 		.ascii	"digital\000"
+ 1673      74616C00 
+ 1674              	.LASF40:
+ 1675 033a 54696D65 		.ascii	"Timer_R1_ReadPeriod\000"
+ 1675      725F5231 
+ 1675      5F526561 
+ 1675      64506572 
+ 1675      696F6400 
+ 1676              	.LASF43:
+ 1677 034e 54696D65 		.ascii	"Timer_R3_ReadCapture\000"
+ 1677      725F5233 
+ 1677      5F526561 
+ 1677      64436170 
+ 1677      74757265 
+ 1678              	.LASF5:
+ 1679 0363 5F5F696E 		.ascii	"__int32_t\000"
+ 1679      7433325F 
+ 1679      7400
+ 1680              	.LASF26:
+ 1681 036d 73656E73 		.ascii	"sensor_isr_handler\000"
+ 1681      6F725F69 
+ 1681      73725F68 
+ 1681      616E646C 
+ 1681      657200
+ 1682              	.LASF62:
+ 1683 0380 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1683      4320342E 
+ 1683      392E3320 
+ 1683      32303135 
+ 1683      30333033 
+ 1684 03b3 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc7Pr2YX.s 			page 36
 
 
- 1684      73657273 
- 1684      5C56696C 
- 1684      6C65204C 
- 1684      5C446573 
- 1685 03fb 5C5A756D 		.ascii	"\\ZumoBot.cydsn\000"
- 1685      6F426F74 
- 1685      2E637964 
- 1685      736E00
+ 1684      20726576 
+ 1684      6973696F 
+ 1684      6E203232 
+ 1684      31323230 
+ 1685 03e6 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1685      66756E63 
+ 1685      74696F6E 
+ 1685      2D736563 
+ 1685      74696F6E 
  1686              	.LASF18:
- 1687 040a 646F7562 		.ascii	"double\000"
+ 1687 040e 646F7562 		.ascii	"double\000"
  1687      6C6500
  1688              	.LASF66:
- 1689 0411 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1689 0415 49544D5F 		.ascii	"ITM_RxBuffer\000"
  1689      52784275 
  1689      66666572 
  1689      00
  1690              	.LASF38:
- 1691 041e 54696D65 		.ascii	"Timer_L3_ReadStatusRegister\000"
+ 1691 0422 54696D65 		.ascii	"Timer_L3_ReadStatusRegister\000"
  1691      725F4C33 
  1691      5F526561 
  1691      64537461 
  1691      74757352 
  1692              	.LASF63:
- 1693 043a 5A756D6F 		.ascii	"ZumoLibrary\\Reflectance.c\000"
+ 1693 043e 5A756D6F 		.ascii	"ZumoLibrary\\Reflectance.c\000"
  1693      4C696272 
  1693      6172795C 
  1693      5265666C 
  1693      65637461 
  1694              	.LASF28:
- 1695 0454 7265666C 		.ascii	"reflectance_read\000"
+ 1695 0458 7265666C 		.ascii	"reflectance_read\000"
  1695      65637461 
  1695      6E63655F 
  1695      72656164 
  1695      00
  1696              	.LASF58:
- 1697 0465 54696D65 		.ascii	"Timer_R1_Start\000"
+ 1697 0469 54696D65 		.ascii	"Timer_R1_Start\000"
  1697      725F5231 
  1697      5F537461 
  1697      727400
  1698              	.LASF55:
- 1699 0474 4C315F57 		.ascii	"L1_Write\000"
+ 1699 0478 4C315F57 		.ascii	"L1_Write\000"
  1699      72697465 
  1699      00
  1700              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

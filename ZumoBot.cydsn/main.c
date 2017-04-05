@@ -45,7 +45,11 @@
 int rread(void);
 
 void Measure_Voltage();
-
+void motor_start();
+void motor_forward(uint8 speed,uint32 delay);
+void Custom_forward(uint8 speed,uint32 delay);
+void motor_turn(uint8 l_speed, uint8 r_speed, uint32 delay);
+void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r3);
 
 
 /**
@@ -61,10 +65,23 @@ int main()
     // 'Time counter' for the voltage measurement interval
     int cycles = 0;
     
+    
+    struct sensors_ ref;
+    struct sensors_ dig;
     CyGlobalIntEnable; 
     UART_1_Start();
-    ADC_Battery_Start();        
+    ADC_Battery_Start();   
+    Measure_Voltage();
+    
+    // motor_start();
+    
+    sensor_isr_StartEx(sensor_isr_handler);
+    
+    reflectance_set_threshold(10000, 5000, 5000, 10000);
+    
+    reflectance_start();
 
+    IR_led_Write(1);
 
     printf("\nBoot\n");
 
@@ -72,19 +89,43 @@ int main()
     BatteryLed_Write(0); // Switch led off 
     //uint8 button;
     //button = SW1_Read(); // read SW1 on pSoC board
+    
+    /*
+    Custom_forward(128, 2900);
+    motor_forward(0, 0);
+    motor_turn(255, 0, 324);
+    Custom_forward(128, 2840);
+    motor_forward(0, 0);
+    motor_turn(255, 0, 326);
+    Custom_forward(128, 2450);
+    motor_forward(0, 0);
+    motor_turn(255, 0, 420);
+    Custom_forward(128, 1500);
+    motor_forward(0, 0);
+    */
+    
 
     while(1)
     {    
-        // For measuering the battery voltage at regular intervals. 
-        // 20000 'cycles' should equal 60 seconds, assuming the while loop runs at 1 loop / 3 ms.
+        
+        reflectance_read(&ref); // raw sensor value; 0 - 22 000
+        printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
+        reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
+        printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
+        
+        CyDelay(500);
+               
+        // For measuring the battery voltage at regular intervals. 
+        // 30 000000 'cycles' should equal ~80 seconds, assuming the while loop runs at 1 loop / 3 microseconds.
         cycles++;
-        if (cycles >= 20000)
+        if (cycles >= 300000000)
         {
             Measure_Voltage();
             cycles = 0;
         }
         
     }
+     
  }   
 //*/
 
@@ -229,7 +270,7 @@ int main()
     IR_led_Write(1);
     for(;;)
     {
-        reflectance_read(&ref);
+        reflectance_read(&ref); // raw sensor value; 0 - 22 000
         printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
         reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
         printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
