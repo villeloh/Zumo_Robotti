@@ -75,7 +75,7 @@ void Measure_Voltage()
                 CyDelay(400);
                 BatteryLed_Write(0);
             }       
-        } else if (volts < 4.1 && volts > 0.0) {
+        } else if (volts < 4.1 && volts > 0.0 && volts) {
         
             while (1) 
             {
