@@ -32,12 +32,14 @@
 int rread(void);
 void motor_start();
 void motor_forward(uint8 speed,uint32 delay);
-void Custom_forward(uint8 speed,uint32 delay);
+void Custom_forward(uint8 speed);
 void motor_turn(uint8 l_speed, uint8 r_speed, uint32 delay);
 void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r3);
 void Measure_Voltage();
-void Custom_left_correct(uint8 speed);
-void Custom_right_correct(uint8 speed);
+void Right_turn(uint8 speed);
+void Left_turn(uint8 speed);
+void Forceful_left_turn(uint8 speed);
+void Forceful_right_turn(uint8 speed);
 
 
 
@@ -45,6 +47,22 @@ int main()
 {
     // 'Time counter' for the voltage measurement interval
     int cycles = 0;
+    
+    // turn value for the motors to use
+    uint8 turn = 0;
+    
+    // color thresholds for use in different behaviours
+    int threshold_l3 = 21000;
+    int threshold_l1 = 17500;
+    int threshold_r1 = 22000;
+    int threshold_r3 = 21500;
+    
+    // maximum movement speed of the robot
+    int speed = 124;
+    
+    // reflectance sub-limits for different turning behaviour
+    int left_forceful_limit = 15000;
+    int right_forceful_limit = 19000;
       
     struct sensors_ ref;
     struct sensors_ dig;
@@ -58,7 +76,7 @@ int main()
     
     // Initialize IR sensors
     sensor_isr_StartEx(sensor_isr_handler); 
-    reflectance_set_threshold(20000, 18000, 18000, 20000);   
+    reflectance_set_threshold(threshold_l3, threshold_l1, threshold_r1, threshold_r3);  
     reflectance_start();
     IR_led_Write(1);
 
@@ -66,59 +84,91 @@ int main()
 
     //BatteryLed_Write(1); // Switch led on 
     BatteryLed_Write(0); // Switch led off 
-    //uint8 button;
-    //button = SW1_Read(); // read SW1 on pSoC board
+    uint8 button;
+    button = SW1_Read(); // read SW1 on pSoC board
     
+    // To start the robot's movement routine, press the button
+    if (button == 1) 
+    {
+        Custom_forward(speed);
 
-    
-
-    while(1)
-    {    
-        
-        reflectance_read(&ref); // raw sensor value; 0 - 24 000
-        printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
-        reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
-        printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
-        CyDelay(500); // comment this delay out when doing movement tests !!!
-        
-        // Line-following logic (alpha version ... ).
-        // NOTE: due to the calibration of the motors speeds, 248 (255 - 7) is our current max speed!
-        // NOTE#2: I'm not sure if there is a better way of doing things than to continuously call the correction methods in a do-while loop.
-        // It seems horribly inefficient, but it's an easy way to stop the turn exactly when the value of dig.x changes.
-        // If the values that cause the change from 1 to 0 and vice versa are fine-tuned enough, in THEORY these should be the only methods needed.
-        if (dig.l1 == 1)
-        { 
-            // When the robot starts to veer off to the left, do a correction towards the right, until the veering off has been corrected. 
-            // NOTE: the naming of the method is debatable; it corrects a veering off TO the left, so I named it left_correct(); 
-            // otoh the correction is TOWARDS the right, so right_correct could've been equally reasonable.
-            do {
-                Custom_left_correct(240);
-            } while (dig.l1 == 1);
-            Custom_forward(248, 50000);
-                    
-        } else if (dig.r1 == 1) {
+        while(1)
+        {    
             
-            // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected
-            do {
-                Custom_right_correct(247);
-            } while (dig.r1 == 1);
-            Custom_forward(248, 50000);
-        }
+            reflectance_read(&ref); // raw sensor value; 0 - 24 000
+            //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
+            reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
+            //printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
+            //CyDelay(1000); // comment this delay out when doing movement tests / racing !!!
+            
+            
+            // Line-following logic (alpha version ... ).
+            // NOTE: due to the calibration of the motor speeds, 248 (255 - 7) is our current max speed!
+            // NOTE#2: I'm not sure if there is a better way of doing things than to continuously call the correction methods in a do-while loop.
+            // It seems horribly inefficient, but it's an easy way to stop the turn exactly when the value of dig.x changes.
+            if (dig.l1 == 1)
+            { 
+                // When the robot starts to veer off to the left, do a correction towards the right, until the veering off has been corrected.
+                do {
+                    reflectance_read(&ref);
+                    reflectance_digital(&dig); 
+                    
+                    turn = 248 * (ref.l1 / threshold_l1);
+                    
+                    // If the reflectance reaches a certain level of whiteness, execute a more forceful turn.
+                    // NOTE: This would work better with the SPEED of the change in reflectance, as high whiteness
+                    // is reached quicker in steeped curves
+                    if (ref.l1 < left_forceful_limit)
+                    {
+                        Forceful_right_turn(turn);
+                        
+                    } else {
+                    
+                        Right_turn(turn); 
+                    }
+                    
+                } while (dig.l1 == 1);
+                Custom_forward(speed);
+                        
+            } else if (dig.r1 == 1) {
                 
+                // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected
+                do {
+                    reflectance_read(&ref); 
+                    reflectance_digital(&dig);
+                    
+                    turn = 248 * (ref.r1 / threshold_r1);
 
-               
-        // For measuring the battery voltage at regular intervals. 
-        // 160 'cycles' should equal ~80 seconds, due to the delay that is used above.
-        // NOTE: the cycle limit will have to be adjusted each time we add delays to the while loop! 
-        // There must be a way around this, but for now we should keep this in mind and adjust it as needed.
-        // NOTE2: If all delays are disabled, change the limit to 30 000 000 !
-        cycles++;
-        if (cycles >= 160)
-        {
-            Measure_Voltage();
-            cycles = 0;
+                    // If the reflectance reaches a certain level of whiteness, execute a more forceful turn.
+                    // NOTE: This would work better with the SPEED of the change in reflectance, as high whiteness
+                    // is reached quicker in steeped curves
+                    if (ref.r1 < right_forceful_limit)
+                    {
+                        Forceful_left_turn(turn);
+                        
+                    } else {
+                    
+                        Left_turn(turn); 
+                    }
+
+                } while (dig.r1 == 1);
+                Custom_forward(speed);
+            } 
+                                        
+            // For measuring the battery voltage at regular intervals. 
+            // 80000 'cycles' should equal ~80 seconds, due to the delay that is used below (1).
+            // NOTE: the cycle limit will have to be adjusted each time we add delays to the while loop! 
+            // There must be a way around this, but for now we should keep this in mind and adjust it as needed.
+            // NOTE2: If ALL delays are disabled, change the limit to 30 000 000 !
+            cycles++;
+            if (cycles >= 80000)
+            {
+                Measure_Voltage();
+                cycles = 0;
+            }
+            
+            CyDelay(1);
         }
-        
     }
      
  }   

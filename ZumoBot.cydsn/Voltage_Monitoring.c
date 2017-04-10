@@ -16,6 +16,8 @@ float ADC_result_to_volts(int16 adcresult);
 void Beep(uint32 length, uint8 pitch);
 void Measure_Voltage();
 void BatteryLed_Write(uint8 value);
+uint8 BatteryLed_Read();
+void motor_stop();
 
 // Custom class for measuring battery voltage at regular intervals, and for playing warning sounds & flashing lights at low voltage levels.
 
@@ -26,13 +28,14 @@ float ADC_result_to_volts(int16 adcresult)
 {
     float volts;
     
+    //returns the actual battery voltage (4.1 - 5.6 V)
     volts = (adcresult / 4095.0) * (1.5 * 5.0);
     
     return volts;
     
 }
 
-// For measuring the voltage of the batteries at regular intervals. Used in main.c.
+// For measuring the voltage of the batteries at regular intervals. (Used in main.c.)
 void Measure_Voltage()
 {
     int16 adcresult = 0;
@@ -50,7 +53,7 @@ void Measure_Voltage()
         // three long and low-sounding beeps; from 5.0 to 4.5 V, six medium-length, medium-pitch beeps; from 4.5 V to 
         // 4.1 V, 9 loud and sharp beeps; and finally if the voltage reaches 4.1 V, there will be a never-ending flurry of extremely short and sharp beeps.
         // EDIT: Added flashing light effects to go with the beeps :)
-        if (volts) // null check is needed to prevent alarms when the robot is off but the chip is on
+        if (volts > 0.1) // null check is needed to prevent alarms when the robot is off but the chip is on
         {
         
             if (volts >= 5.0)
@@ -58,6 +61,7 @@ void Measure_Voltage()
                 {
                     Beep(80, 60);
                     BatteryLed_Write(1);
+                    BatteryLed_Read();
                     CyDelay(600);
                     BatteryLed_Write(0);
                 }
@@ -66,6 +70,7 @@ void Measure_Voltage()
                 {
                     Beep(40, 80);
                     BatteryLed_Write(1);
+                    BatteryLed_Read();
                     CyDelay(500);
                     BatteryLed_Write(0);
                 }            
@@ -75,20 +80,26 @@ void Measure_Voltage()
                 {
                     Beep(30, 95);
                     BatteryLed_Write(1);
+                    BatteryLed_Read();
                     CyDelay(400);
                     BatteryLed_Write(0);
                 }       
-            } else if (volts < 4.1 && volts > 0.0) {
+            } else if (volts < 4.1) {
+                
+                motor_stop(); // what else needs to be stopped?
             
                 while (1) 
                 {
                     Beep(20, 110);
                     BatteryLed_Write(1);
+                    BatteryLed_Read();
                     CyDelay(200);
                     BatteryLed_Write(0);
                     printf("%f \n", volts);
                     printf("DANGER! Battery LOW! Please charge ASAP!!!\n");
                 }
+                
+                
            
             }
                   

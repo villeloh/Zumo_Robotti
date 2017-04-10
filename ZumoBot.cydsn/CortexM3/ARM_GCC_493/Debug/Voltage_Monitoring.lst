@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 1
 
 
    1              		.syntax unified
@@ -48,26 +48,32 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 1
   15:Voltage_Monitoring.c **** float ADC_result_to_volts(int16 adcresult);
   16:Voltage_Monitoring.c **** void Beep(uint32 length, uint8 pitch);
   17:Voltage_Monitoring.c **** void Measure_Voltage();
-  18:Voltage_Monitoring.c **** 
-  19:Voltage_Monitoring.c **** // Subroutine for custom unit conversion (used below in Measure_Voltage()).
-  20:Voltage_Monitoring.c **** float ADC_result_to_volts(int16 adcresult)
-  21:Voltage_Monitoring.c **** {
-  31              		.loc 1 21 0
+  18:Voltage_Monitoring.c **** void BatteryLed_Write(uint8 value);
+  19:Voltage_Monitoring.c **** uint8 BatteryLed_Read();
+  20:Voltage_Monitoring.c **** 
+  21:Voltage_Monitoring.c **** // Custom class for measuring battery voltage at regular intervals, and for playing warning sounds 
+  22:Voltage_Monitoring.c **** 
+  23:Voltage_Monitoring.c **** 
+  24:Voltage_Monitoring.c **** 
+  25:Voltage_Monitoring.c **** // Subroutine for custom unit conversion (used below in Measure_Voltage()).
+  26:Voltage_Monitoring.c **** float ADC_result_to_volts(int16 adcresult)
+  27:Voltage_Monitoring.c **** {
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 2
+
+
+  31              		.loc 1 27 0
   32              		.cfi_startproc
   33              		@ args = 0, pretend = 0, frame = 0
   34              		@ frame_needed = 0, uses_anonymous_args = 0
   35              	.LVL0:
   36 0000 08B5     		push	{r3, lr}
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 2
-
-
   37              		.cfi_def_cfa_offset 8
   38              		.cfi_offset 3, -8
   39              		.cfi_offset 14, -4
-  22:Voltage_Monitoring.c ****     float volts;
-  23:Voltage_Monitoring.c ****     
-  24:Voltage_Monitoring.c ****     volts = (adcresult / 4095.0) * (1.5 * 5.0);
-  40              		.loc 1 24 0
+  28:Voltage_Monitoring.c ****     float volts;
+  29:Voltage_Monitoring.c ****     
+  30:Voltage_Monitoring.c ****     volts = (adcresult / 4095.0) * (1.5 * 5.0);
+  40              		.loc 1 30 0
   41 0002 FFF7FEFF 		bl	__aeabi_i2d
   42              	.LVL1:
   43 0006 06A3     		adr	r3, .L3
@@ -80,11 +86,11 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 1
   50              	.LVL3:
   51 0018 FFF7FEFF 		bl	__aeabi_d2f
   52              	.LVL4:
-  25:Voltage_Monitoring.c ****     
-  26:Voltage_Monitoring.c ****     return volts;
-  27:Voltage_Monitoring.c ****     
-  28:Voltage_Monitoring.c **** }
-  53              		.loc 1 28 0
+  31:Voltage_Monitoring.c ****     
+  32:Voltage_Monitoring.c ****     return volts;
+  33:Voltage_Monitoring.c ****     
+  34:Voltage_Monitoring.c **** }
+  53              		.loc 1 34 0
   54 001c 08BD     		pop	{r3, pc}
   55              	.L4:
   56 001e 00BF     		.align	3
@@ -95,12 +101,12 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 1
   61              		.cfi_endproc
   62              	.LFE63:
   63              		.size	ADC_result_to_volts, .-ADC_result_to_volts
-  64              		.global	__aeabi_fcmpge
-  65              		.global	__aeabi_fcmplt
-  66              		.global	__aeabi_f2d
-  67              		.global	__aeabi_dcmpge
-  68              		.global	__aeabi_dcmplt
-  69              		.global	__aeabi_fcmpgt
+  64              		.global	__aeabi_f2d
+  65              		.global	__aeabi_dcmpgt
+  66              		.global	__aeabi_fcmpge
+  67              		.global	__aeabi_fcmplt
+  68              		.global	__aeabi_dcmpge
+  69              		.global	__aeabi_dcmplt
   70 002c AFF30080 		.section	.text.Measure_Voltage,"ax",%progbits
   71              		.align	2
   72              		.global	Measure_Voltage
@@ -109,18 +115,18 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 1
   75              		.type	Measure_Voltage, %function
   76              	Measure_Voltage:
   77              	.LFB64:
-  29:Voltage_Monitoring.c **** 
-  30:Voltage_Monitoring.c **** // For measuring the voltage of the batteries at regular intervals. Used in main.c.
-  31:Voltage_Monitoring.c **** void Measure_Voltage()
-  32:Voltage_Monitoring.c **** {
-  78              		.loc 1 32 0
+  35:Voltage_Monitoring.c **** 
+  36:Voltage_Monitoring.c **** // For measuring the voltage of the batteries at regular intervals. Used in main.c.
+  37:Voltage_Monitoring.c **** void Measure_Voltage()
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 3
+
+
+  38:Voltage_Monitoring.c **** {
+  78              		.loc 1 38 0
   79              		.cfi_startproc
   80              		@ args = 0, pretend = 0, frame = 0
   81              		@ frame_needed = 0, uses_anonymous_args = 0
   82 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 3
-
-
   83              		.cfi_def_cfa_offset 24
   84              		.cfi_offset 3, -24
   85              		.cfi_offset 4, -20
@@ -129,1398 +135,1615 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 1
   88              		.cfi_offset 7, -8
   89              		.cfi_offset 14, -4
   90              	.LVL5:
-  33:Voltage_Monitoring.c ****     int16 adcresult = 0;
-  34:Voltage_Monitoring.c ****     float volts = 0.0;
-  35:Voltage_Monitoring.c ****     
-  36:Voltage_Monitoring.c ****     int i;
-  37:Voltage_Monitoring.c ****     
-  38:Voltage_Monitoring.c ****     ADC_Battery_StartConvert();
-  91              		.loc 1 38 0
+  39:Voltage_Monitoring.c ****     int16 adcresult = 0;
+  40:Voltage_Monitoring.c ****     float volts = 0.0;
+  41:Voltage_Monitoring.c ****     
+  42:Voltage_Monitoring.c ****     int i;
+  43:Voltage_Monitoring.c ****     
+  44:Voltage_Monitoring.c ****     ADC_Battery_StartConvert();
+  91              		.loc 1 44 0
   92 0002 FFF7FEFF 		bl	ADC_Battery_StartConvert
   93              	.LVL6:
-  39:Voltage_Monitoring.c ****     if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) 
-  94              		.loc 1 39 0
+  45:Voltage_Monitoring.c ****     if(ADC_Battery_IsEndConversion(ADC_Battery_WAIT_FOR_RESULT)) 
+  94              		.loc 1 45 0
   95 0006 0020     		movs	r0, #0
   96 0008 FFF7FEFF 		bl	ADC_Battery_IsEndConversion
   97              	.LVL7:
   98 000c 0028     		cmp	r0, #0
-  99 000e 78D0     		beq	.L6
-  40:Voltage_Monitoring.c ****     {   // wait for get ADC converted value
-  41:Voltage_Monitoring.c ****         adcresult = ADC_Battery_GetResult16();
- 100              		.loc 1 41 0
- 101 0010 FFF7FEFF 		bl	ADC_Battery_GetResult16
+  99 000e 00F09D80 		beq	.L5
+  46:Voltage_Monitoring.c ****     {   // wait for get ADC converted value
+  47:Voltage_Monitoring.c ****         adcresult = ADC_Battery_GetResult16();
+ 100              		.loc 1 47 0
+ 101 0012 FFF7FEFF 		bl	ADC_Battery_GetResult16
  102              	.LVL8:
- 103 0014 0746     		mov	r7, r0
+ 103 0016 0746     		mov	r7, r0
  104              	.LVL9:
-  42:Voltage_Monitoring.c ****         volts = ADC_result_to_volts(adcresult); // convert value to Volts
- 105              		.loc 1 42 0
- 106 0016 FFF7FEFF 		bl	ADC_result_to_volts
+  48:Voltage_Monitoring.c ****         volts = ADC_result_to_volts(adcresult); // convert value to volts
+ 105              		.loc 1 48 0
+ 106 0018 FFF7FEFF 		bl	ADC_result_to_volts
  107              	.LVL10:
- 108 001a 0646     		mov	r6, r0
+ 108 001c 0646     		mov	r6, r0
  109              	.LVL11:
-  43:Voltage_Monitoring.c ****         
-  44:Voltage_Monitoring.c ****         // Different types of beep sounds for different voltage levels. If the charge is over 5.0 V
-  45:Voltage_Monitoring.c ****         // three long and low-sounding beeps; from 5.0 to 4.5 V, six medium-length, medium-pitch be
-  46:Voltage_Monitoring.c ****         // 4.1 V, 9 loud and sharp beeps; and finally if the voltage reaches 4.1 V, there will be a
-  47:Voltage_Monitoring.c ****         if (volts >= 5.0)
- 110              		.loc 1 47 0
- 111 001c 3E49     		ldr	r1, .L30+8
- 112 001e FFF7FEFF 		bl	__aeabi_fcmpge
- 113              	.LVL12:
- 114 0022 50B9     		cbnz	r0, .L22
- 115 0024 0DE0     		b	.L28
- 116              	.LVL13:
- 117              	.L9:
-  48:Voltage_Monitoring.c ****         { for (i = 0; i < 3; i++) 
-  49:Voltage_Monitoring.c ****             {
-  50:Voltage_Monitoring.c ****                 Beep(80, 60);
- 118              		.loc 1 50 0 discriminator 3
- 119 0026 5020     		movs	r0, #80
- 120 0028 3C21     		movs	r1, #60
- 121 002a FFF7FEFF 		bl	Beep
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 4
+  49:Voltage_Monitoring.c ****         
+  50:Voltage_Monitoring.c ****         // Different types of beep sounds for different voltage levels. If the charge is over 5.0 V
+  51:Voltage_Monitoring.c ****         // three long and low-sounding beeps; from 5.0 to 4.5 V, six medium-length, medium-pitch be
+  52:Voltage_Monitoring.c ****         // 4.1 V, 9 loud and sharp beeps; and finally if the voltage reaches 4.1 V, there will be a
+  53:Voltage_Monitoring.c ****         // EDIT: Added flashing light effects to go with the beeps :)
+  54:Voltage_Monitoring.c ****         if (volts > 0.1) // null check is needed to prevent alarms when the robot is off but the ch
+ 110              		.loc 1 54 0
+ 111 001e FFF7FEFF 		bl	__aeabi_f2d
+ 112              	.LVL12:
+ 113 0022 0446     		mov	r4, r0
+ 114 0024 0D46     		mov	r5, r1
+ 115 0026 4AA3     		adr	r3, .L31
+ 116 0028 D3E90023 		ldrd	r2, [r3]
+ 117 002c FFF7FEFF 		bl	__aeabi_dcmpgt
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 4
 
 
- 122              	.LVL14:
-  51:Voltage_Monitoring.c ****                 CyDelay(1000);
- 123              		.loc 1 51 0 discriminator 3
- 124 002e 4FF47A70 		mov	r0, #1000
- 125 0032 FFF7FEFF 		bl	CyDelay
- 126              	.LVL15:
-  48:Voltage_Monitoring.c ****         { for (i = 0; i < 3; i++) 
- 127              		.loc 1 48 0 discriminator 3
- 128 0036 0134     		adds	r4, r4, #1
- 129              	.LVL16:
- 130 0038 00E0     		b	.L7
- 131              	.LVL17:
- 132              	.L22:
- 133 003a 0024     		movs	r4, #0
- 134              	.L7:
- 135              	.LVL18:
-  48:Voltage_Monitoring.c ****         { for (i = 0; i < 3; i++) 
- 136              		.loc 1 48 0 is_stmt 0 discriminator 1
- 137 003c 022C     		cmp	r4, #2
- 138 003e F2DD     		ble	.L9
- 139 0040 56E0     		b	.L10
- 140              	.LVL19:
- 141              	.L28:
-  52:Voltage_Monitoring.c ****             }
-  53:Voltage_Monitoring.c ****         } else if (volts < 5.0 && volts >= 4.5) {
- 142              		.loc 1 53 0 is_stmt 1
- 143 0042 3046     		mov	r0, r6
- 144 0044 3449     		ldr	r1, .L30+8
- 145 0046 FFF7FEFF 		bl	__aeabi_fcmplt
- 146              	.LVL20:
- 147 004a 98B1     		cbz	r0, .L11
- 148              		.loc 1 53 0 is_stmt 0 discriminator 1
- 149 004c 3046     		mov	r0, r6
- 150 004e 3349     		ldr	r1, .L30+12
- 151 0050 FFF7FEFF 		bl	__aeabi_fcmpge
+ 118              	.LVL13:
+ 119 0030 0028     		cmp	r0, #0
+ 120 0032 00F08780 		beq	.L7
+  55:Voltage_Monitoring.c ****         {
+  56:Voltage_Monitoring.c ****         
+  57:Voltage_Monitoring.c ****             if (volts >= 5.0)
+ 121              		.loc 1 57 0
+ 122 0036 3046     		mov	r0, r6
+ 123 0038 4949     		ldr	r1, .L31+16
+ 124 003a FFF7FEFF 		bl	__aeabi_fcmpge
+ 125              	.LVL14:
+ 126 003e 90B9     		cbnz	r0, .L23
+ 127 0040 15E0     		b	.L29
+ 128              	.LVL15:
+ 129              	.L11:
+  58:Voltage_Monitoring.c ****             { for (i = 0; i < 3; i++) 
+  59:Voltage_Monitoring.c ****                 {
+  60:Voltage_Monitoring.c ****                     Beep(80, 60);
+ 130              		.loc 1 60 0 discriminator 3
+ 131 0042 5020     		movs	r0, #80
+ 132 0044 3C21     		movs	r1, #60
+ 133 0046 FFF7FEFF 		bl	Beep
+ 134              	.LVL16:
+  61:Voltage_Monitoring.c ****                     BatteryLed_Write(1);
+ 135              		.loc 1 61 0 discriminator 3
+ 136 004a 0120     		movs	r0, #1
+ 137 004c FFF7FEFF 		bl	BatteryLed_Write
+ 138              	.LVL17:
+  62:Voltage_Monitoring.c ****                     BatteryLed_Read();
+ 139              		.loc 1 62 0 discriminator 3
+ 140 0050 FFF7FEFF 		bl	BatteryLed_Read
+ 141              	.LVL18:
+  63:Voltage_Monitoring.c ****                     CyDelay(600);
+ 142              		.loc 1 63 0 discriminator 3
+ 143 0054 4FF41670 		mov	r0, #600
+ 144 0058 FFF7FEFF 		bl	CyDelay
+ 145              	.LVL19:
+  64:Voltage_Monitoring.c ****                     BatteryLed_Write(0);
+ 146              		.loc 1 64 0 discriminator 3
+ 147 005c 0020     		movs	r0, #0
+ 148 005e FFF7FEFF 		bl	BatteryLed_Write
+ 149              	.LVL20:
+  58:Voltage_Monitoring.c ****                 {
+ 150              		.loc 1 58 0 discriminator 3
+ 151 0062 0136     		adds	r6, r6, #1
  152              	.LVL21:
- 153 0054 50B9     		cbnz	r0, .L23
- 154 0056 0DE0     		b	.L11
- 155              	.LVL22:
- 156              	.L14:
-  54:Voltage_Monitoring.c ****          for (i = 0; i < 6; i++) 
-  55:Voltage_Monitoring.c ****             {
-  56:Voltage_Monitoring.c ****                 Beep(40, 80);
- 157              		.loc 1 56 0 is_stmt 1 discriminator 3
- 158 0058 2820     		movs	r0, #40
- 159 005a 5021     		movs	r1, #80
- 160 005c FFF7FEFF 		bl	Beep
- 161              	.LVL23:
-  57:Voltage_Monitoring.c ****                 CyDelay(1000);
- 162              		.loc 1 57 0 discriminator 3
- 163 0060 4FF47A70 		mov	r0, #1000
- 164 0064 FFF7FEFF 		bl	CyDelay
- 165              	.LVL24:
-  54:Voltage_Monitoring.c ****          for (i = 0; i < 6; i++) 
- 166              		.loc 1 54 0 discriminator 3
- 167 0068 0134     		adds	r4, r4, #1
- 168              	.LVL25:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 5
+ 153 0064 00E0     		b	.L9
+ 154              	.LVL22:
+ 155              	.L23:
+ 156 0066 0026     		movs	r6, #0
+ 157              	.LVL23:
+ 158              	.L9:
+  58:Voltage_Monitoring.c ****                 {
+ 159              		.loc 1 58 0 is_stmt 0 discriminator 1
+ 160 0068 022E     		cmp	r6, #2
+ 161 006a EADD     		ble	.L11
+ 162 006c 64E0     		b	.L12
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 5
 
 
- 169 006a 00E0     		b	.L13
- 170              	.LVL26:
- 171              	.L23:
- 172 006c 0024     		movs	r4, #0
- 173              	.L13:
- 174              	.LVL27:
-  54:Voltage_Monitoring.c ****          for (i = 0; i < 6; i++) 
- 175              		.loc 1 54 0 is_stmt 0 discriminator 1
- 176 006e 052C     		cmp	r4, #5
- 177 0070 F2DD     		ble	.L14
- 178 0072 3DE0     		b	.L10
- 179              	.LVL28:
- 180              	.L11:
-  58:Voltage_Monitoring.c ****             }            
-  59:Voltage_Monitoring.c ****         } else if (volts < 4.5 && volts >= 4.1) {
- 181              		.loc 1 59 0 is_stmt 1
- 182 0074 3046     		mov	r0, r6
- 183 0076 2949     		ldr	r1, .L30+12
- 184 0078 FFF7FEFF 		bl	__aeabi_fcmplt
- 185              	.LVL29:
- 186 007c B8B1     		cbz	r0, .L15
- 187              		.loc 1 59 0 is_stmt 0 discriminator 1
- 188 007e 3046     		mov	r0, r6
- 189 0080 FFF7FEFF 		bl	__aeabi_f2d
- 190              	.LVL30:
- 191 0084 22A3     		adr	r3, .L30
- 192 0086 D3E90023 		ldrd	r2, [r3]
- 193 008a FFF7FEFF 		bl	__aeabi_dcmpge
- 194              	.LVL31:
- 195 008e 50B9     		cbnz	r0, .L24
- 196 0090 0DE0     		b	.L15
- 197              	.LVL32:
- 198              	.L18:
-  60:Voltage_Monitoring.c ****         
-  61:Voltage_Monitoring.c ****             for (i = 0; i < 9; i++) 
-  62:Voltage_Monitoring.c ****             {
-  63:Voltage_Monitoring.c ****                 Beep(30, 95);
- 199              		.loc 1 63 0 is_stmt 1 discriminator 3
- 200 0092 1E20     		movs	r0, #30
- 201 0094 5F21     		movs	r1, #95
- 202 0096 FFF7FEFF 		bl	Beep
- 203              	.LVL33:
-  64:Voltage_Monitoring.c ****                 CyDelay(1000);
- 204              		.loc 1 64 0 discriminator 3
- 205 009a 4FF47A70 		mov	r0, #1000
- 206 009e FFF7FEFF 		bl	CyDelay
- 207              	.LVL34:
-  61:Voltage_Monitoring.c ****             {
- 208              		.loc 1 61 0 discriminator 3
- 209 00a2 0134     		adds	r4, r4, #1
- 210              	.LVL35:
- 211 00a4 00E0     		b	.L17
- 212              	.LVL36:
- 213              	.L24:
- 214 00a6 0024     		movs	r4, #0
- 215              	.L17:
- 216              	.LVL37:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 6
+ 163              	.LVL24:
+ 164              	.L29:
+  65:Voltage_Monitoring.c ****                 }
+  66:Voltage_Monitoring.c ****             } else if (volts < 5.0 && volts >= 4.5) {
+ 165              		.loc 1 66 0 is_stmt 1
+ 166 006e 3046     		mov	r0, r6
+ 167 0070 3B49     		ldr	r1, .L31+16
+ 168 0072 FFF7FEFF 		bl	__aeabi_fcmplt
+ 169              	.LVL25:
+ 170 0076 D8B1     		cbz	r0, .L13
+ 171              		.loc 1 66 0 is_stmt 0 discriminator 1
+ 172 0078 3046     		mov	r0, r6
+ 173 007a 3A49     		ldr	r1, .L31+20
+ 174 007c FFF7FEFF 		bl	__aeabi_fcmpge
+ 175              	.LVL26:
+ 176 0080 90B9     		cbnz	r0, .L24
+ 177 0082 15E0     		b	.L13
+ 178              	.LVL27:
+ 179              	.L16:
+  67:Voltage_Monitoring.c ****              for (i = 0; i < 6; i++) 
+  68:Voltage_Monitoring.c ****                 {
+  69:Voltage_Monitoring.c ****                     Beep(40, 80);
+ 180              		.loc 1 69 0 is_stmt 1 discriminator 3
+ 181 0084 2820     		movs	r0, #40
+ 182 0086 5021     		movs	r1, #80
+ 183 0088 FFF7FEFF 		bl	Beep
+ 184              	.LVL28:
+  70:Voltage_Monitoring.c ****                     BatteryLed_Write(1);
+ 185              		.loc 1 70 0 discriminator 3
+ 186 008c 0120     		movs	r0, #1
+ 187 008e FFF7FEFF 		bl	BatteryLed_Write
+ 188              	.LVL29:
+  71:Voltage_Monitoring.c ****                     BatteryLed_Read();
+ 189              		.loc 1 71 0 discriminator 3
+ 190 0092 FFF7FEFF 		bl	BatteryLed_Read
+ 191              	.LVL30:
+  72:Voltage_Monitoring.c ****                     CyDelay(500);
+ 192              		.loc 1 72 0 discriminator 3
+ 193 0096 4FF4FA70 		mov	r0, #500
+ 194 009a FFF7FEFF 		bl	CyDelay
+ 195              	.LVL31:
+  73:Voltage_Monitoring.c ****                     BatteryLed_Write(0);
+ 196              		.loc 1 73 0 discriminator 3
+ 197 009e 0020     		movs	r0, #0
+ 198 00a0 FFF7FEFF 		bl	BatteryLed_Write
+ 199              	.LVL32:
+  67:Voltage_Monitoring.c ****                 {
+ 200              		.loc 1 67 0 discriminator 3
+ 201 00a4 0136     		adds	r6, r6, #1
+ 202              	.LVL33:
+ 203 00a6 00E0     		b	.L15
+ 204              	.LVL34:
+ 205              	.L24:
+ 206 00a8 0026     		movs	r6, #0
+ 207              	.LVL35:
+ 208              	.L15:
+  67:Voltage_Monitoring.c ****                 {
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 6
 
 
-  61:Voltage_Monitoring.c ****             {
- 217              		.loc 1 61 0 is_stmt 0 discriminator 1
- 218 00a8 082C     		cmp	r4, #8
- 219 00aa F2DD     		ble	.L18
- 220 00ac 20E0     		b	.L10
- 221              	.LVL38:
- 222              	.L15:
-  65:Voltage_Monitoring.c ****             }       
-  66:Voltage_Monitoring.c ****         } else if (volts < 4.1 && volts > 0) {
- 223              		.loc 1 66 0 is_stmt 1
- 224 00ae 3046     		mov	r0, r6
- 225 00b0 FFF7FEFF 		bl	__aeabi_f2d
- 226              	.LVL39:
- 227 00b4 0446     		mov	r4, r0
- 228 00b6 0D46     		mov	r5, r1
- 229 00b8 15A3     		adr	r3, .L30
- 230 00ba D3E90023 		ldrd	r2, [r3]
- 231 00be FFF7FEFF 		bl	__aeabi_dcmplt
- 232              	.LVL40:
- 233 00c2 A8B1     		cbz	r0, .L10
- 234              		.loc 1 66 0 is_stmt 0 discriminator 1
- 235 00c4 3046     		mov	r0, r6
- 236 00c6 0021     		movs	r1, #0
- 237 00c8 FFF7FEFF 		bl	__aeabi_fcmpgt
- 238              	.LVL41:
- 239 00cc 80B1     		cbz	r0, .L10
- 240              	.L21:
-  67:Voltage_Monitoring.c ****         
-  68:Voltage_Monitoring.c ****             while (1) 
-  69:Voltage_Monitoring.c ****             {
-  70:Voltage_Monitoring.c ****                 Beep(20, 110);
- 241              		.loc 1 70 0 is_stmt 1 discriminator 1
- 242 00ce 1420     		movs	r0, #20
- 243 00d0 6E21     		movs	r1, #110
- 244 00d2 FFF7FEFF 		bl	Beep
- 245              	.LVL42:
-  71:Voltage_Monitoring.c ****                 CyDelay(1000);
- 246              		.loc 1 71 0 discriminator 1
- 247 00d6 4FF47A70 		mov	r0, #1000
- 248 00da FFF7FEFF 		bl	CyDelay
- 249              	.LVL43:
-  72:Voltage_Monitoring.c ****                 printf("%f \n", volts);
- 250              		.loc 1 72 0 discriminator 1
- 251 00de 1048     		ldr	r0, .L30+16
- 252 00e0 2246     		mov	r2, r4
- 253 00e2 2B46     		mov	r3, r5
- 254 00e4 FFF7FEFF 		bl	printf
- 255              	.LVL44:
-  73:Voltage_Monitoring.c ****                 printf("DANGER! Battery LOW! Please charge ASAP!!!\n");
- 256              		.loc 1 73 0 discriminator 1
- 257 00e8 0E48     		ldr	r0, .L30+20
- 258 00ea FFF7FEFF 		bl	puts
- 259              	.LVL45:
-  74:Voltage_Monitoring.c ****             }
- 260              		.loc 1 74 0 discriminator 1
- 261 00ee EEE7     		b	.L21
- 262              	.L10:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 7
+ 209              		.loc 1 67 0 is_stmt 0 discriminator 1
+ 210 00aa 052E     		cmp	r6, #5
+ 211 00ac EADD     		ble	.L16
+ 212 00ae 43E0     		b	.L12
+ 213              	.LVL36:
+ 214              	.L13:
+  74:Voltage_Monitoring.c ****                 }            
+  75:Voltage_Monitoring.c ****             } else if (volts < 4.5 && volts >= 4.1) {
+ 215              		.loc 1 75 0 is_stmt 1
+ 216 00b0 3046     		mov	r0, r6
+ 217 00b2 2C49     		ldr	r1, .L31+20
+ 218 00b4 FFF7FEFF 		bl	__aeabi_fcmplt
+ 219              	.LVL37:
+ 220 00b8 F0B1     		cbz	r0, .L17
+ 221              		.loc 1 75 0 is_stmt 0 discriminator 1
+ 222 00ba 2046     		mov	r0, r4
+ 223 00bc 2946     		mov	r1, r5
+ 224 00be 26A3     		adr	r3, .L31+8
+ 225 00c0 D3E90023 		ldrd	r2, [r3]
+ 226 00c4 FFF7FEFF 		bl	__aeabi_dcmpge
+ 227              	.LVL38:
+ 228 00c8 90B9     		cbnz	r0, .L25
+ 229 00ca 15E0     		b	.L17
+ 230              	.LVL39:
+ 231              	.L20:
+  76:Voltage_Monitoring.c ****             
+  77:Voltage_Monitoring.c ****                 for (i = 0; i < 9; i++) 
+  78:Voltage_Monitoring.c ****                 {
+  79:Voltage_Monitoring.c ****                     Beep(30, 95);
+ 232              		.loc 1 79 0 is_stmt 1 discriminator 3
+ 233 00cc 1E20     		movs	r0, #30
+ 234 00ce 5F21     		movs	r1, #95
+ 235 00d0 FFF7FEFF 		bl	Beep
+ 236              	.LVL40:
+  80:Voltage_Monitoring.c ****                     BatteryLed_Write(1);
+ 237              		.loc 1 80 0 discriminator 3
+ 238 00d4 0120     		movs	r0, #1
+ 239 00d6 FFF7FEFF 		bl	BatteryLed_Write
+ 240              	.LVL41:
+  81:Voltage_Monitoring.c ****                     BatteryLed_Read();
+ 241              		.loc 1 81 0 discriminator 3
+ 242 00da FFF7FEFF 		bl	BatteryLed_Read
+ 243              	.LVL42:
+  82:Voltage_Monitoring.c ****                     CyDelay(400);
+ 244              		.loc 1 82 0 discriminator 3
+ 245 00de 4FF4C870 		mov	r0, #400
+ 246 00e2 FFF7FEFF 		bl	CyDelay
+ 247              	.LVL43:
+  83:Voltage_Monitoring.c ****                     BatteryLed_Write(0);
+ 248              		.loc 1 83 0 discriminator 3
+ 249 00e6 0020     		movs	r0, #0
+ 250 00e8 FFF7FEFF 		bl	BatteryLed_Write
+ 251              	.LVL44:
+  77:Voltage_Monitoring.c ****                 {
+ 252              		.loc 1 77 0 discriminator 3
+ 253 00ec 0136     		adds	r6, r6, #1
+ 254              	.LVL45:
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 7
 
 
-  75:Voltage_Monitoring.c ****        
-  76:Voltage_Monitoring.c ****         }
-  77:Voltage_Monitoring.c ****         
-  78:Voltage_Monitoring.c ****         
-  79:Voltage_Monitoring.c ****         // Print value
-  80:Voltage_Monitoring.c ****         printf("%d %f\r\n",adcresult, volts);
- 263              		.loc 1 80 0
- 264 00f0 3046     		mov	r0, r6
- 265 00f2 FFF7FEFF 		bl	__aeabi_f2d
- 266              	.LVL46:
- 267 00f6 0246     		mov	r2, r0
- 268 00f8 0B46     		mov	r3, r1
- 269 00fa 0B48     		ldr	r0, .L30+24
- 270 00fc 3946     		mov	r1, r7
- 271 00fe FFF7FEFF 		bl	printf
- 272              	.LVL47:
- 273              	.L6:
-  81:Voltage_Monitoring.c ****     }
-  82:Voltage_Monitoring.c ****         CyDelay(500);
- 274              		.loc 1 82 0
- 275 0102 4FF4FA70 		mov	r0, #500
- 276 0106 FFF7FEFF 		bl	CyDelay
- 277              	.LVL48:
- 278 010a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 279              	.L31:
- 280 010c AFF30080 		.align	3
- 281              	.L30:
- 282 0110 66666666 		.word	1717986918
- 283 0114 66661040 		.word	1074816614
- 284 0118 0000A040 		.word	1084227584
- 285 011c 00009040 		.word	1083179008
- 286 0120 00000000 		.word	.LC0
- 287 0124 08000000 		.word	.LC1
- 288 0128 34000000 		.word	.LC2
- 289              		.cfi_endproc
- 290              	.LFE64:
- 291              		.size	Measure_Voltage, .-Measure_Voltage
- 292 012c AFF30080 		.section	.rodata.str1.4,"aMS",%progbits,1
- 293              		.align	2
- 294              	.LC0:
- 295 0000 2566200A 		.ascii	"%f \012\000"
- 295      00
- 296 0005 000000   		.space	3
- 297              	.LC1:
- 298 0008 44414E47 		.ascii	"DANGER! Battery LOW! Please charge ASAP!!!\000"
- 298      45522120 
- 298      42617474 
- 298      65727920 
- 298      4C4F5721 
- 299 0033 00       		.space	1
- 300              	.LC2:
- 301 0034 25642025 		.ascii	"%d %f\015\012\000"
- 301      660D0A00 
- 302              		.text
- 303              	.Letext0:
- 304              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
- 305              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 8
+ 255 00ee 00E0     		b	.L19
+ 256              	.LVL46:
+ 257              	.L25:
+ 258 00f0 0026     		movs	r6, #0
+ 259              	.LVL47:
+ 260              	.L19:
+  77:Voltage_Monitoring.c ****                 {
+ 261              		.loc 1 77 0 is_stmt 0 discriminator 1
+ 262 00f2 082E     		cmp	r6, #8
+ 263 00f4 EADD     		ble	.L20
+ 264 00f6 1FE0     		b	.L12
+ 265              	.LVL48:
+ 266              	.L17:
+  84:Voltage_Monitoring.c ****                 }       
+  85:Voltage_Monitoring.c ****             } else if (volts < 4.1) {
+ 267              		.loc 1 85 0 is_stmt 1
+ 268 00f8 2046     		mov	r0, r4
+ 269 00fa 2946     		mov	r1, r5
+ 270 00fc 16A3     		adr	r3, .L31+8
+ 271 00fe D3E90023 		ldrd	r2, [r3]
+ 272 0102 FFF7FEFF 		bl	__aeabi_dcmplt
+ 273              	.LVL49:
+ 274 0106 B8B1     		cbz	r0, .L12
+ 275              	.L22:
+  86:Voltage_Monitoring.c ****             
+  87:Voltage_Monitoring.c ****                 while (1) 
+  88:Voltage_Monitoring.c ****                 {
+  89:Voltage_Monitoring.c ****                     Beep(20, 110);
+ 276              		.loc 1 89 0 discriminator 1
+ 277 0108 1420     		movs	r0, #20
+ 278 010a 6E21     		movs	r1, #110
+ 279 010c FFF7FEFF 		bl	Beep
+ 280              	.LVL50:
+  90:Voltage_Monitoring.c ****                     BatteryLed_Write(1);
+ 281              		.loc 1 90 0 discriminator 1
+ 282 0110 0120     		movs	r0, #1
+ 283 0112 FFF7FEFF 		bl	BatteryLed_Write
+ 284              	.LVL51:
+  91:Voltage_Monitoring.c ****                     BatteryLed_Read();
+ 285              		.loc 1 91 0 discriminator 1
+ 286 0116 FFF7FEFF 		bl	BatteryLed_Read
+ 287              	.LVL52:
+  92:Voltage_Monitoring.c ****                     CyDelay(200);
+ 288              		.loc 1 92 0 discriminator 1
+ 289 011a C820     		movs	r0, #200
+ 290 011c FFF7FEFF 		bl	CyDelay
+ 291              	.LVL53:
+  93:Voltage_Monitoring.c ****                     BatteryLed_Write(0);
+ 292              		.loc 1 93 0 discriminator 1
+ 293 0120 0020     		movs	r0, #0
+ 294 0122 FFF7FEFF 		bl	BatteryLed_Write
+ 295              	.LVL54:
+  94:Voltage_Monitoring.c ****                     printf("%f \n", volts);
+ 296              		.loc 1 94 0 discriminator 1
+ 297 0126 1048     		ldr	r0, .L31+24
+ 298 0128 2246     		mov	r2, r4
+ 299 012a 2B46     		mov	r3, r5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 8
 
 
- 306              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 307              		.file 5 "Generated_Source\\PSoC5/CyLib.h"
- 308              		.file 6 "Generated_Source\\PSoC5/ADC_Battery.h"
- 309              		.file 7 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
- 310              		.file 8 "<built-in>"
- 311              		.file 9 "Generated_Source\\PSoC5/core_cm3.h"
- 312              		.section	.debug_info,"",%progbits
- 313              	.Ldebug_info0:
- 314 0000 20030000 		.4byte	0x320
- 315 0004 0400     		.2byte	0x4
- 316 0006 00000000 		.4byte	.Ldebug_abbrev0
- 317 000a 04       		.byte	0x4
- 318 000b 01       		.uleb128 0x1
- 319 000c F5000000 		.4byte	.LASF26
- 320 0010 01       		.byte	0x1
- 321 0011 61000000 		.4byte	.LASF27
- 322 0015 AD000000 		.4byte	.LASF28
- 323 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 324 001d 00000000 		.4byte	0
- 325 0021 00000000 		.4byte	.Ldebug_line0
- 326 0025 02       		.uleb128 0x2
- 327 0026 01       		.byte	0x1
- 328 0027 06       		.byte	0x6
- 329 0028 3D020000 		.4byte	.LASF0
- 330 002c 02       		.uleb128 0x2
- 331 002d 01       		.byte	0x1
- 332 002e 08       		.byte	0x8
- 333 002f 3B000000 		.4byte	.LASF1
- 334 0033 02       		.uleb128 0x2
- 335 0034 02       		.byte	0x2
- 336 0035 05       		.byte	0x5
- 337 0036 1F020000 		.4byte	.LASF2
- 338 003a 02       		.uleb128 0x2
- 339 003b 02       		.byte	0x2
- 340 003c 07       		.byte	0x7
- 341 003d 76000000 		.4byte	.LASF3
- 342 0041 03       		.uleb128 0x3
- 343 0042 00000000 		.4byte	.LASF9
- 344 0046 02       		.byte	0x2
- 345 0047 3F       		.byte	0x3f
- 346 0048 4C000000 		.4byte	0x4c
- 347 004c 02       		.uleb128 0x2
- 348 004d 04       		.byte	0x4
- 349 004e 05       		.byte	0x5
- 350 004f 2F020000 		.4byte	.LASF4
- 351 0053 02       		.uleb128 0x2
- 352 0054 04       		.byte	0x4
- 353 0055 07       		.byte	0x7
- 354 0056 4F000000 		.4byte	.LASF5
- 355 005a 02       		.uleb128 0x2
- 356 005b 08       		.byte	0x8
- 357 005c 05       		.byte	0x5
- 358 005d DF010000 		.4byte	.LASF6
- 359 0061 02       		.uleb128 0x2
- 360 0062 08       		.byte	0x8
- 361 0063 07       		.byte	0x7
- 362 0064 A8010000 		.4byte	.LASF7
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 9
+ 300 012c FFF7FEFF 		bl	printf
+ 301              	.LVL55:
+  95:Voltage_Monitoring.c ****                     printf("DANGER! Battery LOW! Please charge ASAP!!!\n");
+ 302              		.loc 1 95 0 discriminator 1
+ 303 0130 0E48     		ldr	r0, .L31+28
+ 304 0132 FFF7FEFF 		bl	puts
+ 305              	.LVL56:
+  96:Voltage_Monitoring.c ****                 }
+ 306              		.loc 1 96 0 discriminator 1
+ 307 0136 E7E7     		b	.L22
+ 308              	.LVL57:
+ 309              	.L12:
+  97:Voltage_Monitoring.c ****                 
+  98:Voltage_Monitoring.c ****                 // stop motors etc
+  99:Voltage_Monitoring.c ****            
+ 100:Voltage_Monitoring.c ****             }
+ 101:Voltage_Monitoring.c ****                   
+ 102:Voltage_Monitoring.c ****             // Print bit & voltage values
+ 103:Voltage_Monitoring.c ****             printf("%d %f\r\n",adcresult, volts);
+ 310              		.loc 1 103 0
+ 311 0138 0D48     		ldr	r0, .L31+32
+ 312 013a 3946     		mov	r1, r7
+ 313 013c 2246     		mov	r2, r4
+ 314 013e 2B46     		mov	r3, r5
+ 315 0140 FFF7FEFF 		bl	printf
+ 316              	.LVL58:
+ 317              	.L7:
+ 104:Voltage_Monitoring.c ****         }
+ 105:Voltage_Monitoring.c ****             CyDelay(500);
+ 318              		.loc 1 105 0
+ 319 0144 4FF4FA70 		mov	r0, #500
+ 320 0148 FFF7FEFF 		bl	CyDelay
+ 321              	.LVL59:
+ 322              	.L5:
+ 323 014c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 324              	.L32:
+ 325 014e 00BF     		.align	3
+ 326              	.L31:
+ 327 0150 9A999999 		.word	-1717986918
+ 328 0154 9999B93F 		.word	1069128089
+ 329 0158 66666666 		.word	1717986918
+ 330 015c 66661040 		.word	1074816614
+ 331 0160 0000A040 		.word	1084227584
+ 332 0164 00009040 		.word	1083179008
+ 333 0168 00000000 		.word	.LC0
+ 334 016c 08000000 		.word	.LC1
+ 335 0170 34000000 		.word	.LC2
+ 336              		.cfi_endproc
+ 337              	.LFE64:
+ 338              		.size	Measure_Voltage, .-Measure_Voltage
+ 339 0174 AFF30080 		.section	.rodata.str1.4,"aMS",%progbits,1
+ 340              		.align	2
+ 341              	.LC0:
+ 342 0000 2566200A 		.ascii	"%f \012\000"
+ 342      00
+ 343 0005 000000   		.space	3
+ 344              	.LC1:
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 9
 
 
- 363 0068 04       		.uleb128 0x4
- 364 0069 04       		.byte	0x4
- 365 006a 05       		.byte	0x5
- 366 006b 696E7400 		.ascii	"int\000"
- 367 006f 02       		.uleb128 0x2
- 368 0070 04       		.byte	0x4
- 369 0071 07       		.byte	0x7
- 370 0072 83010000 		.4byte	.LASF8
- 371 0076 03       		.uleb128 0x3
- 372 0077 1E000000 		.4byte	.LASF10
- 373 007b 03       		.byte	0x3
- 374 007c 2C       		.byte	0x2c
- 375 007d 41000000 		.4byte	0x41
- 376 0081 05       		.uleb128 0x5
- 377 0082 29020000 		.4byte	.LASF11
- 378 0086 04       		.byte	0x4
- 379 0087 9201     		.2byte	0x192
- 380 0089 2C000000 		.4byte	0x2c
- 381 008d 05       		.uleb128 0x5
- 382 008e EE000000 		.4byte	.LASF12
- 383 0092 04       		.byte	0x4
- 384 0093 9401     		.2byte	0x194
- 385 0095 53000000 		.4byte	0x53
- 386 0099 05       		.uleb128 0x5
- 387 009a 49000000 		.4byte	.LASF13
- 388 009e 04       		.byte	0x4
- 389 009f 9601     		.2byte	0x196
- 390 00a1 33000000 		.4byte	0x33
- 391 00a5 02       		.uleb128 0x2
- 392 00a6 04       		.byte	0x4
- 393 00a7 04       		.byte	0x4
- 394 00a8 26000000 		.4byte	.LASF14
- 395 00ac 02       		.uleb128 0x2
- 396 00ad 08       		.byte	0x8
- 397 00ae 04       		.byte	0x4
- 398 00af A6000000 		.4byte	.LASF15
- 399 00b3 02       		.uleb128 0x2
- 400 00b4 01       		.byte	0x1
- 401 00b5 08       		.byte	0x8
- 402 00b6 ED010000 		.4byte	.LASF16
- 403 00ba 02       		.uleb128 0x2
- 404 00bb 04       		.byte	0x4
- 405 00bc 07       		.byte	0x7
- 406 00bd D6010000 		.4byte	.LASF17
- 407 00c1 06       		.uleb128 0x6
- 408 00c2 04       		.byte	0x4
- 409 00c3 C7000000 		.4byte	0xc7
- 410 00c7 07       		.uleb128 0x7
- 411 00c8 B3000000 		.4byte	0xb3
- 412 00cc 02       		.uleb128 0x2
- 413 00cd 08       		.byte	0x8
- 414 00ce 04       		.byte	0x4
- 415 00cf CA010000 		.4byte	.LASF18
- 416 00d3 08       		.uleb128 0x8
- 417 00d4 0A000000 		.4byte	.LASF29
- 418 00d8 01       		.byte	0x1
- 419 00d9 14       		.byte	0x14
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 10
+ 345 0008 44414E47 		.ascii	"DANGER! Battery LOW! Please charge ASAP!!!\000"
+ 345      45522120 
+ 345      42617474 
+ 345      65727920 
+ 345      4C4F5721 
+ 346 0033 00       		.space	1
+ 347              	.LC2:
+ 348 0034 25642025 		.ascii	"%d %f\015\012\000"
+ 348      660D0A00 
+ 349              		.text
+ 350              	.Letext0:
+ 351              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 352              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 353              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 354              		.file 5 "Generated_Source\\PSoC5/ADC_Battery.h"
+ 355              		.file 6 "Generated_Source\\PSoC5/BatteryLed.h"
+ 356              		.file 7 "Generated_Source\\PSoC5/CyLib.h"
+ 357              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 358              		.file 9 "<built-in>"
+ 359              		.file 10 "Generated_Source\\PSoC5/core_cm3.h"
+ 360              		.section	.debug_info,"",%progbits
+ 361              	.Ldebug_info0:
+ 362 0000 F7030000 		.4byte	0x3f7
+ 363 0004 0400     		.2byte	0x4
+ 364 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 365 000a 04       		.byte	0x4
+ 366 000b 01       		.uleb128 0x1
+ 367 000c 05010000 		.4byte	.LASF29
+ 368 0010 01       		.byte	0x1
+ 369 0011 61000000 		.4byte	.LASF30
+ 370 0015 BD000000 		.4byte	.LASF31
+ 371 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 372 001d 00000000 		.4byte	0
+ 373 0021 00000000 		.4byte	.Ldebug_line0
+ 374 0025 02       		.uleb128 0x2
+ 375 0026 01       		.byte	0x1
+ 376 0027 06       		.byte	0x6
+ 377 0028 5E020000 		.4byte	.LASF0
+ 378 002c 02       		.uleb128 0x2
+ 379 002d 01       		.byte	0x1
+ 380 002e 08       		.byte	0x8
+ 381 002f 3B000000 		.4byte	.LASF1
+ 382 0033 02       		.uleb128 0x2
+ 383 0034 02       		.byte	0x2
+ 384 0035 05       		.byte	0x5
+ 385 0036 40020000 		.4byte	.LASF2
+ 386 003a 02       		.uleb128 0x2
+ 387 003b 02       		.byte	0x2
+ 388 003c 07       		.byte	0x7
+ 389 003d 76000000 		.4byte	.LASF3
+ 390 0041 03       		.uleb128 0x3
+ 391 0042 00000000 		.4byte	.LASF9
+ 392 0046 02       		.byte	0x2
+ 393 0047 3F       		.byte	0x3f
+ 394 0048 4C000000 		.4byte	0x4c
+ 395 004c 02       		.uleb128 0x2
+ 396 004d 04       		.byte	0x4
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 10
 
 
- 420 00da A5000000 		.4byte	0xa5
- 421 00de 00000000 		.4byte	.LFB63
- 422 00e2 2C000000 		.4byte	.LFE63-.LFB63
- 423 00e6 01       		.uleb128 0x1
- 424 00e7 9C       		.byte	0x9c
- 425 00e8 09010000 		.4byte	0x109
- 426 00ec 09       		.uleb128 0x9
- 427 00ed F2010000 		.4byte	.LASF20
- 428 00f1 01       		.byte	0x1
- 429 00f2 14       		.byte	0x14
- 430 00f3 99000000 		.4byte	0x99
- 431 00f7 00000000 		.4byte	.LLST0
- 432 00fb 0A       		.uleb128 0xa
- 433 00fc C4010000 		.4byte	.LASF19
- 434 0100 01       		.byte	0x1
- 435 0101 16       		.byte	0x16
- 436 0102 A5000000 		.4byte	0xa5
- 437 0106 01       		.uleb128 0x1
- 438 0107 50       		.byte	0x50
- 439 0108 00       		.byte	0
- 440 0109 0B       		.uleb128 0xb
- 441 010a 89000000 		.4byte	.LASF30
- 442 010e 01       		.byte	0x1
- 443 010f 1F       		.byte	0x1f
- 444 0110 00000000 		.4byte	.LFB64
- 445 0114 2C010000 		.4byte	.LFE64-.LFB64
- 446 0118 01       		.uleb128 0x1
- 447 0119 9C       		.byte	0x9c
- 448 011a 99020000 		.4byte	0x299
- 449 011e 0C       		.uleb128 0xc
- 450 011f F2010000 		.4byte	.LASF20
- 451 0123 01       		.byte	0x1
- 452 0124 21       		.byte	0x21
- 453 0125 99000000 		.4byte	0x99
- 454 0129 21000000 		.4byte	.LLST1
- 455 012d 0C       		.uleb128 0xc
- 456 012e C4010000 		.4byte	.LASF19
- 457 0132 01       		.byte	0x1
- 458 0133 22       		.byte	0x22
- 459 0134 A5000000 		.4byte	0xa5
- 460 0138 40000000 		.4byte	.LLST2
- 461 013c 0D       		.uleb128 0xd
- 462 013d 6900     		.ascii	"i\000"
- 463 013f 01       		.byte	0x1
- 464 0140 24       		.byte	0x24
- 465 0141 68000000 		.4byte	0x68
- 466 0145 6E000000 		.4byte	.LLST3
- 467 0149 0E       		.uleb128 0xe
- 468 014a 06000000 		.4byte	.LVL6
- 469 014e AA020000 		.4byte	0x2aa
- 470 0152 0F       		.uleb128 0xf
- 471 0153 0C000000 		.4byte	.LVL7
- 472 0157 B1020000 		.4byte	0x2b1
- 473 015b 65010000 		.4byte	0x165
- 474 015f 10       		.uleb128 0x10
- 475 0160 01       		.uleb128 0x1
- 476 0161 50       		.byte	0x50
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 11
+ 397 004e 05       		.byte	0x5
+ 398 004f 50020000 		.4byte	.LASF4
+ 399 0053 02       		.uleb128 0x2
+ 400 0054 04       		.byte	0x4
+ 401 0055 07       		.byte	0x7
+ 402 0056 4F000000 		.4byte	.LASF5
+ 403 005a 02       		.uleb128 0x2
+ 404 005b 08       		.byte	0x8
+ 405 005c 05       		.byte	0x5
+ 406 005d EF010000 		.4byte	.LASF6
+ 407 0061 02       		.uleb128 0x2
+ 408 0062 08       		.byte	0x8
+ 409 0063 07       		.byte	0x7
+ 410 0064 B8010000 		.4byte	.LASF7
+ 411 0068 04       		.uleb128 0x4
+ 412 0069 04       		.byte	0x4
+ 413 006a 05       		.byte	0x5
+ 414 006b 696E7400 		.ascii	"int\000"
+ 415 006f 02       		.uleb128 0x2
+ 416 0070 04       		.byte	0x4
+ 417 0071 07       		.byte	0x7
+ 418 0072 93010000 		.4byte	.LASF8
+ 419 0076 03       		.uleb128 0x3
+ 420 0077 1E000000 		.4byte	.LASF10
+ 421 007b 03       		.byte	0x3
+ 422 007c 2C       		.byte	0x2c
+ 423 007d 41000000 		.4byte	0x41
+ 424 0081 05       		.uleb128 0x5
+ 425 0082 4A020000 		.4byte	.LASF11
+ 426 0086 04       		.byte	0x4
+ 427 0087 9201     		.2byte	0x192
+ 428 0089 2C000000 		.4byte	0x2c
+ 429 008d 05       		.uleb128 0x5
+ 430 008e FE000000 		.4byte	.LASF12
+ 431 0092 04       		.byte	0x4
+ 432 0093 9401     		.2byte	0x194
+ 433 0095 53000000 		.4byte	0x53
+ 434 0099 05       		.uleb128 0x5
+ 435 009a 49000000 		.4byte	.LASF13
+ 436 009e 04       		.byte	0x4
+ 437 009f 9601     		.2byte	0x196
+ 438 00a1 33000000 		.4byte	0x33
+ 439 00a5 02       		.uleb128 0x2
+ 440 00a6 04       		.byte	0x4
+ 441 00a7 04       		.byte	0x4
+ 442 00a8 26000000 		.4byte	.LASF14
+ 443 00ac 02       		.uleb128 0x2
+ 444 00ad 08       		.byte	0x8
+ 445 00ae 04       		.byte	0x4
+ 446 00af B6000000 		.4byte	.LASF15
+ 447 00b3 02       		.uleb128 0x2
+ 448 00b4 01       		.byte	0x1
+ 449 00b5 08       		.byte	0x8
+ 450 00b6 0E020000 		.4byte	.LASF16
+ 451 00ba 02       		.uleb128 0x2
+ 452 00bb 04       		.byte	0x4
+ 453 00bc 07       		.byte	0x7
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 11
 
 
- 477 0162 01       		.uleb128 0x1
- 478 0163 30       		.byte	0x30
- 479 0164 00       		.byte	0
- 480 0165 0E       		.uleb128 0xe
- 481 0166 14000000 		.4byte	.LVL8
- 482 016a C6020000 		.4byte	0x2c6
- 483 016e 0F       		.uleb128 0xf
- 484 016f 1A000000 		.4byte	.LVL10
- 485 0173 D3000000 		.4byte	0xd3
- 486 0177 82010000 		.4byte	0x182
- 487 017b 10       		.uleb128 0x10
- 488 017c 01       		.uleb128 0x1
- 489 017d 50       		.byte	0x50
- 490 017e 02       		.uleb128 0x2
- 491 017f 77       		.byte	0x77
- 492 0180 00       		.sleb128 0
- 493 0181 00       		.byte	0
- 494 0182 0F       		.uleb128 0xf
- 495 0183 2E000000 		.4byte	.LVL14
- 496 0187 D1020000 		.4byte	0x2d1
- 497 018b 9C010000 		.4byte	0x19c
- 498 018f 10       		.uleb128 0x10
- 499 0190 01       		.uleb128 0x1
- 500 0191 51       		.byte	0x51
- 501 0192 02       		.uleb128 0x2
- 502 0193 08       		.byte	0x8
- 503 0194 3C       		.byte	0x3c
- 504 0195 10       		.uleb128 0x10
- 505 0196 01       		.uleb128 0x1
- 506 0197 50       		.byte	0x50
- 507 0198 02       		.uleb128 0x2
- 508 0199 08       		.byte	0x8
- 509 019a 50       		.byte	0x50
- 510 019b 00       		.byte	0
- 511 019c 0F       		.uleb128 0xf
- 512 019d 36000000 		.4byte	.LVL15
- 513 01a1 E7020000 		.4byte	0x2e7
- 514 01a5 B1010000 		.4byte	0x1b1
- 515 01a9 10       		.uleb128 0x10
- 516 01aa 01       		.uleb128 0x1
- 517 01ab 50       		.byte	0x50
- 518 01ac 03       		.uleb128 0x3
- 519 01ad 0A       		.byte	0xa
- 520 01ae E803     		.2byte	0x3e8
- 521 01b0 00       		.byte	0
- 522 01b1 0F       		.uleb128 0xf
- 523 01b2 60000000 		.4byte	.LVL23
- 524 01b6 D1020000 		.4byte	0x2d1
- 525 01ba CB010000 		.4byte	0x1cb
- 526 01be 10       		.uleb128 0x10
- 527 01bf 01       		.uleb128 0x1
- 528 01c0 51       		.byte	0x51
- 529 01c1 02       		.uleb128 0x2
- 530 01c2 08       		.byte	0x8
- 531 01c3 50       		.byte	0x50
- 532 01c4 10       		.uleb128 0x10
- 533 01c5 01       		.uleb128 0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 12
+ 454 00bd E6010000 		.4byte	.LASF17
+ 455 00c1 06       		.uleb128 0x6
+ 456 00c2 04       		.byte	0x4
+ 457 00c3 C7000000 		.4byte	0xc7
+ 458 00c7 07       		.uleb128 0x7
+ 459 00c8 B3000000 		.4byte	0xb3
+ 460 00cc 02       		.uleb128 0x2
+ 461 00cd 08       		.byte	0x8
+ 462 00ce 04       		.byte	0x4
+ 463 00cf DA010000 		.4byte	.LASF18
+ 464 00d3 08       		.uleb128 0x8
+ 465 00d4 0A000000 		.4byte	.LASF32
+ 466 00d8 01       		.byte	0x1
+ 467 00d9 1A       		.byte	0x1a
+ 468 00da A5000000 		.4byte	0xa5
+ 469 00de 00000000 		.4byte	.LFB63
+ 470 00e2 2C000000 		.4byte	.LFE63-.LFB63
+ 471 00e6 01       		.uleb128 0x1
+ 472 00e7 9C       		.byte	0x9c
+ 473 00e8 09010000 		.4byte	0x109
+ 474 00ec 09       		.uleb128 0x9
+ 475 00ed 13020000 		.4byte	.LASF20
+ 476 00f1 01       		.byte	0x1
+ 477 00f2 1A       		.byte	0x1a
+ 478 00f3 99000000 		.4byte	0x99
+ 479 00f7 00000000 		.4byte	.LLST0
+ 480 00fb 0A       		.uleb128 0xa
+ 481 00fc D4010000 		.4byte	.LASF19
+ 482 0100 01       		.byte	0x1
+ 483 0101 1C       		.byte	0x1c
+ 484 0102 A5000000 		.4byte	0xa5
+ 485 0106 01       		.uleb128 0x1
+ 486 0107 50       		.byte	0x50
+ 487 0108 00       		.byte	0
+ 488 0109 0B       		.uleb128 0xb
+ 489 010a 89000000 		.4byte	.LASF33
+ 490 010e 01       		.byte	0x1
+ 491 010f 25       		.byte	0x25
+ 492 0110 00000000 		.4byte	.LFB64
+ 493 0114 74010000 		.4byte	.LFE64-.LFB64
+ 494 0118 01       		.uleb128 0x1
+ 495 0119 9C       		.byte	0x9c
+ 496 011a 54030000 		.4byte	0x354
+ 497 011e 0C       		.uleb128 0xc
+ 498 011f 13020000 		.4byte	.LASF20
+ 499 0123 01       		.byte	0x1
+ 500 0124 27       		.byte	0x27
+ 501 0125 99000000 		.4byte	0x99
+ 502 0129 21000000 		.4byte	.LLST1
+ 503 012d 0C       		.uleb128 0xc
+ 504 012e D4010000 		.4byte	.LASF19
+ 505 0132 01       		.byte	0x1
+ 506 0133 28       		.byte	0x28
+ 507 0134 A5000000 		.4byte	0xa5
+ 508 0138 40000000 		.4byte	.LLST2
+ 509 013c 0D       		.uleb128 0xd
+ 510 013d 6900     		.ascii	"i\000"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 12
 
 
- 534 01c6 50       		.byte	0x50
- 535 01c7 02       		.uleb128 0x2
- 536 01c8 08       		.byte	0x8
- 537 01c9 28       		.byte	0x28
- 538 01ca 00       		.byte	0
- 539 01cb 0F       		.uleb128 0xf
- 540 01cc 68000000 		.4byte	.LVL24
- 541 01d0 E7020000 		.4byte	0x2e7
- 542 01d4 E0010000 		.4byte	0x1e0
- 543 01d8 10       		.uleb128 0x10
- 544 01d9 01       		.uleb128 0x1
- 545 01da 50       		.byte	0x50
- 546 01db 03       		.uleb128 0x3
- 547 01dc 0A       		.byte	0xa
- 548 01dd E803     		.2byte	0x3e8
- 549 01df 00       		.byte	0
- 550 01e0 0F       		.uleb128 0xf
- 551 01e1 9A000000 		.4byte	.LVL33
- 552 01e5 D1020000 		.4byte	0x2d1
- 553 01e9 F9010000 		.4byte	0x1f9
- 554 01ed 10       		.uleb128 0x10
- 555 01ee 01       		.uleb128 0x1
- 556 01ef 51       		.byte	0x51
- 557 01f0 02       		.uleb128 0x2
- 558 01f1 08       		.byte	0x8
- 559 01f2 5F       		.byte	0x5f
- 560 01f3 10       		.uleb128 0x10
- 561 01f4 01       		.uleb128 0x1
- 562 01f5 50       		.byte	0x50
- 563 01f6 01       		.uleb128 0x1
- 564 01f7 4E       		.byte	0x4e
- 565 01f8 00       		.byte	0
- 566 01f9 0F       		.uleb128 0xf
- 567 01fa A2000000 		.4byte	.LVL34
- 568 01fe E7020000 		.4byte	0x2e7
- 569 0202 0E020000 		.4byte	0x20e
- 570 0206 10       		.uleb128 0x10
- 571 0207 01       		.uleb128 0x1
- 572 0208 50       		.byte	0x50
- 573 0209 03       		.uleb128 0x3
- 574 020a 0A       		.byte	0xa
- 575 020b E803     		.2byte	0x3e8
- 576 020d 00       		.byte	0
- 577 020e 0F       		.uleb128 0xf
- 578 020f D6000000 		.4byte	.LVL42
- 579 0213 D1020000 		.4byte	0x2d1
- 580 0217 27020000 		.4byte	0x227
- 581 021b 10       		.uleb128 0x10
- 582 021c 01       		.uleb128 0x1
- 583 021d 51       		.byte	0x51
- 584 021e 02       		.uleb128 0x2
- 585 021f 08       		.byte	0x8
- 586 0220 6E       		.byte	0x6e
- 587 0221 10       		.uleb128 0x10
- 588 0222 01       		.uleb128 0x1
- 589 0223 50       		.byte	0x50
- 590 0224 01       		.uleb128 0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 13
+ 511 013f 01       		.byte	0x1
+ 512 0140 2A       		.byte	0x2a
+ 513 0141 68000000 		.4byte	0x68
+ 514 0145 B0000000 		.4byte	.LLST3
+ 515 0149 0E       		.uleb128 0xe
+ 516 014a 06000000 		.4byte	.LVL6
+ 517 014e 65030000 		.4byte	0x365
+ 518 0152 0F       		.uleb128 0xf
+ 519 0153 0C000000 		.4byte	.LVL7
+ 520 0157 6C030000 		.4byte	0x36c
+ 521 015b 65010000 		.4byte	0x165
+ 522 015f 10       		.uleb128 0x10
+ 523 0160 01       		.uleb128 0x1
+ 524 0161 50       		.byte	0x50
+ 525 0162 01       		.uleb128 0x1
+ 526 0163 30       		.byte	0x30
+ 527 0164 00       		.byte	0
+ 528 0165 0E       		.uleb128 0xe
+ 529 0166 16000000 		.4byte	.LVL8
+ 530 016a 81030000 		.4byte	0x381
+ 531 016e 0F       		.uleb128 0xf
+ 532 016f 1C000000 		.4byte	.LVL10
+ 533 0173 D3000000 		.4byte	0xd3
+ 534 0177 82010000 		.4byte	0x182
+ 535 017b 10       		.uleb128 0x10
+ 536 017c 01       		.uleb128 0x1
+ 537 017d 50       		.byte	0x50
+ 538 017e 02       		.uleb128 0x2
+ 539 017f 77       		.byte	0x77
+ 540 0180 00       		.sleb128 0
+ 541 0181 00       		.byte	0
+ 542 0182 0F       		.uleb128 0xf
+ 543 0183 4A000000 		.4byte	.LVL16
+ 544 0187 8C030000 		.4byte	0x38c
+ 545 018b 9C010000 		.4byte	0x19c
+ 546 018f 10       		.uleb128 0x10
+ 547 0190 01       		.uleb128 0x1
+ 548 0191 51       		.byte	0x51
+ 549 0192 02       		.uleb128 0x2
+ 550 0193 08       		.byte	0x8
+ 551 0194 3C       		.byte	0x3c
+ 552 0195 10       		.uleb128 0x10
+ 553 0196 01       		.uleb128 0x1
+ 554 0197 50       		.byte	0x50
+ 555 0198 02       		.uleb128 0x2
+ 556 0199 08       		.byte	0x8
+ 557 019a 50       		.byte	0x50
+ 558 019b 00       		.byte	0
+ 559 019c 0F       		.uleb128 0xf
+ 560 019d 50000000 		.4byte	.LVL17
+ 561 01a1 A2030000 		.4byte	0x3a2
+ 562 01a5 AF010000 		.4byte	0x1af
+ 563 01a9 10       		.uleb128 0x10
+ 564 01aa 01       		.uleb128 0x1
+ 565 01ab 50       		.byte	0x50
+ 566 01ac 01       		.uleb128 0x1
+ 567 01ad 31       		.byte	0x31
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 13
 
 
- 591 0225 44       		.byte	0x44
- 592 0226 00       		.byte	0
- 593 0227 0F       		.uleb128 0xf
- 594 0228 DE000000 		.4byte	.LVL43
- 595 022c E7020000 		.4byte	0x2e7
- 596 0230 3C020000 		.4byte	0x23c
- 597 0234 10       		.uleb128 0x10
- 598 0235 01       		.uleb128 0x1
- 599 0236 50       		.byte	0x50
- 600 0237 03       		.uleb128 0x3
- 601 0238 0A       		.byte	0xa
- 602 0239 E803     		.2byte	0x3e8
- 603 023b 00       		.byte	0
- 604 023c 0F       		.uleb128 0xf
- 605 023d E8000000 		.4byte	.LVL44
- 606 0241 F8020000 		.4byte	0x2f8
- 607 0245 53020000 		.4byte	0x253
- 608 0249 10       		.uleb128 0x10
- 609 024a 01       		.uleb128 0x1
- 610 024b 50       		.byte	0x50
- 611 024c 05       		.uleb128 0x5
- 612 024d 03       		.byte	0x3
- 613 024e 00000000 		.4byte	.LC0
- 614 0252 00       		.byte	0
- 615 0253 0F       		.uleb128 0xf
- 616 0254 EE000000 		.4byte	.LVL45
- 617 0258 0E030000 		.4byte	0x30e
- 618 025c 6A020000 		.4byte	0x26a
- 619 0260 10       		.uleb128 0x10
- 620 0261 01       		.uleb128 0x1
- 621 0262 50       		.byte	0x50
- 622 0263 05       		.uleb128 0x5
- 623 0264 03       		.byte	0x3
- 624 0265 08000000 		.4byte	.LC1
- 625 0269 00       		.byte	0
- 626 026a 0F       		.uleb128 0xf
- 627 026b 02010000 		.4byte	.LVL47
- 628 026f F8020000 		.4byte	0x2f8
- 629 0273 87020000 		.4byte	0x287
- 630 0277 10       		.uleb128 0x10
- 631 0278 01       		.uleb128 0x1
- 632 0279 51       		.byte	0x51
- 633 027a 02       		.uleb128 0x2
- 634 027b 77       		.byte	0x77
- 635 027c 00       		.sleb128 0
- 636 027d 10       		.uleb128 0x10
- 637 027e 01       		.uleb128 0x1
- 638 027f 50       		.byte	0x50
- 639 0280 05       		.uleb128 0x5
- 640 0281 03       		.byte	0x3
- 641 0282 34000000 		.4byte	.LC2
- 642 0286 00       		.byte	0
- 643 0287 11       		.uleb128 0x11
- 644 0288 0A010000 		.4byte	.LVL48
- 645 028c E7020000 		.4byte	0x2e7
- 646 0290 10       		.uleb128 0x10
- 647 0291 01       		.uleb128 0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 14
+ 568 01ae 00       		.byte	0
+ 569 01af 0E       		.uleb128 0xe
+ 570 01b0 54000000 		.4byte	.LVL18
+ 571 01b4 B3030000 		.4byte	0x3b3
+ 572 01b8 0F       		.uleb128 0xf
+ 573 01b9 5C000000 		.4byte	.LVL19
+ 574 01bd BE030000 		.4byte	0x3be
+ 575 01c1 CD010000 		.4byte	0x1cd
+ 576 01c5 10       		.uleb128 0x10
+ 577 01c6 01       		.uleb128 0x1
+ 578 01c7 50       		.byte	0x50
+ 579 01c8 03       		.uleb128 0x3
+ 580 01c9 0A       		.byte	0xa
+ 581 01ca 5802     		.2byte	0x258
+ 582 01cc 00       		.byte	0
+ 583 01cd 0F       		.uleb128 0xf
+ 584 01ce 62000000 		.4byte	.LVL20
+ 585 01d2 A2030000 		.4byte	0x3a2
+ 586 01d6 E0010000 		.4byte	0x1e0
+ 587 01da 10       		.uleb128 0x10
+ 588 01db 01       		.uleb128 0x1
+ 589 01dc 50       		.byte	0x50
+ 590 01dd 01       		.uleb128 0x1
+ 591 01de 30       		.byte	0x30
+ 592 01df 00       		.byte	0
+ 593 01e0 0F       		.uleb128 0xf
+ 594 01e1 8C000000 		.4byte	.LVL28
+ 595 01e5 8C030000 		.4byte	0x38c
+ 596 01e9 FA010000 		.4byte	0x1fa
+ 597 01ed 10       		.uleb128 0x10
+ 598 01ee 01       		.uleb128 0x1
+ 599 01ef 51       		.byte	0x51
+ 600 01f0 02       		.uleb128 0x2
+ 601 01f1 08       		.byte	0x8
+ 602 01f2 50       		.byte	0x50
+ 603 01f3 10       		.uleb128 0x10
+ 604 01f4 01       		.uleb128 0x1
+ 605 01f5 50       		.byte	0x50
+ 606 01f6 02       		.uleb128 0x2
+ 607 01f7 08       		.byte	0x8
+ 608 01f8 28       		.byte	0x28
+ 609 01f9 00       		.byte	0
+ 610 01fa 0F       		.uleb128 0xf
+ 611 01fb 92000000 		.4byte	.LVL29
+ 612 01ff A2030000 		.4byte	0x3a2
+ 613 0203 0D020000 		.4byte	0x20d
+ 614 0207 10       		.uleb128 0x10
+ 615 0208 01       		.uleb128 0x1
+ 616 0209 50       		.byte	0x50
+ 617 020a 01       		.uleb128 0x1
+ 618 020b 31       		.byte	0x31
+ 619 020c 00       		.byte	0
+ 620 020d 0E       		.uleb128 0xe
+ 621 020e 96000000 		.4byte	.LVL30
+ 622 0212 B3030000 		.4byte	0x3b3
+ 623 0216 0F       		.uleb128 0xf
+ 624 0217 9E000000 		.4byte	.LVL31
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 14
 
 
- 648 0292 50       		.byte	0x50
- 649 0293 03       		.uleb128 0x3
- 650 0294 0A       		.byte	0xa
- 651 0295 F401     		.2byte	0x1f4
- 652 0297 00       		.byte	0
- 653 0298 00       		.byte	0
- 654 0299 12       		.uleb128 0x12
- 655 029a 99000000 		.4byte	.LASF31
- 656 029e 09       		.byte	0x9
- 657 029f 9606     		.2byte	0x696
- 658 02a1 A5020000 		.4byte	0x2a5
- 659 02a5 13       		.uleb128 0x13
- 660 02a6 76000000 		.4byte	0x76
- 661 02aa 14       		.uleb128 0x14
- 662 02ab 49020000 		.4byte	.LASF32
- 663 02af 06       		.byte	0x6
- 664 02b0 D1       		.byte	0xd1
- 665 02b1 15       		.uleb128 0x15
- 666 02b2 03020000 		.4byte	.LASF23
- 667 02b6 06       		.byte	0x6
- 668 02b7 39       		.byte	0x39
- 669 02b8 81000000 		.4byte	0x81
- 670 02bc C6020000 		.4byte	0x2c6
- 671 02c0 16       		.uleb128 0x16
- 672 02c1 81000000 		.4byte	0x81
- 673 02c5 00       		.byte	0
- 674 02c6 17       		.uleb128 0x17
- 675 02c7 90010000 		.4byte	.LASF33
- 676 02cb 06       		.byte	0x6
- 677 02cc 3B       		.byte	0x3b
- 678 02cd 99000000 		.4byte	0x99
- 679 02d1 18       		.uleb128 0x18
- 680 02d2 BF010000 		.4byte	.LASF21
- 681 02d6 01       		.byte	0x1
- 682 02d7 10       		.byte	0x10
- 683 02d8 E7020000 		.4byte	0x2e7
- 684 02dc 16       		.uleb128 0x16
- 685 02dd 8D000000 		.4byte	0x8d
- 686 02e1 16       		.uleb128 0x16
- 687 02e2 81000000 		.4byte	0x81
- 688 02e6 00       		.byte	0
- 689 02e7 18       		.uleb128 0x18
- 690 02e8 62020000 		.4byte	.LASF22
- 691 02ec 05       		.byte	0x5
- 692 02ed 76       		.byte	0x76
- 693 02ee F8020000 		.4byte	0x2f8
- 694 02f2 16       		.uleb128 0x16
- 695 02f3 8D000000 		.4byte	0x8d
- 696 02f7 00       		.byte	0
- 697 02f8 15       		.uleb128 0x15
- 698 02f9 FC010000 		.4byte	.LASF24
- 699 02fd 07       		.byte	0x7
- 700 02fe B2       		.byte	0xb2
- 701 02ff 68000000 		.4byte	0x68
- 702 0303 0E030000 		.4byte	0x30e
- 703 0307 16       		.uleb128 0x16
- 704 0308 C1000000 		.4byte	0xc1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 15
+ 625 021b BE030000 		.4byte	0x3be
+ 626 021f 2B020000 		.4byte	0x22b
+ 627 0223 10       		.uleb128 0x10
+ 628 0224 01       		.uleb128 0x1
+ 629 0225 50       		.byte	0x50
+ 630 0226 03       		.uleb128 0x3
+ 631 0227 0A       		.byte	0xa
+ 632 0228 F401     		.2byte	0x1f4
+ 633 022a 00       		.byte	0
+ 634 022b 0F       		.uleb128 0xf
+ 635 022c A4000000 		.4byte	.LVL32
+ 636 0230 A2030000 		.4byte	0x3a2
+ 637 0234 3E020000 		.4byte	0x23e
+ 638 0238 10       		.uleb128 0x10
+ 639 0239 01       		.uleb128 0x1
+ 640 023a 50       		.byte	0x50
+ 641 023b 01       		.uleb128 0x1
+ 642 023c 30       		.byte	0x30
+ 643 023d 00       		.byte	0
+ 644 023e 0F       		.uleb128 0xf
+ 645 023f D4000000 		.4byte	.LVL40
+ 646 0243 8C030000 		.4byte	0x38c
+ 647 0247 57020000 		.4byte	0x257
+ 648 024b 10       		.uleb128 0x10
+ 649 024c 01       		.uleb128 0x1
+ 650 024d 51       		.byte	0x51
+ 651 024e 02       		.uleb128 0x2
+ 652 024f 08       		.byte	0x8
+ 653 0250 5F       		.byte	0x5f
+ 654 0251 10       		.uleb128 0x10
+ 655 0252 01       		.uleb128 0x1
+ 656 0253 50       		.byte	0x50
+ 657 0254 01       		.uleb128 0x1
+ 658 0255 4E       		.byte	0x4e
+ 659 0256 00       		.byte	0
+ 660 0257 0F       		.uleb128 0xf
+ 661 0258 DA000000 		.4byte	.LVL41
+ 662 025c A2030000 		.4byte	0x3a2
+ 663 0260 6A020000 		.4byte	0x26a
+ 664 0264 10       		.uleb128 0x10
+ 665 0265 01       		.uleb128 0x1
+ 666 0266 50       		.byte	0x50
+ 667 0267 01       		.uleb128 0x1
+ 668 0268 31       		.byte	0x31
+ 669 0269 00       		.byte	0
+ 670 026a 0E       		.uleb128 0xe
+ 671 026b DE000000 		.4byte	.LVL42
+ 672 026f B3030000 		.4byte	0x3b3
+ 673 0273 0F       		.uleb128 0xf
+ 674 0274 E6000000 		.4byte	.LVL43
+ 675 0278 BE030000 		.4byte	0x3be
+ 676 027c 88020000 		.4byte	0x288
+ 677 0280 10       		.uleb128 0x10
+ 678 0281 01       		.uleb128 0x1
+ 679 0282 50       		.byte	0x50
+ 680 0283 03       		.uleb128 0x3
+ 681 0284 0A       		.byte	0xa
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 15
 
 
- 705 030c 19       		.uleb128 0x19
- 706 030d 00       		.byte	0
- 707 030e 1A       		.uleb128 0x1a
- 708 030f 2C000000 		.4byte	.LASF25
- 709 0313 08       		.byte	0x8
- 710 0314 00       		.byte	0
- 711 0315 38020000 		.4byte	.LASF34
- 712 0319 68000000 		.4byte	0x68
- 713 031d 16       		.uleb128 0x16
- 714 031e C1000000 		.4byte	0xc1
- 715 0322 00       		.byte	0
- 716 0323 00       		.byte	0
- 717              		.section	.debug_abbrev,"",%progbits
- 718              	.Ldebug_abbrev0:
- 719 0000 01       		.uleb128 0x1
- 720 0001 11       		.uleb128 0x11
- 721 0002 01       		.byte	0x1
- 722 0003 25       		.uleb128 0x25
- 723 0004 0E       		.uleb128 0xe
- 724 0005 13       		.uleb128 0x13
- 725 0006 0B       		.uleb128 0xb
- 726 0007 03       		.uleb128 0x3
- 727 0008 0E       		.uleb128 0xe
- 728 0009 1B       		.uleb128 0x1b
- 729 000a 0E       		.uleb128 0xe
- 730 000b 55       		.uleb128 0x55
- 731 000c 17       		.uleb128 0x17
- 732 000d 11       		.uleb128 0x11
- 733 000e 01       		.uleb128 0x1
- 734 000f 10       		.uleb128 0x10
- 735 0010 17       		.uleb128 0x17
- 736 0011 00       		.byte	0
- 737 0012 00       		.byte	0
- 738 0013 02       		.uleb128 0x2
- 739 0014 24       		.uleb128 0x24
- 740 0015 00       		.byte	0
- 741 0016 0B       		.uleb128 0xb
- 742 0017 0B       		.uleb128 0xb
- 743 0018 3E       		.uleb128 0x3e
- 744 0019 0B       		.uleb128 0xb
- 745 001a 03       		.uleb128 0x3
- 746 001b 0E       		.uleb128 0xe
- 747 001c 00       		.byte	0
- 748 001d 00       		.byte	0
- 749 001e 03       		.uleb128 0x3
- 750 001f 16       		.uleb128 0x16
- 751 0020 00       		.byte	0
- 752 0021 03       		.uleb128 0x3
- 753 0022 0E       		.uleb128 0xe
- 754 0023 3A       		.uleb128 0x3a
- 755 0024 0B       		.uleb128 0xb
- 756 0025 3B       		.uleb128 0x3b
- 757 0026 0B       		.uleb128 0xb
- 758 0027 49       		.uleb128 0x49
- 759 0028 13       		.uleb128 0x13
- 760 0029 00       		.byte	0
- 761 002a 00       		.byte	0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 16
+ 682 0285 9001     		.2byte	0x190
+ 683 0287 00       		.byte	0
+ 684 0288 0F       		.uleb128 0xf
+ 685 0289 EC000000 		.4byte	.LVL44
+ 686 028d A2030000 		.4byte	0x3a2
+ 687 0291 9B020000 		.4byte	0x29b
+ 688 0295 10       		.uleb128 0x10
+ 689 0296 01       		.uleb128 0x1
+ 690 0297 50       		.byte	0x50
+ 691 0298 01       		.uleb128 0x1
+ 692 0299 30       		.byte	0x30
+ 693 029a 00       		.byte	0
+ 694 029b 0F       		.uleb128 0xf
+ 695 029c 10010000 		.4byte	.LVL50
+ 696 02a0 8C030000 		.4byte	0x38c
+ 697 02a4 B4020000 		.4byte	0x2b4
+ 698 02a8 10       		.uleb128 0x10
+ 699 02a9 01       		.uleb128 0x1
+ 700 02aa 51       		.byte	0x51
+ 701 02ab 02       		.uleb128 0x2
+ 702 02ac 08       		.byte	0x8
+ 703 02ad 6E       		.byte	0x6e
+ 704 02ae 10       		.uleb128 0x10
+ 705 02af 01       		.uleb128 0x1
+ 706 02b0 50       		.byte	0x50
+ 707 02b1 01       		.uleb128 0x1
+ 708 02b2 44       		.byte	0x44
+ 709 02b3 00       		.byte	0
+ 710 02b4 0F       		.uleb128 0xf
+ 711 02b5 16010000 		.4byte	.LVL51
+ 712 02b9 A2030000 		.4byte	0x3a2
+ 713 02bd C7020000 		.4byte	0x2c7
+ 714 02c1 10       		.uleb128 0x10
+ 715 02c2 01       		.uleb128 0x1
+ 716 02c3 50       		.byte	0x50
+ 717 02c4 01       		.uleb128 0x1
+ 718 02c5 31       		.byte	0x31
+ 719 02c6 00       		.byte	0
+ 720 02c7 0E       		.uleb128 0xe
+ 721 02c8 1A010000 		.4byte	.LVL52
+ 722 02cc B3030000 		.4byte	0x3b3
+ 723 02d0 0F       		.uleb128 0xf
+ 724 02d1 20010000 		.4byte	.LVL53
+ 725 02d5 BE030000 		.4byte	0x3be
+ 726 02d9 E4020000 		.4byte	0x2e4
+ 727 02dd 10       		.uleb128 0x10
+ 728 02de 01       		.uleb128 0x1
+ 729 02df 50       		.byte	0x50
+ 730 02e0 02       		.uleb128 0x2
+ 731 02e1 08       		.byte	0x8
+ 732 02e2 C8       		.byte	0xc8
+ 733 02e3 00       		.byte	0
+ 734 02e4 0F       		.uleb128 0xf
+ 735 02e5 26010000 		.4byte	.LVL54
+ 736 02e9 A2030000 		.4byte	0x3a2
+ 737 02ed F7020000 		.4byte	0x2f7
+ 738 02f1 10       		.uleb128 0x10
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 16
 
 
- 762 002b 04       		.uleb128 0x4
- 763 002c 24       		.uleb128 0x24
- 764 002d 00       		.byte	0
- 765 002e 0B       		.uleb128 0xb
- 766 002f 0B       		.uleb128 0xb
- 767 0030 3E       		.uleb128 0x3e
- 768 0031 0B       		.uleb128 0xb
- 769 0032 03       		.uleb128 0x3
- 770 0033 08       		.uleb128 0x8
- 771 0034 00       		.byte	0
- 772 0035 00       		.byte	0
- 773 0036 05       		.uleb128 0x5
- 774 0037 16       		.uleb128 0x16
- 775 0038 00       		.byte	0
- 776 0039 03       		.uleb128 0x3
- 777 003a 0E       		.uleb128 0xe
- 778 003b 3A       		.uleb128 0x3a
- 779 003c 0B       		.uleb128 0xb
- 780 003d 3B       		.uleb128 0x3b
- 781 003e 05       		.uleb128 0x5
- 782 003f 49       		.uleb128 0x49
- 783 0040 13       		.uleb128 0x13
- 784 0041 00       		.byte	0
- 785 0042 00       		.byte	0
- 786 0043 06       		.uleb128 0x6
- 787 0044 0F       		.uleb128 0xf
- 788 0045 00       		.byte	0
- 789 0046 0B       		.uleb128 0xb
- 790 0047 0B       		.uleb128 0xb
- 791 0048 49       		.uleb128 0x49
- 792 0049 13       		.uleb128 0x13
- 793 004a 00       		.byte	0
- 794 004b 00       		.byte	0
- 795 004c 07       		.uleb128 0x7
- 796 004d 26       		.uleb128 0x26
- 797 004e 00       		.byte	0
- 798 004f 49       		.uleb128 0x49
- 799 0050 13       		.uleb128 0x13
- 800 0051 00       		.byte	0
- 801 0052 00       		.byte	0
- 802 0053 08       		.uleb128 0x8
- 803 0054 2E       		.uleb128 0x2e
- 804 0055 01       		.byte	0x1
- 805 0056 3F       		.uleb128 0x3f
- 806 0057 19       		.uleb128 0x19
- 807 0058 03       		.uleb128 0x3
- 808 0059 0E       		.uleb128 0xe
- 809 005a 3A       		.uleb128 0x3a
- 810 005b 0B       		.uleb128 0xb
- 811 005c 3B       		.uleb128 0x3b
- 812 005d 0B       		.uleb128 0xb
- 813 005e 27       		.uleb128 0x27
- 814 005f 19       		.uleb128 0x19
- 815 0060 49       		.uleb128 0x49
- 816 0061 13       		.uleb128 0x13
- 817 0062 11       		.uleb128 0x11
- 818 0063 01       		.uleb128 0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 17
+ 739 02f2 01       		.uleb128 0x1
+ 740 02f3 50       		.byte	0x50
+ 741 02f4 01       		.uleb128 0x1
+ 742 02f5 30       		.byte	0x30
+ 743 02f6 00       		.byte	0
+ 744 02f7 0F       		.uleb128 0xf
+ 745 02f8 30010000 		.4byte	.LVL55
+ 746 02fc CF030000 		.4byte	0x3cf
+ 747 0300 0E030000 		.4byte	0x30e
+ 748 0304 10       		.uleb128 0x10
+ 749 0305 01       		.uleb128 0x1
+ 750 0306 50       		.byte	0x50
+ 751 0307 05       		.uleb128 0x5
+ 752 0308 03       		.byte	0x3
+ 753 0309 00000000 		.4byte	.LC0
+ 754 030d 00       		.byte	0
+ 755 030e 0F       		.uleb128 0xf
+ 756 030f 36010000 		.4byte	.LVL56
+ 757 0313 E5030000 		.4byte	0x3e5
+ 758 0317 25030000 		.4byte	0x325
+ 759 031b 10       		.uleb128 0x10
+ 760 031c 01       		.uleb128 0x1
+ 761 031d 50       		.byte	0x50
+ 762 031e 05       		.uleb128 0x5
+ 763 031f 03       		.byte	0x3
+ 764 0320 08000000 		.4byte	.LC1
+ 765 0324 00       		.byte	0
+ 766 0325 0F       		.uleb128 0xf
+ 767 0326 44010000 		.4byte	.LVL58
+ 768 032a CF030000 		.4byte	0x3cf
+ 769 032e 42030000 		.4byte	0x342
+ 770 0332 10       		.uleb128 0x10
+ 771 0333 01       		.uleb128 0x1
+ 772 0334 51       		.byte	0x51
+ 773 0335 02       		.uleb128 0x2
+ 774 0336 77       		.byte	0x77
+ 775 0337 00       		.sleb128 0
+ 776 0338 10       		.uleb128 0x10
+ 777 0339 01       		.uleb128 0x1
+ 778 033a 50       		.byte	0x50
+ 779 033b 05       		.uleb128 0x5
+ 780 033c 03       		.byte	0x3
+ 781 033d 34000000 		.4byte	.LC2
+ 782 0341 00       		.byte	0
+ 783 0342 11       		.uleb128 0x11
+ 784 0343 4C010000 		.4byte	.LVL59
+ 785 0347 BE030000 		.4byte	0x3be
+ 786 034b 10       		.uleb128 0x10
+ 787 034c 01       		.uleb128 0x1
+ 788 034d 50       		.byte	0x50
+ 789 034e 03       		.uleb128 0x3
+ 790 034f 0A       		.byte	0xa
+ 791 0350 F401     		.2byte	0x1f4
+ 792 0352 00       		.byte	0
+ 793 0353 00       		.byte	0
+ 794 0354 12       		.uleb128 0x12
+ 795 0355 99000000 		.4byte	.LASF34
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 17
 
 
- 819 0064 12       		.uleb128 0x12
- 820 0065 06       		.uleb128 0x6
- 821 0066 40       		.uleb128 0x40
- 822 0067 18       		.uleb128 0x18
- 823 0068 9642     		.uleb128 0x2116
- 824 006a 19       		.uleb128 0x19
- 825 006b 01       		.uleb128 0x1
- 826 006c 13       		.uleb128 0x13
- 827 006d 00       		.byte	0
- 828 006e 00       		.byte	0
- 829 006f 09       		.uleb128 0x9
- 830 0070 05       		.uleb128 0x5
- 831 0071 00       		.byte	0
- 832 0072 03       		.uleb128 0x3
- 833 0073 0E       		.uleb128 0xe
- 834 0074 3A       		.uleb128 0x3a
- 835 0075 0B       		.uleb128 0xb
- 836 0076 3B       		.uleb128 0x3b
- 837 0077 0B       		.uleb128 0xb
- 838 0078 49       		.uleb128 0x49
- 839 0079 13       		.uleb128 0x13
- 840 007a 02       		.uleb128 0x2
- 841 007b 17       		.uleb128 0x17
- 842 007c 00       		.byte	0
- 843 007d 00       		.byte	0
- 844 007e 0A       		.uleb128 0xa
- 845 007f 34       		.uleb128 0x34
- 846 0080 00       		.byte	0
- 847 0081 03       		.uleb128 0x3
- 848 0082 0E       		.uleb128 0xe
- 849 0083 3A       		.uleb128 0x3a
- 850 0084 0B       		.uleb128 0xb
- 851 0085 3B       		.uleb128 0x3b
- 852 0086 0B       		.uleb128 0xb
- 853 0087 49       		.uleb128 0x49
- 854 0088 13       		.uleb128 0x13
- 855 0089 02       		.uleb128 0x2
- 856 008a 18       		.uleb128 0x18
- 857 008b 00       		.byte	0
- 858 008c 00       		.byte	0
- 859 008d 0B       		.uleb128 0xb
- 860 008e 2E       		.uleb128 0x2e
- 861 008f 01       		.byte	0x1
- 862 0090 3F       		.uleb128 0x3f
- 863 0091 19       		.uleb128 0x19
- 864 0092 03       		.uleb128 0x3
- 865 0093 0E       		.uleb128 0xe
- 866 0094 3A       		.uleb128 0x3a
- 867 0095 0B       		.uleb128 0xb
- 868 0096 3B       		.uleb128 0x3b
- 869 0097 0B       		.uleb128 0xb
- 870 0098 11       		.uleb128 0x11
- 871 0099 01       		.uleb128 0x1
- 872 009a 12       		.uleb128 0x12
- 873 009b 06       		.uleb128 0x6
- 874 009c 40       		.uleb128 0x40
- 875 009d 18       		.uleb128 0x18
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 18
+ 796 0359 0A       		.byte	0xa
+ 797 035a 9606     		.2byte	0x696
+ 798 035c 60030000 		.4byte	0x360
+ 799 0360 13       		.uleb128 0x13
+ 800 0361 76000000 		.4byte	0x76
+ 801 0365 14       		.uleb128 0x14
+ 802 0366 6A020000 		.4byte	.LASF35
+ 803 036a 05       		.byte	0x5
+ 804 036b D1       		.byte	0xd1
+ 805 036c 15       		.uleb128 0x15
+ 806 036d 24020000 		.4byte	.LASF26
+ 807 0371 05       		.byte	0x5
+ 808 0372 39       		.byte	0x39
+ 809 0373 81000000 		.4byte	0x81
+ 810 0377 81030000 		.4byte	0x381
+ 811 037b 16       		.uleb128 0x16
+ 812 037c 81000000 		.4byte	0x81
+ 813 0380 00       		.byte	0
+ 814 0381 17       		.uleb128 0x17
+ 815 0382 A0010000 		.4byte	.LASF23
+ 816 0386 05       		.byte	0x5
+ 817 0387 3B       		.byte	0x3b
+ 818 0388 99000000 		.4byte	0x99
+ 819 038c 18       		.uleb128 0x18
+ 820 038d CF010000 		.4byte	.LASF21
+ 821 0391 01       		.byte	0x1
+ 822 0392 10       		.byte	0x10
+ 823 0393 A2030000 		.4byte	0x3a2
+ 824 0397 16       		.uleb128 0x16
+ 825 0398 8D000000 		.4byte	0x8d
+ 826 039c 16       		.uleb128 0x16
+ 827 039d 81000000 		.4byte	0x81
+ 828 03a1 00       		.byte	0
+ 829 03a2 18       		.uleb128 0x18
+ 830 03a3 FD010000 		.4byte	.LASF22
+ 831 03a7 01       		.byte	0x1
+ 832 03a8 12       		.byte	0x12
+ 833 03a9 B3030000 		.4byte	0x3b3
+ 834 03ad 16       		.uleb128 0x16
+ 835 03ae 81000000 		.4byte	0x81
+ 836 03b2 00       		.byte	0
+ 837 03b3 17       		.uleb128 0x17
+ 838 03b4 A6000000 		.4byte	.LASF24
+ 839 03b8 06       		.byte	0x6
+ 840 03b9 29       		.byte	0x29
+ 841 03ba 81000000 		.4byte	0x81
+ 842 03be 18       		.uleb128 0x18
+ 843 03bf 83020000 		.4byte	.LASF25
+ 844 03c3 07       		.byte	0x7
+ 845 03c4 76       		.byte	0x76
+ 846 03c5 CF030000 		.4byte	0x3cf
+ 847 03c9 16       		.uleb128 0x16
+ 848 03ca 8D000000 		.4byte	0x8d
+ 849 03ce 00       		.byte	0
+ 850 03cf 15       		.uleb128 0x15
+ 851 03d0 1D020000 		.4byte	.LASF27
+ 852 03d4 08       		.byte	0x8
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 18
 
 
- 876 009e 9642     		.uleb128 0x2116
- 877 00a0 19       		.uleb128 0x19
- 878 00a1 01       		.uleb128 0x1
- 879 00a2 13       		.uleb128 0x13
- 880 00a3 00       		.byte	0
- 881 00a4 00       		.byte	0
- 882 00a5 0C       		.uleb128 0xc
- 883 00a6 34       		.uleb128 0x34
- 884 00a7 00       		.byte	0
- 885 00a8 03       		.uleb128 0x3
- 886 00a9 0E       		.uleb128 0xe
- 887 00aa 3A       		.uleb128 0x3a
- 888 00ab 0B       		.uleb128 0xb
- 889 00ac 3B       		.uleb128 0x3b
- 890 00ad 0B       		.uleb128 0xb
- 891 00ae 49       		.uleb128 0x49
- 892 00af 13       		.uleb128 0x13
- 893 00b0 02       		.uleb128 0x2
- 894 00b1 17       		.uleb128 0x17
- 895 00b2 00       		.byte	0
- 896 00b3 00       		.byte	0
- 897 00b4 0D       		.uleb128 0xd
- 898 00b5 34       		.uleb128 0x34
- 899 00b6 00       		.byte	0
- 900 00b7 03       		.uleb128 0x3
- 901 00b8 08       		.uleb128 0x8
- 902 00b9 3A       		.uleb128 0x3a
- 903 00ba 0B       		.uleb128 0xb
- 904 00bb 3B       		.uleb128 0x3b
- 905 00bc 0B       		.uleb128 0xb
- 906 00bd 49       		.uleb128 0x49
- 907 00be 13       		.uleb128 0x13
- 908 00bf 02       		.uleb128 0x2
- 909 00c0 17       		.uleb128 0x17
- 910 00c1 00       		.byte	0
- 911 00c2 00       		.byte	0
- 912 00c3 0E       		.uleb128 0xe
- 913 00c4 898201   		.uleb128 0x4109
- 914 00c7 00       		.byte	0
- 915 00c8 11       		.uleb128 0x11
- 916 00c9 01       		.uleb128 0x1
- 917 00ca 31       		.uleb128 0x31
- 918 00cb 13       		.uleb128 0x13
- 919 00cc 00       		.byte	0
- 920 00cd 00       		.byte	0
- 921 00ce 0F       		.uleb128 0xf
- 922 00cf 898201   		.uleb128 0x4109
- 923 00d2 01       		.byte	0x1
- 924 00d3 11       		.uleb128 0x11
- 925 00d4 01       		.uleb128 0x1
- 926 00d5 31       		.uleb128 0x31
- 927 00d6 13       		.uleb128 0x13
- 928 00d7 01       		.uleb128 0x1
- 929 00d8 13       		.uleb128 0x13
- 930 00d9 00       		.byte	0
- 931 00da 00       		.byte	0
- 932 00db 10       		.uleb128 0x10
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 19
+ 853 03d5 B2       		.byte	0xb2
+ 854 03d6 68000000 		.4byte	0x68
+ 855 03da E5030000 		.4byte	0x3e5
+ 856 03de 16       		.uleb128 0x16
+ 857 03df C1000000 		.4byte	0xc1
+ 858 03e3 19       		.uleb128 0x19
+ 859 03e4 00       		.byte	0
+ 860 03e5 1A       		.uleb128 0x1a
+ 861 03e6 2C000000 		.4byte	.LASF28
+ 862 03ea 09       		.byte	0x9
+ 863 03eb 00       		.byte	0
+ 864 03ec 59020000 		.4byte	.LASF36
+ 865 03f0 68000000 		.4byte	0x68
+ 866 03f4 16       		.uleb128 0x16
+ 867 03f5 C1000000 		.4byte	0xc1
+ 868 03f9 00       		.byte	0
+ 869 03fa 00       		.byte	0
+ 870              		.section	.debug_abbrev,"",%progbits
+ 871              	.Ldebug_abbrev0:
+ 872 0000 01       		.uleb128 0x1
+ 873 0001 11       		.uleb128 0x11
+ 874 0002 01       		.byte	0x1
+ 875 0003 25       		.uleb128 0x25
+ 876 0004 0E       		.uleb128 0xe
+ 877 0005 13       		.uleb128 0x13
+ 878 0006 0B       		.uleb128 0xb
+ 879 0007 03       		.uleb128 0x3
+ 880 0008 0E       		.uleb128 0xe
+ 881 0009 1B       		.uleb128 0x1b
+ 882 000a 0E       		.uleb128 0xe
+ 883 000b 55       		.uleb128 0x55
+ 884 000c 17       		.uleb128 0x17
+ 885 000d 11       		.uleb128 0x11
+ 886 000e 01       		.uleb128 0x1
+ 887 000f 10       		.uleb128 0x10
+ 888 0010 17       		.uleb128 0x17
+ 889 0011 00       		.byte	0
+ 890 0012 00       		.byte	0
+ 891 0013 02       		.uleb128 0x2
+ 892 0014 24       		.uleb128 0x24
+ 893 0015 00       		.byte	0
+ 894 0016 0B       		.uleb128 0xb
+ 895 0017 0B       		.uleb128 0xb
+ 896 0018 3E       		.uleb128 0x3e
+ 897 0019 0B       		.uleb128 0xb
+ 898 001a 03       		.uleb128 0x3
+ 899 001b 0E       		.uleb128 0xe
+ 900 001c 00       		.byte	0
+ 901 001d 00       		.byte	0
+ 902 001e 03       		.uleb128 0x3
+ 903 001f 16       		.uleb128 0x16
+ 904 0020 00       		.byte	0
+ 905 0021 03       		.uleb128 0x3
+ 906 0022 0E       		.uleb128 0xe
+ 907 0023 3A       		.uleb128 0x3a
+ 908 0024 0B       		.uleb128 0xb
+ 909 0025 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 19
 
 
- 933 00dc 8A8201   		.uleb128 0x410a
- 934 00df 00       		.byte	0
- 935 00e0 02       		.uleb128 0x2
- 936 00e1 18       		.uleb128 0x18
- 937 00e2 9142     		.uleb128 0x2111
- 938 00e4 18       		.uleb128 0x18
- 939 00e5 00       		.byte	0
- 940 00e6 00       		.byte	0
- 941 00e7 11       		.uleb128 0x11
- 942 00e8 898201   		.uleb128 0x4109
- 943 00eb 01       		.byte	0x1
- 944 00ec 11       		.uleb128 0x11
- 945 00ed 01       		.uleb128 0x1
- 946 00ee 31       		.uleb128 0x31
- 947 00ef 13       		.uleb128 0x13
- 948 00f0 00       		.byte	0
- 949 00f1 00       		.byte	0
- 950 00f2 12       		.uleb128 0x12
- 951 00f3 34       		.uleb128 0x34
- 952 00f4 00       		.byte	0
- 953 00f5 03       		.uleb128 0x3
- 954 00f6 0E       		.uleb128 0xe
- 955 00f7 3A       		.uleb128 0x3a
- 956 00f8 0B       		.uleb128 0xb
- 957 00f9 3B       		.uleb128 0x3b
- 958 00fa 05       		.uleb128 0x5
- 959 00fb 49       		.uleb128 0x49
- 960 00fc 13       		.uleb128 0x13
- 961 00fd 3F       		.uleb128 0x3f
- 962 00fe 19       		.uleb128 0x19
- 963 00ff 3C       		.uleb128 0x3c
- 964 0100 19       		.uleb128 0x19
- 965 0101 00       		.byte	0
- 966 0102 00       		.byte	0
- 967 0103 13       		.uleb128 0x13
- 968 0104 35       		.uleb128 0x35
- 969 0105 00       		.byte	0
- 970 0106 49       		.uleb128 0x49
- 971 0107 13       		.uleb128 0x13
- 972 0108 00       		.byte	0
- 973 0109 00       		.byte	0
- 974 010a 14       		.uleb128 0x14
- 975 010b 2E       		.uleb128 0x2e
- 976 010c 00       		.byte	0
- 977 010d 3F       		.uleb128 0x3f
- 978 010e 19       		.uleb128 0x19
- 979 010f 03       		.uleb128 0x3
- 980 0110 0E       		.uleb128 0xe
- 981 0111 3A       		.uleb128 0x3a
- 982 0112 0B       		.uleb128 0xb
- 983 0113 3B       		.uleb128 0x3b
- 984 0114 0B       		.uleb128 0xb
- 985 0115 27       		.uleb128 0x27
- 986 0116 19       		.uleb128 0x19
- 987 0117 3C       		.uleb128 0x3c
- 988 0118 19       		.uleb128 0x19
- 989 0119 00       		.byte	0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 20
+ 910 0026 0B       		.uleb128 0xb
+ 911 0027 49       		.uleb128 0x49
+ 912 0028 13       		.uleb128 0x13
+ 913 0029 00       		.byte	0
+ 914 002a 00       		.byte	0
+ 915 002b 04       		.uleb128 0x4
+ 916 002c 24       		.uleb128 0x24
+ 917 002d 00       		.byte	0
+ 918 002e 0B       		.uleb128 0xb
+ 919 002f 0B       		.uleb128 0xb
+ 920 0030 3E       		.uleb128 0x3e
+ 921 0031 0B       		.uleb128 0xb
+ 922 0032 03       		.uleb128 0x3
+ 923 0033 08       		.uleb128 0x8
+ 924 0034 00       		.byte	0
+ 925 0035 00       		.byte	0
+ 926 0036 05       		.uleb128 0x5
+ 927 0037 16       		.uleb128 0x16
+ 928 0038 00       		.byte	0
+ 929 0039 03       		.uleb128 0x3
+ 930 003a 0E       		.uleb128 0xe
+ 931 003b 3A       		.uleb128 0x3a
+ 932 003c 0B       		.uleb128 0xb
+ 933 003d 3B       		.uleb128 0x3b
+ 934 003e 05       		.uleb128 0x5
+ 935 003f 49       		.uleb128 0x49
+ 936 0040 13       		.uleb128 0x13
+ 937 0041 00       		.byte	0
+ 938 0042 00       		.byte	0
+ 939 0043 06       		.uleb128 0x6
+ 940 0044 0F       		.uleb128 0xf
+ 941 0045 00       		.byte	0
+ 942 0046 0B       		.uleb128 0xb
+ 943 0047 0B       		.uleb128 0xb
+ 944 0048 49       		.uleb128 0x49
+ 945 0049 13       		.uleb128 0x13
+ 946 004a 00       		.byte	0
+ 947 004b 00       		.byte	0
+ 948 004c 07       		.uleb128 0x7
+ 949 004d 26       		.uleb128 0x26
+ 950 004e 00       		.byte	0
+ 951 004f 49       		.uleb128 0x49
+ 952 0050 13       		.uleb128 0x13
+ 953 0051 00       		.byte	0
+ 954 0052 00       		.byte	0
+ 955 0053 08       		.uleb128 0x8
+ 956 0054 2E       		.uleb128 0x2e
+ 957 0055 01       		.byte	0x1
+ 958 0056 3F       		.uleb128 0x3f
+ 959 0057 19       		.uleb128 0x19
+ 960 0058 03       		.uleb128 0x3
+ 961 0059 0E       		.uleb128 0xe
+ 962 005a 3A       		.uleb128 0x3a
+ 963 005b 0B       		.uleb128 0xb
+ 964 005c 3B       		.uleb128 0x3b
+ 965 005d 0B       		.uleb128 0xb
+ 966 005e 27       		.uleb128 0x27
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 20
 
 
- 990 011a 00       		.byte	0
- 991 011b 15       		.uleb128 0x15
- 992 011c 2E       		.uleb128 0x2e
- 993 011d 01       		.byte	0x1
- 994 011e 3F       		.uleb128 0x3f
- 995 011f 19       		.uleb128 0x19
- 996 0120 03       		.uleb128 0x3
- 997 0121 0E       		.uleb128 0xe
- 998 0122 3A       		.uleb128 0x3a
- 999 0123 0B       		.uleb128 0xb
- 1000 0124 3B       		.uleb128 0x3b
- 1001 0125 0B       		.uleb128 0xb
- 1002 0126 27       		.uleb128 0x27
- 1003 0127 19       		.uleb128 0x19
- 1004 0128 49       		.uleb128 0x49
- 1005 0129 13       		.uleb128 0x13
- 1006 012a 3C       		.uleb128 0x3c
- 1007 012b 19       		.uleb128 0x19
- 1008 012c 01       		.uleb128 0x1
- 1009 012d 13       		.uleb128 0x13
- 1010 012e 00       		.byte	0
- 1011 012f 00       		.byte	0
- 1012 0130 16       		.uleb128 0x16
- 1013 0131 05       		.uleb128 0x5
- 1014 0132 00       		.byte	0
- 1015 0133 49       		.uleb128 0x49
- 1016 0134 13       		.uleb128 0x13
- 1017 0135 00       		.byte	0
- 1018 0136 00       		.byte	0
- 1019 0137 17       		.uleb128 0x17
- 1020 0138 2E       		.uleb128 0x2e
- 1021 0139 00       		.byte	0
- 1022 013a 3F       		.uleb128 0x3f
- 1023 013b 19       		.uleb128 0x19
- 1024 013c 03       		.uleb128 0x3
- 1025 013d 0E       		.uleb128 0xe
- 1026 013e 3A       		.uleb128 0x3a
- 1027 013f 0B       		.uleb128 0xb
- 1028 0140 3B       		.uleb128 0x3b
- 1029 0141 0B       		.uleb128 0xb
- 1030 0142 27       		.uleb128 0x27
- 1031 0143 19       		.uleb128 0x19
- 1032 0144 49       		.uleb128 0x49
- 1033 0145 13       		.uleb128 0x13
- 1034 0146 3C       		.uleb128 0x3c
- 1035 0147 19       		.uleb128 0x19
- 1036 0148 00       		.byte	0
- 1037 0149 00       		.byte	0
- 1038 014a 18       		.uleb128 0x18
- 1039 014b 2E       		.uleb128 0x2e
- 1040 014c 01       		.byte	0x1
- 1041 014d 3F       		.uleb128 0x3f
- 1042 014e 19       		.uleb128 0x19
- 1043 014f 03       		.uleb128 0x3
- 1044 0150 0E       		.uleb128 0xe
- 1045 0151 3A       		.uleb128 0x3a
- 1046 0152 0B       		.uleb128 0xb
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 21
+ 967 005f 19       		.uleb128 0x19
+ 968 0060 49       		.uleb128 0x49
+ 969 0061 13       		.uleb128 0x13
+ 970 0062 11       		.uleb128 0x11
+ 971 0063 01       		.uleb128 0x1
+ 972 0064 12       		.uleb128 0x12
+ 973 0065 06       		.uleb128 0x6
+ 974 0066 40       		.uleb128 0x40
+ 975 0067 18       		.uleb128 0x18
+ 976 0068 9642     		.uleb128 0x2116
+ 977 006a 19       		.uleb128 0x19
+ 978 006b 01       		.uleb128 0x1
+ 979 006c 13       		.uleb128 0x13
+ 980 006d 00       		.byte	0
+ 981 006e 00       		.byte	0
+ 982 006f 09       		.uleb128 0x9
+ 983 0070 05       		.uleb128 0x5
+ 984 0071 00       		.byte	0
+ 985 0072 03       		.uleb128 0x3
+ 986 0073 0E       		.uleb128 0xe
+ 987 0074 3A       		.uleb128 0x3a
+ 988 0075 0B       		.uleb128 0xb
+ 989 0076 3B       		.uleb128 0x3b
+ 990 0077 0B       		.uleb128 0xb
+ 991 0078 49       		.uleb128 0x49
+ 992 0079 13       		.uleb128 0x13
+ 993 007a 02       		.uleb128 0x2
+ 994 007b 17       		.uleb128 0x17
+ 995 007c 00       		.byte	0
+ 996 007d 00       		.byte	0
+ 997 007e 0A       		.uleb128 0xa
+ 998 007f 34       		.uleb128 0x34
+ 999 0080 00       		.byte	0
+ 1000 0081 03       		.uleb128 0x3
+ 1001 0082 0E       		.uleb128 0xe
+ 1002 0083 3A       		.uleb128 0x3a
+ 1003 0084 0B       		.uleb128 0xb
+ 1004 0085 3B       		.uleb128 0x3b
+ 1005 0086 0B       		.uleb128 0xb
+ 1006 0087 49       		.uleb128 0x49
+ 1007 0088 13       		.uleb128 0x13
+ 1008 0089 02       		.uleb128 0x2
+ 1009 008a 18       		.uleb128 0x18
+ 1010 008b 00       		.byte	0
+ 1011 008c 00       		.byte	0
+ 1012 008d 0B       		.uleb128 0xb
+ 1013 008e 2E       		.uleb128 0x2e
+ 1014 008f 01       		.byte	0x1
+ 1015 0090 3F       		.uleb128 0x3f
+ 1016 0091 19       		.uleb128 0x19
+ 1017 0092 03       		.uleb128 0x3
+ 1018 0093 0E       		.uleb128 0xe
+ 1019 0094 3A       		.uleb128 0x3a
+ 1020 0095 0B       		.uleb128 0xb
+ 1021 0096 3B       		.uleb128 0x3b
+ 1022 0097 0B       		.uleb128 0xb
+ 1023 0098 11       		.uleb128 0x11
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 21
 
 
- 1047 0153 3B       		.uleb128 0x3b
- 1048 0154 0B       		.uleb128 0xb
- 1049 0155 27       		.uleb128 0x27
- 1050 0156 19       		.uleb128 0x19
- 1051 0157 3C       		.uleb128 0x3c
- 1052 0158 19       		.uleb128 0x19
- 1053 0159 01       		.uleb128 0x1
- 1054 015a 13       		.uleb128 0x13
- 1055 015b 00       		.byte	0
- 1056 015c 00       		.byte	0
- 1057 015d 19       		.uleb128 0x19
- 1058 015e 18       		.uleb128 0x18
- 1059 015f 00       		.byte	0
- 1060 0160 00       		.byte	0
- 1061 0161 00       		.byte	0
- 1062 0162 1A       		.uleb128 0x1a
- 1063 0163 2E       		.uleb128 0x2e
- 1064 0164 01       		.byte	0x1
- 1065 0165 3F       		.uleb128 0x3f
- 1066 0166 19       		.uleb128 0x19
- 1067 0167 03       		.uleb128 0x3
- 1068 0168 0E       		.uleb128 0xe
- 1069 0169 3A       		.uleb128 0x3a
- 1070 016a 0B       		.uleb128 0xb
- 1071 016b 3B       		.uleb128 0x3b
- 1072 016c 0B       		.uleb128 0xb
- 1073 016d 6E       		.uleb128 0x6e
- 1074 016e 0E       		.uleb128 0xe
- 1075 016f 27       		.uleb128 0x27
- 1076 0170 19       		.uleb128 0x19
- 1077 0171 49       		.uleb128 0x49
- 1078 0172 13       		.uleb128 0x13
- 1079 0173 3C       		.uleb128 0x3c
- 1080 0174 19       		.uleb128 0x19
- 1081 0175 00       		.byte	0
- 1082 0176 00       		.byte	0
- 1083 0177 00       		.byte	0
- 1084              		.section	.debug_loc,"",%progbits
- 1085              	.Ldebug_loc0:
- 1086              	.LLST0:
- 1087 0000 00000000 		.4byte	.LVL0
- 1088 0004 05000000 		.4byte	.LVL1-1
- 1089 0008 0100     		.2byte	0x1
- 1090 000a 50       		.byte	0x50
- 1091 000b 05000000 		.4byte	.LVL1-1
- 1092 000f 2C000000 		.4byte	.LFE63
- 1093 0013 0400     		.2byte	0x4
- 1094 0015 F3       		.byte	0xf3
- 1095 0016 01       		.uleb128 0x1
- 1096 0017 50       		.byte	0x50
- 1097 0018 9F       		.byte	0x9f
- 1098 0019 00000000 		.4byte	0
- 1099 001d 00000000 		.4byte	0
- 1100              	.LLST1:
- 1101 0021 02000000 		.4byte	.LVL5
- 1102 0025 16000000 		.4byte	.LVL9
- 1103 0029 0200     		.2byte	0x2
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 22
+ 1024 0099 01       		.uleb128 0x1
+ 1025 009a 12       		.uleb128 0x12
+ 1026 009b 06       		.uleb128 0x6
+ 1027 009c 40       		.uleb128 0x40
+ 1028 009d 18       		.uleb128 0x18
+ 1029 009e 9642     		.uleb128 0x2116
+ 1030 00a0 19       		.uleb128 0x19
+ 1031 00a1 01       		.uleb128 0x1
+ 1032 00a2 13       		.uleb128 0x13
+ 1033 00a3 00       		.byte	0
+ 1034 00a4 00       		.byte	0
+ 1035 00a5 0C       		.uleb128 0xc
+ 1036 00a6 34       		.uleb128 0x34
+ 1037 00a7 00       		.byte	0
+ 1038 00a8 03       		.uleb128 0x3
+ 1039 00a9 0E       		.uleb128 0xe
+ 1040 00aa 3A       		.uleb128 0x3a
+ 1041 00ab 0B       		.uleb128 0xb
+ 1042 00ac 3B       		.uleb128 0x3b
+ 1043 00ad 0B       		.uleb128 0xb
+ 1044 00ae 49       		.uleb128 0x49
+ 1045 00af 13       		.uleb128 0x13
+ 1046 00b0 02       		.uleb128 0x2
+ 1047 00b1 17       		.uleb128 0x17
+ 1048 00b2 00       		.byte	0
+ 1049 00b3 00       		.byte	0
+ 1050 00b4 0D       		.uleb128 0xd
+ 1051 00b5 34       		.uleb128 0x34
+ 1052 00b6 00       		.byte	0
+ 1053 00b7 03       		.uleb128 0x3
+ 1054 00b8 08       		.uleb128 0x8
+ 1055 00b9 3A       		.uleb128 0x3a
+ 1056 00ba 0B       		.uleb128 0xb
+ 1057 00bb 3B       		.uleb128 0x3b
+ 1058 00bc 0B       		.uleb128 0xb
+ 1059 00bd 49       		.uleb128 0x49
+ 1060 00be 13       		.uleb128 0x13
+ 1061 00bf 02       		.uleb128 0x2
+ 1062 00c0 17       		.uleb128 0x17
+ 1063 00c1 00       		.byte	0
+ 1064 00c2 00       		.byte	0
+ 1065 00c3 0E       		.uleb128 0xe
+ 1066 00c4 898201   		.uleb128 0x4109
+ 1067 00c7 00       		.byte	0
+ 1068 00c8 11       		.uleb128 0x11
+ 1069 00c9 01       		.uleb128 0x1
+ 1070 00ca 31       		.uleb128 0x31
+ 1071 00cb 13       		.uleb128 0x13
+ 1072 00cc 00       		.byte	0
+ 1073 00cd 00       		.byte	0
+ 1074 00ce 0F       		.uleb128 0xf
+ 1075 00cf 898201   		.uleb128 0x4109
+ 1076 00d2 01       		.byte	0x1
+ 1077 00d3 11       		.uleb128 0x11
+ 1078 00d4 01       		.uleb128 0x1
+ 1079 00d5 31       		.uleb128 0x31
+ 1080 00d6 13       		.uleb128 0x13
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 22
 
 
- 1104 002b 30       		.byte	0x30
- 1105 002c 9F       		.byte	0x9f
- 1106 002d 16000000 		.4byte	.LVL9
- 1107 0031 02010000 		.4byte	.LVL47
- 1108 0035 0100     		.2byte	0x1
- 1109 0037 57       		.byte	0x57
- 1110 0038 00000000 		.4byte	0
- 1111 003c 00000000 		.4byte	0
- 1112              	.LLST2:
- 1113 0040 02000000 		.4byte	.LVL5
- 1114 0044 1C000000 		.4byte	.LVL11
- 1115 0048 0600     		.2byte	0x6
- 1116 004a 9E       		.byte	0x9e
- 1117 004b 04       		.uleb128 0x4
- 1118 004c 00000000 		.4byte	0
- 1119 0050 1C000000 		.4byte	.LVL11
- 1120 0054 21000000 		.4byte	.LVL12-1
- 1121 0058 0100     		.2byte	0x1
- 1122 005a 50       		.byte	0x50
- 1123 005b 21000000 		.4byte	.LVL12-1
- 1124 005f 02010000 		.4byte	.LVL47
- 1125 0063 0100     		.2byte	0x1
- 1126 0065 56       		.byte	0x56
- 1127 0066 00000000 		.4byte	0
- 1128 006a 00000000 		.4byte	0
- 1129              	.LLST3:
- 1130 006e 26000000 		.4byte	.LVL13
- 1131 0072 3A000000 		.4byte	.LVL17
- 1132 0076 0100     		.2byte	0x1
- 1133 0078 54       		.byte	0x54
- 1134 0079 3C000000 		.4byte	.LVL18
- 1135 007d 42000000 		.4byte	.LVL19
- 1136 0081 0100     		.2byte	0x1
- 1137 0083 54       		.byte	0x54
- 1138 0084 58000000 		.4byte	.LVL22
- 1139 0088 6C000000 		.4byte	.LVL26
- 1140 008c 0100     		.2byte	0x1
- 1141 008e 54       		.byte	0x54
- 1142 008f 6E000000 		.4byte	.LVL27
- 1143 0093 74000000 		.4byte	.LVL28
- 1144 0097 0100     		.2byte	0x1
- 1145 0099 54       		.byte	0x54
- 1146 009a 92000000 		.4byte	.LVL32
- 1147 009e A6000000 		.4byte	.LVL36
- 1148 00a2 0100     		.2byte	0x1
- 1149 00a4 54       		.byte	0x54
- 1150 00a5 A8000000 		.4byte	.LVL37
- 1151 00a9 AE000000 		.4byte	.LVL38
- 1152 00ad 0100     		.2byte	0x1
- 1153 00af 54       		.byte	0x54
- 1154 00b0 00000000 		.4byte	0
- 1155 00b4 00000000 		.4byte	0
- 1156              		.section	.debug_aranges,"",%progbits
- 1157 0000 24000000 		.4byte	0x24
- 1158 0004 0200     		.2byte	0x2
- 1159 0006 00000000 		.4byte	.Ldebug_info0
- 1160 000a 04       		.byte	0x4
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 23
+ 1081 00d7 01       		.uleb128 0x1
+ 1082 00d8 13       		.uleb128 0x13
+ 1083 00d9 00       		.byte	0
+ 1084 00da 00       		.byte	0
+ 1085 00db 10       		.uleb128 0x10
+ 1086 00dc 8A8201   		.uleb128 0x410a
+ 1087 00df 00       		.byte	0
+ 1088 00e0 02       		.uleb128 0x2
+ 1089 00e1 18       		.uleb128 0x18
+ 1090 00e2 9142     		.uleb128 0x2111
+ 1091 00e4 18       		.uleb128 0x18
+ 1092 00e5 00       		.byte	0
+ 1093 00e6 00       		.byte	0
+ 1094 00e7 11       		.uleb128 0x11
+ 1095 00e8 898201   		.uleb128 0x4109
+ 1096 00eb 01       		.byte	0x1
+ 1097 00ec 11       		.uleb128 0x11
+ 1098 00ed 01       		.uleb128 0x1
+ 1099 00ee 31       		.uleb128 0x31
+ 1100 00ef 13       		.uleb128 0x13
+ 1101 00f0 00       		.byte	0
+ 1102 00f1 00       		.byte	0
+ 1103 00f2 12       		.uleb128 0x12
+ 1104 00f3 34       		.uleb128 0x34
+ 1105 00f4 00       		.byte	0
+ 1106 00f5 03       		.uleb128 0x3
+ 1107 00f6 0E       		.uleb128 0xe
+ 1108 00f7 3A       		.uleb128 0x3a
+ 1109 00f8 0B       		.uleb128 0xb
+ 1110 00f9 3B       		.uleb128 0x3b
+ 1111 00fa 05       		.uleb128 0x5
+ 1112 00fb 49       		.uleb128 0x49
+ 1113 00fc 13       		.uleb128 0x13
+ 1114 00fd 3F       		.uleb128 0x3f
+ 1115 00fe 19       		.uleb128 0x19
+ 1116 00ff 3C       		.uleb128 0x3c
+ 1117 0100 19       		.uleb128 0x19
+ 1118 0101 00       		.byte	0
+ 1119 0102 00       		.byte	0
+ 1120 0103 13       		.uleb128 0x13
+ 1121 0104 35       		.uleb128 0x35
+ 1122 0105 00       		.byte	0
+ 1123 0106 49       		.uleb128 0x49
+ 1124 0107 13       		.uleb128 0x13
+ 1125 0108 00       		.byte	0
+ 1126 0109 00       		.byte	0
+ 1127 010a 14       		.uleb128 0x14
+ 1128 010b 2E       		.uleb128 0x2e
+ 1129 010c 00       		.byte	0
+ 1130 010d 3F       		.uleb128 0x3f
+ 1131 010e 19       		.uleb128 0x19
+ 1132 010f 03       		.uleb128 0x3
+ 1133 0110 0E       		.uleb128 0xe
+ 1134 0111 3A       		.uleb128 0x3a
+ 1135 0112 0B       		.uleb128 0xb
+ 1136 0113 3B       		.uleb128 0x3b
+ 1137 0114 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 23
 
 
- 1161 000b 00       		.byte	0
- 1162 000c 0000     		.2byte	0
- 1163 000e 0000     		.2byte	0
- 1164 0010 00000000 		.4byte	.LFB63
- 1165 0014 2C000000 		.4byte	.LFE63-.LFB63
- 1166 0018 00000000 		.4byte	.LFB64
- 1167 001c 2C010000 		.4byte	.LFE64-.LFB64
- 1168 0020 00000000 		.4byte	0
- 1169 0024 00000000 		.4byte	0
- 1170              		.section	.debug_ranges,"",%progbits
- 1171              	.Ldebug_ranges0:
- 1172 0000 00000000 		.4byte	.LFB63
- 1173 0004 2C000000 		.4byte	.LFE63
- 1174 0008 00000000 		.4byte	.LFB64
- 1175 000c 2C010000 		.4byte	.LFE64
- 1176 0010 00000000 		.4byte	0
- 1177 0014 00000000 		.4byte	0
- 1178              		.section	.debug_line,"",%progbits
- 1179              	.Ldebug_line0:
- 1180 0000 2A020000 		.section	.debug_str,"MS",%progbits,1
- 1180      02008A01 
- 1180      00000201 
- 1180      FB0E0D00 
- 1180      01010101 
- 1181              	.LASF9:
- 1182 0000 5F5F696E 		.ascii	"__int32_t\000"
- 1182      7433325F 
- 1182      7400
- 1183              	.LASF29:
- 1184 000a 4144435F 		.ascii	"ADC_result_to_volts\000"
- 1184      72657375 
- 1184      6C745F74 
- 1184      6F5F766F 
- 1184      6C747300 
- 1185              	.LASF10:
- 1186 001e 696E7433 		.ascii	"int32_t\000"
- 1186      325F7400 
- 1187              	.LASF14:
- 1188 0026 666C6F61 		.ascii	"float\000"
- 1188      7400
- 1189              	.LASF25:
- 1190 002c 5F5F6275 		.ascii	"__builtin_puts\000"
- 1190      696C7469 
- 1190      6E5F7075 
- 1190      747300
- 1191              	.LASF1:
- 1192 003b 756E7369 		.ascii	"unsigned char\000"
- 1192      676E6564 
- 1192      20636861 
- 1192      7200
- 1193              	.LASF13:
- 1194 0049 696E7431 		.ascii	"int16\000"
- 1194      3600
- 1195              	.LASF5:
- 1196 004f 6C6F6E67 		.ascii	"long unsigned int\000"
- 1196      20756E73 
- 1196      69676E65 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 24
+ 1138 0115 27       		.uleb128 0x27
+ 1139 0116 19       		.uleb128 0x19
+ 1140 0117 3C       		.uleb128 0x3c
+ 1141 0118 19       		.uleb128 0x19
+ 1142 0119 00       		.byte	0
+ 1143 011a 00       		.byte	0
+ 1144 011b 15       		.uleb128 0x15
+ 1145 011c 2E       		.uleb128 0x2e
+ 1146 011d 01       		.byte	0x1
+ 1147 011e 3F       		.uleb128 0x3f
+ 1148 011f 19       		.uleb128 0x19
+ 1149 0120 03       		.uleb128 0x3
+ 1150 0121 0E       		.uleb128 0xe
+ 1151 0122 3A       		.uleb128 0x3a
+ 1152 0123 0B       		.uleb128 0xb
+ 1153 0124 3B       		.uleb128 0x3b
+ 1154 0125 0B       		.uleb128 0xb
+ 1155 0126 27       		.uleb128 0x27
+ 1156 0127 19       		.uleb128 0x19
+ 1157 0128 49       		.uleb128 0x49
+ 1158 0129 13       		.uleb128 0x13
+ 1159 012a 3C       		.uleb128 0x3c
+ 1160 012b 19       		.uleb128 0x19
+ 1161 012c 01       		.uleb128 0x1
+ 1162 012d 13       		.uleb128 0x13
+ 1163 012e 00       		.byte	0
+ 1164 012f 00       		.byte	0
+ 1165 0130 16       		.uleb128 0x16
+ 1166 0131 05       		.uleb128 0x5
+ 1167 0132 00       		.byte	0
+ 1168 0133 49       		.uleb128 0x49
+ 1169 0134 13       		.uleb128 0x13
+ 1170 0135 00       		.byte	0
+ 1171 0136 00       		.byte	0
+ 1172 0137 17       		.uleb128 0x17
+ 1173 0138 2E       		.uleb128 0x2e
+ 1174 0139 00       		.byte	0
+ 1175 013a 3F       		.uleb128 0x3f
+ 1176 013b 19       		.uleb128 0x19
+ 1177 013c 03       		.uleb128 0x3
+ 1178 013d 0E       		.uleb128 0xe
+ 1179 013e 3A       		.uleb128 0x3a
+ 1180 013f 0B       		.uleb128 0xb
+ 1181 0140 3B       		.uleb128 0x3b
+ 1182 0141 0B       		.uleb128 0xb
+ 1183 0142 27       		.uleb128 0x27
+ 1184 0143 19       		.uleb128 0x19
+ 1185 0144 49       		.uleb128 0x49
+ 1186 0145 13       		.uleb128 0x13
+ 1187 0146 3C       		.uleb128 0x3c
+ 1188 0147 19       		.uleb128 0x19
+ 1189 0148 00       		.byte	0
+ 1190 0149 00       		.byte	0
+ 1191 014a 18       		.uleb128 0x18
+ 1192 014b 2E       		.uleb128 0x2e
+ 1193 014c 01       		.byte	0x1
+ 1194 014d 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 24
 
 
- 1196      6420696E 
- 1196      7400
- 1197              	.LASF27:
- 1198 0061 566F6C74 		.ascii	"Voltage_Monitoring.c\000"
- 1198      6167655F 
- 1198      4D6F6E69 
- 1198      746F7269 
- 1198      6E672E63 
- 1199              	.LASF3:
- 1200 0076 73686F72 		.ascii	"short unsigned int\000"
- 1200      7420756E 
- 1200      7369676E 
- 1200      65642069 
- 1200      6E7400
- 1201              	.LASF30:
- 1202 0089 4D656173 		.ascii	"Measure_Voltage\000"
- 1202      7572655F 
- 1202      566F6C74 
- 1202      61676500 
- 1203              	.LASF31:
- 1204 0099 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1204      52784275 
- 1204      66666572 
- 1204      00
- 1205              	.LASF15:
- 1206 00a6 646F7562 		.ascii	"double\000"
- 1206      6C6500
- 1207              	.LASF28:
- 1208 00ad 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo_Robotti\\Zumo_Rob"
- 1208      73657273 
- 1208      5C56696C 
- 1208      6C65204C 
- 1208      5C446573 
- 1209 00db 6F747469 		.ascii	"otti\\ZumoBot.cydsn\000"
- 1209      5C5A756D 
- 1209      6F426F74 
- 1209      2E637964 
- 1209      736E00
- 1210              	.LASF12:
- 1211 00ee 75696E74 		.ascii	"uint32\000"
- 1211      333200
- 1212              	.LASF26:
- 1213 00f5 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1213      4320342E 
- 1213      392E3320 
- 1213      32303135 
- 1213      30333033 
- 1214 0128 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 1214      20726576 
- 1214      6973696F 
- 1214      6E203232 
- 1214      31323230 
- 1215 015b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1215      66756E63 
- 1215      74696F6E 
- 1215      2D736563 
- 1215      74696F6E 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 25
+ 1195 014e 19       		.uleb128 0x19
+ 1196 014f 03       		.uleb128 0x3
+ 1197 0150 0E       		.uleb128 0xe
+ 1198 0151 3A       		.uleb128 0x3a
+ 1199 0152 0B       		.uleb128 0xb
+ 1200 0153 3B       		.uleb128 0x3b
+ 1201 0154 0B       		.uleb128 0xb
+ 1202 0155 27       		.uleb128 0x27
+ 1203 0156 19       		.uleb128 0x19
+ 1204 0157 3C       		.uleb128 0x3c
+ 1205 0158 19       		.uleb128 0x19
+ 1206 0159 01       		.uleb128 0x1
+ 1207 015a 13       		.uleb128 0x13
+ 1208 015b 00       		.byte	0
+ 1209 015c 00       		.byte	0
+ 1210 015d 19       		.uleb128 0x19
+ 1211 015e 18       		.uleb128 0x18
+ 1212 015f 00       		.byte	0
+ 1213 0160 00       		.byte	0
+ 1214 0161 00       		.byte	0
+ 1215 0162 1A       		.uleb128 0x1a
+ 1216 0163 2E       		.uleb128 0x2e
+ 1217 0164 01       		.byte	0x1
+ 1218 0165 3F       		.uleb128 0x3f
+ 1219 0166 19       		.uleb128 0x19
+ 1220 0167 03       		.uleb128 0x3
+ 1221 0168 0E       		.uleb128 0xe
+ 1222 0169 3A       		.uleb128 0x3a
+ 1223 016a 0B       		.uleb128 0xb
+ 1224 016b 3B       		.uleb128 0x3b
+ 1225 016c 0B       		.uleb128 0xb
+ 1226 016d 6E       		.uleb128 0x6e
+ 1227 016e 0E       		.uleb128 0xe
+ 1228 016f 27       		.uleb128 0x27
+ 1229 0170 19       		.uleb128 0x19
+ 1230 0171 49       		.uleb128 0x49
+ 1231 0172 13       		.uleb128 0x13
+ 1232 0173 3C       		.uleb128 0x3c
+ 1233 0174 19       		.uleb128 0x19
+ 1234 0175 00       		.byte	0
+ 1235 0176 00       		.byte	0
+ 1236 0177 00       		.byte	0
+ 1237              		.section	.debug_loc,"",%progbits
+ 1238              	.Ldebug_loc0:
+ 1239              	.LLST0:
+ 1240 0000 00000000 		.4byte	.LVL0
+ 1241 0004 05000000 		.4byte	.LVL1-1
+ 1242 0008 0100     		.2byte	0x1
+ 1243 000a 50       		.byte	0x50
+ 1244 000b 05000000 		.4byte	.LVL1-1
+ 1245 000f 2C000000 		.4byte	.LFE63
+ 1246 0013 0400     		.2byte	0x4
+ 1247 0015 F3       		.byte	0xf3
+ 1248 0016 01       		.uleb128 0x1
+ 1249 0017 50       		.byte	0x50
+ 1250 0018 9F       		.byte	0x9f
+ 1251 0019 00000000 		.4byte	0
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 25
 
 
- 1216              	.LASF8:
- 1217 0183 756E7369 		.ascii	"unsigned int\000"
- 1217      676E6564 
- 1217      20696E74 
- 1217      00
- 1218              	.LASF33:
- 1219 0190 4144435F 		.ascii	"ADC_Battery_GetResult16\000"
- 1219      42617474 
- 1219      6572795F 
- 1219      47657452 
- 1219      6573756C 
- 1220              	.LASF7:
- 1221 01a8 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1221      206C6F6E 
- 1221      6720756E 
- 1221      7369676E 
- 1221      65642069 
- 1222              	.LASF21:
- 1223 01bf 42656570 		.ascii	"Beep\000"
- 1223      00
- 1224              	.LASF19:
- 1225 01c4 766F6C74 		.ascii	"volts\000"
- 1225      7300
- 1226              	.LASF18:
- 1227 01ca 6C6F6E67 		.ascii	"long double\000"
- 1227      20646F75 
- 1227      626C6500 
- 1228              	.LASF17:
- 1229 01d6 73697A65 		.ascii	"sizetype\000"
- 1229      74797065 
- 1229      00
- 1230              	.LASF6:
- 1231 01df 6C6F6E67 		.ascii	"long long int\000"
- 1231      206C6F6E 
- 1231      6720696E 
- 1231      7400
- 1232              	.LASF16:
- 1233 01ed 63686172 		.ascii	"char\000"
- 1233      00
- 1234              	.LASF20:
- 1235 01f2 61646372 		.ascii	"adcresult\000"
- 1235      6573756C 
- 1235      7400
- 1236              	.LASF24:
- 1237 01fc 7072696E 		.ascii	"printf\000"
- 1237      746600
- 1238              	.LASF23:
- 1239 0203 4144435F 		.ascii	"ADC_Battery_IsEndConversion\000"
- 1239      42617474 
- 1239      6572795F 
- 1239      4973456E 
- 1239      64436F6E 
- 1240              	.LASF2:
- 1241 021f 73686F72 		.ascii	"short int\000"
- 1241      7420696E 
- 1241      7400
- 1242              	.LASF11:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cczynGn3.s 			page 26
+ 1252 001d 00000000 		.4byte	0
+ 1253              	.LLST1:
+ 1254 0021 02000000 		.4byte	.LVL5
+ 1255 0025 18000000 		.4byte	.LVL9
+ 1256 0029 0200     		.2byte	0x2
+ 1257 002b 30       		.byte	0x30
+ 1258 002c 9F       		.byte	0x9f
+ 1259 002d 18000000 		.4byte	.LVL9
+ 1260 0031 4C010000 		.4byte	.LVL59
+ 1261 0035 0100     		.2byte	0x1
+ 1262 0037 57       		.byte	0x57
+ 1263 0038 00000000 		.4byte	0
+ 1264 003c 00000000 		.4byte	0
+ 1265              	.LLST2:
+ 1266 0040 02000000 		.4byte	.LVL5
+ 1267 0044 1E000000 		.4byte	.LVL11
+ 1268 0048 0600     		.2byte	0x6
+ 1269 004a 9E       		.byte	0x9e
+ 1270 004b 04       		.uleb128 0x4
+ 1271 004c 00000000 		.4byte	0
+ 1272 0050 1E000000 		.4byte	.LVL11
+ 1273 0054 21000000 		.4byte	.LVL12-1
+ 1274 0058 0100     		.2byte	0x1
+ 1275 005a 50       		.byte	0x50
+ 1276 005b 21000000 		.4byte	.LVL12-1
+ 1277 005f 42000000 		.4byte	.LVL15
+ 1278 0063 0100     		.2byte	0x1
+ 1279 0065 56       		.byte	0x56
+ 1280 0066 66000000 		.4byte	.LVL22
+ 1281 006a 68000000 		.4byte	.LVL23
+ 1282 006e 0100     		.2byte	0x1
+ 1283 0070 56       		.byte	0x56
+ 1284 0071 6E000000 		.4byte	.LVL24
+ 1285 0075 84000000 		.4byte	.LVL27
+ 1286 0079 0100     		.2byte	0x1
+ 1287 007b 56       		.byte	0x56
+ 1288 007c A8000000 		.4byte	.LVL34
+ 1289 0080 AA000000 		.4byte	.LVL35
+ 1290 0084 0100     		.2byte	0x1
+ 1291 0086 56       		.byte	0x56
+ 1292 0087 B0000000 		.4byte	.LVL36
+ 1293 008b CC000000 		.4byte	.LVL39
+ 1294 008f 0100     		.2byte	0x1
+ 1295 0091 56       		.byte	0x56
+ 1296 0092 F0000000 		.4byte	.LVL46
+ 1297 0096 F2000000 		.4byte	.LVL47
+ 1298 009a 0100     		.2byte	0x1
+ 1299 009c 56       		.byte	0x56
+ 1300 009d F8000000 		.4byte	.LVL48
+ 1301 00a1 38010000 		.4byte	.LVL57
+ 1302 00a5 0100     		.2byte	0x1
+ 1303 00a7 56       		.byte	0x56
+ 1304 00a8 00000000 		.4byte	0
+ 1305 00ac 00000000 		.4byte	0
+ 1306              	.LLST3:
+ 1307 00b0 42000000 		.4byte	.LVL15
+ 1308 00b4 66000000 		.4byte	.LVL22
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 26
 
 
- 1243 0229 75696E74 		.ascii	"uint8\000"
- 1243      3800
- 1244              	.LASF4:
- 1245 022f 6C6F6E67 		.ascii	"long int\000"
- 1245      20696E74 
- 1245      00
- 1246              	.LASF34:
- 1247 0238 70757473 		.ascii	"puts\000"
- 1247      00
- 1248              	.LASF0:
- 1249 023d 7369676E 		.ascii	"signed char\000"
- 1249      65642063 
- 1249      68617200 
- 1250              	.LASF32:
- 1251 0249 4144435F 		.ascii	"ADC_Battery_StartConvert\000"
- 1251      42617474 
- 1251      6572795F 
- 1251      53746172 
- 1251      74436F6E 
- 1252              	.LASF22:
- 1253 0262 43794465 		.ascii	"CyDelay\000"
- 1253      6C617900 
- 1254              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 1309 00b8 0100     		.2byte	0x1
+ 1310 00ba 56       		.byte	0x56
+ 1311 00bb 68000000 		.4byte	.LVL23
+ 1312 00bf 6E000000 		.4byte	.LVL24
+ 1313 00c3 0100     		.2byte	0x1
+ 1314 00c5 56       		.byte	0x56
+ 1315 00c6 84000000 		.4byte	.LVL27
+ 1316 00ca A8000000 		.4byte	.LVL34
+ 1317 00ce 0100     		.2byte	0x1
+ 1318 00d0 56       		.byte	0x56
+ 1319 00d1 AA000000 		.4byte	.LVL35
+ 1320 00d5 B0000000 		.4byte	.LVL36
+ 1321 00d9 0100     		.2byte	0x1
+ 1322 00db 56       		.byte	0x56
+ 1323 00dc CC000000 		.4byte	.LVL39
+ 1324 00e0 F0000000 		.4byte	.LVL46
+ 1325 00e4 0100     		.2byte	0x1
+ 1326 00e6 56       		.byte	0x56
+ 1327 00e7 F2000000 		.4byte	.LVL47
+ 1328 00eb F8000000 		.4byte	.LVL48
+ 1329 00ef 0100     		.2byte	0x1
+ 1330 00f1 56       		.byte	0x56
+ 1331 00f2 00000000 		.4byte	0
+ 1332 00f6 00000000 		.4byte	0
+ 1333              		.section	.debug_aranges,"",%progbits
+ 1334 0000 24000000 		.4byte	0x24
+ 1335 0004 0200     		.2byte	0x2
+ 1336 0006 00000000 		.4byte	.Ldebug_info0
+ 1337 000a 04       		.byte	0x4
+ 1338 000b 00       		.byte	0
+ 1339 000c 0000     		.2byte	0
+ 1340 000e 0000     		.2byte	0
+ 1341 0010 00000000 		.4byte	.LFB63
+ 1342 0014 2C000000 		.4byte	.LFE63-.LFB63
+ 1343 0018 00000000 		.4byte	.LFB64
+ 1344 001c 74010000 		.4byte	.LFE64-.LFB64
+ 1345 0020 00000000 		.4byte	0
+ 1346 0024 00000000 		.4byte	0
+ 1347              		.section	.debug_ranges,"",%progbits
+ 1348              	.Ldebug_ranges0:
+ 1349 0000 00000000 		.4byte	.LFB63
+ 1350 0004 2C000000 		.4byte	.LFE63
+ 1351 0008 00000000 		.4byte	.LFB64
+ 1352 000c 74010000 		.4byte	.LFE64
+ 1353 0010 00000000 		.4byte	0
+ 1354 0014 00000000 		.4byte	0
+ 1355              		.section	.debug_line,"",%progbits
+ 1356              	.Ldebug_line0:
+ 1357 0000 76020000 		.section	.debug_str,"MS",%progbits,1
+ 1357      02009A01 
+ 1357      00000201 
+ 1357      FB0E0D00 
+ 1357      01010101 
+ 1358              	.LASF9:
+ 1359 0000 5F5F696E 		.ascii	"__int32_t\000"
+ 1359      7433325F 
+ 1359      7400
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 27
+
+
+ 1360              	.LASF32:
+ 1361 000a 4144435F 		.ascii	"ADC_result_to_volts\000"
+ 1361      72657375 
+ 1361      6C745F74 
+ 1361      6F5F766F 
+ 1361      6C747300 
+ 1362              	.LASF10:
+ 1363 001e 696E7433 		.ascii	"int32_t\000"
+ 1363      325F7400 
+ 1364              	.LASF14:
+ 1365 0026 666C6F61 		.ascii	"float\000"
+ 1365      7400
+ 1366              	.LASF28:
+ 1367 002c 5F5F6275 		.ascii	"__builtin_puts\000"
+ 1367      696C7469 
+ 1367      6E5F7075 
+ 1367      747300
+ 1368              	.LASF1:
+ 1369 003b 756E7369 		.ascii	"unsigned char\000"
+ 1369      676E6564 
+ 1369      20636861 
+ 1369      7200
+ 1370              	.LASF13:
+ 1371 0049 696E7431 		.ascii	"int16\000"
+ 1371      3600
+ 1372              	.LASF5:
+ 1373 004f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1373      20756E73 
+ 1373      69676E65 
+ 1373      6420696E 
+ 1373      7400
+ 1374              	.LASF30:
+ 1375 0061 566F6C74 		.ascii	"Voltage_Monitoring.c\000"
+ 1375      6167655F 
+ 1375      4D6F6E69 
+ 1375      746F7269 
+ 1375      6E672E63 
+ 1376              	.LASF3:
+ 1377 0076 73686F72 		.ascii	"short unsigned int\000"
+ 1377      7420756E 
+ 1377      7369676E 
+ 1377      65642069 
+ 1377      6E7400
+ 1378              	.LASF33:
+ 1379 0089 4D656173 		.ascii	"Measure_Voltage\000"
+ 1379      7572655F 
+ 1379      566F6C74 
+ 1379      61676500 
+ 1380              	.LASF34:
+ 1381 0099 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1381      52784275 
+ 1381      66666572 
+ 1381      00
+ 1382              	.LASF24:
+ 1383 00a6 42617474 		.ascii	"BatteryLed_Read\000"
+ 1383      6572794C 
+ 1383      65645F52 
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 28
+
+
+ 1383      65616400 
+ 1384              	.LASF15:
+ 1385 00b6 646F7562 		.ascii	"double\000"
+ 1385      6C6500
+ 1386              	.LASF31:
+ 1387 00bd 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo_Robotti\\Zumo_Rob"
+ 1387      73657273 
+ 1387      5C56696C 
+ 1387      6C65204C 
+ 1387      5C446573 
+ 1388 00eb 6F747469 		.ascii	"otti\\ZumoBot.cydsn\000"
+ 1388      5C5A756D 
+ 1388      6F426F74 
+ 1388      2E637964 
+ 1388      736E00
+ 1389              	.LASF12:
+ 1390 00fe 75696E74 		.ascii	"uint32\000"
+ 1390      333200
+ 1391              	.LASF29:
+ 1392 0105 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1392      4320342E 
+ 1392      392E3320 
+ 1392      32303135 
+ 1392      30333033 
+ 1393 0138 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1393      20726576 
+ 1393      6973696F 
+ 1393      6E203232 
+ 1393      31323230 
+ 1394 016b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1394      66756E63 
+ 1394      74696F6E 
+ 1394      2D736563 
+ 1394      74696F6E 
+ 1395              	.LASF8:
+ 1396 0193 756E7369 		.ascii	"unsigned int\000"
+ 1396      676E6564 
+ 1396      20696E74 
+ 1396      00
+ 1397              	.LASF23:
+ 1398 01a0 4144435F 		.ascii	"ADC_Battery_GetResult16\000"
+ 1398      42617474 
+ 1398      6572795F 
+ 1398      47657452 
+ 1398      6573756C 
+ 1399              	.LASF7:
+ 1400 01b8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1400      206C6F6E 
+ 1400      6720756E 
+ 1400      7369676E 
+ 1400      65642069 
+ 1401              	.LASF21:
+ 1402 01cf 42656570 		.ascii	"Beep\000"
+ 1402      00
+ 1403              	.LASF19:
+ 1404 01d4 766F6C74 		.ascii	"volts\000"
+ 1404      7300
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 29
+
+
+ 1405              	.LASF18:
+ 1406 01da 6C6F6E67 		.ascii	"long double\000"
+ 1406      20646F75 
+ 1406      626C6500 
+ 1407              	.LASF17:
+ 1408 01e6 73697A65 		.ascii	"sizetype\000"
+ 1408      74797065 
+ 1408      00
+ 1409              	.LASF6:
+ 1410 01ef 6C6F6E67 		.ascii	"long long int\000"
+ 1410      206C6F6E 
+ 1410      6720696E 
+ 1410      7400
+ 1411              	.LASF22:
+ 1412 01fd 42617474 		.ascii	"BatteryLed_Write\000"
+ 1412      6572794C 
+ 1412      65645F57 
+ 1412      72697465 
+ 1412      00
+ 1413              	.LASF16:
+ 1414 020e 63686172 		.ascii	"char\000"
+ 1414      00
+ 1415              	.LASF20:
+ 1416 0213 61646372 		.ascii	"adcresult\000"
+ 1416      6573756C 
+ 1416      7400
+ 1417              	.LASF27:
+ 1418 021d 7072696E 		.ascii	"printf\000"
+ 1418      746600
+ 1419              	.LASF26:
+ 1420 0224 4144435F 		.ascii	"ADC_Battery_IsEndConversion\000"
+ 1420      42617474 
+ 1420      6572795F 
+ 1420      4973456E 
+ 1420      64436F6E 
+ 1421              	.LASF2:
+ 1422 0240 73686F72 		.ascii	"short int\000"
+ 1422      7420696E 
+ 1422      7400
+ 1423              	.LASF11:
+ 1424 024a 75696E74 		.ascii	"uint8\000"
+ 1424      3800
+ 1425              	.LASF4:
+ 1426 0250 6C6F6E67 		.ascii	"long int\000"
+ 1426      20696E74 
+ 1426      00
+ 1427              	.LASF36:
+ 1428 0259 70757473 		.ascii	"puts\000"
+ 1428      00
+ 1429              	.LASF0:
+ 1430 025e 7369676E 		.ascii	"signed char\000"
+ 1430      65642063 
+ 1430      68617200 
+ 1431              	.LASF35:
+ 1432 026a 4144435F 		.ascii	"ADC_Battery_StartConvert\000"
+ 1432      42617474 
+ 1432      6572795F 
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccB8hUjh.s 			page 30
+
+
+ 1432      53746172 
+ 1432      74436F6E 
+ 1433              	.LASF25:
+ 1434 0283 43794465 		.ascii	"CyDelay\000"
+ 1434      6C617900 
+ 1435              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
