@@ -50,49 +50,53 @@ void Measure_Voltage()
         // three long and low-sounding beeps; from 5.0 to 4.5 V, six medium-length, medium-pitch beeps; from 4.5 V to 
         // 4.1 V, 9 loud and sharp beeps; and finally if the voltage reaches 4.1 V, there will be a never-ending flurry of extremely short and sharp beeps.
         // EDIT: Added flashing light effects to go with the beeps :)
-        if (volts >= 5.0)
-        { for (i = 0; i < 3; i++) 
-            {
-                Beep(80, 60);
-                BatteryLed_Write(1);
-                CyDelay(600);
-                BatteryLed_Write(0);
-            }
-        } else if (volts < 5.0 && volts >= 4.5) {
-         for (i = 0; i < 6; i++) 
-            {
-                Beep(40, 80);
-                BatteryLed_Write(1);
-                CyDelay(500);
-                BatteryLed_Write(0);
-            }            
-        } else if (volts < 4.5 && volts >= 4.1) {
+        if (volts) // null check is needed to prevent alarms when the robot is off but the chip is on
+        {
         
-            for (i = 0; i < 9; i++) 
-            {
-                Beep(30, 95);
-                BatteryLed_Write(1);
-                CyDelay(400);
-                BatteryLed_Write(0);
-            }       
-        } else if (volts < 4.1 && volts > 0.0 && volts) {
-        
-            while (1) 
-            {
-                Beep(20, 110);
-                BatteryLed_Write(1);
-                CyDelay(200);
-                BatteryLed_Write(0);
-                printf("%f \n", volts);
-                printf("DANGER! Battery LOW! Please charge ASAP!!!\n");
+            if (volts >= 5.0)
+            { for (i = 0; i < 3; i++) 
+                {
+                    Beep(80, 60);
+                    BatteryLed_Write(1);
+                    CyDelay(600);
+                    BatteryLed_Write(0);
+                }
+            } else if (volts < 5.0 && volts >= 4.5) {
+             for (i = 0; i < 6; i++) 
+                {
+                    Beep(40, 80);
+                    BatteryLed_Write(1);
+                    CyDelay(500);
+                    BatteryLed_Write(0);
+                }            
+            } else if (volts < 4.5 && volts >= 4.1) {
+            
+                for (i = 0; i < 9; i++) 
+                {
+                    Beep(30, 95);
+                    BatteryLed_Write(1);
+                    CyDelay(400);
+                    BatteryLed_Write(0);
+                }       
+            } else if (volts < 4.1 && volts > 0.0) {
+            
+                while (1) 
+                {
+                    Beep(20, 110);
+                    BatteryLed_Write(1);
+                    CyDelay(200);
+                    BatteryLed_Write(0);
+                    printf("%f \n", volts);
+                    printf("DANGER! Battery LOW! Please charge ASAP!!!\n");
+                }
+           
             }
-       
+                  
+            // Print bit & voltage values
+            printf("%d %f\r\n",adcresult, volts);
         }
-              
-        // Print bit & voltage values
-        printf("%d %f\r\n",adcresult, volts);
+            CyDelay(500);
     }
-        CyDelay(500);
 }
 
 
