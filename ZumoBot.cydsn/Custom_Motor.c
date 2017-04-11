@@ -14,8 +14,6 @@
 void Custom_forward(uint8 speed);
 void Right_turn(uint8 speed);
 void Left_turn(uint8 speed);
-void Forceful_left_turn(uint8 speed);
-void Forceful_right_turn(uint8 speed);
 void Corrective_twitch(uint8 dir);
 
 
@@ -53,19 +51,6 @@ void Left_turn(uint8 speed)
         PWM_WriteCompare1(speed);
 }
 
-// For use in steep curves. Turns to the left more forcefully, by spinning the left track backwards
-void Forceful_left_turn(uint8 speed)
-{
-    MotorDirLeft_Write(1); 
-    PWM_WriteCompare1(248 - speed); // to preseve the behaviour where a lower speed value leads to a steeper turn 
-}
-
-// For use in steep curves. Turns to the right more forcefully, by spinning the right track backwards
-void Forceful_right_turn(uint8 speed)
-{
-    MotorDirRight_Write(1); 
-    PWM_WriteCompare2(248 - speed); // to preseve the behaviour where a lower speed value leads to a steeper turn
-}
 
 // An experimental method to be used for a slight 'corrective twitch' after a right or left turn.
 // At the moment, it simply stops the respective motor for a small, fixed amount of time (technically *forever*, 
