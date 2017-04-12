@@ -71,10 +71,10 @@ int main()
     int maxDiff_r1 = black_threshold_r1 - white_threshold_r1;
     int maxDiff_r3 = black_threshold_r3 - white_threshold_r3;
     
-    int point1_left = 0;
-    int point2_left = 0;
-    int point1_right = 0;
-    int point2_right = 0;
+    int blackness1_left = 0;
+    int blackness2_left = 0;
+    int blackness1_right = 0;
+    int blackness2_right = 0;
     
     float diff_left = 0.0;
     float diff_right = 0.0;
@@ -132,106 +132,126 @@ int main()
         //CyDelay(1000); // comment this delay out when doing movement tests / racing !!!
         
         
-        // Line-following logic (alpha version ... ).
+        // Line-following logic.
         // NOTE: due to the calibration of the motor speeds, 248 (255 - 7) is our current max speed!
-        // NOTE#2: I'm not sure if there is a better way of doing things than to continuously call the correction methods in a do-while loop.
-        // It seems horribly inefficient, but it's an easy way to stop the turn exactly when the value of dig.x changes.
         if (dig.l1 == 1)
         { 
             // When the robot starts to veer off to the left, do a correction towards the right, until the veering off has been corrected.
             do {
                 
+                // Obtain an initial value for blackness1_left, then close access to the if statement (needed for the loop to work correctly).
                 if (check == 0)
                 {
                     reflectance_read(&ref);
-                    point1_left = black_threshold_l1 - ref.l1;
-                    check = 1;
+                    blackness1_left = ref.l1;
                     CyDelay(1);
+                    check = 1;                   
                 }
                 
+                // Obtain a second value (1 millisecond later).
                 reflectance_read(&ref);
-                reflectance_digital(&dig); 
-                point2_left = black_threshold_l1 - ref.l1;
+                reflectance_digital(&dig); // needed to check if the turn should be ended
+                blackness2_left = ref.l1;
                 
-                diff_left = point1_left - point2_left;
-                
-                //turn = 248 * (ref.l1 / threshold_l1);
-                
-                turn = speed - 5000 * (diff_left / maxDiff_l1);
-                //printf("%d\n", turn);
-                               
-                Right_turn(turn);
-                                
-                point1_left = point2_left;
-                
-                /*
-                // If the reflectance reaches a certain level of whiteness, execute a more forceful turn.
-                // NOTE: This would work better with the SPEED of the change in reflectance, as high whiteness
-                // is reached quicker in steeped curves
-                if (ref.l1 < left_forceful_limit)
+                // Calculate the difference between the two values.
+                // (A check for negativity is needed due to the 'wobbly' behaviour of the reflectance sensor.)
+                diff_left = blackness1_left - blackness2_left;
+                if (diff_left < 0)
                 {
-                    //Forceful_right_turn(turn);
-                    turn *= 0.7;
-                    Right_turn(turn);
-                    
-                } else {
+                    diff_left = 0;
+                }
                 
-                    Right_turn(turn); 
-                } */
+                // Determine the correct turn amount (0 is max turn, 248 is no turn).
+                
+                // The 'base' turn amount is simply the robot's speed value multiplied by the latest measurement 
+                // divided by the maximum (threshold) blackness value (determined for each sensor at the edge of the black line).
+                // This is then further modified by the rate of change multiplied by a coefficient (to be determined experimentally; dummy value 5000).
+                // The more rapid the change of values (i.e. the difference between two measurements), the less the final value of turn 
+                // becomes, thus leading to a steeper turn. 
+                // Finally, a < 0 check was added to pre-empt any potential issues with large diff values.
+                turn = speed * (ref.l1 / black_threshold_l1);
+                turn -= ( 5000 * (diff_left / maxDiff_l1));
+                if (turn < 0)
+                {
+                    turn = 0;
+                }
+                                
+                // Execute the turn.
+                Right_turn(turn);
+                             
+                // Store the value of the second measurement to the variable for the first.
+                // As the loop continues, blackness2's value is stored in blackness1 and then blackness2 gets a new, measured value; etc.
+                blackness1_left = blackness2_left;
+                
                 CyDelay(1);
+                               
+                //printf("%d\n", turn);
+                
             } while (dig.l1 == 1);
+            // Return 'check' to its initial value, so that we can get an initial measurement 
+            // once the loop starts again (i.e. when the robot needs to turn again).
             check = 0;
+            // Since the turn has ended, continue forward with the designated speed.
             Custom_forward(speed);
                     
         } else if (dig.r1 == 1) {
             
-            // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected
+            // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected.
             do {
                 
+                // Obtain an initial value for blackness1_right, then close access to the if statement (needed for the loop to work correctly).
                 if (check == 0)
                 {
                     reflectance_read(&ref);
-                    point1_right = black_threshold_r1 - ref.r1;
-                    check = 1;
+                    blackness1_right = ref.r1;
                     CyDelay(1);
+                    check = 1;
                 }
                 
+                // Obtain a second value (1 millisecond later).
                 reflectance_read(&ref);
                 reflectance_digital(&dig); 
-                point2_right = black_threshold_r1 - ref.r1;
+                blackness2_right = ref.r1;
                 
-                diff_right = point1_right - point2_right;
+                // Calculate the difference between the two values.
+                // (A check for negativity is needed due to the 'wobbly' behaviour of the reflectance sensor.)
+                diff_right = blackness1_right - blackness2_right;
+                if (diff_right < 0)
+                {
+                    diff_right = 0;
+                }
                 
-                turn = speed - 5000 * (diff_right / maxDiff_r1);  
-                //printf("%d\n", turn);
+                // Determine the correct turn amount (0 is max turn, 248 is no turn).
                 
+                // The 'base' turn amount is simply the robot's speed value multiplied by the latest measurement 
+                // divided by the maximum (threshold) blackness value (determined for each sensor at the edge of the black line).
+                // This is then further modified by the rate of change multiplied by a coefficient (to be determined experimentally; dummy value 5000).
+                // The more rapid the change of values (i.e. the difference between two measurements), the less the final value of turn 
+                // becomes, thus leading to a steeper turn. 
+                // Finally, a < 0 check was added to pre-empt any potential issues with large diff values.
+                turn = speed * (ref.r1 / black_threshold_r1);
+                turn -= ( 5000 * (diff_right / maxDiff_r1));
+                if (turn < 0)
+                {
+                    turn = 0;
+                }  
+                
+                // Execute the turn.
                 Left_turn(turn);
                 
-                point1_right = point2_right;
-                
-                
-                /*
-                reflectance_read(&ref); 
-                reflectance_digital(&dig);
-                
-                turn = 248 * (ref.r1 / threshold_r1);
-
-                // If the reflectance reaches a certain level of whiteness, execute a more forceful turn.
-                // NOTE: This would work better with the SPEED of the change in reflectance, as high whiteness
-                // is reached quicker in steeped curves
-                if (ref.r1 < right_forceful_limit)
-                {
-                    //Forceful_left_turn(turn);
-                    turn *= 0.7;
-                    Left_turn(turn);
-                    
-                } else {
-                
-                    Left_turn(turn); 
-                } */
+                // Store the value of the second measurement to the variable for the first.
+                // As the loop continues, blackness2's value is stored in blackness1 and then blackness2 gets a new, measured value; etc.
+                blackness1_right = blackness2_right;
+                                
                 CyDelay(1);
+                               
+                //printf("%d\n", turn);
+                
             } while (dig.r1 == 1);
+            // Return 'check' to its initial value, so that we can get an initial measurement 
+            // once the loop starts again (i.e. when the robot needs to turn again).
             check = 0;
+            // Since the turn has ended, continue forward with the designated speed.
             Custom_forward(speed);
         } 
                                     
