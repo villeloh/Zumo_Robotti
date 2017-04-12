@@ -60,12 +60,7 @@ int main()
     int black_threshold_l1 = 17500;
     int black_threshold_r1 = 22000;
     int black_threshold_r3 = 21500;
-    
-    /* int black_threshold_l3 = 23999;
-    int black_threshold_l1 = 23999;
-    int black_threshold_r1 = 23999;
-    int black_threshold_r3 = 23999; */
-    
+        
     int white_threshold_l3 = 5793;
     int white_threshold_l1 = 4800;
     int white_threshold_r1 = 4822;
@@ -77,15 +72,15 @@ int main()
     int maxDiff_r3 = black_threshold_r3 - white_threshold_r3;
     
     int point1_left = 0;
-    int point2_left = 23999;
+    int point2_left = 0;
     int point1_right = 0;
-    int point2_right = 23999;
+    int point2_right = 0;
     
     float diff_left = 0.0;
     float diff_right = 0.0;
     
     // maximum movement speed of the robot
-    int speed = 50;
+    int speed = 124;
     
     // reflectance sub-limits for different turning behaviour
     int left_forceful_limit = 14000;
@@ -151,6 +146,7 @@ int main()
                     reflectance_read(&ref);
                     point1_left = black_threshold_l1 - ref.l1;
                     check = 1;
+                    CyDelay(1);
                 }
                 
                 reflectance_read(&ref);
@@ -161,12 +157,11 @@ int main()
                 
                 //turn = 248 * (ref.l1 / threshold_l1);
                 
-                turn = speed - speed * (diff_left / maxDiff_l1);
+                turn = speed - 5000 * (diff_left / maxDiff_l1);
                 //printf("%d\n", turn);
                                
                 Right_turn(turn);
-                
-                
+                                
                 point1_left = point2_left;
                 
                 /*
@@ -198,6 +193,7 @@ int main()
                     reflectance_read(&ref);
                     point1_right = black_threshold_r1 - ref.r1;
                     check = 1;
+                    CyDelay(1);
                 }
                 
                 reflectance_read(&ref);
@@ -206,7 +202,7 @@ int main()
                 
                 diff_right = point1_right - point2_right;
                 
-                turn = speed - speed * (diff_right / maxDiff_r1);  
+                turn = speed - 5000 * (diff_right / maxDiff_r1);  
                 //printf("%d\n", turn);
                 
                 Left_turn(turn);
