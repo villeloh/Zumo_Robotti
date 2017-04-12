@@ -50,17 +50,42 @@ int main()
     
     int exitMain = 0;
     
+    int check = 0;
+    
     // turn value for the motors to use
     uint8 turn = 0;
     
     // color thresholds for use in different behaviours
-    int threshold_l3 = 21000;
-    int threshold_l1 = 17500;
-    int threshold_r1 = 22000;
-    int threshold_r3 = 21500;
+    int black_threshold_l3 = 21000;
+    int black_threshold_l1 = 17500;
+    int black_threshold_r1 = 22000;
+    int black_threshold_r3 = 21500;
+    
+    /* int black_threshold_l3 = 23999;
+    int black_threshold_l1 = 23999;
+    int black_threshold_r1 = 23999;
+    int black_threshold_r3 = 23999; */
+    
+    int white_threshold_l3 = 5793;
+    int white_threshold_l1 = 4800;
+    int white_threshold_r1 = 4822;
+    int white_threshold_r3 = 6293;
+    
+    int maxDiff_l3 = black_threshold_l3 - white_threshold_l3;
+    int maxDiff_l1 = black_threshold_l1 - white_threshold_l1;
+    int maxDiff_r1 = black_threshold_r1 - white_threshold_r1;
+    int maxDiff_r3 = black_threshold_r3 - white_threshold_r3;
+    
+    int point1_left = 0;
+    int point2_left = 23999;
+    int point1_right = 0;
+    int point2_right = 23999;
+    
+    float diff_left = 0.0;
+    float diff_right = 0.0;
     
     // maximum movement speed of the robot
-    int speed = 124;
+    int speed = 50;
     
     // reflectance sub-limits for different turning behaviour
     int left_forceful_limit = 14000;
@@ -78,17 +103,16 @@ int main()
     
     // Initialize IR sensors
     sensor_isr_StartEx(sensor_isr_handler); 
-    reflectance_set_threshold(threshold_l3, threshold_l1, threshold_r1, threshold_r3);  
+    reflectance_set_threshold(black_threshold_l3, black_threshold_l1, black_threshold_r1, black_threshold_r3);  
     reflectance_start();
     IR_led_Write(1);
 
-    printf("\nBoot\n");
+    //printf("\nBoot\n");
 
     //BatteryLed_Write(1); // Switch led on 
     BatteryLed_Write(0); // Switch led off 
     uint8 button;
     //button = SW1_Read(); // read SW1 on pSoC board
-    
     // To start the robot's movement routine, press the button
     while (exit == 0) 
     {
@@ -121,11 +145,31 @@ int main()
         { 
             // When the robot starts to veer off to the left, do a correction towards the right, until the veering off has been corrected.
             do {
+                
+                if (check == 0)
+                {
+                    reflectance_read(&ref);
+                    point1_left = black_threshold_l1 - ref.l1;
+                    check = 1;
+                }
+                
                 reflectance_read(&ref);
                 reflectance_digital(&dig); 
+                point2_left = black_threshold_l1 - ref.l1;
                 
-                turn = 248 * (ref.l1 / threshold_l1);
+                diff_left = point1_left - point2_left;
                 
+                //turn = 248 * (ref.l1 / threshold_l1);
+                
+                turn = speed - speed * (diff_left / maxDiff_l1);
+                //printf("%d\n", turn);
+                               
+                Right_turn(turn);
+                
+                
+                point1_left = point2_left;
+                
+                /*
                 // If the reflectance reaches a certain level of whiteness, execute a more forceful turn.
                 // NOTE: This would work better with the SPEED of the change in reflectance, as high whiteness
                 // is reached quicker in steeped curves
@@ -138,15 +182,39 @@ int main()
                 } else {
                 
                     Right_turn(turn); 
-                }
-                
+                } */
+                CyDelay(1);
             } while (dig.l1 == 1);
+            check = 0;
             Custom_forward(speed);
                     
         } else if (dig.r1 == 1) {
             
             // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected
             do {
+                
+                if (check == 0)
+                {
+                    reflectance_read(&ref);
+                    point1_right = black_threshold_r1 - ref.r1;
+                    check = 1;
+                }
+                
+                reflectance_read(&ref);
+                reflectance_digital(&dig); 
+                point2_right = black_threshold_r1 - ref.r1;
+                
+                diff_right = point1_right - point2_right;
+                
+                turn = speed - speed * (diff_right / maxDiff_r1);  
+                //printf("%d\n", turn);
+                
+                Left_turn(turn);
+                
+                point1_right = point2_right;
+                
+                
+                /*
                 reflectance_read(&ref); 
                 reflectance_digital(&dig);
                 
@@ -164,9 +232,10 @@ int main()
                 } else {
                 
                     Left_turn(turn); 
-                }
-
+                } */
+                CyDelay(1);
             } while (dig.r1 == 1);
+            check = 0;
             Custom_forward(speed);
         } 
                                     
