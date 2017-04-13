@@ -14,7 +14,7 @@
 void Custom_forward(uint8 speed);
 void Right_turn(uint8 speed);
 void Left_turn(uint8 speed);
-void Corrective_twitch(uint8 dir);
+void Corrective_twitch(uint8 dir, uint8 delay);
 
 
 
@@ -29,8 +29,7 @@ void Custom_forward(uint8 speed)
     MotorDirLeft_Write(0);      // set LeftMotor forward mode
     MotorDirRight_Write(0);     // set RightMotor forward mode
     PWM_WriteCompare1(speed + 7); 
-    PWM_WriteCompare2(speed); 
-
+    PWM_WriteCompare2(speed);
 }
 
 // Called in main.c when the robot is starting to veer to the left (off the black line).
@@ -39,7 +38,7 @@ void Custom_forward(uint8 speed)
 // (instead of speeding up the left motor to turn).
 void Right_turn(uint8 speed)
 {   
-    PWM_WriteCompare2(speed); 
+    PWM_WriteCompare2(248 - speed); 
 }
 
 // Called in main.c when the robot is starting to veer to the right (off the black line).
@@ -48,26 +47,26 @@ void Right_turn(uint8 speed)
 // (instead of speeding up the right motor to turn).
 void Left_turn(uint8 speed)
 {
-        PWM_WriteCompare1(speed);
+        PWM_WriteCompare1(248 - (speed + 7) ); // calibration is needed in the turn method as well
 }
 
 
 // An experimental method to be used for a slight 'corrective twitch' after a right or left turn.
 // At the moment, it simply stops the respective motor for a small, fixed amount of time (technically *forever*, 
 // but due to where this method will be called, in practice this should never actually occur).
-void Corrective_twitch(uint8 dir)
+void Corrective_twitch(uint8 dir, uint8 delay)
 {
     // '0' = left turn
     if (dir == 0) 
     {
         PWM_WriteCompare1(0);
-        CyDelay(2); // dummy value; optimal value must be found experimentally
+        CyDelay(delay); // optimal value of the delay must be found experimentally
         
       // '1' = right turn  
     } else if (dir == 1) {
     
         PWM_WriteCompare2(0);
-        CyDelay(2); // dummy value; optimal value must be found experimentally
+        CyDelay(delay); // optimal value of the delay must be found experimentally
     }
 
 }

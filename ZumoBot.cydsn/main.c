@@ -55,15 +55,15 @@ int main()
     // turn value for the motors to use
     uint8 turn = 0;
     
-    // color thresholds for use in different behaviours
+    // color thresholds for use in different behaviours (determined experimentally)
     int black_threshold_l3 = 21000;
     int black_threshold_l1 = 17500;
     int black_threshold_r1 = 22000;
     int black_threshold_r3 = 21500;
         
     int white_threshold_l3 = 5793;
-    int white_threshold_l1 = 4800;
-    int white_threshold_r1 = 4822;
+    int white_threshold_l1 = 4500;
+    int white_threshold_r1 = 4522;
     int white_threshold_r3 = 6293;
     
     int maxDiff_l3 = black_threshold_l3 - white_threshold_l3;
@@ -71,20 +71,20 @@ int main()
     int maxDiff_r1 = black_threshold_r1 - white_threshold_r1;
     int maxDiff_r3 = black_threshold_r3 - white_threshold_r3;
     
-    int blackness1_left = 0;
-    int blackness2_left = 0;
-    int blackness1_right = 0;
-    int blackness2_right = 0;
+    float blackness1_left = 23999;
+    float blackness2_left = 23999;
+    float blackness1_right = 23999;
+    float blackness2_right = 23999;
     
     float diff_left = 0.0;
     float diff_right = 0.0;
     
     // maximum movement speed of the robot
-    int speed = 124;
+    uint8 speed = 248;
     
     // reflectance sub-limits for different turning behaviour
-    int left_forceful_limit = 14000;
-    int right_forceful_limit = 17000;
+    //int left_forceful_limit = 14000;
+    //int right_forceful_limit = 17000;
       
     struct sensors_ ref;
     struct sensors_ dig;
@@ -102,12 +102,10 @@ int main()
     reflectance_start();
     IR_led_Write(1);
 
-    //printf("\nBoot\n");
-
-    //BatteryLed_Write(1); // Switch led on 
     BatteryLed_Write(0); // Switch led off 
+    
     uint8 button;
-    //button = SW1_Read(); // read SW1 on pSoC board
+    
     // To start the robot's movement routine, press the button
     while (exit == 0) 
     {
@@ -122,10 +120,11 @@ int main()
     
     Custom_forward(speed);
 
+    
     while(exitMain == 0)
     {    
         
-        reflectance_read(&ref); // raw sensor value; 0 - 24 000
+        reflectance_read(&ref); // raw reflectance value ('blackness') from the sensor; 0 - 23 999
         //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
         reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
         //printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
@@ -161,20 +160,33 @@ int main()
                     diff_left = 0;
                 }
                 
-                // Determine the correct turn amount (0 is max turn, 248 is no turn).
+                // Determine the correct turn amount (248 is max turn, 0 is no turn).
                 
-                // The 'base' turn amount is simply the robot's speed value multiplied by the latest measurement 
-                // divided by the maximum (threshold) blackness value (determined for each sensor at the edge of the black line).
-                // This is then further modified by the rate of change multiplied by a coefficient (to be determined experimentally; dummy value 5000).
-                // The more rapid the change of values (i.e. the difference between two measurements), the less the final value of turn 
+                // Changed the behaviour of the base turn amount assignment (because the turn methods now work differently). 
+                // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
+                // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
+                // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
+                // (to be determined experimentally; dummy value 350).
+                // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
                 // becomes, thus leading to a steeper turn. 
-                // Finally, a < 0 check was added to pre-empt any potential issues with large diff values.
-                turn = speed * (ref.l1 / black_threshold_l1);
-                turn -= ( 5000 * (diff_left / maxDiff_l1));
-                if (turn < 0)
+                // Finally, > 248 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
+                
+                // Calibrated base turn amount with the black_threshold; when blackness2_left = 17 500, turn = zero.
+                // With 10 000 blackness value, base turn amount = 106.
+                // With 15 000 blackness, base turn amount = 35.
+                // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
+                turn = speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
+                turn += ( 350 * (diff_left / maxDiff_l1));
+                if (turn > 248)
                 {
-                    turn = 0;
+                    turn = 248;
+                } else if (turn < 0) {
+                    turn = 0;   
                 }
+                
+                //printf("blackness1_left: %f \n", blackness1_left);
+                //printf("blackness2_left: %f \n", blackness2_left);
+                //printf("turn: %d \n", turn);
                                 
                 // Execute the turn.
                 Right_turn(turn);
@@ -191,7 +203,9 @@ int main()
             // Return 'check' to its initial value, so that we can get an initial measurement 
             // once the loop starts again (i.e. when the robot needs to turn again).
             check = 0;
-            // Since the turn has ended, continue forward with the designated speed.
+            // For added safety, set turn to zero... May not be necessary.
+            turn = 0;
+            // Since the turn has ended, continue forward at the designated speed.
             Custom_forward(speed);
                     
         } else if (dig.r1 == 1) {
@@ -221,20 +235,32 @@ int main()
                     diff_right = 0;
                 }
                 
-                // Determine the correct turn amount (0 is max turn, 248 is no turn).
+                // Determine the correct turn amount (248 is max turn, 0 is no turn).
                 
-                // The 'base' turn amount is simply the robot's speed value multiplied by the latest measurement 
-                // divided by the maximum (threshold) blackness value (determined for each sensor at the edge of the black line).
-                // This is then further modified by the rate of change multiplied by a coefficient (to be determined experimentally; dummy value 5000).
-                // The more rapid the change of values (i.e. the difference between two measurements), the less the final value of turn 
+                // Changed the behaviour of the base turn amount assignment (because the turn methods now work differently). 
+                // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
+                // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
+                // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
+                // (to be determined experimentally; dummy value 350).
+                // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
                 // becomes, thus leading to a steeper turn. 
-                // Finally, a < 0 check was added to pre-empt any potential issues with large diff values.
-                turn = speed * (ref.r1 / black_threshold_r1);
-                turn -= ( 5000 * (diff_right / maxDiff_r1));
-                if (turn < 0)
+                // Finally, > 248 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
+                
+                // Calibrated base turn amount with the black_threshold; when blackness2_right = 22 000, turn = zero.
+                // With 10 000 blackness value, base turn amount = 135. (real value 142, due to calibration in the turn method itself)
+                // With 15 000 blackness, base turn amount = 78. (real value 85, due to calibration in the method itself)
+                // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
+                turn = speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
+                turn += ( 350 * (diff_right / maxDiff_r1));
+                if (turn > 248)
                 {
-                    turn = 0;
+                    turn = 248;
+                } else if (turn < 0) {
+                    turn = 0;   
                 }  
+                
+                //printf("%d \n", ref.r1);
+                //printf("%d \n", turn);
                 
                 // Execute the turn.
                 Left_turn(turn);
@@ -251,7 +277,9 @@ int main()
             // Return 'check' to its initial value, so that we can get an initial measurement 
             // once the loop starts again (i.e. when the robot needs to turn again).
             check = 0;
-            // Since the turn has ended, continue forward with the designated speed.
+            // For added safety, set turn to zero... May not be necessary.
+            turn = 0;
+            // Since the turn has ended, continue forward at the designated speed.
             Custom_forward(speed);
         } 
                                     
@@ -269,16 +297,8 @@ int main()
         
         CyDelay(1);
         
-        // If the button is pressed while movement routine is running, exit routine and stop the motors
-        button = SW1_Read();
-        if (button == 0) 
-        {
-            exitMain = 1;
-            CyDelay(10);
-        }
     }
     
-    motor_stop();
     while(1) {}
      
  }   

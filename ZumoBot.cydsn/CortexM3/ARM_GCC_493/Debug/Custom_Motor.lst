@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
   27              		.loc 1 28 0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 2
 
 
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -85,7 +85,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
   48 0012 C0B2     		uxtb	r0, r0
   49 0014 FFF7FEFF 		bl	PWM_WriteCompare1
   50              	.LVL4:
-  32:Custom_Motor.c ****     PWM_WriteCompare2(speed); 
+  32:Custom_Motor.c ****     PWM_WriteCompare2(speed);
   51              		.loc 1 32 0
   52 0018 2046     		mov	r0, r4
   53 001a FFF7FEFF 		bl	PWM_WriteCompare2
@@ -102,29 +102,28 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
   64              		.type	Right_turn, %function
   65              	Right_turn:
   66              	.LFB64:
-  33:Custom_Motor.c **** 
-  34:Custom_Motor.c **** }
-  35:Custom_Motor.c **** 
-  36:Custom_Motor.c **** // Called in main.c when the robot is starting to veer to the left (off the black line).
-  37:Custom_Motor.c **** // NOTE: It SLOWS down the right motor in order to turn to the right! This is to preserve 
-  38:Custom_Motor.c **** // speed, as we can drive at full speed by default if we use this approach
-  39:Custom_Motor.c **** // (instead of speeding up the left motor to turn).
-  40:Custom_Motor.c **** void Right_turn(uint8 speed)
-  41:Custom_Motor.c **** {   
-  67              		.loc 1 41 0
+  33:Custom_Motor.c **** }
+  34:Custom_Motor.c **** 
+  35:Custom_Motor.c **** // Called in main.c when the robot is starting to veer to the left (off the black line).
+  36:Custom_Motor.c **** // NOTE: It SLOWS down the right motor in order to turn to the right! This is to preserve 
+  37:Custom_Motor.c **** // speed, as we can drive at full speed by default if we use this approach
+  38:Custom_Motor.c **** // (instead of speeding up the left motor to turn).
+  39:Custom_Motor.c **** void Right_turn(uint8 speed)
+  40:Custom_Motor.c **** {   
+  67              		.loc 1 40 0
   68              		.cfi_startproc
   69              		@ args = 0, pretend = 0, frame = 0
   70              		@ frame_needed = 0, uses_anonymous_args = 0
   71              	.LVL6:
   72 0000 08B5     		push	{r3, lr}
   73              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 3
-
-
   74              		.cfi_offset 3, -8
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 3
+
+
   75              		.cfi_offset 14, -4
-  42:Custom_Motor.c ****     PWM_WriteCompare2(speed); 
-  76              		.loc 1 42 0
+  41:Custom_Motor.c ****     PWM_WriteCompare2(speed); 
+  76              		.loc 1 41 0
   77 0002 FFF7FEFF 		bl	PWM_WriteCompare2
   78              	.LVL7:
   79 0006 08BD     		pop	{r3, pc}
@@ -139,15 +138,15 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
   88              		.type	Left_turn, %function
   89              	Left_turn:
   90              	.LFB65:
-  43:Custom_Motor.c **** }
-  44:Custom_Motor.c **** 
-  45:Custom_Motor.c **** // Called in main.c when the robot is starting to veer to the right (off the black line).
-  46:Custom_Motor.c **** // NOTE: It SLOWS down the left motor in order to turn to the left! This is to preserve 
-  47:Custom_Motor.c **** // speed, as we can drive at full speed by default if we use this approach
-  48:Custom_Motor.c **** // (instead of speeding up the right motor to turn).
-  49:Custom_Motor.c **** void Left_turn(uint8 speed)
-  50:Custom_Motor.c **** {
-  91              		.loc 1 50 0
+  42:Custom_Motor.c **** }
+  43:Custom_Motor.c **** 
+  44:Custom_Motor.c **** // Called in main.c when the robot is starting to veer to the right (off the black line).
+  45:Custom_Motor.c **** // NOTE: It SLOWS down the left motor in order to turn to the left! This is to preserve 
+  46:Custom_Motor.c **** // speed, as we can drive at full speed by default if we use this approach
+  47:Custom_Motor.c **** // (instead of speeding up the right motor to turn).
+  48:Custom_Motor.c **** void Left_turn(uint8 speed)
+  49:Custom_Motor.c **** {
+  91              		.loc 1 49 0
   92              		.cfi_startproc
   93              		@ args = 0, pretend = 0, frame = 0
   94              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -156,8 +155,8 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
   97              		.cfi_def_cfa_offset 8
   98              		.cfi_offset 3, -8
   99              		.cfi_offset 14, -4
-  51:Custom_Motor.c ****         PWM_WriteCompare1(speed);
- 100              		.loc 1 51 0
+  50:Custom_Motor.c ****         PWM_WriteCompare1(speed);
+ 100              		.loc 1 50 0
  101 0002 FFF7FEFF 		bl	PWM_WriteCompare1
  102              	.LVL9:
  103 0006 08BD     		pop	{r3, pc}
@@ -172,18 +171,18 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  112              		.type	Corrective_twitch, %function
  113              	Corrective_twitch:
  114              	.LFB66:
-  52:Custom_Motor.c **** }
+  51:Custom_Motor.c **** }
+  52:Custom_Motor.c **** 
   53:Custom_Motor.c **** 
-  54:Custom_Motor.c **** 
-  55:Custom_Motor.c **** // An experimental method to be used for a slight 'corrective twitch' after a right or left turn.
-  56:Custom_Motor.c **** // At the moment, it simply stops the respective motor for a small, fixed amount of time (technical
-  57:Custom_Motor.c **** // but due to where this method will be called, in practice this should never actually occur).
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 4
+  54:Custom_Motor.c **** // An experimental method to be used for a slight 'corrective twitch' after a right or left turn.
+  55:Custom_Motor.c **** // At the moment, it simply stops the respective motor for a small, fixed amount of time (technical
+  56:Custom_Motor.c **** // but due to where this method will be called, in practice this should never actually occur).
+  57:Custom_Motor.c **** void Corrective_twitch(uint8 dir)
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 4
 
 
-  58:Custom_Motor.c **** void Corrective_twitch(uint8 dir)
-  59:Custom_Motor.c **** {
- 115              		.loc 1 59 0
+  58:Custom_Motor.c **** {
+ 115              		.loc 1 58 0
  116              		.cfi_startproc
  117              		@ args = 0, pretend = 0, frame = 0
  118              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -192,38 +191,38 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  121              		.cfi_def_cfa_offset 8
  122              		.cfi_offset 3, -8
  123              		.cfi_offset 14, -4
-  60:Custom_Motor.c ****     // '0' = left turn
-  61:Custom_Motor.c ****     if (dir == 0) 
- 124              		.loc 1 61 0
+  59:Custom_Motor.c ****     // '0' = left turn
+  60:Custom_Motor.c ****     if (dir == 0) 
+ 124              		.loc 1 60 0
  125 0002 28B9     		cbnz	r0, .L8
-  62:Custom_Motor.c ****     {
-  63:Custom_Motor.c ****         PWM_WriteCompare1(0);
- 126              		.loc 1 63 0
+  61:Custom_Motor.c ****     {
+  62:Custom_Motor.c ****         PWM_WriteCompare1(0);
+ 126              		.loc 1 62 0
  127 0004 FFF7FEFF 		bl	PWM_WriteCompare1
  128              	.LVL11:
-  64:Custom_Motor.c ****         CyDelay(2); // dummy value; optimal value must be found experimentally
- 129              		.loc 1 64 0
+  63:Custom_Motor.c ****         CyDelay(2); // dummy value; optimal value must be found experimentally
+ 129              		.loc 1 63 0
  130 0008 0220     		movs	r0, #2
  131 000a FFF7FEFF 		bl	CyDelay
  132              	.LVL12:
  133 000e 08BD     		pop	{r3, pc}
  134              	.LVL13:
  135              	.L8:
-  65:Custom_Motor.c ****         
-  66:Custom_Motor.c ****       // '1' = right turn  
-  67:Custom_Motor.c ****     } else if (dir == 1) {
- 136              		.loc 1 67 0
+  64:Custom_Motor.c ****         
+  65:Custom_Motor.c ****       // '1' = right turn  
+  66:Custom_Motor.c ****     } else if (dir == 1) {
+ 136              		.loc 1 66 0
  137 0010 0128     		cmp	r0, #1
  138 0012 05D1     		bne	.L7
-  68:Custom_Motor.c ****     
-  69:Custom_Motor.c ****         PWM_WriteCompare2(0);
- 139              		.loc 1 69 0
+  67:Custom_Motor.c ****     
+  68:Custom_Motor.c ****         PWM_WriteCompare2(0);
+ 139              		.loc 1 68 0
  140 0014 0020     		movs	r0, #0
  141              	.LVL14:
  142 0016 FFF7FEFF 		bl	PWM_WriteCompare2
  143              	.LVL15:
-  70:Custom_Motor.c ****         CyDelay(2); // dummy value; optimal value must be found experimentally
- 144              		.loc 1 70 0
+  69:Custom_Motor.c ****         CyDelay(2); // dummy value; optimal value must be found experimentally
+ 144              		.loc 1 69 0
  145 001a 0220     		movs	r0, #2
  146 001c FFF7FEFF 		bl	CyDelay
  147              	.LVL16:
@@ -238,10 +237,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  156              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
  157              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
  158              		.file 5 "Generated_Source\\PSoC5/MotorDirLeft.h"
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 5
-
-
  159              		.file 6 "Generated_Source\\PSoC5/MotorDirRight.h"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 5
+
+
  160              		.file 7 "Generated_Source\\PSoC5/PWM.h"
  161              		.file 8 "Generated_Source\\PSoC5/core_cm3.h"
  162              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
@@ -298,10 +297,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  213 0064 92010000 		.4byte	.LASF7
  214 0068 04       		.uleb128 0x4
  215 0069 04       		.byte	0x4
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 6
-
-
  216 006a 05       		.byte	0x5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 6
+
+
  217 006b 696E7400 		.ascii	"int\000"
  218 006f 02       		.uleb128 0x2
  219 0070 04       		.byte	0x4
@@ -358,10 +357,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  270 00d8 81000000 		.4byte	0x81
  271 00dc 00000000 		.4byte	.LLST0
  272 00e0 08       		.uleb128 0x8
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 7
-
-
  273 00e1 0A000000 		.4byte	.LVL2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 7
+
+
  274 00e5 FB010000 		.4byte	0x1fb
  275 00e9 F3000000 		.4byte	0xf3
  276 00ed 09       		.uleb128 0x9
@@ -405,7 +404,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  314 012b 06       		.uleb128 0x6
  315 012c D6000000 		.4byte	.LASF19
  316 0130 01       		.byte	0x1
- 317 0131 28       		.byte	0x28
+ 317 0131 27       		.byte	0x27
  318 0132 00000000 		.4byte	.LFB64
  319 0136 08000000 		.4byte	.LFE64-.LFB64
  320 013a 01       		.uleb128 0x1
@@ -414,20 +413,20 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  323 0140 07       		.uleb128 0x7
  324 0141 DA010000 		.4byte	.LASF20
  325 0145 01       		.byte	0x1
- 326 0146 28       		.byte	0x28
+ 326 0146 27       		.byte	0x27
  327 0147 81000000 		.4byte	0x81
  328 014b 21000000 		.4byte	.LLST1
  329 014f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 8
-
-
  330 0150 06000000 		.4byte	.LVL7
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 8
+
+
  331 0154 2E020000 		.4byte	0x22e
  332 0158 00       		.byte	0
  333 0159 06       		.uleb128 0x6
  334 015a 31000000 		.4byte	.LASF21
  335 015e 01       		.byte	0x1
- 336 015f 31       		.byte	0x31
+ 336 015f 30       		.byte	0x30
  337 0160 00000000 		.4byte	.LFB65
  338 0164 08000000 		.4byte	.LFE65-.LFB65
  339 0168 01       		.uleb128 0x1
@@ -436,7 +435,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  342 016e 07       		.uleb128 0x7
  343 016f DA010000 		.4byte	.LASF20
  344 0173 01       		.byte	0x1
- 345 0174 31       		.byte	0x31
+ 345 0174 30       		.byte	0x30
  346 0175 81000000 		.4byte	0x81
  347 0179 42000000 		.4byte	.LLST2
  348 017d 0B       		.uleb128 0xb
@@ -446,7 +445,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  352 0187 06       		.uleb128 0x6
  353 0188 7C000000 		.4byte	.LASF22
  354 018c 01       		.byte	0x1
- 355 018d 3A       		.byte	0x3a
+ 355 018d 39       		.byte	0x39
  356 018e 00000000 		.4byte	.LFB66
  357 0192 22000000 		.4byte	.LFE66-.LFB66
  358 0196 01       		.uleb128 0x1
@@ -455,7 +454,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  361 019c 0C       		.uleb128 0xc
  362 019d 64697200 		.ascii	"dir\000"
  363 01a1 01       		.byte	0x1
- 364 01a2 3A       		.byte	0x3a
+ 364 01a2 39       		.byte	0x39
  365 01a3 81000000 		.4byte	0x81
  366 01a7 63000000 		.4byte	.LLST3
  367 01ab 0B       		.uleb128 0xb
@@ -478,10 +477,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  384 01d4 09       		.uleb128 0x9
  385 01d5 01       		.uleb128 0x1
  386 01d6 50       		.byte	0x50
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 9
-
-
  387 01d7 01       		.uleb128 0x1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 9
+
+
  388 01d8 30       		.byte	0x30
  389 01d9 00       		.byte	0
  390 01da 0A       		.uleb128 0xa
@@ -538,10 +537,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  441 0244 09       		.byte	0x9
  442 0245 76       		.byte	0x76
  443 0246 10       		.uleb128 0x10
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 10
-
-
  444 0247 8D000000 		.4byte	0x8d
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 10
+
+
  445 024b 00       		.byte	0
  446 024c 00       		.byte	0
  447              		.section	.debug_abbrev,"",%progbits
@@ -598,10 +597,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  498 0031 0B       		.uleb128 0xb
  499 0032 03       		.uleb128 0x3
  500 0033 08       		.uleb128 0x8
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 11
-
-
  501 0034 00       		.byte	0
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 11
+
+
  502 0035 00       		.byte	0
  503 0036 05       		.uleb128 0x5
  504 0037 16       		.uleb128 0x16
@@ -658,10 +657,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  555 006b 00       		.byte	0
  556 006c 08       		.uleb128 0x8
  557 006d 898201   		.uleb128 0x4109
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 12
-
-
  558 0070 01       		.byte	0x1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 12
+
+
  559 0071 11       		.uleb128 0x11
  560 0072 01       		.uleb128 0x1
  561 0073 31       		.uleb128 0x31
@@ -718,10 +717,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  612 00ad 03       		.uleb128 0x3
  613 00ae 0E       		.uleb128 0xe
  614 00af 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 13
-
-
  615 00b0 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 13
+
+
  616 00b1 3B       		.uleb128 0x3b
  617 00b2 05       		.uleb128 0x5
  618 00b3 49       		.uleb128 0x49
@@ -778,10 +777,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  669 00e6 0B       		.uleb128 0xb
  670 00e7 27       		.uleb128 0x27
  671 00e8 19       		.uleb128 0x19
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 14
-
-
  672 00e9 3C       		.uleb128 0x3c
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 14
+
+
  673 00ea 19       		.uleb128 0x19
  674 00eb 00       		.byte	0
  675 00ec 00       		.byte	0
@@ -838,10 +837,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  726 006e 07000000 		.4byte	.LVL11-1
  727 0072 10000000 		.4byte	.LVL13
  728 0076 0400     		.2byte	0x4
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 15
-
-
  729 0078 F3       		.byte	0xf3
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 15
+
+
  730 0079 01       		.uleb128 0x1
  731 007a 50       		.byte	0x50
  732 007b 9F       		.byte	0x9f
@@ -898,10 +897,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  779              	.LASF9:
  780 0000 5F5F696E 		.ascii	"__int32_t\000"
  780      7433325F 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 16
-
-
  780      7400
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 16
+
+
  781              	.LASF3:
  782 000a 73686F72 		.ascii	"short unsigned int\000"
  782      7420756E 
@@ -958,10 +957,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  802      5C446573 
  803 00c3 6F747469 		.ascii	"otti\\ZumoBot.cydsn\000"
  803      5C5A756D 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 17
-
-
  803      6F426F74 
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 17
+
+
  803      2E637964 
  803      736E00
  804              	.LASF19:
@@ -1018,10 +1017,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 1
  822              	.LASF30:
  823 01cd 49544D5F 		.ascii	"ITM_RxBuffer\000"
  823      52784275 
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccrinJgo.s 			page 18
-
-
  823      66666572 
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cccQR3Fq.s 			page 18
+
+
  823      00
  824              	.LASF20:
  825 01da 73706565 		.ascii	"speed\000"
