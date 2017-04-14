@@ -38,6 +38,7 @@ void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r
 void Measure_Voltage();
 void Right_turn(uint8 speed);
 void Left_turn(uint8 speed);
+void Corrective_twitch(uint8 dir, uint8 delay);
 
 
 int main()
@@ -48,14 +49,13 @@ int main()
     // Needed for using the button to start the robot's movement routine
     int exit = 0;
     
-    int exitMain = 0;
-    
+    // Needed for enabling correct looping behaviour in the movement routine
     int check = 0;
     
     // turn value for the motors to use
     uint8 turn = 0;
     
-    // color thresholds for use in different behaviours (determined experimentally)
+    // reflectance thresholds (determined experimentally) for use in different movement behaviours
     int black_threshold_l3 = 21000;
     int black_threshold_l1 = 17500;
     int black_threshold_r1 = 22000;
@@ -79,18 +79,16 @@ int main()
     float diff_left = 0.0;
     float diff_right = 0.0;
     
-    // maximum movement speed of the robot
+    // (maximum) movement speed of the robot
     uint8 speed = 248;
     
-    // reflectance sub-limits for different turning behaviour
-    //int left_forceful_limit = 14000;
-    //int right_forceful_limit = 17000;
-      
+    // Initialize various starting thingies
     struct sensors_ ref;
     struct sensors_ dig;
     CyGlobalIntEnable; 
     UART_1_Start();
     ADC_Battery_Start();   
+    
     Measure_Voltage(); // measure battery voltage at robot start
     
     motor_start();
@@ -104,7 +102,7 @@ int main()
 
     BatteryLed_Write(0); // Switch led off 
     
-    uint8 button;
+    uint8 button; // make button exist
     
     // To start the robot's movement routine, press the button
     while (exit == 0) 
@@ -121,7 +119,7 @@ int main()
     Custom_forward(speed);
 
     
-    while(exitMain == 0)
+    while(1)
     {    
         
         reflectance_read(&ref); // raw reflectance value ('blackness') from the sensor; 0 - 23 999
@@ -133,6 +131,8 @@ int main()
         
         // Line-following logic.
         // NOTE: due to the calibration of the motor speeds, 248 (255 - 7) is our current max speed!
+        
+        // When the measured blackness value drops below the threshold, start the appropriate turning routine
         if (dig.l1 == 1)
         { 
             // When the robot starts to veer off to the left, do a correction towards the right, until the veering off has been corrected.
@@ -175,8 +175,8 @@ int main()
                 // With 10 000 blackness value, base turn amount = 106.
                 // With 15 000 blackness, base turn amount = 35.
                 // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
-                turn = speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
-                turn += ( 350 * (diff_left / maxDiff_l1));
+                turn = speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1); // base turn amount
+                turn += ( 350 * (diff_left / maxDiff_l1)); // modify turn
                 if (turn > 248)
                 {
                     turn = 248;
@@ -205,6 +205,7 @@ int main()
             check = 0;
             // For added safety, set turn to zero... May not be necessary.
             turn = 0;
+            // Corrective_twitch(0, 2); // experimental; not enabled yet
             // Since the turn has ended, continue forward at the designated speed.
             Custom_forward(speed);
                     
@@ -250,8 +251,8 @@ int main()
                 // With 10 000 blackness value, base turn amount = 135. (real value 142, due to calibration in the turn method itself)
                 // With 15 000 blackness, base turn amount = 78. (real value 85, due to calibration in the method itself)
                 // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
-                turn = speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                turn += ( 350 * (diff_right / maxDiff_r1));
+                turn = speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1); // base turn amount
+                turn += ( 350 * (diff_right / maxDiff_r1)); // modify turn
                 if (turn > 248)
                 {
                     turn = 248;
@@ -279,6 +280,7 @@ int main()
             check = 0;
             // For added safety, set turn to zero... May not be necessary.
             turn = 0;
+            // Corrective_twitch(1, 2); // experimental; not enabled yet
             // Since the turn has ended, continue forward at the designated speed.
             Custom_forward(speed);
         } 
