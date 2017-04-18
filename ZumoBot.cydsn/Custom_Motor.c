@@ -14,7 +14,7 @@
 void Custom_forward(uint8 speed);
 void Right_turn(uint8 speed);
 void Left_turn(uint8 speed);
-void Corrective_twitch(uint8 dir, uint8 delay);
+void Corrective_twitch(uint8 dir, int flag, uint8 delay);
 
 
 
@@ -28,7 +28,7 @@ void Custom_forward(uint8 speed)
 {
     MotorDirLeft_Write(0);      // set LeftMotor forward mode
     MotorDirRight_Write(0);     // set RightMotor forward mode
-    PWM_WriteCompare1(speed + 7); 
+    PWM_WriteCompare1(speed + 15); 
     PWM_WriteCompare2(speed);
 }
 
@@ -38,7 +38,7 @@ void Custom_forward(uint8 speed)
 // (instead of speeding up the left motor to turn).
 void Right_turn(uint8 speed)
 {   
-    PWM_WriteCompare2(248 - speed); 
+    PWM_WriteCompare2(240 - speed); 
 }
 
 // Called in main.c when the robot is starting to veer to the right (off the black line).
@@ -47,26 +47,29 @@ void Right_turn(uint8 speed)
 // (instead of speeding up the right motor to turn).
 void Left_turn(uint8 speed)
 {
-        PWM_WriteCompare1(248 - (speed + 7) ); // calibration is needed in the turn method as well
+        PWM_WriteCompare1(255 - speed); // calibration is needed in the turn method as well
 }
 
 
 // An experimental method to be used for a slight 'corrective twitch' after a right or left turn.
 // At the moment, it simply stops the respective motor for a small, fixed amount of time (technically *forever*, 
 // but due to where this method will be called, in practice this should never actually occur).
-void Corrective_twitch(uint8 dir, uint8 delay)
+void Corrective_twitch(uint8 dir, int flag, uint8 delay)
 {
-    // '0' = left turn
-    if (dir == 0) 
+    if (flag == 1) 
     {
-        PWM_WriteCompare1(0);
-        CyDelay(delay); // optimal value of the delay must be found experimentally
+        // '0' = left turn
+        if (dir == 0) 
+        {
+            PWM_WriteCompare1(0);
+            CyDelay(delay); // optimal value of the delay must be found experimentally
+            
+          // '1' = right turn  
+        } else if (dir == 1) {
         
-      // '1' = right turn  
-    } else if (dir == 1) {
-    
-        PWM_WriteCompare2(0);
-        CyDelay(delay); // optimal value of the delay must be found experimentally
+            PWM_WriteCompare2(0);
+            CyDelay(delay); // optimal value of the delay must be found experimentally
+        }
     }
 
 }

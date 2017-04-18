@@ -29,6 +29,8 @@
 #include "Ambient.h"
 #include "Beep.h"
 
+
+// Declare used methods
 int rread(void);
 void motor_start();
 void motor_forward(uint8 speed,uint32 delay);
@@ -38,7 +40,7 @@ void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r
 void Measure_Voltage();
 void Right_turn(uint8 speed);
 void Left_turn(uint8 speed);
-void Corrective_twitch(uint8 dir, uint8 delay);
+void Corrective_twitch(uint8 dir, int flag, uint8 delay);
 
 
 int main()
@@ -50,15 +52,21 @@ int main()
     int exit = 0;
     
     // Needed for enabling correct looping behaviour in the movement routine
-    int check = 0;
+    int loopCheck = 0;
     
-    // turn value for the motors to use
+    // Check for enabling 'corrective twitch' after main turn logic
+    int twitchFlag = 0;
+    
+    // Turn value for the motors to use
     uint8 turn = 0;
+    
+    // (maximum) movement speed of the robot
+    uint8 speed = 240;
     
     // reflectance thresholds (determined experimentally) for use in different movement behaviours
     int black_threshold_l3 = 21000;
     int black_threshold_l1 = 17500;
-    int black_threshold_r1 = 22000;
+    int black_threshold_r1 = 21000;
     int black_threshold_r3 = 21500;
         
     int white_threshold_l3 = 5793;
@@ -78,9 +86,6 @@ int main()
     
     float diff_left = 0.0;
     float diff_right = 0.0;
-    
-    // (maximum) movement speed of the robot
-    uint8 speed = 248;
     
     // Initialize various starting thingies
     struct sensors_ ref;
@@ -116,9 +121,24 @@ int main()
         }
     }
     
+    /*
+    
+    For testing the behaviour of Corrective_twitch():
+    
+        Custom_forward(speed);
+        CyDelay(10);
+    while (1){
+    Corrective_twitch(1, 1, 20);
+    Custom_forward(speed);
+    CyDelay(100);
+    //Corrective_twitch(1, 1, 10);
+    //Custom_forward(speed);
+    //CyDelay(10);
+    }
+    */
+    
     Custom_forward(speed);
 
-    
     while(1)
     {    
         
@@ -130,7 +150,7 @@ int main()
         
         
         // Line-following logic.
-        // NOTE: due to the calibration of the motor speeds, 248 (255 - 7) is our current max speed!
+        // NOTE: due to the calibration of the motor speeds, 240 (255 - 15) is our current max speed!
         
         // When the measured blackness value drops below the threshold, start the appropriate turning routine
         if (dig.l1 == 1)
@@ -139,12 +159,12 @@ int main()
             do {
                 
                 // Obtain an initial value for blackness1_left, then close access to the if statement (needed for the loop to work correctly).
-                if (check == 0)
+                if (loopCheck == 0)
                 {
                     reflectance_read(&ref);
                     blackness1_left = ref.l1;
                     CyDelay(1);
-                    check = 1;                   
+                    loopCheck = 1;                   
                 }
                 
                 // Obtain a second value (1 millisecond later).
@@ -153,36 +173,40 @@ int main()
                 blackness2_left = ref.l1;
                 
                 // Calculate the difference between the two values.
-                // (A check for negativity is needed due to the 'wobbly' behaviour of the reflectance sensor.)
                 diff_left = blackness1_left - blackness2_left;
-                if (diff_left < 0)
-                {
-                    diff_left = 0;
-                }
                 
-                // Determine the correct turn amount (248 is max turn, 0 is no turn).
+                // Two different turning behaviours, depending on the resulting value for diff_left:
+                if (diff_left <= -500)
+                {
+                    turn = 0; // already moving back towards the center of the line, so no turn is necessary
+                         
+                } else { // for diff values > -500 (i.e. moving away from the line), use the whole movement logic (base + modification)
+                
+                // Determine the correct turn amount (240 is max turn, 0 is no turn).
                 
                 // Changed the behaviour of the base turn amount assignment (because the turn methods now work differently). 
                 // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
                 // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
                 // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
-                // (to be determined experimentally; dummy value 350).
+                // (now using square of diff).
                 // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
                 // becomes, thus leading to a steeper turn. 
-                // Finally, > 248 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
+                // Finally, > 240 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
                 
                 // Calibrated base turn amount with the black_threshold; when blackness2_left = 17 500, turn = zero.
-                // With 10 000 blackness value, base turn amount = 106.
-                // With 15 000 blackness, base turn amount = 35.
+                // With 10 000 blackness value, base turn amount = 144.
+                // With 15 000 blackness, base turn amount = 48.
                 // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
-                turn = speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1); // base turn amount
-                turn += ( 350 * (diff_left / maxDiff_l1)); // modify turn
-                if (turn > 248)
+                turn = 1.2 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1); // base turn amount
+                turn += 1.5 * ( (diff_left * diff_left / maxDiff_l1)); // modify turn; with a diff of 1000, turn += 118
+                if (turn > 240)
                 {
-                    turn = 248;
+                    turn = 240;
                 } else if (turn < 0) {
                     turn = 0;   
                 }
+                
+            }
                 
                 //printf("blackness1_left: %f \n", blackness1_left);
                 //printf("blackness2_left: %f \n", blackness2_left);
@@ -199,13 +223,21 @@ int main()
                                
                 //printf("%d\n", turn);
                 
+                twitchFlag = 1;
+                
             } while (dig.l1 == 1);
             // Return 'check' to its initial value, so that we can get an initial measurement 
             // once the loop starts again (i.e. when the robot needs to turn again).
-            check = 0;
+            loopCheck = 0;
+
+            if (twitchFlag == 1) 
+            {
+                //Left_turn();
+                CyDelay(10);
+                twitchFlag = 0;
+            }
             // For added safety, set turn to zero... May not be necessary.
             turn = 0;
-            // Corrective_twitch(0, 2); // experimental; not enabled yet
             // Since the turn has ended, continue forward at the designated speed.
             Custom_forward(speed);
                     
@@ -215,12 +247,12 @@ int main()
             do {
                 
                 // Obtain an initial value for blackness1_right, then close access to the if statement (needed for the loop to work correctly).
-                if (check == 0)
+                if (loopCheck == 0)
                 {
                     reflectance_read(&ref);
                     blackness1_right = ref.r1;
                     CyDelay(1);
-                    check = 1;
+                    loopCheck = 1;
                 }
                 
                 // Obtain a second value (1 millisecond later).
@@ -229,39 +261,45 @@ int main()
                 blackness2_right = ref.r1;
                 
                 // Calculate the difference between the two values.
-                // (A check for negativity is needed due to the 'wobbly' behaviour of the reflectance sensor.)
                 diff_right = blackness1_right - blackness2_right;
-                if (diff_right < 0)
+                
+                // Two different turning behaviours, depending on the resulting value for diff_right:
+                if (diff_right <= -500)
                 {
-                    diff_right = 0;
+                    turn = 0; // already moving back towards the center of the line, so no turn is necessary
+                      
+                } else { // for diff values > -500 (i.e. moving away from the line), use the whole movement logic (base + modification)
+                
+                    // Determine the correct turn amount (240 is max turn, 0 is no turn).
+                    
+                    // Changed the behaviour of the base turn amount assignment (because the turn methods now work differently). 
+                    // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
+                    // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
+                    // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
+                    // (now using square of diff).
+                    // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
+                    // becomes, thus leading to a steeper turn. 
+                    // Finally, > 240 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
+                    
+                    // Calibrated base turn amount with the black_threshold; when blackness2_right = 21 000, turn = zero.
+                    // With 10 000 blackness value, base turn amount = 150.
+                    // With 15 000 blackness, base turn amount = 82.
+                    // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
+                    // NOTE: Due to the physical differences between the sensors, 'balancing' the values of turn for 
+                    // the left and right sides may well be a 'false friend'!
+                    turn = 1.2 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1); // base turn amount
+                    turn += ( (diff_right * diff_right/ maxDiff_r1)); // modify turn
+                    if (turn > 240)
+                    {
+                        turn = 240;
+                    } else if (turn < 0) {
+                        turn = 0;   
+                    }  
+                    
+                    //printf("%d \n", ref.r1);
+                    //printf("%d \n", turn);
+                
                 }
-                
-                // Determine the correct turn amount (248 is max turn, 0 is no turn).
-                
-                // Changed the behaviour of the base turn amount assignment (because the turn methods now work differently). 
-                // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
-                // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
-                // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
-                // (to be determined experimentally; dummy value 350).
-                // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
-                // becomes, thus leading to a steeper turn. 
-                // Finally, > 248 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
-                
-                // Calibrated base turn amount with the black_threshold; when blackness2_right = 22 000, turn = zero.
-                // With 10 000 blackness value, base turn amount = 135. (real value 142, due to calibration in the turn method itself)
-                // With 15 000 blackness, base turn amount = 78. (real value 85, due to calibration in the method itself)
-                // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
-                turn = speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1); // base turn amount
-                turn += ( 350 * (diff_right / maxDiff_r1)); // modify turn
-                if (turn > 248)
-                {
-                    turn = 248;
-                } else if (turn < 0) {
-                    turn = 0;   
-                }  
-                
-                //printf("%d \n", ref.r1);
-                //printf("%d \n", turn);
                 
                 // Execute the turn.
                 Left_turn(turn);
@@ -274,16 +312,22 @@ int main()
                                
                 //printf("%d\n", turn);
                 
+                twitchFlag = 1;
+
+                
             } while (dig.r1 == 1);
             // Return 'check' to its initial value, so that we can get an initial measurement 
             // once the loop starts again (i.e. when the robot needs to turn again).
-            check = 0;
+            loopCheck = 0;
             // For added safety, set turn to zero... May not be necessary.
             turn = 0;
-            // Corrective_twitch(1, 2); // experimental; not enabled yet
+            //Corrective_twitch(1, flag, 10); // experimental; value may need adjustment
+            twitchFlag = 0;
             // Since the turn has ended, continue forward at the designated speed.
             Custom_forward(speed);
         } 
+        
+        
                                     
         // For measuring the battery voltage at regular intervals. 
         // 80000 'cycles' should equal ~80 seconds, due to the delay that is used below (1).
@@ -300,8 +344,6 @@ int main()
         CyDelay(1);
         
     }
-    
-    while(1) {}
      
  }   
 
