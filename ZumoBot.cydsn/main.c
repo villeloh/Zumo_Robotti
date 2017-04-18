@@ -288,8 +288,8 @@ int main()
                 // Make a switch statement based on the determined values of blackness2_right and diff_right
                 if (diff_right <= -diff_Fast) {diffCase = 1;} 
                 else if (diff_right > -diff_Fast && diff_right <= 0) {diffCase = 2;}
-                else if (diff_right > diff_Fast && blackness2_right < 15000) {diffCase = 3;}
-                else if (diff_right > diff_Fast && blackness2_right >= 15000) {diffCase = 4; }
+                else if (diff_right > diff_Fast && blackness2_right < 18000) {diffCase = 3;}
+                else if (diff_right > diff_Fast && blackness2_right >= 18000) {diffCase = 4; }
                 else if (diff_right > 0){ diffCase = 5; }
                 
                 switch (diffCase)
@@ -311,7 +311,7 @@ int main()
                     
                     break;
                         
-                    case 3: // diff_right >= diff_Fast && blackness2_right < 15 000
+                    case 3: // diff_right >= diff_Fast && blackness2_right < 18 000
                         
                         // moving fast away from center of line and already a good distance away
                         
@@ -320,7 +320,7 @@ int main()
                         
                     break;   
                         
-                    case 4: // diff_right >= diff_Fast && blackness2_right >= 15 000
+                    case 4: // diff_right >= diff_Fast && blackness2_right >= 18 000
                         
                         // moving fast away from center of line, but not yet too far away
                     
