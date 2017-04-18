@@ -14,8 +14,6 @@
 void Custom_forward(uint8 speed);
 void Right_turn(uint8 speed);
 void Left_turn(uint8 speed);
-void Corrective_twitch(uint8 dir, int flag, uint8 delay);
-
 
 
 // Custom class for defining motor movement methods.
@@ -48,30 +46,6 @@ void Right_turn(uint8 speed)
 void Left_turn(uint8 speed)
 {
         PWM_WriteCompare1(255 - speed); // calibration is needed in the turn method as well
-}
-
-
-// An experimental method to be used for a slight 'corrective twitch' after a right or left turn.
-// At the moment, it simply stops the respective motor for a small, fixed amount of time (technically *forever*, 
-// but due to where this method will be called, in practice this should never actually occur).
-void Corrective_twitch(uint8 dir, int flag, uint8 delay)
-{
-    if (flag == 1) 
-    {
-        // '0' = left turn
-        if (dir == 0) 
-        {
-            PWM_WriteCompare1(0);
-            CyDelay(delay); // optimal value of the delay must be found experimentally
-            
-          // '1' = right turn  
-        } else if (dir == 1) {
-        
-            PWM_WriteCompare2(0);
-            CyDelay(delay); // optimal value of the delay must be found experimentally
-        }
-    }
-
 }
 
 

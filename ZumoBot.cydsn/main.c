@@ -40,7 +40,6 @@ void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r
 void Measure_Voltage();
 void Right_turn(uint8 speed);
 void Left_turn(uint8 speed);
-void Corrective_twitch(uint8 dir, int flag, uint8 delay);
 
 
 int main()
@@ -54,8 +53,14 @@ int main()
     // Needed for enabling correct looping behaviour in the movement routine
     int loopCheck = 0;
     
-    // Check for enabling 'corrective twitch' after main turn logic
-    int twitchFlag = 0;
+    // Check for enabling some procedures after the main turn logic has executed
+    int turnFlag = 0;
+    
+    // For determining behaviour with various values of 'diff'
+    int diffCase = 0;
+    
+    // The diff value which acts as a threshold for 'fast' movement away from / towards the center of the line
+    int diff_Fast = 500;
     
     // Turn value for the motors to use
     uint8 turn = 0;
@@ -121,24 +126,10 @@ int main()
         }
     }
     
-    /*
-    
-    For testing the behaviour of Corrective_twitch():
-    
-        Custom_forward(speed);
-        CyDelay(10);
-    while (1){
-    Corrective_twitch(1, 1, 20);
-    Custom_forward(speed);
-    CyDelay(100);
-    //Corrective_twitch(1, 1, 10);
-    //Custom_forward(speed);
-    //CyDelay(10);
-    }
-    */
-    
+    // Start going forward.
     Custom_forward(speed);
 
+    // Giant loop to run the movement logic in.
     while(1)
     {    
         
@@ -151,7 +142,7 @@ int main()
         
         // Line-following logic.
         // NOTE: due to the calibration of the motor speeds, 240 (255 - 15) is our current max speed!
-        
+               
         // When the measured blackness value drops below the threshold, start the appropriate turning routine
         if (dig.l1 == 1)
         { 
@@ -175,43 +166,72 @@ int main()
                 // Calculate the difference between the two values.
                 diff_left = blackness1_left - blackness2_left;
                 
-                // Two different turning behaviours, depending on the resulting value for diff_left:
-                if (diff_left <= -500)
+                // Make a switch statement based on the determined values of blackness2_left and diff_left.
+                // NOTE: diff_Fast = 500 atm (for both sides, left and right).
+                if (diff_left <= -diff_Fast) { diffCase = 1; } 
+                else if (diff_left > -diff_Fast && diff_left <= 0) { diffCase = 2; }
+                else if (diff_left > diff_Fast && blackness2_left < 15000) { diffCase = 3; }
+                else if (diff_left > diff_Fast && blackness2_left >= 15000) { diffCase = 4; }
+                else if (diff_left > 0){ diffCase = 5; }
+                
+                switch (diffCase)
                 {
-                    turn = 0; // already moving back towards the center of the line, so no turn is necessary
-                         
-                } else { // for diff values > -500 (i.e. moving away from the line), use the whole movement logic (base + modification)
+                    case 1: // diff_left <= -diff_Fast
+                    
+                        // moving fast towards center of line; no need to turn
+                    
+                        turn = 0; 
                 
-                // Determine the correct turn amount (240 is max turn, 0 is no turn).
+                    break;
+                    
+                    case 2: // diff_left > -diff_Fast && <= 0
+                    
+                        // moving towards center of line at moderate speed
+                    
+                        turn = 1.0 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
+                        turn -= 1.5 * ( (diff_left * diff_left / maxDiff_l1)); // subtracts from turn
+                    
+                    break;
+                        
+                    case 3: // diff_left >= diff_Fast && blackness2_left < 15 000
+                        
+                        // moving fast away from center of line and already a good distance away
+                        
+                        turn = 1.2 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
+                        turn += 1.5 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                        
+                    break;   
+                        
+                    case 4: // diff_left >= diff_Fast && blackness2_left >= 15 000
+                        
+                        // moving fast away from center of line, but not yet too far away
+                    
+                        turn = 1.0 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
+                        turn += 1.2 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                        
+                    break;
+                        
+                    case 5: // diff_left > 0 && < diff_Fast
+                        
+                        // moving away from center of line at moderate speed
+                        
+                        turn = 1.1 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
+                        turn += 1.35 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                        
+                    break;
+                                                
+                    // possible case 6: diff_left > 9000 (or some high value)
+                    // there can be an infinite number of cases for increasingly finer control...
+                }
                 
-                // Changed the behaviour of the base turn amount assignment (because the turn methods now work differently). 
-                // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
-                // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
-                // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
-                // (now using square of diff).
-                // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
-                // becomes, thus leading to a steeper turn. 
-                // Finally, > 240 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
-                
-                // Calibrated base turn amount with the black_threshold; when blackness2_left = 17 500, turn = zero.
-                // With 10 000 blackness value, base turn amount = 144.
-                // With 15 000 blackness, base turn amount = 48.
-                // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
-                turn = 1.2 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1); // base turn amount
-                turn += 1.5 * ( (diff_left * diff_left / maxDiff_l1)); // modify turn; with a diff of 1000, turn += 118
+                // Check for egregious values of 'turn' and correct them if found
                 if (turn > 240)
                 {
                     turn = 240;
                 } else if (turn < 0) {
                     turn = 0;   
                 }
-                
-            }
-                
-                //printf("blackness1_left: %f \n", blackness1_left);
-                //printf("blackness2_left: %f \n", blackness2_left);
-                //printf("turn: %d \n", turn);
-                                
+                                                          
                 // Execute the turn.
                 Right_turn(turn);
                              
@@ -220,27 +240,29 @@ int main()
                 blackness1_left = blackness2_left;
                 
                 CyDelay(1);
-                               
-                //printf("%d\n", turn);
-                
-                twitchFlag = 1;
+          
+                turnFlag = 1;
                 
             } while (dig.l1 == 1);
-            // Return 'check' to its initial value, so that we can get an initial measurement 
-            // once the loop starts again (i.e. when the robot needs to turn again).
-            loopCheck = 0;
-
-            if (twitchFlag == 1) 
+                     
+            if (turnFlag == 1) 
             {
-                //Left_turn();
-                CyDelay(10);
-                twitchFlag = 0;
+                // After each executed turn, do a small 'corrective twitch' in the opposite direction
+                Left_turn(speed/2); // experimental value
+                CyDelay(10); // experimental value
+                
+                // Return 'loopCheck' to its initial value, so that we can get an initial measurement 
+                // once the turn loop starts again (i.e. when the robot needs to turn again).
+                loopCheck = 0;
+              
+                // For added safety, set turn to zero... May not be necessary.
+                turn = 0;
+                // Since the turn has ended, continue forward at the designated speed.
+                Custom_forward(speed);
+                
+                turnFlag = 0;
             }
-            // For added safety, set turn to zero... May not be necessary.
-            turn = 0;
-            // Since the turn has ended, continue forward at the designated speed.
-            Custom_forward(speed);
-                    
+                              
         } else if (dig.r1 == 1) {
             
             // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected.
@@ -262,43 +284,70 @@ int main()
                 
                 // Calculate the difference between the two values.
                 diff_right = blackness1_right - blackness2_right;
+
+                // Make a switch statement based on the determined values of blackness2_right and diff_right
+                if (diff_right <= -diff_Fast) {diffCase = 1;} 
+                else if (diff_right > -diff_Fast && diff_right <= 0) {diffCase = 2;}
+                else if (diff_right > diff_Fast && blackness2_right < 15000) {diffCase = 3;}
+                else if (diff_right > diff_Fast && blackness2_right >= 15000) {diffCase = 4; }
+                else if (diff_right > 0){ diffCase = 5; }
                 
-                // Two different turning behaviours, depending on the resulting value for diff_right:
-                if (diff_right <= -500)
+                switch (diffCase)
                 {
-                    turn = 0; // already moving back towards the center of the line, so no turn is necessary
-                      
-                } else { // for diff values > -500 (i.e. moving away from the line), use the whole movement logic (base + modification)
+                    case 1: // diff_right <= -diff_Fast
+                    
+                        // moving fast towards center of line; no need to turn
+                    
+                        turn = 0; 
                 
-                    // Determine the correct turn amount (240 is max turn, 0 is no turn).
+                    break;
                     
-                    // Changed the behaviour of the base turn amount assignment (because the turn methods now work differently). 
-                    // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
-                    // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
-                    // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
-                    // (now using square of diff).
-                    // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
-                    // becomes, thus leading to a steeper turn. 
-                    // Finally, > 240 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
+                    case 2: // diff_right > -diff_Fast && <= 0
                     
-                    // Calibrated base turn amount with the black_threshold; when blackness2_right = 21 000, turn = zero.
-                    // With 10 000 blackness value, base turn amount = 150.
-                    // With 15 000 blackness, base turn amount = 82.
-                    // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
-                    // NOTE: Due to the physical differences between the sensors, 'balancing' the values of turn for 
-                    // the left and right sides may well be a 'false friend'!
-                    turn = 1.2 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1); // base turn amount
-                    turn += ( (diff_right * diff_right/ maxDiff_r1)); // modify turn
-                    if (turn > 240)
-                    {
-                        turn = 240;
-                    } else if (turn < 0) {
-                        turn = 0;   
-                    }  
+                        // moving towards center of line at moderate speed
                     
-                    //printf("%d \n", ref.r1);
-                    //printf("%d \n", turn);
+                        turn = 1.0 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
+                        turn -= 1.5 * ( (diff_right * diff_right / maxDiff_r1)); // subtracts from turn
+                    
+                    break;
+                        
+                    case 3: // diff_right >= diff_Fast && blackness2_right < 15 000
+                        
+                        // moving fast away from center of line and already a good distance away
+                        
+                        turn = 1.2 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
+                        turn += 1.5 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
+                        
+                    break;   
+                        
+                    case 4: // diff_right >= diff_Fast && blackness2_right >= 15 000
+                        
+                        // moving fast away from center of line, but not yet too far away
+                    
+                        turn = 1.0 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
+                        turn += 1.2 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
+                        
+                    break;
+                        
+                    case 5: // diff_right > 0 && < diff_Fast
+                        
+                        // moving away from center of line at moderate speed
+                        
+                        turn = 1.1 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
+                        turn += 1.35 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
+                        
+                    break;
+                                                
+                    // possible case 6: diff_right > 9000 (or some high value)
+                    // there can be an infinite number of cases for increasingly finer control...
+                }
                 
+                // Check for egregious values of 'turn' and correct them if found
+                if (turn > 240)
+                {
+                    turn = 240;
+                } else if (turn < 0) {
+                    turn = 0;   
                 }
                 
                 // Execute the turn.
@@ -309,25 +358,31 @@ int main()
                 blackness1_right = blackness2_right;
                                 
                 CyDelay(1);
-                               
-                //printf("%d\n", turn);
-                
-                twitchFlag = 1;
+             
+                turnFlag = 1;
 
                 
             } while (dig.r1 == 1);
-            // Return 'check' to its initial value, so that we can get an initial measurement 
-            // once the loop starts again (i.e. when the robot needs to turn again).
-            loopCheck = 0;
-            // For added safety, set turn to zero... May not be necessary.
-            turn = 0;
-            //Corrective_twitch(1, flag, 10); // experimental; value may need adjustment
-            twitchFlag = 0;
-            // Since the turn has ended, continue forward at the designated speed.
-            Custom_forward(speed);
-        } 
+            
+            if (turnFlag == 1) 
+            {
+                // After each executed turn, do a small 'corrective twitch' in the opposite direction
+                Right_turn(speed/2); // experimental value
+                CyDelay(10); // experimental value
+                
+                // Return 'loopCheck' to its initial value, so that we can get an initial measurement 
+                // once the turn loop starts again (i.e. when the robot needs to turn again).
+                loopCheck = 0;
+              
+                // For added safety, set turn to zero... May not be necessary.
+                turn = 0;
+                // Since the turn has ended, continue forward at the designated speed.
+                Custom_forward(speed);
+                
+                turnFlag = 0;
+            }
         
-        
+        }
                                     
         // For measuring the battery voltage at regular intervals. 
         // 80000 'cycles' should equal ~80 seconds, due to the delay that is used below (1).
@@ -342,10 +397,32 @@ int main()
         }
         
         CyDelay(1);
-        
-    }
      
- }   
+    }
+    
+}
+    
+    
+    
+        // Old comment on the turn logic... Still holds for the most part. There's no room for it in the actual logic
+        // anymore, so I'm putting it down here for the moment:
+        
+        // Determine the correct turn amount (240 is max turn, 0 is no turn).
+        
+        // The larger the measured blackness value, the smaller the base turn amount, and vice versa. If the measured blackness 
+        // value equals the blackness threshold, base turn amount = 0 (i.e. the robot goes straight).
+        // The base turn amount is further modified by the rate of blackness change multiplied by a coefficient 
+        // (now using square of diff).
+        // The more rapid the change of values (i.e. the difference between two measurements), the larger the final value of turn 
+        // becomes, thus leading to a steeper turn. 
+        // Finally, > 240 and < 0 checks were added to pre-empt any potential issues with invalid turn values.
+        
+        // Calibrated base turn amount with the black_threshold; when blackness2_left = 17 500, turn = zero.
+        // With 10 000 blackness value, base turn amount = 144.
+        // With 15 000 blackness, base turn amount = 48.
+        // By adding a multiplying constant, the base turn amount can be raised and the turns tightened.
+        // NOTE: Due to the physical differences between the sensors, 'balancing' the values of turn for 
+        // the left and right sides may well be a 'false friend'!
 
 // ===================================================================================================================== //
 // ===================================================================================================================== //

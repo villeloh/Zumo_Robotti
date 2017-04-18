@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
   29:Generated_Source\PSoC5/timer_clock_5.c **** 
   30:Generated_Source\PSoC5/timer_clock_5.c **** /*******************************************************************************
   31:Generated_Source\PSoC5/timer_clock_5.c **** * Function Name: timer_clock_5_Start
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 2
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 2
 
 
   32:Generated_Source\PSoC5/timer_clock_5.c **** ********************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
   55:Generated_Source\PSoC5/timer_clock_5.c **** ********************************************************************************
   56:Generated_Source\PSoC5/timer_clock_5.c **** *
   57:Generated_Source\PSoC5/timer_clock_5.c **** * Summary:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 3
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 3
 
 
   58:Generated_Source\PSoC5/timer_clock_5.c **** *  Stops the clock and returns immediately. This API does not require the
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
   81:Generated_Source\PSoC5/timer_clock_5.c **** 
   82:Generated_Source\PSoC5/timer_clock_5.c **** /*******************************************************************************
   83:Generated_Source\PSoC5/timer_clock_5.c **** * Function Name: timer_clock_5_StopBlock
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 4
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 4
 
 
   84:Generated_Source\PSoC5/timer_clock_5.c **** ********************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  116:Generated_Source\PSoC5/timer_clock_5.c **** #endif /* timer_clock_5__CFG3 */
  117:Generated_Source\PSoC5/timer_clock_5.c **** 
  118:Generated_Source\PSoC5/timer_clock_5.c ****         /* Clear mask of bus clock. */
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 5
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 5
 
 
  119:Generated_Source\PSoC5/timer_clock_5.c ****         CLK_DIST_BCFG2 &= (uint8)(~BCFG2_MASK);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  147              		.loc 1 136 0
  148 0056 9333     		adds	r3, r3, #147
  149 0058 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 6
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 6
 
 
  150              	.LVL1:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  161:Generated_Source\PSoC5/timer_clock_5.c ****         timer_clock_5_CLKSTBY &= (uint8)(~timer_clock_5_CLKSTBY_MASK);
  180              		.loc 1 161 0
  181 0002 064A     		ldr	r2, .L15
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 7
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 7
 
 
  182 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  190:Generated_Source\PSoC5/timer_clock_5.c **** *  None
  191:Generated_Source\PSoC5/timer_clock_5.c **** *
  192:Generated_Source\PSoC5/timer_clock_5.c **** *******************************************************************************/
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 8
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 8
 
 
  193:Generated_Source\PSoC5/timer_clock_5.c **** void timer_clock_5_SetDividerRegister(uint16 clkDivider, uint8 restart)
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  247:Generated_Source\PSoC5/timer_clock_5.c ****                     CLK_DIST_LD = CYCLK_LD_DISABLE|CYCLK_LD_SYNC_EN|CYCLK_LD_LOAD;
  248:Generated_Source\PSoC5/timer_clock_5.c **** 
  249:Generated_Source\PSoC5/timer_clock_5.c ****                     /* Wait for clock to be disabled */
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 9
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 9
 
 
  250:Generated_Source\PSoC5/timer_clock_5.c ****                     while ((CLK_DIST_LD & CYCLK_LD_LOAD) != 0u) { }
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  299:Generated_Source\PSoC5/timer_clock_5.c ****     return CY_GET_REG16(timer_clock_5_DIV_PTR);
  213              		.loc 1 299 0
  214 0000 014B     		ldr	r3, .L18
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 10
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 10
 
 
  215 0002 1888     		ldrh	r0, [r3]
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  235              		.cfi_startproc
  236              		@ args = 0, pretend = 0, frame = 0
  237              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 11
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 11
 
 
  238              		@ link register save eliminated.
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  363:Generated_Source\PSoC5/timer_clock_5.c **** * Returns:
  364:Generated_Source\PSoC5/timer_clock_5.c **** *  None
  365:Generated_Source\PSoC5/timer_clock_5.c **** *
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 12
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 12
 
 
  366:Generated_Source\PSoC5/timer_clock_5.c **** *******************************************************************************/
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  389:Generated_Source\PSoC5/timer_clock_5.c **** {
  294              		.loc 1 389 0
  295              		.cfi_startproc
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 13
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 13
 
 
  296              		@ args = 0, pretend = 0, frame = 0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  420:Generated_Source\PSoC5/timer_clock_5.c **** {
  421:Generated_Source\PSoC5/timer_clock_5.c ****     uint16 currDiv = timer_clock_5_GetDividerRegister();
  422:Generated_Source\PSoC5/timer_clock_5.c ****     uint8 oldSrc = timer_clock_5_GetSourceRegister();
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 14
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 14
 
 
  423:Generated_Source\PSoC5/timer_clock_5.c **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  329 0004 00F00700 		and	r0, r0, #7
  330 0008 7047     		bx	lr
  331              	.L31:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 15
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 15
 
 
  332 000a 00BF     		.align	2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  379 0020 00B1     		cbz	r0, .L35
  205:Generated_Source\PSoC5/timer_clock_5.c ****         {
  380              		.loc 1 205 0 discriminator 2
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 16
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 16
 
 
  381 0022 84B9     		cbnz	r4, .L34
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  425 0058 0C39     		subs	r1, r1, #12
  426 005a 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
  427 005c 03F07F03 		and	r3, r3, #127
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 17
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 17
 
 
  428 0060 0B70     		strb	r3, [r1]
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  472 00a4 00E0     		b	.L41
  473              	.LVL19:
  474              	.L43:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 18
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 18
 
 
  475 00a6 0122     		movs	r2, #1
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  524              	.LVL23:
  525 0000 38B5     		push	{r3, r4, r5, lr}
  526              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 19
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 19
 
 
  527              		.cfi_offset 3, -16
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  569 0034 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
  438:Generated_Source\PSoC5/timer_clock_5.c ****             (timer_clock_5_MOD_SRC & (uint8)(~timer_clock_5_SRC_SEL_MSK)) | clkSource;
  570              		.loc 1 438 0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 20
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 20
 
 
  571 0036 03F0F803 		and	r3, r3, #248
@@ -1180,48 +1180,48 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  604 0006 00000000 		.4byte	.Ldebug_abbrev0
  605 000a 04       		.byte	0x4
  606 000b 01       		.uleb128 0x1
- 607 000c B7010000 		.4byte	.LASF36
+ 607 000c E7010000 		.4byte	.LASF36
  608 0010 01       		.byte	0x1
- 609 0011 8B010000 		.4byte	.LASF37
- 610 0015 57020000 		.4byte	.LASF38
+ 609 0011 BB010000 		.4byte	.LASF37
+ 610 0015 38000000 		.4byte	.LASF38
  611 0019 00000000 		.4byte	.Ldebug_ranges0+0
  612 001d 00000000 		.4byte	0
  613 0021 00000000 		.4byte	.Ldebug_line0
  614 0025 02       		.uleb128 0x2
  615 0026 01       		.byte	0x1
  616 0027 06       		.byte	0x6
- 617 0028 34010000 		.4byte	.LASF0
+ 617 0028 64010000 		.4byte	.LASF0
  618 002c 02       		.uleb128 0x2
  619 002d 01       		.byte	0x1
  620 002e 08       		.byte	0x8
- 621 002f 1A010000 		.4byte	.LASF1
+ 621 002f 4A010000 		.4byte	.LASF1
  622 0033 02       		.uleb128 0x2
  623 0034 02       		.byte	0x2
  624 0035 05       		.byte	0x5
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 21
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 21
 
 
  625 0036 2E000000 		.4byte	.LASF2
  626 003a 02       		.uleb128 0x2
  627 003b 02       		.byte	0x2
  628 003c 07       		.byte	0x7
- 629 003d 78010000 		.4byte	.LASF3
+ 629 003d A8010000 		.4byte	.LASF3
  630 0041 02       		.uleb128 0x2
  631 0042 04       		.byte	0x4
  632 0043 05       		.byte	0x5
- 633 0044 CA000000 		.4byte	.LASF4
+ 633 0044 FA000000 		.4byte	.LASF4
  634 0048 02       		.uleb128 0x2
  635 0049 04       		.byte	0x4
  636 004a 07       		.byte	0x7
- 637 004b A8020000 		.4byte	.LASF5
+ 637 004b 97020000 		.4byte	.LASF5
  638 004f 02       		.uleb128 0x2
  639 0050 08       		.byte	0x8
  640 0051 05       		.byte	0x5
- 641 0052 9E000000 		.4byte	.LASF6
+ 641 0052 CE000000 		.4byte	.LASF6
  642 0056 02       		.uleb128 0x2
  643 0057 08       		.byte	0x8
  644 0058 07       		.byte	0x7
- 645 0059 40010000 		.4byte	.LASF7
+ 645 0059 70010000 		.4byte	.LASF7
  646 005d 03       		.uleb128 0x3
  647 005e 04       		.byte	0x4
  648 005f 05       		.byte	0x5
@@ -1229,36 +1229,36 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  650 0064 02       		.uleb128 0x2
  651 0065 04       		.byte	0x4
  652 0066 07       		.byte	0x7
- 653 0067 57010000 		.4byte	.LASF8
+ 653 0067 87010000 		.4byte	.LASF8
  654 006b 04       		.uleb128 0x4
- 655 006c 69000000 		.4byte	.LASF9
+ 655 006c 99000000 		.4byte	.LASF9
  656 0070 02       		.byte	0x2
  657 0071 9201     		.2byte	0x192
  658 0073 2C000000 		.4byte	0x2c
  659 0077 04       		.uleb128 0x4
- 660 0078 53000000 		.4byte	.LASF10
+ 660 0078 83000000 		.4byte	.LASF10
  661 007c 02       		.byte	0x2
  662 007d 9301     		.2byte	0x193
  663 007f 3A000000 		.4byte	0x3a
  664 0083 02       		.uleb128 0x2
  665 0084 04       		.byte	0x4
  666 0085 04       		.byte	0x4
- 667 0086 98000000 		.4byte	.LASF11
+ 667 0086 C8000000 		.4byte	.LASF11
  668 008a 02       		.uleb128 0x2
  669 008b 08       		.byte	0x8
  670 008c 04       		.byte	0x4
- 671 008d BA020000 		.4byte	.LASF12
+ 671 008d A9020000 		.4byte	.LASF12
  672 0091 02       		.uleb128 0x2
  673 0092 01       		.byte	0x1
  674 0093 08       		.byte	0x8
- 675 0094 B2010000 		.4byte	.LASF13
+ 675 0094 E2010000 		.4byte	.LASF13
  676 0098 04       		.uleb128 0x4
- 677 0099 A3020000 		.4byte	.LASF14
+ 677 0099 92020000 		.4byte	.LASF14
  678 009d 02       		.byte	0x2
  679 009e 3C02     		.2byte	0x23c
  680 00a0 A4000000 		.4byte	0xa4
  681 00a4 05       		.uleb128 0x5
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 22
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 22
 
 
  682 00a5 6B000000 		.4byte	0x6b
@@ -1270,7 +1270,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  688 00b5 05       		.uleb128 0x5
  689 00b6 77000000 		.4byte	0x77
  690 00ba 06       		.uleb128 0x6
- 691 00bb 64010000 		.4byte	.LASF16
+ 691 00bb 94010000 		.4byte	.LASF16
  692 00bf 01       		.byte	0x1
  693 00c0 2D       		.byte	0x2d
  694 00c1 00000000 		.4byte	.LFB0
@@ -1278,7 +1278,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  696 00c9 01       		.uleb128 0x1
  697 00ca 9C       		.byte	0x9c
  698 00cb 06       		.uleb128 0x6
- 699 00cc 0A030000 		.4byte	.LASF17
+ 699 00cc F9020000 		.4byte	.LASF17
  700 00d0 01       		.byte	0x1
  701 00d1 47       		.byte	0x47
  702 00d2 00000000 		.4byte	.LFB1
@@ -1286,7 +1286,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  704 00da 01       		.uleb128 0x1
  705 00db 9C       		.byte	0x9c
  706 00dc 07       		.uleb128 0x7
- 707 00dd 1D030000 		.4byte	.LASF18
+ 707 00dd 0C030000 		.4byte	.LASF18
  708 00e1 01       		.byte	0x1
  709 00e2 64       		.byte	0x64
  710 00e3 00000000 		.4byte	.LFB2
@@ -1298,7 +1298,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  716 00f2 0A000000 		.4byte	.LBB2
  717 00f6 62000000 		.4byte	.LBE2-.LBB2
  718 00fa 09       		.uleb128 0x9
- 719 00fb 98020000 		.4byte	.LASF30
+ 719 00fb 87020000 		.4byte	.LASF30
  720 00ff 01       		.byte	0x1
  721 0100 69       		.byte	0x69
  722 0101 77000000 		.4byte	0x77
@@ -1306,7 +1306,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  724 0109 00       		.byte	0
  725 010a 00       		.byte	0
  726 010b 07       		.uleb128 0x7
- 727 010c 38000000 		.4byte	.LASF19
+ 727 010c 68000000 		.4byte	.LASF19
  728 0110 01       		.byte	0x1
  729 0111 9D       		.byte	0x9d
  730 0112 00000000 		.4byte	.LFB3
@@ -1315,10 +1315,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  733 011b 9C       		.byte	0x9c
  734 011c 2E010000 		.4byte	0x12e
  735 0120 0A       		.uleb128 0xa
- 736 0121 14010000 		.4byte	.LASF21
+ 736 0121 44010000 		.4byte	.LASF21
  737 0125 01       		.byte	0x1
  738 0126 9D       		.byte	0x9d
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 23
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 23
 
 
  739 0127 6B000000 		.4byte	0x6b
@@ -1326,7 +1326,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  741 012c 50       		.byte	0x50
  742 012d 00       		.byte	0
  743 012e 0B       		.uleb128 0xb
- 744 012f F3000000 		.4byte	.LASF24
+ 744 012f 23010000 		.4byte	.LASF24
  745 0133 01       		.byte	0x1
  746 0134 2901     		.2byte	0x129
  747 0136 77000000 		.4byte	0x77
@@ -1335,7 +1335,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  750 0142 01       		.uleb128 0x1
  751 0143 9C       		.byte	0x9c
  752 0144 0C       		.uleb128 0xc
- 753 0145 AC000000 		.4byte	.LASF20
+ 753 0145 DC000000 		.4byte	.LASF20
  754 0149 01       		.byte	0x1
  755 014a 4C01     		.2byte	0x14c
  756 014c 00000000 		.4byte	.LFB6
@@ -1344,7 +1344,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  759 0155 9C       		.byte	0x9c
  760 0156 6B010000 		.4byte	0x16b
  761 015a 0D       		.uleb128 0xd
- 762 015b 28010000 		.4byte	.LASF22
+ 762 015b 58010000 		.4byte	.LASF22
  763 015f 01       		.byte	0x1
  764 0160 4C01     		.2byte	0x14c
  765 0162 6B000000 		.4byte	0x6b
@@ -1360,14 +1360,14 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  775 017c 9C       		.byte	0x9c
  776 017d 92010000 		.4byte	0x192
  777 0181 0D       		.uleb128 0xd
- 778 0182 28010000 		.4byte	.LASF22
+ 778 0182 58010000 		.4byte	.LASF22
  779 0186 01       		.byte	0x1
  780 0187 6F01     		.2byte	0x16f
  781 0189 6B000000 		.4byte	0x6b
  782 018d 34000000 		.4byte	.LLST2
  783 0191 00       		.byte	0
  784 0192 0B       		.uleb128 0xb
- 785 0193 7A000000 		.4byte	.LASF25
+ 785 0193 AA000000 		.4byte	.LASF25
  786 0197 01       		.byte	0x1
  787 0198 8401     		.2byte	0x184
  788 019a 6B000000 		.4byte	0x6b
@@ -1376,9 +1376,9 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  791 01a6 01       		.uleb128 0x1
  792 01a7 9C       		.byte	0x9c
  793 01a8 0B       		.uleb128 0xb
- 794 01a9 EA020000 		.4byte	.LASF26
+ 794 01a9 D9020000 		.4byte	.LASF26
  795 01ad 01       		.byte	0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 24
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 24
 
 
  796 01ae D001     		.2byte	0x1d0
@@ -1388,7 +1388,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  800 01bc 01       		.uleb128 0x1
  801 01bd 9C       		.byte	0x9c
  802 01be 07       		.uleb128 0x7
- 803 01bf C1020000 		.4byte	.LASF27
+ 803 01bf B0020000 		.4byte	.LASF27
  804 01c3 01       		.byte	0x1
  805 01c4 C1       		.byte	0xc1
  806 01c5 00000000 		.4byte	.LFB4
@@ -1397,31 +1397,31 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  809 01ce 9C       		.byte	0x9c
  810 01cf 2F020000 		.4byte	0x22f
  811 01d3 0E       		.uleb128 0xe
- 812 01d4 6F000000 		.4byte	.LASF28
+ 812 01d4 9F000000 		.4byte	.LASF28
  813 01d8 01       		.byte	0x1
  814 01d9 C1       		.byte	0xc1
  815 01da 77000000 		.4byte	0x77
  816 01de 55000000 		.4byte	.LLST3
  817 01e2 0E       		.uleb128 0xe
- 818 01e3 5A000000 		.4byte	.LASF29
+ 818 01e3 8A000000 		.4byte	.LASF29
  819 01e7 01       		.byte	0x1
  820 01e8 C1       		.byte	0xc1
  821 01e9 6B000000 		.4byte	0x6b
  822 01ed 76000000 		.4byte	.LLST4
  823 01f1 09       		.uleb128 0x9
- 824 01f2 E2020000 		.4byte	.LASF31
+ 824 01f2 D1020000 		.4byte	.LASF31
  825 01f6 01       		.byte	0x1
  826 01f7 C4       		.byte	0xc4
  827 01f8 6B000000 		.4byte	0x6b
  828 01fc 97000000 		.4byte	.LLST5
  829 0200 09       		.uleb128 0x9
- 830 0201 4F020000 		.4byte	.LASF32
+ 830 0201 7F020000 		.4byte	.LASF32
  831 0205 01       		.byte	0x1
  832 0206 C6       		.byte	0xc6
  833 0207 6B000000 		.4byte	0x6b
  834 020b E1000000 		.4byte	.LLST6
  835 020f 0F       		.uleb128 0xf
- 836 0210 98020000 		.4byte	.LASF30
+ 836 0210 87020000 		.4byte	.LASF30
  837 0214 01       		.byte	0x1
  838 0215 C7       		.byte	0xc7
  839 0216 77000000 		.4byte	0x77
@@ -1435,10 +1435,10 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  847 022a 2E010000 		.4byte	0x12e
  848 022e 00       		.byte	0
  849 022f 11       		.uleb128 0x11
- 850 0230 D3000000 		.4byte	.LASF39
+ 850 0230 03010000 		.4byte	.LASF39
  851 0234 01       		.byte	0x1
  852 0235 A301     		.2byte	0x1a3
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 25
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 25
 
 
  853 0237 00000000 		.4byte	.LFB9
@@ -1446,7 +1446,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  855 023f 01       		.uleb128 0x1
  856 0240 9C       		.byte	0x9c
  857 0241 0D       		.uleb128 0xd
- 858 0242 45020000 		.4byte	.LASF33
+ 858 0242 75020000 		.4byte	.LASF33
  859 0246 01       		.byte	0x1
  860 0247 A301     		.2byte	0x1a3
  861 0249 6B000000 		.4byte	0x6b
@@ -1458,7 +1458,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  867 0259 77000000 		.4byte	0x77
  868 025d 15010000 		.4byte	.LLST8
  869 0261 13       		.uleb128 0x13
- 870 0262 62000000 		.4byte	.LASF35
+ 870 0262 92000000 		.4byte	.LASF35
  871 0266 01       		.byte	0x1
  872 0267 A601     		.2byte	0x1a6
  873 0269 6B000000 		.4byte	0x6b
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  907 0015 00       		.byte	0
  908 0016 0B       		.uleb128 0xb
  909 0017 0B       		.uleb128 0xb
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 26
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 26
 
 
  910 0018 3E       		.uleb128 0x3e
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  964 004e 40       		.uleb128 0x40
  965 004f 18       		.uleb128 0x18
  966 0050 9742     		.uleb128 0x2117
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 27
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 27
 
 
  967 0052 19       		.uleb128 0x19
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1021 0089 00       		.byte	0
  1022 008a 03       		.uleb128 0x3
  1023 008b 0E       		.uleb128 0xe
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 28
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 28
 
 
  1024 008c 3A       		.uleb128 0x3a
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1078 00c3 9742     		.uleb128 0x2117
  1079 00c5 19       		.uleb128 0x19
  1080 00c6 01       		.uleb128 0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 29
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 29
 
 
  1081 00c7 13       		.uleb128 0x13
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1135 00ff 13       		.uleb128 0x13
  1136 0100 00       		.byte	0
  1137 0101 00       		.byte	0
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 30
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 30
 
 
  1138 0102 11       		.uleb128 0x11
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1192              		.section	.debug_loc,"",%progbits
  1193              	.Ldebug_loc0:
  1194              	.LLST0:
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 31
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 31
 
 
  1195 0000 2A000000 		.4byte	.LVL0
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1249 0085 DC000000 		.4byte	.LFE4
  1250 0089 0400     		.2byte	0x4
  1251 008b F3       		.byte	0xf3
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 32
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 32
 
 
  1252 008c 01       		.uleb128 0x1
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1306 0115 0A000000 		.4byte	.LVL25
  1307 0119 56000000 		.4byte	.LVL29
  1308 011d 0100     		.2byte	0x1
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 33
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 33
 
 
  1309 011f 55       		.byte	0x55
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1363 0044 10000000 		.4byte	.LFE10
  1364 0048 00000000 		.4byte	.LFB4
  1365 004c DC000000 		.4byte	.LFE4
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 34
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 34
 
 
  1366 0050 00000000 		.4byte	.LFB9
@@ -2008,194 +2008,190 @@ ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 1
  1380 002e 73686F72 		.ascii	"short int\000"
  1380      7420696E 
  1380      7400
- 1381              	.LASF19:
- 1382 0038 74696D65 		.ascii	"timer_clock_5_StandbyPower\000"
- 1382      725F636C 
- 1382      6F636B5F 
- 1382      355F5374 
- 1382      616E6462 
- 1383              	.LASF10:
- 1384 0053 75696E74 		.ascii	"uint16\000"
- 1384      313600
- 1385              	.LASF29:
- 1386 005a 72657374 		.ascii	"restart\000"
- 1386      61727400 
- 1387              	.LASF35:
- 1388 0062 6F6C6453 		.ascii	"oldSrc\000"
- 1388      726300
- 1389              	.LASF9:
- 1390 0069 75696E74 		.ascii	"uint8\000"
- 1390      3800
- 1391              	.LASF28:
- 1392 006f 636C6B44 		.ascii	"clkDivider\000"
- 1392      69766964 
- 1392      657200
- 1393              	.LASF25:
- 1394 007a 74696D65 		.ascii	"timer_clock_5_GetModeRegister\000"
- 1394      725F636C 
- 1394      6F636B5F 
- 1394      355F4765 
- 1394      744D6F64 
- 1395              	.LASF11:
- 1396 0098 666C6F61 		.ascii	"float\000"
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 35
+ 1381              	.LASF38:
+ 1382 0038 433A5C55 		.ascii	"C:\\Users\\Koo Moo\\Desktop\\ZumoRobo\\ZumoBot.cyds"
+ 1382      73657273 
+ 1382      5C4B6F6F 
+ 1382      204D6F6F 
+ 1382      5C446573 
+ 1383 0066 6E00     		.ascii	"n\000"
+ 1384              	.LASF19:
+ 1385 0068 74696D65 		.ascii	"timer_clock_5_StandbyPower\000"
+ 1385      725F636C 
+ 1385      6F636B5F 
+ 1385      355F5374 
+ 1385      616E6462 
+ 1386              	.LASF10:
+ 1387 0083 75696E74 		.ascii	"uint16\000"
+ 1387      313600
+ 1388              	.LASF29:
+ 1389 008a 72657374 		.ascii	"restart\000"
+ 1389      61727400 
+ 1390              	.LASF35:
+ 1391 0092 6F6C6453 		.ascii	"oldSrc\000"
+ 1391      726300
+ 1392              	.LASF9:
+ 1393 0099 75696E74 		.ascii	"uint8\000"
+ 1393      3800
+ 1394              	.LASF28:
+ 1395 009f 636C6B44 		.ascii	"clkDivider\000"
+ 1395      69766964 
+ 1395      657200
+ 1396              	.LASF25:
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 35
 
 
- 1396      7400
- 1397              	.LASF6:
- 1398 009e 6C6F6E67 		.ascii	"long long int\000"
- 1398      206C6F6E 
- 1398      6720696E 
- 1398      7400
- 1399              	.LASF20:
- 1400 00ac 74696D65 		.ascii	"timer_clock_5_SetModeRegister\000"
- 1400      725F636C 
- 1400      6F636B5F 
- 1400      355F5365 
- 1400      744D6F64 
- 1401              	.LASF4:
- 1402 00ca 6C6F6E67 		.ascii	"long int\000"
- 1402      20696E74 
- 1402      00
- 1403              	.LASF39:
- 1404 00d3 74696D65 		.ascii	"timer_clock_5_SetSourceRegister\000"
- 1404      725F636C 
- 1404      6F636B5F 
- 1404      355F5365 
- 1404      74536F75 
- 1405              	.LASF24:
- 1406 00f3 74696D65 		.ascii	"timer_clock_5_GetDividerRegister\000"
- 1406      725F636C 
- 1406      6F636B5F 
- 1406      355F4765 
- 1406      74446976 
- 1407              	.LASF21:
- 1408 0114 73746174 		.ascii	"state\000"
- 1408      6500
- 1409              	.LASF1:
- 1410 011a 756E7369 		.ascii	"unsigned char\000"
- 1410      676E6564 
- 1410      20636861 
- 1410      7200
- 1411              	.LASF22:
- 1412 0128 6D6F6465 		.ascii	"modeBitMask\000"
- 1412      4269744D 
- 1412      61736B00 
- 1413              	.LASF0:
- 1414 0134 7369676E 		.ascii	"signed char\000"
- 1414      65642063 
- 1414      68617200 
- 1415              	.LASF7:
- 1416 0140 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1416      206C6F6E 
- 1416      6720756E 
- 1416      7369676E 
- 1416      65642069 
- 1417              	.LASF8:
- 1418 0157 756E7369 		.ascii	"unsigned int\000"
- 1418      676E6564 
- 1418      20696E74 
- 1418      00
- 1419              	.LASF16:
- 1420 0164 74696D65 		.ascii	"timer_clock_5_Start\000"
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 36
+ 1397 00aa 74696D65 		.ascii	"timer_clock_5_GetModeRegister\000"
+ 1397      725F636C 
+ 1397      6F636B5F 
+ 1397      355F4765 
+ 1397      744D6F64 
+ 1398              	.LASF11:
+ 1399 00c8 666C6F61 		.ascii	"float\000"
+ 1399      7400
+ 1400              	.LASF6:
+ 1401 00ce 6C6F6E67 		.ascii	"long long int\000"
+ 1401      206C6F6E 
+ 1401      6720696E 
+ 1401      7400
+ 1402              	.LASF20:
+ 1403 00dc 74696D65 		.ascii	"timer_clock_5_SetModeRegister\000"
+ 1403      725F636C 
+ 1403      6F636B5F 
+ 1403      355F5365 
+ 1403      744D6F64 
+ 1404              	.LASF4:
+ 1405 00fa 6C6F6E67 		.ascii	"long int\000"
+ 1405      20696E74 
+ 1405      00
+ 1406              	.LASF39:
+ 1407 0103 74696D65 		.ascii	"timer_clock_5_SetSourceRegister\000"
+ 1407      725F636C 
+ 1407      6F636B5F 
+ 1407      355F5365 
+ 1407      74536F75 
+ 1408              	.LASF24:
+ 1409 0123 74696D65 		.ascii	"timer_clock_5_GetDividerRegister\000"
+ 1409      725F636C 
+ 1409      6F636B5F 
+ 1409      355F4765 
+ 1409      74446976 
+ 1410              	.LASF21:
+ 1411 0144 73746174 		.ascii	"state\000"
+ 1411      6500
+ 1412              	.LASF1:
+ 1413 014a 756E7369 		.ascii	"unsigned char\000"
+ 1413      676E6564 
+ 1413      20636861 
+ 1413      7200
+ 1414              	.LASF22:
+ 1415 0158 6D6F6465 		.ascii	"modeBitMask\000"
+ 1415      4269744D 
+ 1415      61736B00 
+ 1416              	.LASF0:
+ 1417 0164 7369676E 		.ascii	"signed char\000"
+ 1417      65642063 
+ 1417      68617200 
+ 1418              	.LASF7:
+ 1419 0170 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1419      206C6F6E 
+ 1419      6720756E 
+ 1419      7369676E 
+ 1419      65642069 
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 36
 
 
- 1420      725F636C 
- 1420      6F636B5F 
- 1420      355F5374 
- 1420      61727400 
- 1421              	.LASF3:
- 1422 0178 73686F72 		.ascii	"short unsigned int\000"
- 1422      7420756E 
- 1422      7369676E 
- 1422      65642069 
- 1422      6E7400
- 1423              	.LASF37:
- 1424 018b 47656E65 		.ascii	"Generated_Source\\PSoC5\\timer_clock_5.c\000"
- 1424      72617465 
- 1424      645F536F 
- 1424      75726365 
- 1424      5C50536F 
- 1425              	.LASF13:
- 1426 01b2 63686172 		.ascii	"char\000"
- 1426      00
- 1427              	.LASF36:
- 1428 01b7 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1428      4320342E 
- 1428      392E3320 
- 1428      32303135 
- 1428      30333033 
- 1429 01ea 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 1429      20726576 
- 1429      6973696F 
- 1429      6E203232 
- 1429      31323230 
- 1430 021d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1430      66756E63 
- 1430      74696F6E 
- 1430      2D736563 
- 1430      74696F6E 
- 1431              	.LASF33:
- 1432 0245 636C6B53 		.ascii	"clkSource\000"
- 1432      6F757263 
- 1432      6500
- 1433              	.LASF32:
- 1434 024f 63757272 		.ascii	"currSrc\000"
- 1434      53726300 
- 1435              	.LASF38:
- 1436 0257 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\Zumo_Robotti\\Zumo_Rob"
- 1436      73657273 
- 1436      5C56696C 
- 1436      6C65204C 
- 1436      5C446573 
- 1437 0285 6F747469 		.ascii	"otti\\ZumoBot.cydsn\000"
- 1437      5C5A756D 
- 1437      6F426F74 
- 1437      2E637964 
- 1437      736E00
+ 1420              	.LASF8:
+ 1421 0187 756E7369 		.ascii	"unsigned int\000"
+ 1421      676E6564 
+ 1421      20696E74 
+ 1421      00
+ 1422              	.LASF16:
+ 1423 0194 74696D65 		.ascii	"timer_clock_5_Start\000"
+ 1423      725F636C 
+ 1423      6F636B5F 
+ 1423      355F5374 
+ 1423      61727400 
+ 1424              	.LASF3:
+ 1425 01a8 73686F72 		.ascii	"short unsigned int\000"
+ 1425      7420756E 
+ 1425      7369676E 
+ 1425      65642069 
+ 1425      6E7400
+ 1426              	.LASF37:
+ 1427 01bb 47656E65 		.ascii	"Generated_Source\\PSoC5\\timer_clock_5.c\000"
+ 1427      72617465 
+ 1427      645F536F 
+ 1427      75726365 
+ 1427      5C50536F 
+ 1428              	.LASF13:
+ 1429 01e2 63686172 		.ascii	"char\000"
+ 1429      00
+ 1430              	.LASF36:
+ 1431 01e7 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1431      4320342E 
+ 1431      392E3320 
+ 1431      32303135 
+ 1431      30333033 
+ 1432 021a 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1432      20726576 
+ 1432      6973696F 
+ 1432      6E203232 
+ 1432      31323230 
+ 1433 024d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1433      66756E63 
+ 1433      74696F6E 
+ 1433      2D736563 
+ 1433      74696F6E 
+ 1434              	.LASF33:
+ 1435 0275 636C6B53 		.ascii	"clkSource\000"
+ 1435      6F757263 
+ 1435      6500
+ 1436              	.LASF32:
+ 1437 027f 63757272 		.ascii	"currSrc\000"
+ 1437      53726300 
  1438              	.LASF30:
- 1439 0298 6F6C6444 		.ascii	"oldDivider\000"
+ 1439 0287 6F6C6444 		.ascii	"oldDivider\000"
  1439      69766964 
  1439      657200
-ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\cc4MwKSV.s 			page 37
-
-
  1440              	.LASF14:
- 1441 02a3 72656738 		.ascii	"reg8\000"
+ 1441 0292 72656738 		.ascii	"reg8\000"
  1441      00
  1442              	.LASF5:
- 1443 02a8 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccxXuqL9.s 			page 37
+
+
+ 1443 0297 6C6F6E67 		.ascii	"long unsigned int\000"
  1443      20756E73 
  1443      69676E65 
  1443      6420696E 
  1443      7400
  1444              	.LASF12:
- 1445 02ba 646F7562 		.ascii	"double\000"
+ 1445 02a9 646F7562 		.ascii	"double\000"
  1445      6C6500
  1446              	.LASF27:
- 1447 02c1 74696D65 		.ascii	"timer_clock_5_SetDividerRegister\000"
+ 1447 02b0 74696D65 		.ascii	"timer_clock_5_SetDividerRegister\000"
  1447      725F636C 
  1447      6F636B5F 
  1447      355F5365 
  1447      74446976 
  1448              	.LASF31:
- 1449 02e2 656E6162 		.ascii	"enabled\000"
+ 1449 02d1 656E6162 		.ascii	"enabled\000"
  1449      6C656400 
  1450              	.LASF26:
- 1451 02ea 74696D65 		.ascii	"timer_clock_5_GetSourceRegister\000"
+ 1451 02d9 74696D65 		.ascii	"timer_clock_5_GetSourceRegister\000"
  1451      725F636C 
  1451      6F636B5F 
  1451      355F4765 
  1451      74536F75 
  1452              	.LASF17:
- 1453 030a 74696D65 		.ascii	"timer_clock_5_Stop\000"
+ 1453 02f9 74696D65 		.ascii	"timer_clock_5_Stop\000"
  1453      725F636C 
  1453      6F636B5F 
  1453      355F5374 
  1453      6F7000
  1454              	.LASF18:
- 1455 031d 74696D65 		.ascii	"timer_clock_5_StopBlock\000"
+ 1455 030c 74696D65 		.ascii	"timer_clock_5_StopBlock\000"
  1455      725F636C 
  1455      6F636B5F 
  1455      355F5374 
