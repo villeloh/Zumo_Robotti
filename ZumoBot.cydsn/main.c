@@ -50,11 +50,18 @@ int main()
     // Needed for using the button to start the robot's movement routine
     int exit = 0;
     
+    // Needed for stopping movement
+    int exitMainLoop = 0;
+    
     // Needed for enabling correct looping behaviour in the movement routine
     int loopCheck = 0;
     
     // Check for enabling some procedures after the main turn logic has executed
     int turnFlag = 0;
+    
+    //For counting blackLines
+    int countLines = 0;
+    int inBlack = 0;
     
     // For determining behaviour with various values of 'diff'
     int diffCase = 0;
@@ -130,7 +137,7 @@ int main()
     Custom_forward(speed);
     
     // Giant loop to run the movement logic in.
-    while(1)
+    while(exitMainLoop == 0)
     {    
         
         reflectance_read(&ref); // raw reflectance value ('blackness') from the sensor; 0 - 23 999
@@ -139,6 +146,7 @@ int main()
         //printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
         //CyDelay(1000); // comment this delay out when doing movement tests / racing !!!
         
+       
         
         // Line-following logic.
         // NOTE: due to the calibration of the motor speeds, 240 (255 - 15) is our current max speed!
@@ -426,6 +434,22 @@ int main()
         
         }
         
+         //First let's put line recognition logic here. It may be necessary to have line regocnition logic also in loops for turnings.
+        if (dig.l3 == 0 && dig.r3 == 0){
+            inBlack = 1;
+        }
+        
+        if (inBlack == 1 && dig.r3 == 1 && dig.l3 == 1){
+            ++countLines;
+            inBlack = 0;
+        }
+        
+        //this must change (2=>1), when added moving to starting-line logic.
+        if (countLines == 2 && dig.r3 == 0 && dig.l3 == 0){
+            motor_forward(0,0);
+            exitMainLoop = 1;
+        }
+        
         
                                     
         // For measuring the battery voltage at regular intervals. 
@@ -443,6 +467,9 @@ int main()
         CyDelay(1);
      
     }
+    
+    // empty loop to end with
+    for(;;){}
    
 }
     
