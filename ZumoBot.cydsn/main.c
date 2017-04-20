@@ -49,36 +49,31 @@ int main()
     
     // Needed for using the button to start the robot's movement routine
     int exit = 0;
-    
-    // Needed for stopping movement
-    int exitMainLoop = 0;
-    
-    // Needed for enabling correct looping behaviour in the movement routine
-    int loopCheck = 0;
-    
-    // Check for enabling some procedures after the main turn logic has executed
-    int turnFlag = 0;
-    
-    //For counting blackLines
-    int countLines = 0;
-    int inBlack = 0;
-    
+
     // For determining behaviour with various values of 'diff'
     int diffCase = 0;
     
     // The diff value which acts as a threshold for 'fast' movement away from / towards the center of the line
     int diff_Fast = 500;
     
-    // Turn value for the motors to use
+    // direction flag for correct turning behaviour. '1' = 'left', '2' = 'right'.
+    int dir_flag = 0;
+    
+    //For counting blackLines (to stop the robot at race end)
+    int countLines = 0;
+    int inBlack = 0;
+    int exitMainLoop = 0;
+    
+    // Turn value for the motors to use.
     uint8 turn = 0;
     
-    // (maximum) movement speed of the robot
+    // (Maximum) movement speed of the robot.
     uint8 speed = 240;
     
-    // reflectance thresholds (determined experimentally) for use in different movement behaviours
+    // Reflectance thresholds (determined experimentally) for use in different movement behaviours.
     int black_threshold_l3 = 21000;
-    int black_threshold_l1 = 18000; // working value: 17 500
-    int black_threshold_r1 = 22600; // working value: 22 000
+    int black_threshold_l1 = 18000; // 'sure bet' working value: 17 500
+    int black_threshold_r1 = 22600; // 'sure bet' working value: 22 000
     int black_threshold_r3 = 21500;
         
     int white_threshold_l3 = 5793;
@@ -86,18 +81,17 @@ int main()
     int white_threshold_r1 = 4522;
     int white_threshold_r3 = 6293;
     
-    int maxDiff_l3 = black_threshold_l3 - white_threshold_l3;
     int maxDiff_l1 = black_threshold_l1 - white_threshold_l1;
     int maxDiff_r1 = black_threshold_r1 - white_threshold_r1;
-    int maxDiff_r3 = black_threshold_r3 - white_threshold_r3;
-    
-    float blackness1_left = 23999;
-    float blackness2_left = 23999;
-    float blackness1_right = 23999;
-    float blackness2_right = 23999;
-    
-    float diff_left = 0.0;
-    float diff_right = 0.0;
+        
+    int digital = 0;
+    int maxDiff = 0;
+    int black_threshold = 0;
+    float blackness_1 = 23999;
+    float blackness_2 = 23999;
+    float blackDiff = 0.0;
+    int near_BlackThreshold = 0;
+
     
     // Initialize various starting thingies
     struct sensors_ ref;
@@ -134,126 +128,154 @@ int main()
     }
     
     // Start going forward.
-    Custom_forward(speed);
+    //Custom_forward(speed);
     
     // Giant loop to run the movement logic in.
     while(exitMainLoop == 0)
     {    
-        
+        /*
         reflectance_read(&ref); // raw reflectance value ('blackness') from the sensor; 0 - 23 999
-        //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
+        printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
         reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
-        //printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
-        //CyDelay(1000); // comment this delay out when doing movement tests / racing !!!
+        printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
+        CyDelay(500); // comment this delay out when doing movement tests / racing !!!
+        */
         
-       
         
         // Line-following logic.
         // NOTE: due to the calibration of the motor speeds, 240 (255 - 15) is our current max speed!
-               
+        
+        // If-switch between left and right sensor activation (affects turning logic directly below).
+        if (dig.l1 == 1) 
+        {
+            dir_flag = 1;
+            digital = dig.l1;
+            
+            blackness_1 = ref.l1;
+            CyDelay(1);
+            
+            black_threshold = black_threshold_l1;
+            near_BlackThreshold = 16000;
+            maxDiff = maxDiff_l1;
+   
+        } else if (dig.r1 == 1) {
+        
+            dir_flag = 2;
+            digital = dig.r1;
+            
+            blackness_1 = ref.r1;
+            CyDelay(1);
+            
+            black_threshold = black_threshold_r1;
+            near_BlackThreshold = 19200;
+            maxDiff = maxDiff_r1;
+            
+        }
+         
         // When the measured blackness value drops below the threshold, start the appropriate turning routine
-        if (dig.l1 == 1)
+        if (digital == 1)
         { 
-            // When the robot starts to veer off to the left, do a correction towards the right, until the veering off has been corrected.
+
+            // When the robot starts to veer off to the left or right, do a corrective turn in the opposite direction.
             do {
                 
-                // Obtain an initial value for blackness1_left, then close access to the if statement (needed for the loop to work correctly).
-                if (loopCheck == 0)
-                {
-                    reflectance_read(&ref);
-                    blackness1_left = ref.l1;
-                    CyDelay(1);
-                    loopCheck = 1;                   
-                }
-                
-                // Obtain a second value (1 millisecond later).
+                // Obtain a second ref value (1 millisecond later).
                 reflectance_read(&ref);
                 reflectance_digital(&dig); // needed to check if the turn should be ended
-                blackness2_left = ref.l1;
                 
+                // This if-härdelli is needed solely due to the way that structs work...
+                if (dir_flag == 1) 
+                {
+                    digital = dig.l1;
+                    blackness_2 = ref.l1;
+                } else {
+                    digital = dig.r1;
+                    blackness_2 = ref.r1;
+                }
+                               
                 // Calculate the difference between the two values.
-                diff_left = blackness1_left - blackness2_left;
+                blackDiff = blackness_1 - blackness_2;
        
-                // Make a switch statement based on the determined values of blackness2_left and diff_left.
-                // NOTE: diff_Fast = 500 atm (for both sides, left and right).
-                if (diff_left <= -diff_Fast) { diffCase = 1; }
-                else if (diff_left > -diff_Fast && diff_left < 0) { diffCase = 2; }            
-                else if (diff_left >= 0 && diff_left < diff_Fast) { diffCase = 3; }
-                else if (diff_left >= diff_Fast) { diffCase = 4; }
+                // Behaviour changes based on the determined values of blackness_2 and blackDiff.
+                // NOTE: diff_Fast = 500 at the moment.
+                if (blackDiff <= -diff_Fast) { diffCase = 1; }
+                else if (blackDiff > -diff_Fast && blackDiff < 0) { diffCase = 2; }            
+                else if (blackDiff >= 0 && blackDiff < diff_Fast) { diffCase = 3; }
+                else if (blackDiff >= diff_Fast) { diffCase = 4; }
                 
                 switch (diffCase)
                 {
-                    case 1: // diff_left <= -diff_Fast
+                    case 1: // blackDiff <= -diff_Fast
                     
                         // moving fast towards center of line
                         
-                        if (blackness2_left < 16000) 
+                        if (blackness_2 < near_BlackThreshold) 
                         {
-                            turn = 1.2 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
+                            turn = 1.2 * speed * ( (black_threshold - blackness_2) / black_threshold);
                             
                         } else {
                         
                             turn = 0;
                         }
                               
-                    break;
+                        break;
                     
-                    case 2: // -diff_Fast < diff_left < 0
+                    case 2: // -diff_Fast < blackDiff < 0
                     
                         // moving at a moderate speed towards center of line
                     
-                        if (blackness2_left < 16000) 
+                        if (blackness_2 < near_BlackThreshold) 
                         {
-                            turn = 1.2 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
-                            turn += 1.4 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                            turn = 1.2 * speed * ( (black_threshold - blackness_2) / black_threshold);
+                            turn += 1.4 * ( (blackDiff * blackDiff / maxDiff)); // adds to turn
                             
                         } else {
                         
-                            turn = 1.1 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
-                            turn -= 1.1 * ( (diff_left * diff_left / maxDiff_l1)); //subtracts from turn
+                            turn = 1.1 * speed * ( (black_threshold - blackness_2) / black_threshold);
+                            turn -= 1.1 * ( (blackDiff * blackDiff / maxDiff)); //subtracts from turn
                         }
                                                          
-                    break;
+                        break;
                         
-                    case 3: // 0 <= diff_left < diff_Fast
+                    case 3: // 0 <= blackDiff < diff_Fast
                         
                         // moving at a moderate speed away from center of line
                         
-                        if (blackness2_left < 16000) 
+                        if (blackness_2 < near_BlackThreshold) 
                         {
-                            turn = 1.3 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
-                            turn += 1.5 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                            turn = 1.3 * speed * ( (black_threshold - blackness_2) / black_threshold);
+                            turn += 1.5 * ( (blackDiff * blackDiff / maxDiff)); // adds to turn
                             
                         } else {
                         
-                            turn = 1.2 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
-                            turn += 1.4 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                            turn = 1.2 * speed * ( (black_threshold - blackness_2) / black_threshold);
+                            turn += 1.4 * ( (blackDiff * blackDiff / maxDiff)); // adds to turn
                         }
                         
-                    break;   
+                        break;   
                         
-                    case 4: // diff_left >= diff_Fast
+                    case 4: // blackDiff >= diff_Fast
                         
                         // moving at a fast speed away from center of line
                     
-                        if (blackness2_left < 16000) 
+                        if (blackness_2 < near_BlackThreshold) 
                         {
-                            turn = 1.5 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
-                            turn += 1.7 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                            turn = 1.5 * speed * ( (black_threshold - blackness_2) / black_threshold);
+                            turn += 1.7 * ( (blackDiff * blackDiff / maxDiff)); // adds to turn
                             
                         } else {
                         
-                            turn = 1.4 * speed * ( (black_threshold_l1 - blackness2_left) / black_threshold_l1);
-                            turn += 1.6 * ( (diff_left * diff_left / maxDiff_l1)); // adds to turn
+                            turn = 1.4 * speed * ( (black_threshold - blackness_2) / black_threshold);
+                            turn += 1.6 * ( (blackDiff * blackDiff / maxDiff)); // adds to turn
                         }
                         
-                    break;
+                        break;
                                                                   
-                    // possible case 5: diff_left > 9000 (or some high value)
-                    // there can be an infinite number of cases for increasingly finer control...
+                        // possible case 5: blackDiff > 9000 (or some high value)
+                        // there can be an infinite number of cases for increasingly finer control...
                 }
                 
-                // Check for egregious values of 'turn' and correct them if found
+                // Check for egregious values of 'turn' and correct them if found.
                 if (turn > 240)
                 {
                     turn = 240;
@@ -261,180 +283,33 @@ int main()
                     turn = 0;   
                 }
                                                           
-                // Execute the turn.
-                Right_turn(turn);
+                // Execute the turn (right turn if the left sensor activated, left turn if the right one activated).             
+                if (dir_flag == 1) 
+                {
+                    Right_turn(turn); } else {
+                    Left_turn(turn);
+                }
                              
                 // Store the value of the second measurement to the variable for the first.
-                // As the loop continues, blackness2's value is stored in blackness1 and then blackness2 gets a new, measured value; etc.
-                blackness1_left = blackness2_left;
+                // As the loop continues, blackness_2's value is stored in blackness_1 and then blackness_2 gets a new, measured value; etc.
+                blackness_1 = blackness_2;
                 
                 CyDelay(1);
-          
-                turnFlag = 1;
-                
-            } while (dig.l1 == 1);
+                         
+            } while (digital == 1);
                                     
-            if (turnFlag == 1) 
-            {
-                // After each executed turn, do a small 'corrective twitch' in the opposite direction
-                //Left_turn(speed/2); // experimental value
-                //CyDelay(10); // experimental value
-                
-                // Return 'loopCheck' to its initial value, so that we can get an initial measurement 
-                // once the turn loop starts again (i.e. when the robot needs to turn again).
-                loopCheck = 0;
-              
-                // For added safety, set turn to zero... May not be necessary.
-                turn = 0;
-                // Since the turn has ended, continue forward at the designated speed.
-                Custom_forward(speed);
-                
-                turnFlag = 0;
-            }
-                              
-        } else if (dig.r1 == 1) {
-            
-            // When the robot starts to veer off to the right, do a correction towards the left, until the veering off has been corrected.
-            do {
-                
-                // Obtain an initial value for blackness1_right, then close access to the if statement (needed for the loop to work correctly).
-                if (loopCheck == 0)
-                {
-                    reflectance_read(&ref);
-                    blackness1_right = ref.r1;
-                    CyDelay(1);
-                    loopCheck = 1;
-                }
-                
-                // Obtain a second value (1 millisecond later).
-                reflectance_read(&ref);
-                reflectance_digital(&dig); 
-                blackness2_right = ref.r1;
-                
-                // Calculate the difference between the two values.
-                diff_right = blackness1_right - blackness2_right;
-
-                // Make a switch statement based on the determined values of blackness2_right and diff_right.
-                // NOTE: diff_Fast = 500 atm (for both sides, left and right).
-                if (diff_right <= -diff_Fast) { diffCase = 1; }
-                else if (diff_right > -diff_Fast && diff_right < 0) { diffCase = 2; }            
-                else if (diff_right >= 0 && diff_right < diff_Fast) { diffCase = 3; }
-                else if (diff_right >= diff_Fast) { diffCase = 4; }
-                
-                switch (diffCase)
-                {
-                    case 1: // diff_right <= -diff_Fast
-                    
-                        // moving fast towards center of line
-                        
-                        if (blackness2_right < 19200) 
-                        {
-                            turn = 1.2 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                            
-                        } else {
-                        
-                            turn = 0;
-                        }
-                              
-                    break;
-                    
-                    case 2: // -diff_Fast < diff_right < 0
-                    
-                        // moving at a moderate speed towards center of line
-                    
-                        if (blackness2_right < 19200) 
-                        {
-                            turn = 1.2 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                            turn += 1.4 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
-                            
-                        } else {
-                        
-                            turn = 1.1 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                            turn -= 1.1 * ( (diff_right * diff_right / maxDiff_r1)); //subtracts from turn
-                        }
-                                                         
-                    break;
-                        
-                    case 3: // 0 <= diff_right < diff_Fast
-                        
-                        // moving at a moderate speed away from center of line
-                        
-                        if (blackness2_right < 19200) 
-                        {
-                            turn = 1.3 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                            turn += 1.5 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
-                            
-                        } else {
-                        
-                            turn = 1.2 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                            turn += 1.4 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
-                        }
-                        
-                    break;   
-                        
-                    case 4: // diff_right >= diff_Fast
-                        
-                        // moving at a fast speed away from center of line
-                    
-                        if (blackness2_right < 19200) 
-                        {
-                            turn = 1.5 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                            turn += 1.7 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
-                            
-                        } else {
-                        
-                            turn = 1.4 * speed * ( (black_threshold_r1 - blackness2_right) / black_threshold_r1);
-                            turn += 1.6 * ( (diff_right * diff_right / maxDiff_r1)); // adds to turn
-                        }
-                        
-                    break;
-                                                                  
-                    // possible case 5: diff_left > 9000 (or some high value)
-                    // there can be an infinite number of cases for increasingly finer control...
-                }
-                
-                // Check for egregious values of 'turn' and correct them if found
-                if (turn > 240)
-                {
-                    turn = 240;
-                } else if (turn < 0) {
-                    turn = 0;   
-                }
-                
-                // Execute the turn.
-                Left_turn(turn);
-                
-                // Store the value of the second measurement to the variable for the first.
-                // As the loop continues, blackness2's value is stored in blackness1 and then blackness2 gets a new, measured value; etc.
-                blackness1_right = blackness2_right;
-                                
-                CyDelay(1);
-             
-                turnFlag = 1;
-                
-            } while (dig.r1 == 1);
-                           
-            if (turnFlag == 1) 
-            {
-                // After each executed turn, do a small 'corrective twitch' in the opposite direction
-                //Right_turn(speed/2); // experimental value
-                //CyDelay(10); // experimental value
-                
-                // Return 'loopCheck' to its initial value, so that we can get an initial measurement 
-                // once the turn loop starts again (i.e. when the robot needs to turn again).
-                loopCheck = 0;
-              
-                // For added safety, set turn to zero... May not be necessary.
-                turn = 0;
-                // Since the turn has ended, continue forward at the designated speed.
-                Custom_forward(speed);
-                
-                turnFlag = 0;
-            }
+            // After each executed turn, do a small 'corrective twitch' in the opposite direction
+            //Left_turn(speed/2); // experimental value
+            //CyDelay(10); // experimental value
+          
+            // For added safety, set turn to zero... May not be necessary.
+            turn = 0;
+            // Since the turn has ended, continue forward at the designated speed.
+            Custom_forward(speed);
+                                          
+        } 
         
-        }
-        
-         //First let's put line recognition logic here. It may be necessary to have line regocnition logic also in loops for turnings.
+        //First let's put line recognition logic here. It may be necessary to have line regocnition logic also in loops for turnings.
         if (dig.l3 == 0 && dig.r3 == 0){
             inBlack = 1;
         }
@@ -448,10 +323,8 @@ int main()
         if (countLines == 2 && dig.r3 == 0 && dig.l3 == 0){
             motor_forward(0,0);
             exitMainLoop = 1;
-        }
-        
-        
-                                    
+        }        
+                                            
         // For measuring the battery voltage at regular intervals. 
         // 80000 'cycles' should equal ~80 seconds, due to the delay that is used below (1).
         // NOTE: the cycle limit will have to be adjusted each time we add delays to the while loop! 
@@ -464,13 +337,11 @@ int main()
             cycles = 0;
         }
         
-        CyDelay(1);
-     
-    }
+        CyDelay(1);   
+    }  
     
-    // empty loop to end with
-    for(;;){}
-   
+    //empty loop to end with
+    while(1) {}
 }
     
     
