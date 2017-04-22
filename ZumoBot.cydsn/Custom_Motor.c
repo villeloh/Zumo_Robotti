@@ -12,8 +12,6 @@
 #include "Beep.h"
 
 void Custom_forward(uint8 speed);
-void Right_turn(uint8 speed);
-void Left_turn(uint8 speed);
 void Turn(uint8 turn, int dir_flag, float diff_ave);
 
 
@@ -31,29 +29,12 @@ void Custom_forward(uint8 speed)
     PWM_WriteCompare2(speed);
 }
 
-// Called in main.c when the robot is starting to veer to the left (off the black line).
-// NOTE: It SLOWS down the right motor in order to turn to the right! This is to preserve 
-// speed, as we can drive at full speed by default if we use this approach
-// (instead of speeding up the left motor to turn).
-void Right_turn(uint8 speed)
-{   
-    PWM_WriteCompare2(240 - speed); 
-}
-
-// Called in main.c when the robot is starting to veer to the right (off the black line).
-// NOTE: It SLOWS down the left motor in order to turn to the left! This is to preserve 
-// speed, as we can drive at full speed by default if we use this approach
-// (instead of speeding up the right motor to turn).
-void Left_turn(uint8 speed)
-{
-        PWM_WriteCompare1(255 - speed); // calibration is needed in the turn method as well
-}
-
 // A new turn method that takes direction as a parameter.
 // Also, if we're already moving towards the center of the line, turns in the opposite direction instead.
 // This should accomplish what I tried to do with the 'corrective twitch' method earlier (in a much clumsier way).
 void Turn(uint8 turn, int dir_flag, float diff_ave)
 {
+    
     
     if (dir_flag == 1)
     {
@@ -64,6 +45,8 @@ void Turn(uint8 turn, int dir_flag, float diff_ave)
             
         } else if (diff_ave < 0 && diff_ave >= -300) {
             
+            if (turn < 85) {turn = 85;} // needed to prevent undefined values of input to PWM_WriteCompare1()
+            // in effect, it means the zero value of final turn is reached quicker.
             PWM_WriteCompare1( 1.5 * (255 - turn) ); // turn is less steep if diff_ave >= -300
         
         } else if (diff_ave < -300) {
@@ -80,6 +63,8 @@ void Turn(uint8 turn, int dir_flag, float diff_ave)
             
         } else if (diff_ave < 0 && diff_ave >= -300) {
             
+            if (turn < 80) {turn = 80;} // needed to prevent undefined values of input to PWM_WriteCompare2()
+            // in effect, it means the zero value of final turn is reached quicker.
             PWM_WriteCompare2( 1.5 * (240 - turn) ); // turn is less steep if diff_ave >= -300
         
         } else if (diff_ave < -300) {

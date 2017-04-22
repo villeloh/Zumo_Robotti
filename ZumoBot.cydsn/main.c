@@ -88,6 +88,7 @@ int main()
     float blackDiff = 0.0;
     float diffs[3] = {0, 0, 0};
     float diff_ave = 0;
+    float diff_prev_ave = 0;
     int i;
     float diff_pos = 0;
     float norm_blackness_2 = 0;
@@ -204,63 +205,54 @@ int main()
                 // Use average of 3 diffs for determining behaviour. it should smooth out the rough edges.
                 diff_ave = ( diffs[0] + diffs[1] + diffs[2]) / 3;
                 
+                // Needed for normalizing 'freak' blackness values (explained below).
+                diff_prev_ave = (diffs[2] + diffs[1]) / 2;
+                
                 // Normalize diff_ave (needed for use in the exponential 3rd component of 'turn', to prevent 'freak' or undefined behaviour).
                 diff_pos = diff_ave;
                 if (diff_pos < 0 ) { diff_pos *= -1.0; }
                 
                 if (diff_pos > 2000.0) { diff_pos = 2000.0; }
                 
-                // Normalize blackness_2 (assigned to a new variable; original blackness_2 remains unmodified).
+                // Normalize the value of blackness_2 (assigned to a new variable; original blackness_2 remains unmodified).
                 // The normalized value is used instead of plain blackness_2 in the first exponential component of 'turn', directly below.
                 // This should ensure that random 'freak' sensor values, like 5 000 blackness when the last value was 18 000, have limited effect
                 // on the middle component of 'turn'.
                 norm_blackness_2 = blackness_2;
-                if (norm_blackness_2 < 10000)
+                
+                // If the latest difference in blackness values is more than 2000 AND the previous diff average (calculated WITHOUT the new big jump) was less
+                // than 1000, normalize blackness value with the TOTAL diff average (INCLUDING the new big jump).
+                if ((blackDiff > 2000 || blackDiff < -2000) && (diff_prev_ave < 1000 || diff_prev_ave > -1000) )
                 {
-                    norm_blackness_2 = 10000;
+                    norm_blackness_2 -= diff_ave;  // seems like a good way to normalize, as the greater the jump will be, the greater also the normalization.
+                    // Subtraction should work for both cases (blackDiff > 0 and < 0)... If a fluke occurs, it should be a minor one, as the big jump 
+                    // inevitably dominates the value of diff_ave. Otoh, whether 2000 diff is a good limit for triggering the normalization is very much
+                    // up to debate; experiments will be needed.
                 }
-                          
-                            // NOTE: All left side values in the comments !!
-                            /* NOTE2: Values will need adjustment (upwards)!!
-                            
-                            left black_threshold = 18 000
-                            left maxDiff = black_threshold - white_threshold = 13 500
-                           
-                            For base turn:
-                            18 000 (black_threshold) + 60 constant:
-                            if blackness_2 = 20 000 ==> turn = 33
-                            if blackness_2 = 18 000 ==> turn = 60
-                            if blackness_2 = 16 000 ==> turn = 86
-                            if blackness_2 = 14 000 ==> turn = 112
-                            if blackness_2 = 12 000 ==> turn = 138
-                            if blackness_2 = 10 000 ==> turn = 164
+                                            
+                // 'Base' turn component. Depends linearly on the last measured & normalized blackness value, calibrated with the black_threshold + 60 
+                // (simply a ball-park constant, to raise the value of turn globally).           
+                turn = 60 + speed * ( (black_threshold - norm_blackness_2) / black_threshold );
                 
-                            */
-                            
-                // 'Base' turn component. Depends linearly on the last measured blackness value, calibrated with the black_threshold + 60 (simply a ball-park constant,
-                // to raise the value of turn globally.           
-                turn = 60 + speed * ( (black_threshold - blackness_2) / black_threshold );
-                
-                // First exponential turn component; depends on the normalized blackness value (calibrated with the black_threshold) raised to the power of 2.
-                // If the blackness is doubled, its effect on turn is reduced to 25 %. '57' is simply a ballpark coefficient, to fit the final value 
-                // in an appropriate range.
-                turn += 57 * powf((black_threshold / norm_blackness_2), 2.0); // max effect on turn is ~+180 (with a norm_blackness_2 <= 10000). with 20 000, turn += 45.
+                // First exponential turn component; depends on the normalized blackness value (calibrated with the black_threshold) raised to the power of 1.3.
+                // '57' is simply a ballpark coefficient, to fit the final value in an appropriate range.
+                turn += 57 * powf((black_threshold / norm_blackness_2), 1.3); // max effect on turn is ~+180 (with a norm_blackness_2 <= 10000). with 20 000, turn += 45.
                 // With 16 000 blackness (line edge value), turn += 72.
                 // (The lower values might seem a bit low. They may be raised once the behaviour of the robot appears more normal.)
                 
                 // Second exponential turn component. Depends on the positive, normalized average of the last 3 measured blackDiffs, 
-                // raised to the power of 1.3 and calibrated with the value of maxDiff. Again '225' is simply a ball-park coefficient.
-                turn += 225 * ( powf(diff_pos, 1.3) / maxDiff );
+                // raised to the power of 1.35 and calibrated with the value of maxDiff. Again '225' is simply a ball-park coefficient.
+                turn += 225 * ( powf(diff_pos, 1.35) / maxDiff );
                 // 500 diff: +73 turn; 1000 diff: +130 turn; 2000 diff: +324 turn (=> 240);
                 // NOTE: These values may be TOO large... Experiments are needed.
                 
                 // Ideally, the last component should always dominate, since it's the most critical tool for detecting steep turns and reacting to them.
 
-                // Minimum final turn amount (with ~20 000 blackness and 0 diff) should be ~79 atm. (seems a bit large... at any rate, it cannot be any larger!) 
+                // Minimum final turn amount (with ~20 000 blackness and 0 diff) should be ~59 atm. 
                 // (Note that this value combination should actually be impossible to reach under most circumstances.)
-                // With 17 999 blackness and zero diff: 117 final turn. (seems high..?)
-                // With 16 000 blackness ('real' line edge) and zero diff: 158 final turn. (this otoh seems quite ok)
-                // With 14 000 blackness (over the edge!) and zero diff: 206 final turn. (along with diff's effect, should result in max turn most of the time)
+                // With 17 999 blackness and zero diff: 97 final turn.
+                // With 16 000 blackness ('real' line edge) and zero diff: 138 final turn.
+                // With 14 000 blackness (over the edge!) and zero diff: 186 final turn. (along with diff's effect, should result in max turn most of the time)
                 
                 // Check for egregious values of 'turn' and correct them if found.
                 if (turn > 240)
