@@ -60,7 +60,7 @@ int main()
     int exitMainLoop = 0;
     
     // Turn value for the motors to use.
-    uint8 turn = 0;
+    uint32 turn = 0;
     
     // (Maximum) movement speed of the robot.
     uint8 speed = 240;
@@ -220,9 +220,11 @@ int main()
                 // on the middle component of 'turn'.
                 norm_blackness_2 = blackness_2;
                 
+                //if (norm_blackness_2 < 12000) { norm_blackness_2 = 12000;}
+                
                 // If the latest difference in blackness values is more than 2000 AND the previous diff average (calculated WITHOUT the new big jump) was less
                 // than 1000, normalize blackness value with the TOTAL diff average (INCLUDING the new big jump).
-                if ((blackDiff > 2000 || blackDiff < -2000) && (diff_prev_ave < 1000 || diff_prev_ave > -1000) )
+                if ((blackDiff > 3000 || blackDiff < -3000) && (diff_prev_ave < 1000 || diff_prev_ave > -1000) )
                 {
                     norm_blackness_2 -= diff_ave;  // seems like a good way to normalize, as the greater the jump will be, the greater also the normalization.
                     // Subtraction should work for both cases (blackDiff > 0 and < 0)... If a fluke occurs, it should be a minor one, as the big jump 
@@ -232,11 +234,11 @@ int main()
                                             
                 // 'Base' turn component. Depends linearly on the last measured & normalized blackness value, calibrated with the black_threshold + 60 
                 // (simply a ball-park constant, to raise the value of turn globally).           
-                turn = 60 + speed * ( (black_threshold - norm_blackness_2) / black_threshold );
+                turn = 60 + speed * ( (black_threshold - blackness_2) / black_threshold );
                 
                 // First exponential turn component; depends on the normalized blackness value (calibrated with the black_threshold) raised to the power of 1.3.
                 // '57' is simply a ballpark coefficient, to fit the final value in an appropriate range.
-                turn += 57 * powf((black_threshold / norm_blackness_2), 1.3); // max effect on turn is ~+180 (with a norm_blackness_2 <= 10000). with 20 000, turn += 45.
+                turn += 40 * powf((black_threshold / blackness_2), 1.3); // max effect on turn is ~+180 (with a norm_blackness_2 <= 10000). with 20 000, turn += 45.
                 // With 16 000 blackness (line edge value), turn += 72.
                 // (The lower values might seem a bit low. They may be raised once the behaviour of the robot appears more normal.)
                 
@@ -258,9 +260,8 @@ int main()
                 if (turn > 240)
                 {
                     turn = 240;
-                } else if (turn < 0) {
-                    turn = 0;   
                 }
+                
                 
                 //printf("dir: %d, turn: %d, diff_temp: %f, blackness_2: %f \n", dir_flag, turn, diff_temp, blackness_2);
                                                                                                        
@@ -268,13 +269,14 @@ int main()
                 // If diff_ave < 0, the turn is made in the opposite direction (moving towards center of line for a while => turns away from center).
                 // Between 0 and -300, the opposite turn is milder (75 % of regular turn value), while with a diff_ave < -300, regular turn value is used.
                 // NOTE: Further modification of the opposite turn's turn value (in the Turn method) may be necessary to achieve optimal results.
-                Turn(turn, dir_flag, diff_ave);
+                Turn(turn, dir_flag, blackDiff);
                              
                 // Store the value of the second blackness measurement to the variable for the first.
                 // As the loop continues, blackness_2's value is stored in blackness_1 and then blackness_2 gets a new, measured value; etc.
                 blackness_1 = blackness_2;
                 
                 CyDelay(1);
+               
                          
             } while (digital == 1);
                                                 

@@ -12,7 +12,7 @@
 #include "Beep.h"
 
 void Custom_forward(uint8 speed);
-void Turn(uint8 turn, int dir_flag, float diff_ave);
+void Turn(uint32 turn, int dir_flag, float diff_ave);
 
 
 // Custom class for defining motor movement methods.
@@ -32,45 +32,48 @@ void Custom_forward(uint8 speed)
 // A new turn method that takes direction as a parameter.
 // Also, if we're already moving towards the center of the line, turns in the opposite direction instead.
 // This should accomplish what I tried to do with the 'corrective twitch' method earlier (in a much clumsier way).
-void Turn(uint8 turn, int dir_flag, float diff_ave)
+void Turn(uint32 turn, int dir_flag, float blackDiff)
 {
     
     
     if (dir_flag == 1)
     {
         
-        if (diff_ave >= 0)
+        if (blackDiff >= -200)
         {
             PWM_WriteCompare2(240 - turn);
+            PWM_WriteCompare1(255);
             
-        } else if (diff_ave < 0 && diff_ave >= -300) {
+        } else if (blackDiff < -200 && blackDiff >= -600) {
             
-            if (turn < 85) {turn = 85;} // needed to prevent undefined values of input to PWM_WriteCompare1()
-            // in effect, it means the zero value of final turn is reached quicker.
-            PWM_WriteCompare1( 1.5 * (255 - turn) ); // turn is less steep if diff_ave >= -300
+            turn *= 0.5;
+            PWM_WriteCompare1( 255 - turn ); // turn is less steep if diff_ave >= -300
+            PWM_WriteCompare2(240);
         
-        } else if (diff_ave < -300) {
+        } else if (blackDiff < -600) {
         
-            PWM_WriteCompare1(255 - turn); // regular steepness of turn
-            
+            PWM_WriteCompare1(255 - turn); 
+            PWM_WriteCompare2(240);
         }
 
     } else if (dir_flag == 2) {
     
-        if (diff_ave >= 0)
+        if (blackDiff >= -200)
         {
             PWM_WriteCompare1(255 - turn);
+            PWM_WriteCompare2(240);
             
-        } else if (diff_ave < 0 && diff_ave >= -300) {
+        } else if (blackDiff < -200 && blackDiff >= -600) {
             
-            if (turn < 80) {turn = 80;} // needed to prevent undefined values of input to PWM_WriteCompare2()
-            // in effect, it means the zero value of final turn is reached quicker.
-            PWM_WriteCompare2( 1.5 * (240 - turn) ); // turn is less steep if diff_ave >= -300
+            
+            turn *= 0.5;
+            PWM_WriteCompare2( 240 - turn ); // turn is less steep if diff_ave >= -300
+            PWM_WriteCompare1(255);
         
-        } else if (diff_ave < -300) {
+        } else if (blackDiff < -600) {            
             
-            PWM_WriteCompare2(240 - turn); // regular steepness of turn
-        
+            PWM_WriteCompare2( 240 - turn ); 
+            PWM_WriteCompare1(255);
         } 
     
     }
