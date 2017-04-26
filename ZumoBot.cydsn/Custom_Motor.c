@@ -44,13 +44,13 @@ void Turn(uint32 turn, int dir_flag, float blackDiff)
             PWM_WriteCompare2(240 - turn);
             PWM_WriteCompare1(255);
             
-        } else if (blackDiff < -200 && blackDiff >= -600) {
+        } else if (blackDiff < -200 && blackDiff >= -550) {
             
             turn *= 0.5;
             PWM_WriteCompare1( 255 - turn ); // turn is less steep if diff_ave >= -300
             PWM_WriteCompare2(240);
         
-        } else if (blackDiff < -600) {
+        } else if (blackDiff < -550) {
         
             PWM_WriteCompare1(255 - turn); 
             PWM_WriteCompare2(240);
@@ -60,17 +60,17 @@ void Turn(uint32 turn, int dir_flag, float blackDiff)
     
         if (blackDiff >= -200)
         {
+            
             PWM_WriteCompare1(255 - turn);
             PWM_WriteCompare2(240);
             
-        } else if (blackDiff < -200 && blackDiff >= -600) {
-            
-            
+        } else if (blackDiff < -200 && blackDiff >= -550) {
+                     
             turn *= 0.5;
             PWM_WriteCompare2( 240 - turn ); // turn is less steep if diff_ave >= -300
             PWM_WriteCompare1(255);
         
-        } else if (blackDiff < -600) {            
+        } else if (blackDiff < -550) {            
             
             PWM_WriteCompare2( 240 - turn ); 
             PWM_WriteCompare1(255);
