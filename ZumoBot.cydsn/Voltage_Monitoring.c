@@ -1,4 +1,17 @@
 
+/**
+ * @file    Voltage_Monitoring.c
+ * @brief   Custom file for measuring battery voltage (+ playing some warning sounds & flashing lights).
+ * @details  <br><br>
+    <p>
+    <B>General</B><br>
+    The method Measure_Voltage() was used during development to measure the robot's battery voltage level -- once at robot start and then every 80 seconds 
+    (or thereabouts) while the robot was on. The logic was deleted from main.c in order not to interfere with the race and sumo contest; however, it is  
+    illustrated in the project report.<br>
+    <br><br>
+    </p>
+*/
+
 #include <project.h>
 #include <stdio.h>
 #include "Motor.h"
@@ -19,16 +32,12 @@ void BatteryLed_Write(uint8 value);
 uint8 BatteryLed_Read();
 void motor_stop();
 
-// Custom class for measuring battery voltage at regular intervals, and for playing warning sounds & flashing lights at low voltage levels.
-
-
-
 // Subroutine for custom unit conversion (used below in Measure_Voltage()).
 float ADC_result_to_volts(int16 adcresult)
 {
     float volts;
     
-    //returns the actual battery voltage (4.1 - 5.6 V)
+    // returns the actual battery voltage (4.1 - 5.6 V)
     volts = (adcresult / 4095.0) * (1.5 * 5.0);
     
     return volts;
@@ -51,9 +60,10 @@ void Measure_Voltage()
         
         // Different types of beep sounds for different voltage levels. If the charge is over 5.0 V, there will be 
         // three long and low-sounding beeps; from 5.0 to 4.5 V, six medium-length, medium-pitch beeps; from 4.5 V to 
-        // 4.1 V, 9 loud and sharp beeps; and finally if the voltage reaches 4.1 V, there will be a never-ending flurry of extremely short and sharp beeps.
+        // 4.1 V, 9 loud and sharp beeps; and finally if the voltage reaches 4.1 V, there will be a never-ending 
+        // flurry of extremely short and sharp beeps.
         // EDIT: Added flashing light effects to go with the beeps :)
-        if (volts > 0.1) // null check is needed to prevent alarms when the robot is off but the chip is on
+        if (volts > 0.5) // null check is needed to prevent alarms when the robot is off but the chip is on
         {
         
             if (volts >= 5.0)
@@ -97,10 +107,7 @@ void Measure_Voltage()
                     BatteryLed_Write(0);
                     printf("%f \n", volts);
                     printf("DANGER! Battery LOW! Please charge ASAP!!!\n");
-                }
-                
-                
-           
+                }                      
             }
                   
             // Print bit & voltage values
@@ -108,14 +115,5 @@ void Measure_Voltage()
         }
             CyDelay(500);
     }
+    
 }
-
-
-
-
-
-
-
-
-
-

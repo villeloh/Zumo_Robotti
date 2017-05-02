@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
   30:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED 
   31:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED_ATTR __attribute__ ((packed))
   32:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYALIGNED __attribute__ ((aligned))
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 2
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 2
 
 
   33:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CY_CFG_UNUSED __attribute__ ((unused))
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
   87:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CYCLOCKSTART_XTAL_ERROR  1u
   88:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CYCLOCKSTART_32KHZ_ERROR 2u
   89:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CYCLOCKSTART_PLL_ERROR   3u
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 3
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 3
 
 
   90:Generated_Source\PSoC5/cyfitter_cfg.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
   35 0000 FEE7     		b	.L2
   36              		.cfi_endproc
   37              	.LFE3:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 4
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 4
 
 
   38              		.size	CyClockStartupError, .-CyClockStartupError
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  181:Generated_Source\PSoC5/cyfitter_cfg.c **** * Return:
  182:Generated_Source\PSoC5/cyfitter_cfg.c **** *   void
  183:Generated_Source\PSoC5/cyfitter_cfg.c **** *
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 5
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 5
 
 
  184:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
   85 0020 0132     		adds	r2, r2, #1
   86              	.LVL7:
  199:Generated_Source\PSoC5/cyfitter_cfg.c **** 			count--;
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 6
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 6
 
 
   87              		.loc 1 199 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  133              		.loc 1 65 0
  134 0004 0021     		movs	r1, #0
  135              	.LVL13:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 7
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 7
 
 
  136 0006 FFF7FEFF 		bl	memset
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  163              		.loc 1 229 0
  164 0008 1823     		movs	r3, #24
  165 000a 304A     		ldr	r2, .L17+4
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 8
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 8
 
 
  166 000c 1370     		strb	r3, [r2]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  206              		.loc 1 243 0
  207 0048 0822     		movs	r2, #8
  208 004a 4FF04023 		mov	r3, #1073758208
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 9
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 9
 
 
  209 004e 1A70     		strb	r2, [r3]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  248              	.LVL20:
  249              	.L12:
  254:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 250u / 10u; (timeout > 0u) && (pllLock != 0x03u); timeout--)
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 10
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 10
 
 
  250              		.loc 1 254 0 is_stmt 0 discriminator 1
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  287 00be 43F03F03 		orr	r3, r3, #63
  288 00c2 1370     		strb	r3, [r2]
  289 00c4 38BD     		pop	{r3, r4, r5, pc}
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 11
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 11
 
 
  290              	.LVL22:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  320              		.cfi_offset 3, -24
  321              		.cfi_offset 4, -20
  322              		.cfi_offset 5, -16
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 12
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 12
 
 
  323              		.cfi_offset 6, -12
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  366 003c 1370     		strb	r3, [r2]
  309:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)CYREG_SAR1_SW0, 0x08u);
  367              		.loc 1 309 0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 13
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 13
 
 
  368 003e 0823     		movs	r3, #8
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  415              		@ frame_needed = 0, uses_anonymous_args = 0
  416              	.LVL29:
  417 0000 08B5     		push	{r3, lr}
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 14
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 14
 
 
  418              		.cfi_def_cfa_offset 8
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  447              		.loc 1 339 0
  448 0006 10B1     		cbz	r0, .L26
  340:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 15
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 15
 
 
  341:Generated_Source\PSoC5/cyfitter_cfg.c **** 		regValue |= 0x22u;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  367:Generated_Source\PSoC5/cyfitter_cfg.c **** *
  368:Generated_Source\PSoC5/cyfitter_cfg.c **** *******************************************************************************/
  369:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 16
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 16
 
 
  370:Generated_Source\PSoC5/cyfitter_cfg.c **** void cyfitter_cfg(void)
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  402:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_DSI12_BASE), 512u},
  403:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_BCTL0_MDCLK_EN), 32u},
  404:Generated_Source\PSoC5/cyfitter_cfg.c **** 		};
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 17
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 17
 
 
  405:Generated_Source\PSoC5/cyfitter_cfg.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  423:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const cfg_memcpy_t CYCODE * CYDATA mc = &cfg_memcpy_list[i];
  424:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void * CYDATA destPtr = mc->dest;
  533              		.loc 1 424 0 is_stmt 1 discriminator 3
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 18
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 18
 
 
  534 0034 2F49     		ldr	r1, .L36+4
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  573              		.loc 1 437 0
  574 006e 244C     		ldr	r4, .L36+16
  575              	.LVL49:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 19
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 19
 
 
  576 0070 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  619 00bc 0822     		movs	r2, #8
  620 00be FFF7FEFF 		bl	CYCONFIGCPY
  621              	.LVL55:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 20
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 20
 
 
  449:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Switch Boost to the precision bandgap reference from its internal reference */
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  660 0108 7C080048 		.word	1207961724
  661 010c C0510040 		.word	1073762752
  662 0110 84080048 		.word	1207961732
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 21
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 21
 
 
  663 0114 F2510040 		.word	1073762802
@@ -1256,13 +1256,13 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  715 0006 00000000 		.4byte	.Ldebug_abbrev0
  716 000a 04       		.byte	0x4
  717 000b 01       		.uleb128 0x1
- 718 000c 27020000 		.4byte	.LASF53
+ 718 000c 63020000 		.4byte	.LASF53
  719 0010 01       		.byte	0x1
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 22
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 22
 
 
- 720 0011 B5020000 		.4byte	.LASF54
- 721 0015 00030000 		.4byte	.LASF55
+ 720 0011 F1020000 		.4byte	.LASF54
+ 721 0015 A6000000 		.4byte	.LASF55
  722 0019 00000000 		.4byte	.Ldebug_ranges0+0
  723 001d 00000000 		.4byte	0
  724 0021 00000000 		.4byte	.Ldebug_line0
@@ -1278,7 +1278,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  734 0037 04       		.uleb128 0x4
  735 0038 04       		.byte	0x4
  736 0039 07       		.byte	0x7
- 737 003a FD000000 		.4byte	.LASF0
+ 737 003a 39010000 		.4byte	.LASF0
  738 003e 04       		.uleb128 0x4
  739 003f 01       		.byte	0x1
  740 0040 06       		.byte	0x6
@@ -1286,23 +1286,23 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  742 0045 04       		.uleb128 0x4
  743 0046 01       		.byte	0x1
  744 0047 08       		.byte	0x8
- 745 0048 B0010000 		.4byte	.LASF2
+ 745 0048 EC010000 		.4byte	.LASF2
  746 004c 04       		.uleb128 0x4
  747 004d 02       		.byte	0x2
  748 004e 05       		.byte	0x5
- 749 004f BE010000 		.4byte	.LASF3
+ 749 004f FA010000 		.4byte	.LASF3
  750 0053 04       		.uleb128 0x4
  751 0054 02       		.byte	0x2
  752 0055 07       		.byte	0x7
- 753 0056 3F010000 		.4byte	.LASF4
+ 753 0056 7B010000 		.4byte	.LASF4
  754 005a 04       		.uleb128 0x4
  755 005b 04       		.byte	0x4
  756 005c 05       		.byte	0x5
- 757 005d B0000000 		.4byte	.LASF5
+ 757 005d EC000000 		.4byte	.LASF5
  758 0061 04       		.uleb128 0x4
  759 0062 04       		.byte	0x4
  760 0063 07       		.byte	0x7
- 761 0064 13010000 		.4byte	.LASF6
+ 761 0064 4F010000 		.4byte	.LASF6
  762 0068 04       		.uleb128 0x4
  763 0069 08       		.byte	0x8
  764 006a 05       		.byte	0x5
@@ -1314,18 +1314,18 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  770 0076 04       		.uleb128 0x4
  771 0077 04       		.byte	0x4
  772 0078 07       		.byte	0x7
- 773 0079 52010000 		.4byte	.LASF9
+ 773 0079 8E010000 		.4byte	.LASF9
  774 007d 05       		.uleb128 0x5
  775 007e 04       		.byte	0x4
  776 007f 04       		.uleb128 0x4
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 23
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 23
 
 
  777 0080 01       		.byte	0x1
  778 0081 08       		.byte	0x8
- 779 0082 E3010000 		.4byte	.LASF10
+ 779 0082 1F020000 		.4byte	.LASF10
  780 0086 06       		.uleb128 0x6
- 781 0087 C6000000 		.4byte	.LASF12
+ 781 0087 02010000 		.4byte	.LASF12
  782 008b 03       		.byte	0x3
  783 008c 9201     		.2byte	0x192
  784 008e 45000000 		.4byte	0x45
@@ -1335,27 +1335,27 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  788 0098 9301     		.2byte	0x193
  789 009a 53000000 		.4byte	0x53
  790 009e 06       		.uleb128 0x6
- 791 009f E7000000 		.4byte	.LASF14
+ 791 009f 23010000 		.4byte	.LASF14
  792 00a3 03       		.byte	0x3
  793 00a4 9401     		.2byte	0x194
  794 00a6 61000000 		.4byte	0x61
  795 00aa 04       		.uleb128 0x4
  796 00ab 04       		.byte	0x4
  797 00ac 04       		.byte	0x4
- 798 00ad 8F010000 		.4byte	.LASF15
+ 798 00ad CB010000 		.4byte	.LASF15
  799 00b1 04       		.uleb128 0x4
  800 00b2 08       		.byte	0x8
  801 00b3 04       		.byte	0x4
- 802 00b4 D6000000 		.4byte	.LASF16
+ 802 00b4 12010000 		.4byte	.LASF16
  803 00b8 06       		.uleb128 0x6
- 804 00b9 AB010000 		.4byte	.LASF17
+ 804 00b9 E7010000 		.4byte	.LASF17
  805 00bd 03       		.byte	0x3
  806 00be 3C02     		.2byte	0x23c
  807 00c0 C4000000 		.4byte	0xc4
  808 00c4 07       		.uleb128 0x7
  809 00c5 86000000 		.4byte	0x86
  810 00c9 06       		.uleb128 0x6
- 811 00ca B9000000 		.4byte	.LASF18
+ 811 00ca F5000000 		.4byte	.LASF18
  812 00ce 03       		.byte	0x3
  813 00cf 3D02     		.2byte	0x23d
  814 00d1 D5000000 		.4byte	0xd5
@@ -1367,23 +1367,23 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  820 00dd 8C       		.byte	0x8c
  821 00de FB000000 		.4byte	0xfb
  822 00e2 09       		.uleb128 0x9
- 823 00e3 05020000 		.4byte	.LASF19
+ 823 00e3 41020000 		.4byte	.LASF19
  824 00e7 01       		.byte	0x1
  825 00e8 8E       		.byte	0x8e
  826 00e9 86000000 		.4byte	0x86
  827 00ed 00       		.byte	0
  828 00ee 09       		.uleb128 0x9
- 829 00ef F7000000 		.4byte	.LASF20
+ 829 00ef 33010000 		.4byte	.LASF20
  830 00f3 01       		.byte	0x1
  831 00f4 8F       		.byte	0x8f
  832 00f5 86000000 		.4byte	0x86
  833 00f9 01       		.byte	0x1
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 24
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 24
 
 
  834 00fa 00       		.byte	0
  835 00fb 03       		.uleb128 0x3
- 836 00fc D0010000 		.4byte	.LASF21
+ 836 00fc 0C020000 		.4byte	.LASF21
  837 0100 01       		.byte	0x1
  838 0101 90       		.byte	0x90
  839 0102 DA000000 		.4byte	0xda
@@ -1397,7 +1397,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  847 0116 9C       		.byte	0x9c
  848 0117 29010000 		.4byte	0x129
  849 011b 0B       		.uleb128 0xb
- 850 011c A6000000 		.4byte	.LASF24
+ 850 011c E2000000 		.4byte	.LASF24
  851 0120 01       		.byte	0x1
  852 0121 6F       		.byte	0x6f
  853 0122 86000000 		.4byte	0x86
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  888 0168 01       		.byte	0x1
  889 0169 BD       		.byte	0xbd
  890 016a 9E000000 		.4byte	0x9e
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 25
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 25
 
 
  891 016e 1F000000 		.4byte	.LLST1
@@ -1470,7 +1470,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  917 01ac 10       		.uleb128 0x10
  918 01ad FB000000 		.4byte	0xfb
  919 01b1 0A       		.uleb128 0xa
- 920 01b2 DD000000 		.4byte	.LASF29
+ 920 01b2 19010000 		.4byte	.LASF29
  921 01b6 01       		.byte	0x1
  922 01b7 3F       		.byte	0x3f
  923 01b8 00000000 		.4byte	.LFB0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  945 01eb 52       		.byte	0x52
  946 01ec 03       		.uleb128 0x3
  947 01ed F3       		.byte	0xf3
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 26
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 26
 
 
  948 01ee 01       		.uleb128 0x1
@@ -1527,13 +1527,13 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  971 020e 9C       		.byte	0x9c
  972 020f 56020000 		.4byte	0x256
  973 0213 0E       		.uleb128 0xe
- 974 0214 25010000 		.4byte	.LASF31
+ 974 0214 61010000 		.4byte	.LASF31
  975 0218 01       		.byte	0x1
  976 0219 DF       		.byte	0xdf
  977 021a 9E000000 		.4byte	0x9e
  978 021e BC000000 		.4byte	.LLST6
  979 0222 0E       		.uleb128 0xe
- 980 0223 C8010000 		.4byte	.LASF32
+ 980 0223 04020000 		.4byte	.LASF32
  981 0227 01       		.byte	0x1
  982 0228 E0       		.byte	0xe0
  983 0229 86000000 		.4byte	0x86
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1002 0252 01       		.uleb128 0x1
  1003 0253 33       		.byte	0x33
  1004 0254 00       		.byte	0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 27
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 27
 
 
  1005 0255 00       		.byte	0
@@ -1572,7 +1572,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1013 0267 9C       		.byte	0x9c
  1014 0268 AC020000 		.4byte	0x2ac
  1015 026c 16       		.uleb128 0x16
- 1016 026d 5B010000 		.4byte	.LASF34
+ 1016 026d 97010000 		.4byte	.LASF34
  1017 0271 01       		.byte	0x1
  1018 0272 2A01     		.2byte	0x12a
  1019 0274 86000000 		.4byte	0x86
@@ -1600,7 +1600,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1041 02aa 00       		.byte	0
  1042 02ab 00       		.byte	0
  1043 02ac 0A       		.uleb128 0xa
- 1044 02ad 1B020000 		.4byte	.LASF35
+ 1044 02ad 57020000 		.4byte	.LASF35
  1045 02b1 01       		.byte	0x1
  1046 02b2 46       		.byte	0x46
  1047 02b3 00000000 		.4byte	.LFB1
@@ -1609,7 +1609,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1050 02bc 9C       		.byte	0x9c
  1051 02bd 0C030000 		.4byte	0x30c
  1052 02c1 18       		.uleb128 0x18
- 1053 02c2 8A010000 		.4byte	.LASF36
+ 1053 02c2 C6010000 		.4byte	.LASF36
  1054 02c6 01       		.byte	0x1
  1055 02c7 46       		.byte	0x46
  1056 02c8 7D000000 		.4byte	0x7d
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1059 02d1 73726300 		.ascii	"src\000"
  1060 02d5 01       		.byte	0x1
  1061 02d6 46       		.byte	0x46
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 28
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 28
 
 
  1062 02d7 0C030000 		.4byte	0x30c
@@ -1660,7 +1660,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1098 030e 12030000 		.4byte	0x312
  1099 0312 19       		.uleb128 0x19
  1100 0313 1A       		.uleb128 0x1a
- 1101 0314 EF010000 		.4byte	.LASF39
+ 1101 0314 2B020000 		.4byte	.LASF39
  1102 0318 01       		.byte	0x1
  1103 0319 5001     		.2byte	0x150
  1104 031b 00000000 		.4byte	.LFB7
@@ -1669,16 +1669,16 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1107 0324 9C       		.byte	0x9c
  1108 0325 46030000 		.4byte	0x346
  1109 0329 1B       		.uleb128 0x1b
- 1110 032a 0C020000 		.4byte	.LASF37
+ 1110 032a 48020000 		.4byte	.LASF37
  1111 032e 01       		.byte	0x1
  1112 032f 5001     		.2byte	0x150
  1113 0331 86000000 		.4byte	0x86
  1114 0335 01       		.uleb128 0x1
  1115 0336 50       		.byte	0x50
  1116 0337 1C       		.uleb128 0x1c
- 1117 0338 EE000000 		.4byte	.LASF38
+ 1117 0338 2A010000 		.4byte	.LASF38
  1118 033c 01       		.byte	0x1
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 29
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 29
 
 
  1119 033d 5201     		.2byte	0x152
@@ -1687,7 +1687,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1122 0344 53       		.byte	0x53
  1123 0345 00       		.byte	0
  1124 0346 1A       		.uleb128 0x1a
- 1125 0347 F3020000 		.4byte	.LASF40
+ 1125 0347 2F030000 		.4byte	.LASF40
  1126 034b 01       		.byte	0x1
  1127 034c 7201     		.2byte	0x172
  1128 034e 00000000 		.4byte	.LFB8
@@ -1705,20 +1705,20 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1140 036c 7E01     		.2byte	0x17e
  1141 036e 8D030000 		.4byte	0x38d
  1142 0372 1F       		.uleb128 0x1f
- 1143 0373 DB020000 		.4byte	.LASF41
+ 1143 0373 17030000 		.4byte	.LASF41
  1144 0377 01       		.byte	0x1
  1145 0378 7F01     		.2byte	0x17f
  1146 037a 7D000000 		.4byte	0x7d
  1147 037e 00       		.byte	0
  1148 037f 1F       		.uleb128 0x1f
- 1149 0380 3A010000 		.4byte	.LASF42
+ 1149 0380 76010000 		.4byte	.LASF42
  1150 0384 01       		.byte	0x1
  1151 0385 8001     		.2byte	0x180
  1152 0387 92000000 		.4byte	0x92
  1153 038b 04       		.byte	0x4
  1154 038c 00       		.byte	0
  1155 038d 06       		.uleb128 0x6
- 1156 038e 6D010000 		.4byte	.LASF43
+ 1156 038e A9010000 		.4byte	.LASF43
  1157 0392 01       		.byte	0x1
  1158 0393 8101     		.2byte	0x181
  1159 0395 69030000 		.4byte	0x369
@@ -1728,7 +1728,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1163 039c 8401     		.2byte	0x184
  1164 039e CA030000 		.4byte	0x3ca
  1165 03a2 1F       		.uleb128 0x1f
- 1166 03a3 8A010000 		.4byte	.LASF36
+ 1166 03a3 C6010000 		.4byte	.LASF36
  1167 03a7 01       		.byte	0x1
  1168 03a8 8501     		.2byte	0x185
  1169 03aa 7D000000 		.4byte	0x7d
@@ -1738,19 +1738,19 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1173 03b4 01       		.byte	0x1
  1174 03b5 8601     		.2byte	0x186
  1175 03b7 0C030000 		.4byte	0x30c
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 30
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 30
 
 
  1176 03bb 04       		.byte	0x4
  1177 03bc 1F       		.uleb128 0x1f
- 1178 03bd 3A010000 		.4byte	.LASF42
+ 1178 03bd 76010000 		.4byte	.LASF42
  1179 03c1 01       		.byte	0x1
  1180 03c2 8701     		.2byte	0x187
  1181 03c4 92000000 		.4byte	0x92
  1182 03c8 08       		.byte	0x8
  1183 03c9 00       		.byte	0
  1184 03ca 06       		.uleb128 0x6
- 1185 03cb 2D010000 		.4byte	.LASF44
+ 1185 03cb 69010000 		.4byte	.LASF44
  1186 03cf 01       		.byte	0x1
  1187 03d0 8801     		.2byte	0x188
  1188 03d2 99030000 		.4byte	0x399
@@ -1762,7 +1762,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1194 03e4 07       		.byte	0x7
  1195 03e5 00       		.byte	0
  1196 03e6 1C       		.uleb128 0x1c
- 1197 03e7 7A010000 		.4byte	.LASF45
+ 1197 03e7 B6010000 		.4byte	.LASF45
  1198 03eb 01       		.byte	0x1
  1199 03ec 8A01     		.2byte	0x18a
  1200 03ee F8030000 		.4byte	0x3f8
@@ -1779,7 +1779,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1211 040b 00       		.byte	0
  1212 040c 00       		.byte	0
  1213 040d 1C       		.uleb128 0x1c
- 1214 040e E3020000 		.4byte	.LASF46
+ 1214 040e 1F030000 		.4byte	.LASF46
  1215 0412 01       		.byte	0x1
  1216 0413 9601     		.2byte	0x196
  1217 0415 1F040000 		.4byte	0x41f
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1230 0433 12000000 		.4byte	.LBB4
  1231 0437 16000000 		.4byte	.LBE4-.LBB4
  1232 043b 63040000 		.4byte	0x463
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 31
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 31
 
 
  1233 043f 17       		.uleb128 0x17
@@ -1832,19 +1832,19 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1261 0485 10       		.uleb128 0x10
  1262 0486 CA030000 		.4byte	0x3ca
  1263 048a 16       		.uleb128 0x16
- 1264 048b A3010000 		.4byte	.LASF47
+ 1264 048b DF010000 		.4byte	.LASF47
  1265 048f 01       		.byte	0x1
  1266 0490 A801     		.2byte	0x1a8
  1267 0492 7D000000 		.4byte	0x7d
  1268 0496 45020000 		.4byte	.LLST17
  1269 049a 16       		.uleb128 0x16
- 1270 049b E8010000 		.4byte	.LASF48
+ 1270 049b 24020000 		.4byte	.LASF48
  1271 049f 01       		.byte	0x1
  1272 04a0 A901     		.2byte	0x1a9
  1273 04a2 0C030000 		.4byte	0x30c
  1274 04a6 58020000 		.4byte	.LLST18
  1275 04aa 16       		.uleb128 0x16
- 1276 04ab 0A010000 		.4byte	.LASF49
+ 1276 04ab 46010000 		.4byte	.LASF49
  1277 04af 01       		.byte	0x1
  1278 04b0 AA01     		.2byte	0x1aa
  1279 04b2 92000000 		.4byte	0x92
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1287 04c6 01       		.uleb128 0x1
  1288 04c7 36       		.byte	0x36
  1289 04c8 00       		.byte	0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 32
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 32
 
 
  1290 04c9 00       		.byte	0
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1344 0520 0C       		.byte	0xc
  1345 0521 84080048 		.4byte	0x48000884
  1346 0525 13       		.uleb128 0x13
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 33
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 33
 
 
  1347 0526 01       		.uleb128 0x1
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1401 0586 13       		.uleb128 0x13
  1402 0587 01       		.uleb128 0x1
  1403 0588 52       		.byte	0x52
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 34
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 34
 
 
  1404 0589 01       		.uleb128 0x1
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1458 05e6 02       		.uleb128 0x2
  1459 05e7 74       		.byte	0x74
  1460 05e8 00       		.sleb128 0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 35
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 35
 
 
  1461 05e9 13       		.uleb128 0x13
@@ -2050,7 +2050,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1467 05f2 00       		.byte	0
  1468 05f3 00       		.byte	0
  1469 05f4 24       		.uleb128 0x24
- 1470 05f5 14020000 		.4byte	.LASF50
+ 1470 05f5 50020000 		.4byte	.LASF50
  1471 05f9 7D000000 		.4byte	0x7d
  1472 05fd 11060000 		.4byte	0x611
  1473 0601 25       		.uleb128 0x25
@@ -2061,7 +2061,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1478 060c 76000000 		.4byte	0x76
  1479 0610 00       		.byte	0
  1480 0611 26       		.uleb128 0x26
- 1481 0612 95010000 		.4byte	.LASF51
+ 1481 0612 D1010000 		.4byte	.LASF51
  1482 0616 04       		.byte	0x4
  1483 0617 79       		.byte	0x79
  1484 0618 22060000 		.4byte	0x622
@@ -2069,7 +2069,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1486 061d 9E000000 		.4byte	0x9e
  1487 0621 00       		.byte	0
  1488 0622 26       		.uleb128 0x26
- 1489 0623 CC000000 		.4byte	.LASF52
+ 1489 0623 08010000 		.4byte	.LASF52
  1490 0627 04       		.byte	0x4
  1491 0628 77       		.byte	0x77
  1492 0629 33060000 		.4byte	0x633
@@ -2077,7 +2077,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1494 062e 92000000 		.4byte	0x92
  1495 0632 00       		.byte	0
  1496 0633 27       		.uleb128 0x27
- 1497 0634 BF000000 		.4byte	.LASF56
+ 1497 0634 FB000000 		.4byte	.LASF56
  1498 0638 7D000000 		.4byte	0x7d
  1499 063c 25       		.uleb128 0x25
  1500 063d 7D000000 		.4byte	0x7d
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1515 0006 0B       		.uleb128 0xb
  1516 0007 03       		.uleb128 0x3
  1517 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 36
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 36
 
 
  1518 0009 1B       		.uleb128 0x1b
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1572 003f 00       		.byte	0
  1573 0040 03       		.uleb128 0x3
  1574 0041 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 37
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 37
 
 
  1575 0042 3A       		.uleb128 0x3a
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1629 0078 11       		.uleb128 0x11
  1630 0079 01       		.uleb128 0x1
  1631 007a 12       		.uleb128 0x12
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 38
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 38
 
 
  1632 007b 06       		.uleb128 0x6
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1686 00b2 0B       		.uleb128 0xb
  1687 00b3 3B       		.uleb128 0x3b
  1688 00b4 0B       		.uleb128 0xb
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 39
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 39
 
 
  1689 00b5 49       		.uleb128 0x49
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1743 00f0 00       		.byte	0
  1744 00f1 14       		.uleb128 0x14
  1745 00f2 898201   		.uleb128 0x4109
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 40
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 40
 
 
  1746 00f5 01       		.byte	0x1
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1800 012c 3B       		.uleb128 0x3b
  1801 012d 05       		.uleb128 0x5
  1802 012e 49       		.uleb128 0x49
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 41
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 41
 
 
  1803 012f 13       		.uleb128 0x13
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1857 0166 0E       		.uleb128 0xe
  1858 0167 3A       		.uleb128 0x3a
  1859 0168 0B       		.uleb128 0xb
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 42
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 42
 
 
  1860 0169 3B       		.uleb128 0x3b
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1914 019f 3B       		.uleb128 0x3b
  1915 01a0 05       		.uleb128 0x5
  1916 01a1 49       		.uleb128 0x49
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 43
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 43
 
 
  1917 01a2 13       		.uleb128 0x13
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  1971 01da 27       		.uleb128 0x27
  1972 01db 19       		.uleb128 0x19
  1973 01dc 49       		.uleb128 0x49
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 44
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 44
 
 
  1974 01dd 13       		.uleb128 0x13
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2028              	.Ldebug_loc0:
  2029              	.LLST0:
  2030 0000 02000000 		.4byte	.LVL2
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 45
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 45
 
 
  2031 0004 08000000 		.4byte	.LVL3
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2085              	.LLST5:
  2086 0090 00000000 		.4byte	.LVL12
  2087 0094 06000000 		.4byte	.LVL13
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 46
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 46
 
 
  2088 0098 0100     		.2byte	0x1
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2142 0122 54       		.byte	0x54
  2143 0123 00000000 		.4byte	0
  2144 0127 00000000 		.4byte	0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 47
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 47
 
 
  2145              	.LLST10:
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2199 01ac 9F       		.byte	0x9f
  2200 01ad 12000000 		.4byte	.LVL36
  2201 01b1 2A000000 		.4byte	.LVL38
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 48
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 48
 
 
  2202 01b5 0100     		.2byte	0x1
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2256 022c 4C000000 		.4byte	.LVL47
  2257 0230 0B00     		.2byte	0xb
  2258 0232 74       		.byte	0x74
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 49
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 49
 
 
  2259 0233 7F       		.sleb128 -1
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2313 004c 44010000 		.4byte	.LFE8-.LFB8
  2314 0050 00000000 		.4byte	0
  2315 0054 00000000 		.4byte	0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 50
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 50
 
 
  2316              		.section	.debug_ranges,"",%progbits
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2352      7369676E 
  2352      65642069 
  2353              	.LASF25:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 51
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 51
 
 
  2354 0053 61646472 		.ascii	"addr_table\000"
@@ -3029,205 +3029,208 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 1
  2364 009b 436C6F63 		.ascii	"ClockSetup\000"
  2364      6B536574 
  2364      757000
- 2365              	.LASF24:
- 2366 00a6 6572726F 		.ascii	"errorCode\000"
- 2366      72436F64 
- 2366      6500
- 2367              	.LASF5:
- 2368 00b0 6C6F6E67 		.ascii	"long int\000"
- 2368      20696E74 
- 2368      00
- 2369              	.LASF18:
- 2370 00b9 72656731 		.ascii	"reg16\000"
- 2370      3600
- 2371              	.LASF56:
- 2372 00bf 6D656D63 		.ascii	"memcpy\000"
- 2372      707900
- 2373              	.LASF12:
- 2374 00c6 75696E74 		.ascii	"uint8\000"
- 2374      3800
- 2375              	.LASF52:
- 2376 00cc 43794465 		.ascii	"CyDelayUs\000"
- 2376      6C617955 
- 2376      7300
- 2377              	.LASF16:
- 2378 00d6 646F7562 		.ascii	"double\000"
- 2378      6C6500
- 2379              	.LASF29:
- 2380 00dd 43594D45 		.ascii	"CYMEMZERO\000"
- 2380      4D5A4552 
- 2380      4F00
- 2381              	.LASF14:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 52
+ 2365              	.LASF55:
+ 2366 00a6 433A5C55 		.ascii	"C:\\Users\\Koo Moo\\Desktop\\ZumoRobo taa - zenV6\\"
+ 2366      73657273 
+ 2366      5C4B6F6F 
+ 2366      204D6F6F 
+ 2366      5C446573 
+ 2367 00d4 5A756D6F 		.ascii	"ZumoBot.cydsn\000"
+ 2367      426F742E 
+ 2367      63796473 
+ 2367      6E00
+ 2368              	.LASF24:
+ 2369 00e2 6572726F 		.ascii	"errorCode\000"
+ 2369      72436F64 
+ 2369      6500
+ 2370              	.LASF5:
+ 2371 00ec 6C6F6E67 		.ascii	"long int\000"
+ 2371      20696E74 
+ 2371      00
+ 2372              	.LASF18:
+ 2373 00f5 72656731 		.ascii	"reg16\000"
+ 2373      3600
+ 2374              	.LASF56:
+ 2375 00fb 6D656D63 		.ascii	"memcpy\000"
+ 2375      707900
+ 2376              	.LASF12:
+ 2377 0102 75696E74 		.ascii	"uint8\000"
+ 2377      3800
+ 2378              	.LASF52:
+ 2379 0108 43794465 		.ascii	"CyDelayUs\000"
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 52
 
 
- 2382 00e7 75696E74 		.ascii	"uint32\000"
- 2382      333200
- 2383              	.LASF38:
- 2384 00ee 72656756 		.ascii	"regValue\000"
- 2384      616C7565 
- 2384      00
- 2385              	.LASF20:
- 2386 00f7 76616C75 		.ascii	"value\000"
- 2386      6500
- 2387              	.LASF0:
- 2388 00fd 756E7369 		.ascii	"unsigned int\000"
- 2388      676E6564 
- 2388      20696E74 
- 2388      00
- 2389              	.LASF49:
- 2390 010a 6E756D42 		.ascii	"numBytes\000"
- 2390      79746573 
- 2390      00
- 2391              	.LASF6:
- 2392 0113 6C6F6E67 		.ascii	"long unsigned int\000"
- 2392      20756E73 
- 2392      69676E65 
- 2392      6420696E 
- 2392      7400
- 2393              	.LASF31:
- 2394 0125 74696D65 		.ascii	"timeout\000"
- 2394      6F757400 
- 2395              	.LASF44:
- 2396 012d 6366675F 		.ascii	"cfg_memcpy_t\000"
- 2396      6D656D63 
- 2396      70795F74 
- 2396      00
- 2397              	.LASF42:
- 2398 013a 73697A65 		.ascii	"size\000"
- 2398      00
- 2399              	.LASF4:
- 2400 013f 73686F72 		.ascii	"short unsigned int\000"
- 2400      7420756E 
- 2400      7369676E 
- 2400      65642069 
- 2400      6E7400
- 2401              	.LASF9:
- 2402 0152 73697A65 		.ascii	"sizetype\000"
- 2402      74797065 
- 2402      00
- 2403              	.LASF34:
- 2404 015b 62675F78 		.ascii	"bg_xover_inl_trim\000"
- 2404      6F766572 
- 2404      5F696E6C 
- 2404      5F747269 
- 2404      6D00
- 2405              	.LASF43:
- 2406 016d 6366675F 		.ascii	"cfg_memset_t\000"
- 2406      6D656D73 
- 2406      65745F74 
- 2406      00
- 2407              	.LASF45:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 53
+ 2379      6C617955 
+ 2379      7300
+ 2380              	.LASF16:
+ 2381 0112 646F7562 		.ascii	"double\000"
+ 2381      6C6500
+ 2382              	.LASF29:
+ 2383 0119 43594D45 		.ascii	"CYMEMZERO\000"
+ 2383      4D5A4552 
+ 2383      4F00
+ 2384              	.LASF14:
+ 2385 0123 75696E74 		.ascii	"uint32\000"
+ 2385      333200
+ 2386              	.LASF38:
+ 2387 012a 72656756 		.ascii	"regValue\000"
+ 2387      616C7565 
+ 2387      00
+ 2388              	.LASF20:
+ 2389 0133 76616C75 		.ascii	"value\000"
+ 2389      6500
+ 2390              	.LASF0:
+ 2391 0139 756E7369 		.ascii	"unsigned int\000"
+ 2391      676E6564 
+ 2391      20696E74 
+ 2391      00
+ 2392              	.LASF49:
+ 2393 0146 6E756D42 		.ascii	"numBytes\000"
+ 2393      79746573 
+ 2393      00
+ 2394              	.LASF6:
+ 2395 014f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2395      20756E73 
+ 2395      69676E65 
+ 2395      6420696E 
+ 2395      7400
+ 2396              	.LASF31:
+ 2397 0161 74696D65 		.ascii	"timeout\000"
+ 2397      6F757400 
+ 2398              	.LASF44:
+ 2399 0169 6366675F 		.ascii	"cfg_memcpy_t\000"
+ 2399      6D656D63 
+ 2399      70795F74 
+ 2399      00
+ 2400              	.LASF42:
+ 2401 0176 73697A65 		.ascii	"size\000"
+ 2401      00
+ 2402              	.LASF4:
+ 2403 017b 73686F72 		.ascii	"short unsigned int\000"
+ 2403      7420756E 
+ 2403      7369676E 
+ 2403      65642069 
+ 2403      6E7400
+ 2404              	.LASF9:
+ 2405 018e 73697A65 		.ascii	"sizetype\000"
+ 2405      74797065 
+ 2405      00
+ 2406              	.LASF34:
+ 2407 0197 62675F78 		.ascii	"bg_xover_inl_trim\000"
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 53
 
 
- 2408 017a 6366675F 		.ascii	"cfg_memset_list\000"
- 2408      6D656D73 
- 2408      65745F6C 
- 2408      69737400 
- 2409              	.LASF36:
- 2410 018a 64657374 		.ascii	"dest\000"
- 2410      00
- 2411              	.LASF15:
- 2412 018f 666C6F61 		.ascii	"float\000"
- 2412      7400
- 2413              	.LASF51:
- 2414 0195 43794465 		.ascii	"CyDelayCycles\000"
- 2414      6C617943 
- 2414      79636C65 
- 2414      7300
- 2415              	.LASF47:
- 2416 01a3 64657374 		.ascii	"destPtr\000"
- 2416      50747200 
- 2417              	.LASF17:
- 2418 01ab 72656738 		.ascii	"reg8\000"
- 2418      00
- 2419              	.LASF2:
- 2420 01b0 756E7369 		.ascii	"unsigned char\000"
- 2420      676E6564 
- 2420      20636861 
- 2420      7200
- 2421              	.LASF3:
- 2422 01be 73686F72 		.ascii	"short int\000"
- 2422      7420696E 
- 2422      7400
- 2423              	.LASF32:
- 2424 01c8 706C6C4C 		.ascii	"pllLock\000"
- 2424      6F636B00 
- 2425              	.LASF21:
- 2426 01d0 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
- 2426      66675F61 
- 2426      64647276 
- 2426      616C7565 
- 2426      5F7400
- 2427              	.LASF10:
- 2428 01e3 63686172 		.ascii	"char\000"
- 2428      00
- 2429              	.LASF48:
- 2430 01e8 73726350 		.ascii	"srcPtr\000"
- 2430      747200
- 2431              	.LASF39:
- 2432 01ef 53657441 		.ascii	"SetAnalogRoutingPumps\000"
- 2432      6E616C6F 
- 2432      67526F75 
- 2432      74696E67 
- 2432      50756D70 
- 2433              	.LASF19:
- 2434 0205 6F666673 		.ascii	"offset\000"
- 2434      657400
- 2435              	.LASF37:
- 2436 020c 656E6162 		.ascii	"enabled\000"
- 2436      6C656400 
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\cceeza9s.s 			page 54
+ 2407      6F766572 
+ 2407      5F696E6C 
+ 2407      5F747269 
+ 2407      6D00
+ 2408              	.LASF43:
+ 2409 01a9 6366675F 		.ascii	"cfg_memset_t\000"
+ 2409      6D656D73 
+ 2409      65745F74 
+ 2409      00
+ 2410              	.LASF45:
+ 2411 01b6 6366675F 		.ascii	"cfg_memset_list\000"
+ 2411      6D656D73 
+ 2411      65745F6C 
+ 2411      69737400 
+ 2412              	.LASF36:
+ 2413 01c6 64657374 		.ascii	"dest\000"
+ 2413      00
+ 2414              	.LASF15:
+ 2415 01cb 666C6F61 		.ascii	"float\000"
+ 2415      7400
+ 2416              	.LASF51:
+ 2417 01d1 43794465 		.ascii	"CyDelayCycles\000"
+ 2417      6C617943 
+ 2417      79636C65 
+ 2417      7300
+ 2418              	.LASF47:
+ 2419 01df 64657374 		.ascii	"destPtr\000"
+ 2419      50747200 
+ 2420              	.LASF17:
+ 2421 01e7 72656738 		.ascii	"reg8\000"
+ 2421      00
+ 2422              	.LASF2:
+ 2423 01ec 756E7369 		.ascii	"unsigned char\000"
+ 2423      676E6564 
+ 2423      20636861 
+ 2423      7200
+ 2424              	.LASF3:
+ 2425 01fa 73686F72 		.ascii	"short int\000"
+ 2425      7420696E 
+ 2425      7400
+ 2426              	.LASF32:
+ 2427 0204 706C6C4C 		.ascii	"pllLock\000"
+ 2427      6F636B00 
+ 2428              	.LASF21:
+ 2429 020c 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
+ 2429      66675F61 
+ 2429      64647276 
+ 2429      616C7565 
+ 2429      5F7400
+ 2430              	.LASF10:
+ 2431 021f 63686172 		.ascii	"char\000"
+ 2431      00
+ 2432              	.LASF48:
+ 2433 0224 73726350 		.ascii	"srcPtr\000"
+ 2433      747200
+ 2434              	.LASF39:
+ 2435 022b 53657441 		.ascii	"SetAnalogRoutingPumps\000"
+ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccOUDy1b.s 			page 54
 
 
- 2437              	.LASF50:
- 2438 0214 6D656D73 		.ascii	"memset\000"
- 2438      657400
- 2439              	.LASF35:
- 2440 021b 4359434F 		.ascii	"CYCONFIGCPY\000"
- 2440      4E464947 
- 2440      43505900 
- 2441              	.LASF53:
- 2442 0227 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 2442      4320342E 
- 2442      392E3320 
- 2442      32303135 
- 2442      30333033 
- 2443 025a 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 2443      20726576 
- 2443      6973696F 
- 2443      6E203232 
- 2443      31323230 
- 2444 028d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2444      66756E63 
- 2444      74696F6E 
- 2444      2D736563 
- 2444      74696F6E 
- 2445              	.LASF54:
- 2446 02b5 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
- 2446      72617465 
- 2446      645F536F 
- 2446      75726365 
- 2446      5C50536F 
- 2447              	.LASF41:
- 2448 02db 61646472 		.ascii	"address\000"
- 2448      65737300 
- 2449              	.LASF46:
- 2450 02e3 6366675F 		.ascii	"cfg_memcpy_list\000"
- 2450      6D656D63 
- 2450      70795F6C 
- 2450      69737400 
- 2451              	.LASF40:
- 2452 02f3 63796669 		.ascii	"cyfitter_cfg\000"
- 2452      74746572 
- 2452      5F636667 
- 2452      00
- 2453              	.LASF55:
- 2454 0300 433A5C55 		.ascii	"C:\\Users\\Koo Moo\\Desktop\\ZumoRobo\\ZumoBot.cyds"
- 2454      73657273 
- 2454      5C4B6F6F 
- 2454      204D6F6F 
- 2454      5C446573 
- 2455 032e 6E00     		.ascii	"n\000"
+ 2435      6E616C6F 
+ 2435      67526F75 
+ 2435      74696E67 
+ 2435      50756D70 
+ 2436              	.LASF19:
+ 2437 0241 6F666673 		.ascii	"offset\000"
+ 2437      657400
+ 2438              	.LASF37:
+ 2439 0248 656E6162 		.ascii	"enabled\000"
+ 2439      6C656400 
+ 2440              	.LASF50:
+ 2441 0250 6D656D73 		.ascii	"memset\000"
+ 2441      657400
+ 2442              	.LASF35:
+ 2443 0257 4359434F 		.ascii	"CYCONFIGCPY\000"
+ 2443      4E464947 
+ 2443      43505900 
+ 2444              	.LASF53:
+ 2445 0263 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2445      4320342E 
+ 2445      392E3320 
+ 2445      32303135 
+ 2445      30333033 
+ 2446 0296 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2446      20726576 
+ 2446      6973696F 
+ 2446      6E203232 
+ 2446      31323230 
+ 2447 02c9 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2447      66756E63 
+ 2447      74696F6E 
+ 2447      2D736563 
+ 2447      74696F6E 
+ 2448              	.LASF54:
+ 2449 02f1 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
+ 2449      72617465 
+ 2449      645F536F 
+ 2449      75726365 
+ 2449      5C50536F 
+ 2450              	.LASF41:
+ 2451 0317 61646472 		.ascii	"address\000"
+ 2451      65737300 
+ 2452              	.LASF46:
+ 2453 031f 6366675F 		.ascii	"cfg_memcpy_list\000"
+ 2453      6D656D63 
+ 2453      70795F6C 
+ 2453      69737400 
+ 2454              	.LASF40:
+ 2455 032f 63796669 		.ascii	"cyfitter_cfg\000"
+ 2455      74746572 
+ 2455      5F636667 
+ 2455      00
  2456              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
