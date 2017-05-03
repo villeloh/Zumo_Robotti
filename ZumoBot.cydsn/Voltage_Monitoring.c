@@ -7,7 +7,7 @@
     <B>General</B><br>
     The method Measure_Voltage() was used during development to measure the robot's battery voltage level -- once at robot start and then every 80 seconds 
     (or thereabouts) while the robot was on. The logic was deleted from main.c in order not to interfere with the race and sumo contest; however, it is  
-    illustrated in the project report.<br>
+    included here for review.<br>
     <br><br>
     </p>
 */
@@ -15,22 +15,14 @@
 #include <project.h>
 #include <stdio.h>
 #include "Motor.h"
-#include "Ultra.h"
-#include "Nunchuk.h"
-#include "Reflectance.h"
-#include "I2C_made.h"
-#include "Gyro.h"
-#include "Accel_magnet.h"
-#include "IR.h"
-#include "Ambient.h"
 #include "Beep.h"
 
 float ADC_result_to_volts(int16 adcresult);
 void Beep(uint32 length, uint8 pitch);
-void Measure_Voltage();
 void BatteryLed_Write(uint8 value);
 uint8 BatteryLed_Read();
 void motor_stop();
+void Measure_Voltage();
 
 // Subroutine for custom unit conversion (used below in Measure_Voltage()).
 float ADC_result_to_volts(int16 adcresult)
@@ -63,7 +55,8 @@ void Measure_Voltage()
         // 4.1 V, 9 loud and sharp beeps; and finally if the voltage reaches 4.1 V, there will be a never-ending 
         // flurry of extremely short and sharp beeps.
         // EDIT: Added flashing light effects to go with the beeps :)
-        if (volts > 0.5) // null check is needed to prevent alarms when the robot is off but the chip is on
+        if (volts > 0.5) // lenient 'null check' is needed to prevent alarms when the robot is off but the chip is on. NOTE: we still had continuous beeping
+                         // as startup occasionally, so the problem was not fully fixed with this check.
         {
         
             if (volts >= 5.0)

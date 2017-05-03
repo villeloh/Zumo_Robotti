@@ -23,14 +23,8 @@
 #include <math.h>
 #include "Motor.h"
 #include "Ultra.h"
-#include "Nunchuk.h"
 #include "Reflectance.h"
-#include "I2C_made.h"
-#include "Gyro.h"
-#include "Accel_magnet.h"
 #include "IR.h"
-#include "Ambient.h"
-#include "Beep.h"
 
 // Declare used methods.
 int rread(void);
@@ -43,11 +37,37 @@ void Measure_Voltage();
 void Custom_forward(uint8 speed);
 void Custom_backward(uint8 speed);
 void Turn(uint32 turn, int dir_flag);
-void Backward_turn(uint32 turn, int dir_flag);
 void Ultrasharp_turn(uint32 delay, int dir_flag);
 
 int main()
 {
+    // ==================== CRUCIAL DEFS ======================================= //
+    
+    // (Maximum) movement speed of the robot.
+    uint8 speed = 240;
+    
+    // Turn value for the motors to use, and its components (for calculating the final value).
+    uint32 turn = 0;
+    uint32 turnComp_1 = 0;
+    uint32 turnComp_2 = 0;
+    
+    // Reflectance thresholds (determined experimentally) for use in different movement behaviours.
+    int black_threshold_l3 = 16000; // actual line edge value: somewhere betwen 20 000 - 21 000.
+    int black_threshold_l1 = 18000; // 'sure bet' working value: 17 500 // actual line edge value: ~16 000 // 18 000
+    int black_threshold_r1 = 22500; // 'sure bet' working value: 22 000 // actual line edge value: ~18 000 // 22 600
+    int black_threshold_r3 = 16000; // actual line edge value: somewhere between 20 000 - 21 500.
+        
+    //int white_threshold_l3 = 5793;
+    int white_threshold_l1 = 4500;
+    int white_threshold_r1 = 4522;
+    //int white_threshold_r3 = 6293;
+    
+    // Maximum amounts of difference in measured blackness value (used in various operations).
+    int maxDiff_l1 = black_threshold_l1 - white_threshold_l1;
+    int maxDiff_r1 = black_threshold_r1 - white_threshold_r1;
+    
+    // ==================== OTHER STUFFS ======================================= //
+    
     // 'Time counter' for the voltage measurement interval.
     int cycles = 0;
     
@@ -62,30 +82,9 @@ int main()
     int inBlack = 0;
     int exitMainLoop = 0;
     
+    // Needed for stopping at the first black line and waiting for IR signal.
     int firstStop_flag = 0;
-    
-    // Turn value for the motors to use, and its components (for calculating the final value).
-    uint32 turn = 0;
-    uint32 turnComp_1 = 0;
-    uint32 turnComp_2 = 0;
-    
-    // (Maximum) movement speed of the robot.
-    uint8 speed = 240;
-    
-    // Reflectance thresholds (determined experimentally) for use in different movement behaviours.
-    int black_threshold_l3 = 16000; // actual line edge value: somewhere betwen 20 000 - 21 000.
-    int black_threshold_l1 = 18000; // 'sure bet' working value: 17 500 // actual line edge value: ~16 000 // 18 000
-    int black_threshold_r1 = 22500; // 'sure bet' working value: 22 000 // actual line edge value: ~18 000 // 22 600
-    int black_threshold_r3 = 16000; // actual line edge value: somewhere between 20 000 - 21 500.
-        
-    //int white_threshold_l3 = 5793;
-    int white_threshold_l1 = 4500;
-    int white_threshold_r1 = 4522;
-    //int white_threshold_r3 = 6293;
-    
-    int maxDiff_l1 = black_threshold_l1 - white_threshold_l1;
-    int maxDiff_r1 = black_threshold_r1 - white_threshold_r1;
-   
+
     // Needed for determining turn behaviour.
     int digital = 0;
     int maxDiff = 0;
@@ -101,6 +100,10 @@ int main()
     
     // Needed for storing remote controller IR signal.
     unsigned int IR_val; 
+    
+    uint8 button; // make button exist
+    
+    // ==================== ACTUAL START ======================================= //
  
     // Initialize various starting thingies
     struct sensors_ ref;
@@ -123,7 +126,6 @@ int main()
 
     BatteryLed_Write(0); // Switch led off 
     
-    uint8 button; // make button exist
     
     // To start the robot's movement routine, press the button.
     while (buttonPress == 0) 
@@ -137,12 +139,12 @@ int main()
         }
     }
     
-    #if (0)
+    #if (1)
         
     while (firstStop_flag == 0)
     {
     
-        // Go forward at full speed until meeting the horizontal black line.
+        // Go forward at low speed until meeting the horizontal black line.
         // Then wait for the IR signal to proceed.
         Custom_forward(speed/2.5);
         
@@ -168,6 +170,7 @@ int main()
     
     }
     
+    // Wait for IR signal. Upon getting it, proceed forward at full speed for 0.4 seconds.
     IR_val = get_IR();
     if (IR_val) 
     {
@@ -177,7 +180,7 @@ int main()
     
     #endif
      
-    #if (0)
+    #if (1)
     
     // Giant loop to run the movement logic in.
     while(exitMainLoop == 0)
@@ -400,26 +403,26 @@ int main()
 
 	int turnFactor = 12000;
 	int outwardFlag = 1;
-    int turn_flag = 1;
+    int turn_flag = 1;   
+    uint32 turnDel;
 
+    // Full speed ahead for 0.5 seconds (to find the center).    
     Custom_forward(speed);
     CyDelay(500); // <== experimental value; enough to make it to the center, or close to it.
 
+    // Turn to the left (direction is arbitrary at this juncture).
 	dir_flag = 1;
     
-    uint32 turnDel = 30;
-        
+    // Loop for running the main 'hunt' logic.
     while (1) 
     {
         
         CyDelay(1);
-
-        
-        
+   
         if (turn_flag == 1) 
         {
 
-            // This logic should result in the robot moving in a spiral pattern (until it detects the other robot, which is when 
+            // This logic results in the robot moving in a spiral pattern (until it detects the other robot, which is when 
             // it speeds straight ahead in a 'hunting move'). The first spiral will run from the center-point to the outer edge; 
             // then back to the center; then back out again; etc. (However, see NOTE at the very bottom.)
             if (outwardFlag == 1) 
@@ -439,25 +442,26 @@ int main()
                 }
              }
 
+        // Execute the turn.    
         Turn(turnFactor/50, dir_flag);
         
         }
-        
-        
-        /*
-        
-        if (Ultra_GetDistance() < 20) // <== dummy value; experimental 'hunt distance'
+     
+        // 'Ramming' logic.
+        // If the ultrasound sensor detects an object within 20 'units', 
+        // drive towards it at full speed and disable turn logic (until meeting black line).
+        if (Ultra_GetDistance() < 20) // <== experimental 'hunt distance'
         {
             Custom_forward(speed);
     	    turn_flag = 0;   
-        } */
+        }
             
+        // read blackness value
         reflectance_read(&ref);
         reflectance_digital(&dig);
         
-        // (These ifs could be refined further, but it's more work than it's worth, imo)
-        // If either outward sensor is activated (regardless if hunting or not!), back up for a bit and then start the turn spiral in the opposite direction.
-        
+        // (These ifs could be refined further, but it's more work than it's worth, imo.)      
+        // If both sensors are activated, back up for a bit and then re-start outward turn.
         if (dig.l3 == 0 && dig.r3 == 0) {
             
             Custom_backward(240);
@@ -469,10 +473,11 @@ int main()
 	        outwardFlag = 1;
 	        turn_flag = 1;
         
+          // If the left sensor is activated, turn sharply to the right and then begin inward spiral turn.  
         } else if (dig.l3 == 0) {
             
             turnDel = 480000/ref.l3; // 480k is an experimental constant; leads to a very sharp turn
-            Ultrasharp_turn(turnDel,2); // new method
+            Ultrasharp_turn(turnDel,2);
             MotorDirLeft_Write(0);
             MotorDirRight_Write(0);
             dir_flag = 1;
@@ -480,10 +485,11 @@ int main()
     	    outwardFlag = 0;
     	    turn_flag = 1;
                 
+          // If the right sensor is activated, turn sharply to the left and then begin inward spiral turn.    
         } else if (dig.r3 == 0) {
                 
             turnDel = 480000/ref.r3; // // 480k is an experimental constant; leads to a very sharp turn
-            Ultrasharp_turn(turnDel,1); //new method
+            Ultrasharp_turn(turnDel,1);
             MotorDirLeft_Write(0);
             MotorDirRight_Write(0);
             dir_flag = 2;
@@ -493,37 +499,19 @@ int main()
         } 
 
     	// NOTE: The robot will get 'desynched' after one or more 'hunt' episodes, because the angle of approach to the black line affects the new 'starting point' 
-    	// of the 'reset' turn logic, meaning that the robot will overrun the center-point when turnFactor reaches 24000... Then the new spiral will be 
+    	// of the 'reset' turn logic, meaning that the robot will overrun the center-point when turnFactor reaches max value... Then the new spiral will be 
     	// similarly 'desynchronized'; etc. The perfect spiral pattern that was in effect before the hunt(s) can never be reached again, because there's no 
-    	// way to find the center-point again after the very beginning. However, it may not matter a whole lot, because the overall movement pattern should 		
+    	// way to find the center-point again after the very beginning. However, it should not matter a whole lot, because the overall movement pattern will 		
     	// remain spiral-ish despite these small distortions.
         
     }
        
     #endif    
- 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
 }
     
 // ===================================================================================================================== //
 // ===================================================================================================================== //
-
-/*//nunchuk//
-int main()
-{
-    CyGlobalIntEnable; 
-    UART_1_Start();
-  
-    nunchuk_start();
-    nunchuk_init();
-    
-    for(;;)
-    {    
-        nunchuk_read();
-    }
-}   
-//*/
 
 /* Don't remove the functions below */
 int _write(int file, char *ptr, int len)

@@ -2,7 +2,7 @@
 --	Conversion of ZumoBot.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed May 03 09:07:02 2017
+--	Thu May 04 01:11:05 2017
 --
 
 USE cypress.cypress.all;
