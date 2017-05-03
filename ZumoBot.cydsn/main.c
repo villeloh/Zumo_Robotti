@@ -43,6 +43,8 @@ void Measure_Voltage();
 void Custom_forward(uint8 speed);
 void Custom_backward(uint8 speed);
 void Turn(uint32 turn, int dir_flag);
+void Backward_turn(uint32 turn, int dir_flag);
+void Ultrasharp_turn(uint32 delay, int dir_flag);
 
 int main()
 {
@@ -60,6 +62,8 @@ int main()
     int inBlack = 0;
     int exitMainLoop = 0;
     
+    int firstStop_flag = 0;
+    
     // Turn value for the motors to use, and its components (for calculating the final value).
     uint32 turn = 0;
     uint32 turnComp_1 = 0;
@@ -69,15 +73,15 @@ int main()
     uint8 speed = 240;
     
     // Reflectance thresholds (determined experimentally) for use in different movement behaviours.
-    int black_threshold_l3 = 16000; // actual line edge value: somewhere betwen 20 000 - 21 000.
+    int black_threshold_l3 = 21000; // actual line edge value: somewhere betwen 20 000 - 21 000.
     int black_threshold_l1 = 18000; // 'sure bet' working value: 17 500 // actual line edge value: ~16 000 // 18 000
     int black_threshold_r1 = 22500; // 'sure bet' working value: 22 000 // actual line edge value: ~18 000 // 22 600
-    int black_threshold_r3 = 16000; // actual line edge value: somewhere between 20 000 - 21 500.
+    int black_threshold_r3 = 21000; // actual line edge value: somewhere between 20 000 - 21 500.
         
-    int white_threshold_l3 = 5793;
+    //int white_threshold_l3 = 5793;
     int white_threshold_l1 = 4500;
     int white_threshold_r1 = 4522;
-    int white_threshold_r3 = 6293;
+    //int white_threshold_r3 = 6293;
     
     int maxDiff_l1 = black_threshold_l1 - white_threshold_l1;
     int maxDiff_r1 = black_threshold_r1 - white_threshold_r1;
@@ -133,26 +137,47 @@ int main()
         }
     }
     
-    #if (1)
-    
-    // Go forward at full speed until meeting the horizontal black line.
-    // Then wait for the IR signal to proceed.
-    Custom_forward(speed);
-    if (dig.l3 == 0 && dig.r3 == 0) 
+    #if (0)
+        
+    while (firstStop_flag == 0)
     {
-        motor_forward(0,0);
+    
+        // Go forward at full speed until meeting the horizontal black line.
+        // Then wait for the IR signal to proceed.
+        Custom_forward(speed/2.5);
+        
+        reflectance_read(&ref);
+        reflectance_digital(&dig);
+        
+        if (dig.l3 == 0 && dig.r3 == 0)
+        {
+            inBlack = 1;
+        }
+        
+        reflectance_read(&ref);
+        reflectance_digital(&dig);
+         
+        if (inBlack == 1 && dig.l3 == 1 && dig.r3 == 1)
+        {
+            motor_forward(0,0);
+            firstStop_flag = 1;
+            inBlack = 0;
+        }
+        
+        CyDelay(1);
+    
     }
     
     IR_val = get_IR();
     if (IR_val) 
     {
         Custom_forward(speed);
-        CyDelay(200); // This stops any interference with the stopping logic in the main loop, and gives a nice 'initial spurt'. Inelegant, but it works!
+        CyDelay(400); // This stops any interference with the stopping logic in the main loop, and gives a nice 'initial spurt'. Inelegant, but it works!
     }
     
     #endif
      
-    #if (1)
+    #if (0)
     
     // Giant loop to run the movement logic in.
     while(exitMainLoop == 0)
@@ -264,13 +289,13 @@ int main()
                     // Produces exponentially larger values with smaller input norm_blackness_2 values. Thus the further away from the line 
                     // we are, the greater the amount of turn (it's a very mild exponent atm; may be increased if needed).
                     // '8 000' is simply a ball-park constant, to set the component within acceptable limits.
-                    turnComp_1 = 8000 * ( black_threshold / powf(norm_blackness_2,1.5) );
+                    turnComp_1 = 9000 * ( black_threshold / powf(norm_blackness_2,1.5) );
                                   
                     // Second turn factor. Used multiplicatively with the first one in order to obtain the second half of the final turn 
                     // equation (1.+ 1.*2.). The larger the measured (and normalized) difference in blackness values, the larger turn becomes, 
                     // again exponentially, but this time with a more severe exponent (because diff should dominate turn behaviour).
                     // Calibrated with maxDiff to obtain equivalent behaviour for the left and right-hand sides.
-                    turnComp_2 = 0.095 * ( powf( fabsf(diff_norm), 1.90 ) / maxDiff ); 
+                    turnComp_2 = 0.095 * ( powf( fabsf(diff_norm), 1.85 ) / maxDiff ); 
                     // NOTE: using the absolute value causes 'wrong' turn behaviour between diff -100-0, but it's worth it to 
                     // eliminate possible 'turbulence' (due to measurement inaccuracy) on the borderline between negative and positive diff values.
                     
@@ -371,16 +396,18 @@ int main()
     
     // SUMO LOGIC ('THE SPIRAL HUNTER™') //////////////////////////////////////////////////////////////////////////////////////////
 
-    #if(0)
+    #if(1)
 
 	int turnFactor = 12000;
-	int outwardFlag = 0;
+	int outwardFlag = 1;
     int turn_flag = 1;
 
     Custom_forward(speed);
     CyDelay(500); // <== experimental value; enough to make it to the center, or close to it.
 
 	dir_flag = 1;
+    
+    uint32 turnDel = 30;
         
     while (1) 
     {
@@ -393,20 +420,20 @@ int main()
             // This logic should result in the robot moving in a spiral pattern (until it detects the other robot, which is when 
             // it speeds straight ahead in a 'hunting move'). The first spiral will run from the center-point to the outer edge; 
             // then back to the center; then back out again; etc. (However, see NOTE at the very bottom.)
-            if (outwardFlag == 0) 
+            if (outwardFlag == 1) 
             {
             	turnFactor--; // drops to zero in a bit over 12 seconds
             	if (turnFactor <= 0) 
         	    {
-    	            outwardFlag = 1;
+    	            outwardFlag = 0;
             	}
                 
-             } else if (outwardFlag == 1) {
+             } else if (outwardFlag == 0) {
                 
         	    turnFactor++; // ~12 seconds to get back to 12000
         	    if (turnFactor >= 12000)
         	    {
-        	        outwardFlag = 0;
+        	        outwardFlag = 1;
                 }
              }
 
@@ -428,20 +455,25 @@ int main()
         // If either outward sensor is activated (regardless if hunting or not!), back up for a bit and then start the turn spiral in the opposite direction.
         if (dig.l3 == 0)
         {
-            Custom_backward(speed); // new method
-            CyDelay(100); // dummy value (NOTE: the main risk is the robot running over the line if this value is ill-defined!)
-            dir_flag = 2;
-    	    turnFactor = 0;
-    	    outwardFlag = 1;
+            Ultrasharp_turn(turnDel,2); // new method
+            //CyDelay(100); // dummy value (NOTE: the main risk is the robot running over the line if this value is ill-defined!)
+            MotorDirLeft_Write(0);
+            MotorDirRight_Write(0);
+            dir_flag = 1; // NOTE: 'wrong' value, but produces RIGHT behaviour??!!!
+    	    turnFactor = 5000;
+    	    outwardFlag = 0;
     	    turn_flag = 1;
+
                 
         } else if (dig.r3 == 0) {
                 
-            Custom_backward(speed); //new method
-            CyDelay(100); // dummy value (NOTE: the main risk is the robot running over the line if this value is ill-defined!)
-            dir_flag = 1;
-	        turnFactor = 0;
-	        outwardFlag = 1;
+            Ultrasharp_turn(turnDel,1); //new method
+            //CyDelay(100); // dummy value (NOTE: the main risk is the robot running over the line if this value is ill-defined!)
+            MotorDirLeft_Write(0);
+            MotorDirRight_Write(0);
+            dir_flag = 2; // NOTE: 'wrong' value, but produces RIGHT behaviour??!!!
+	        turnFactor = 5000;
+	        outwardFlag = 0;
 	        turn_flag = 1;
         }
 

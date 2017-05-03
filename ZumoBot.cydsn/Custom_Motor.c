@@ -20,6 +20,8 @@
 void Custom_forward(uint8 speed);
 void Custom_backward(uint8 speed);
 void Turn(uint32 turn, int dir_flag);
+void Backward_turn(uint32 turn, int dir_flag);
+void Ultrasharp_turn(uint32 delay, int dir_flag);
 
 // Custom 'forward' method to calibrate the forward moving direction (default motor_forward() veers 
 // to the left due to the physical differences between the two motors).
@@ -45,8 +47,7 @@ void Custom_backward(uint8 speed)
 // A new turn method that takes direction as an argument.
 // NOTE: the normalization of 'turn' within acceptable limits (0-240) is done in main.c, to make it more transparent.
 void Turn(uint32 turn, int dir_flag)
-{
-    
+{   
     // left side turn logic
     if (dir_flag == 1)
     {
@@ -65,3 +66,56 @@ void Turn(uint32 turn, int dir_flag)
     }
 
 }
+
+void Backward_turn(uint32 turn, int dir_flag)
+{   
+    MotorDirLeft_Write(1);      // set LeftMotor backward mode
+    MotorDirRight_Write(1);     // set RightMotor backward mode
+    
+    // left side turn logic
+    if (dir_flag == 1)
+    {
+        
+        // Turns right when left sensor activated.
+        PWM_WriteCompare1(255 - turn); 
+        PWM_WriteCompare2(240);
+            
+     // right side turn logic
+    } else if (dir_flag == 2) {
+
+        // Turns left when right sensor activated.
+        PWM_WriteCompare2(240 - turn); 
+        PWM_WriteCompare1(255);
+
+    }
+
+}
+
+void Ultrasharp_turn(uint32 delay, int dir_flag)
+{
+    if (dir_flag == 1)
+    { 
+        MotorDirLeft_Write(1);
+        MotorDirRight_Write(0);
+        PWM_WriteCompare1(255);
+        PWM_WriteCompare2(240);
+        CyDelay(delay);
+    
+    } else if (dir_flag == 2) {
+    
+        MotorDirLeft_Write(0);
+        MotorDirRight_Write(1);
+        PWM_WriteCompare1(255);
+        PWM_WriteCompare2(240);
+        CyDelay(delay);
+    
+    }
+
+}
+
+
+
+
+
+
+

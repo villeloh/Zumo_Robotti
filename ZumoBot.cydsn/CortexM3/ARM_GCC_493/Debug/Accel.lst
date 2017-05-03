@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
   39              		.cfi_offset 7, -8
   40              		.cfi_offset 14, -4
   41 0002 0646     		mov	r6, r0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 2
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 2
 
 
   42 0004 0F46     		mov	r7, r1
@@ -108,20 +108,20 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
   82 0006 00000000 		.4byte	.Ldebug_abbrev0
   83 000a 04       		.byte	0x4
   84 000b 01       		.uleb128 0x1
-  85 000c 94000000 		.4byte	.LASF22
+  85 000c CD000000 		.4byte	.LASF22
   86 0010 01       		.byte	0x1
-  87 0011 22010000 		.4byte	.LASF23
-  88 0015 44010000 		.4byte	.LASF24
+  87 0011 5B010000 		.4byte	.LASF23
+  88 0015 4E000000 		.4byte	.LASF24
   89 0019 00000000 		.4byte	.Ldebug_ranges0+0
   90 001d 00000000 		.4byte	0
   91 0021 00000000 		.4byte	.Ldebug_line0
   92 0025 02       		.uleb128 0x2
   93 0026 01       		.byte	0x1
   94 0027 06       		.byte	0x6
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 3
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 3
 
 
-  95 0028 94010000 		.4byte	.LASF0
+  95 0028 91010000 		.4byte	.LASF0
   96 002c 02       		.uleb128 0x2
   97 002d 01       		.byte	0x1
   98 002e 08       		.byte	0x8
@@ -129,24 +129,24 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  100 0033 02       		.uleb128 0x2
  101 0034 02       		.byte	0x2
  102 0035 05       		.byte	0x5
- 103 0036 C9010000 		.4byte	.LASF2
+ 103 0036 C6010000 		.4byte	.LASF2
  104 003a 02       		.uleb128 0x2
  105 003b 02       		.byte	0x2
  106 003c 07       		.byte	0x7
- 107 003d 81000000 		.4byte	.LASF3
+ 107 003d BA000000 		.4byte	.LASF3
  108 0041 03       		.uleb128 0x3
- 109 0042 AC010000 		.4byte	.LASF9
+ 109 0042 A9010000 		.4byte	.LASF9
  110 0046 02       		.byte	0x2
  111 0047 3F       		.byte	0x3f
  112 0048 4C000000 		.4byte	0x4c
  113 004c 02       		.uleb128 0x2
  114 004d 04       		.byte	0x4
  115 004e 05       		.byte	0x5
- 116 004f 3B010000 		.4byte	.LASF4
+ 116 004f 74010000 		.4byte	.LASF4
  117 0053 02       		.uleb128 0x2
  118 0054 04       		.byte	0x4
  119 0055 07       		.byte	0x7
- 120 0056 58000000 		.4byte	.LASF5
+ 120 0056 91000000 		.4byte	.LASF5
  121 005a 02       		.uleb128 0x2
  122 005b 08       		.byte	0x8
  123 005c 05       		.byte	0x5
@@ -154,7 +154,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  125 0061 02       		.uleb128 0x2
  126 0062 08       		.byte	0x8
  127 0063 07       		.byte	0x7
- 128 0064 6A000000 		.4byte	.LASF7
+ 128 0064 A3000000 		.4byte	.LASF7
  129 0068 04       		.uleb128 0x4
  130 0069 04       		.byte	0x4
  131 006a 05       		.byte	0x5
@@ -164,38 +164,38 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  135 0071 07       		.byte	0x7
  136 0072 15000000 		.4byte	.LASF8
  137 0076 03       		.uleb128 0x3
- 138 0077 DA010000 		.4byte	.LASF10
+ 138 0077 D7010000 		.4byte	.LASF10
  139 007b 03       		.byte	0x3
  140 007c 2C       		.byte	0x2c
  141 007d 41000000 		.4byte	0x41
  142 0081 05       		.uleb128 0x5
- 143 0082 D3010000 		.4byte	.LASF11
+ 143 0082 D0010000 		.4byte	.LASF11
  144 0086 04       		.byte	0x4
  145 0087 9301     		.2byte	0x193
  146 0089 3A000000 		.4byte	0x3a
  147 008d 02       		.uleb128 0x2
  148 008e 04       		.byte	0x4
  149 008f 04       		.byte	0x4
- 150 0090 B6010000 		.4byte	.LASF12
+ 150 0090 B3010000 		.4byte	.LASF12
  151 0094 02       		.uleb128 0x2
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 4
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 4
 
 
  152 0095 08       		.byte	0x8
  153 0096 04       		.byte	0x4
- 154 0097 80010000 		.4byte	.LASF13
+ 154 0097 7D010000 		.4byte	.LASF13
  155 009b 02       		.uleb128 0x2
  156 009c 01       		.byte	0x1
  157 009d 08       		.byte	0x8
- 158 009e 36010000 		.4byte	.LASF14
+ 158 009e 6F010000 		.4byte	.LASF14
  159 00a2 02       		.uleb128 0x2
  160 00a3 04       		.byte	0x4
  161 00a4 07       		.byte	0x7
- 162 00a5 E2010000 		.4byte	.LASF15
+ 162 00a5 DF010000 		.4byte	.LASF15
  163 00a9 02       		.uleb128 0x2
  164 00aa 08       		.byte	0x8
  165 00ab 04       		.byte	0x4
- 166 00ac A0010000 		.4byte	.LASF16
+ 166 00ac 9D010000 		.4byte	.LASF16
  167 00b0 06       		.uleb128 0x6
  168 00b1 30000000 		.4byte	.LASF25
  169 00b5 01       		.byte	0x1
@@ -212,13 +212,13 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  180 00cc 81000000 		.4byte	0x81
  181 00d0 00000000 		.4byte	.LLST0
  182 00d4 07       		.uleb128 0x7
- 183 00d5 BC010000 		.4byte	.LASF18
+ 183 00d5 B9010000 		.4byte	.LASF18
  184 00d9 01       		.byte	0x1
  185 00da 0F       		.byte	0xf
  186 00db 81000000 		.4byte	0x81
  187 00df 21000000 		.4byte	.LLST1
  188 00e3 07       		.uleb128 0x7
- 189 00e4 EB010000 		.4byte	.LASF19
+ 189 00e4 E8010000 		.4byte	.LASF19
  190 00e8 01       		.byte	0x1
  191 00e9 0F       		.byte	0xf
  192 00ea 81000000 		.4byte	0x81
@@ -229,7 +229,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  197 00f8 11       		.byte	0x11
  198 00f9 94000000 		.4byte	0x94
  199 00fd 08       		.uleb128 0x8
- 200 00fe 4E000000 		.4byte	.LASF21
+ 200 00fe 87000000 		.4byte	.LASF21
  201 0102 01       		.byte	0x1
  202 0103 11       		.byte	0x11
  203 0104 94000000 		.4byte	0x94
@@ -238,20 +238,20 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  206 010d 2C010000 		.4byte	0x12c
  207 0111 09       		.uleb128 0x9
  208 0112 30000000 		.4byte	.LVL6
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 5
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 5
 
 
  209 0116 2C010000 		.4byte	0x12c
  210 011a 00       		.byte	0
  211 011b 0A       		.uleb128 0xa
- 212 011c 87010000 		.4byte	.LASF26
+ 212 011c 84010000 		.4byte	.LASF26
  213 0120 05       		.byte	0x5
  214 0121 9606     		.2byte	0x696
  215 0123 27010000 		.4byte	0x127
  216 0127 0B       		.uleb128 0xb
  217 0128 76000000 		.4byte	0x76
  218 012c 0C       		.uleb128 0xc
- 219 012d C3010000 		.4byte	.LASF27
+ 219 012d C0010000 		.4byte	.LASF27
  220 0131 06       		.byte	0x6
  221 0132 7E       		.byte	0x7e
  222 0133 94000000 		.4byte	0x94
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  263 0020 00       		.byte	0
  264 0021 03       		.uleb128 0x3
  265 0022 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 6
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 6
 
 
  266 0023 3A       		.uleb128 0x3a
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  320 005a 13       		.uleb128 0x13
  321 005b 00       		.byte	0
  322 005c 00       		.byte	0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 7
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 7
 
 
  323 005d 07       		.uleb128 0x7
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  377 0095 0B       		.uleb128 0xb
  378 0096 35       		.uleb128 0x35
  379 0097 00       		.byte	0
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 8
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 8
 
 
  380 0098 49       		.uleb128 0x49
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  434 0034 0400     		.2byte	0x4
  435 0036 F3       		.byte	0xf3
  436 0037 01       		.uleb128 0x1
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 9
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 9
 
 
  437 0038 51       		.byte	0x51
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  481      20696E74 
  481      00
  482              	.LASF1:
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 10
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 10
 
 
  483 0022 756E7369 		.ascii	"unsigned char\000"
@@ -555,117 +555,116 @@ ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 1
  487 0044 41636358 		.ascii	"AccXangle\000"
  487      616E676C 
  487      6500
- 488              	.LASF21:
- 489 004e 41636359 		.ascii	"AccYangle\000"
- 489      616E676C 
- 489      6500
- 490              	.LASF5:
- 491 0058 6C6F6E67 		.ascii	"long unsigned int\000"
- 491      20756E73 
- 491      69676E65 
- 491      6420696E 
- 491      7400
- 492              	.LASF7:
- 493 006a 6C6F6E67 		.ascii	"long long unsigned int\000"
- 493      206C6F6E 
- 493      6720756E 
- 493      7369676E 
- 493      65642069 
- 494              	.LASF3:
- 495 0081 73686F72 		.ascii	"short unsigned int\000"
- 495      7420756E 
- 495      7369676E 
- 495      65642069 
- 495      6E7400
- 496              	.LASF22:
- 497 0094 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 497      4320342E 
- 497      392E3320 
- 497      32303135 
- 497      30333033 
- 498 00c7 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 498      20726576 
- 498      6973696F 
- 498      6E203232 
- 498      31323230 
- 499 00fa 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 499      66756E63 
- 499      74696F6E 
- 499      2D736563 
- 499      74696F6E 
- 500              	.LASF23:
- 501 0122 5A756D6F 		.ascii	"ZumoLibrary\\Accel.c\000"
- 501      4C696272 
- 501      6172795C 
- 501      41636365 
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 11
+ 488              	.LASF24:
+ 489 004e 433A5C55 		.ascii	"C:\\Users\\Ville L\\Desktop\\ZumoRobo final V2\\Zum"
+ 489      73657273 
+ 489      5C56696C 
+ 489      6C65204C 
+ 489      5C446573 
+ 490 007c 6F426F74 		.ascii	"oBot.cydsn\000"
+ 490      2E637964 
+ 490      736E00
+ 491              	.LASF21:
+ 492 0087 41636359 		.ascii	"AccYangle\000"
+ 492      616E676C 
+ 492      6500
+ 493              	.LASF5:
+ 494 0091 6C6F6E67 		.ascii	"long unsigned int\000"
+ 494      20756E73 
+ 494      69676E65 
+ 494      6420696E 
+ 494      7400
+ 495              	.LASF7:
+ 496 00a3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 496      206C6F6E 
+ 496      6720756E 
+ 496      7369676E 
+ 496      65642069 
+ 497              	.LASF3:
+ 498 00ba 73686F72 		.ascii	"short unsigned int\000"
+ 498      7420756E 
+ 498      7369676E 
+ 498      65642069 
+ 498      6E7400
+ 499              	.LASF22:
+ 500 00cd 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 500      4320342E 
+ 500      392E3320 
+ 500      32303135 
+ 500      30333033 
+ 501 0100 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 501      20726576 
+ 501      6973696F 
+ 501      6E203232 
+ 501      31323230 
+ 502 0133 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 11
 
 
- 501      6C2E6300 
- 502              	.LASF14:
- 503 0136 63686172 		.ascii	"char\000"
- 503      00
- 504              	.LASF4:
- 505 013b 6C6F6E67 		.ascii	"long int\000"
- 505      20696E74 
- 505      00
- 506              	.LASF24:
- 507 0144 433A5C55 		.ascii	"C:\\Users\\Koo Moo\\Desktop\\ZumoRobo taa - zenV6\\"
- 507      73657273 
- 507      5C4B6F6F 
- 507      204D6F6F 
- 507      5C446573 
- 508 0172 5A756D6F 		.ascii	"ZumoBot.cydsn\000"
- 508      426F742E 
- 508      63796473 
- 508      6E00
+ 502      66756E63 
+ 502      74696F6E 
+ 502      2D736563 
+ 502      74696F6E 
+ 503              	.LASF23:
+ 504 015b 5A756D6F 		.ascii	"ZumoLibrary\\Accel.c\000"
+ 504      4C696272 
+ 504      6172795C 
+ 504      41636365 
+ 504      6C2E6300 
+ 505              	.LASF14:
+ 506 016f 63686172 		.ascii	"char\000"
+ 506      00
+ 507              	.LASF4:
+ 508 0174 6C6F6E67 		.ascii	"long int\000"
+ 508      20696E74 
+ 508      00
  509              	.LASF13:
- 510 0180 646F7562 		.ascii	"double\000"
+ 510 017d 646F7562 		.ascii	"double\000"
  510      6C6500
  511              	.LASF26:
- 512 0187 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 512 0184 49544D5F 		.ascii	"ITM_RxBuffer\000"
  512      52784275 
  512      66666572 
  512      00
  513              	.LASF0:
- 514 0194 7369676E 		.ascii	"signed char\000"
+ 514 0191 7369676E 		.ascii	"signed char\000"
  514      65642063 
  514      68617200 
  515              	.LASF16:
- 516 01a0 6C6F6E67 		.ascii	"long double\000"
+ 516 019d 6C6F6E67 		.ascii	"long double\000"
  516      20646F75 
  516      626C6500 
  517              	.LASF9:
- 518 01ac 5F5F696E 		.ascii	"__int32_t\000"
+ 518 01a9 5F5F696E 		.ascii	"__int32_t\000"
  518      7433325F 
  518      7400
  519              	.LASF12:
- 520 01b6 666C6F61 		.ascii	"float\000"
+ 520 01b3 666C6F61 		.ascii	"float\000"
  520      7400
  521              	.LASF18:
- 522 01bc 595F4158 		.ascii	"Y_AXIS\000"
+ 522 01b9 595F4158 		.ascii	"Y_AXIS\000"
  522      495300
  523              	.LASF27:
- 524 01c3 6174616E 		.ascii	"atan2\000"
+ 524 01c0 6174616E 		.ascii	"atan2\000"
  524      3200
  525              	.LASF2:
- 526 01c9 73686F72 		.ascii	"short int\000"
+ 526 01c6 73686F72 		.ascii	"short int\000"
  526      7420696E 
  526      7400
  527              	.LASF11:
- 528 01d3 75696E74 		.ascii	"uint16\000"
+ 528 01d0 75696E74 		.ascii	"uint16\000"
  528      313600
  529              	.LASF10:
- 530 01da 696E7433 		.ascii	"int32_t\000"
+ 530 01d7 696E7433 		.ascii	"int32_t\000"
  530      325F7400 
-ARM GAS  C:\Users\KOOMOO~1\AppData\Local\Temp\ccVISnFF.s 			page 12
-
-
  531              	.LASF15:
- 532 01e2 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\VILLEL~1\AppData\Local\Temp\ccn4YevB.s 			page 12
+
+
+ 532 01df 73697A65 		.ascii	"sizetype\000"
  532      74797065 
  532      00
  533              	.LASF19:
- 534 01eb 5A5F4158 		.ascii	"Z_AXIS\000"
+ 534 01e8 5A5F4158 		.ascii	"Z_AXIS\000"
  534      495300
  535              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
