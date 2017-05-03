@@ -93,6 +93,7 @@ void Backward_turn(uint32 turn, int dir_flag)
 
 void Ultrasharp_turn(uint32 delay, int dir_flag)
 {
+    // left turn
     if (dir_flag == 1)
     { 
         MotorDirLeft_Write(1);
@@ -101,6 +102,7 @@ void Ultrasharp_turn(uint32 delay, int dir_flag)
         PWM_WriteCompare2(240);
         CyDelay(delay);
     
+      // right turn
     } else if (dir_flag == 2) {
     
         MotorDirLeft_Write(0);

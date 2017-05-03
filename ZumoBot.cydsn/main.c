@@ -73,10 +73,10 @@ int main()
     uint8 speed = 240;
     
     // Reflectance thresholds (determined experimentally) for use in different movement behaviours.
-    int black_threshold_l3 = 21000; // actual line edge value: somewhere betwen 20 000 - 21 000.
+    int black_threshold_l3 = 16000; // actual line edge value: somewhere betwen 20 000 - 21 000.
     int black_threshold_l1 = 18000; // 'sure bet' working value: 17 500 // actual line edge value: ~16 000 // 18 000
     int black_threshold_r1 = 22500; // 'sure bet' working value: 22 000 // actual line edge value: ~18 000 // 22 600
-    int black_threshold_r3 = 21000; // actual line edge value: somewhere between 20 000 - 21 500.
+    int black_threshold_r3 = 16000; // actual line edge value: somewhere between 20 000 - 21 500.
         
     //int white_threshold_l3 = 5793;
     int white_threshold_l1 = 4500;
@@ -414,6 +414,8 @@ int main()
         
         CyDelay(1);
 
+        
+        
         if (turn_flag == 1) 
         {
 
@@ -440,9 +442,11 @@ int main()
         Turn(turnFactor/50, dir_flag);
         
         }
-
+        
+        
         /*
-        if (Ultra_GetDistance() < 10) // <== dummy value; experimental 'hunt distance'
+        
+        if (Ultra_GetDistance() < 20) // <== dummy value; experimental 'hunt distance'
         {
             Custom_forward(speed);
     	    turn_flag = 0;   
@@ -453,29 +457,40 @@ int main()
         
         // (These ifs could be refined further, but it's more work than it's worth, imo)
         // If either outward sensor is activated (regardless if hunting or not!), back up for a bit and then start the turn spiral in the opposite direction.
-        if (dig.l3 == 0)
-        {
-            Ultrasharp_turn(turnDel,2); // new method
-            //CyDelay(100); // dummy value (NOTE: the main risk is the robot running over the line if this value is ill-defined!)
+        
+        if (dig.l3 == 0 && dig.r3 == 0) {
+            
+            Custom_backward(240);
+            CyDelay(500); // dummy value
             MotorDirLeft_Write(0);
             MotorDirRight_Write(0);
-            dir_flag = 1; // NOTE: 'wrong' value, but produces RIGHT behaviour??!!!
+            dir_flag = 2;
+	        turnFactor = 5000; // dummy value
+	        outwardFlag = 1;
+	        turn_flag = 1;
+        
+        } else if (dig.l3 == 0) {
+            
+            turnDel = 480000/ref.l3; // 480k is an experimental constant; leads to a very sharp turn
+            Ultrasharp_turn(turnDel,2); // new method
+            MotorDirLeft_Write(0);
+            MotorDirRight_Write(0);
+            dir_flag = 1;
     	    turnFactor = 5000;
     	    outwardFlag = 0;
     	    turn_flag = 1;
-
                 
         } else if (dig.r3 == 0) {
                 
+            turnDel = 480000/ref.r3; // // 480k is an experimental constant; leads to a very sharp turn
             Ultrasharp_turn(turnDel,1); //new method
-            //CyDelay(100); // dummy value (NOTE: the main risk is the robot running over the line if this value is ill-defined!)
             MotorDirLeft_Write(0);
             MotorDirRight_Write(0);
-            dir_flag = 2; // NOTE: 'wrong' value, but produces RIGHT behaviour??!!!
+            dir_flag = 2;
 	        turnFactor = 5000;
 	        outwardFlag = 0;
 	        turn_flag = 1;
-        }
+        } 
 
     	// NOTE: The robot will get 'desynched' after one or more 'hunt' episodes, because the angle of approach to the black line affects the new 'starting point' 
     	// of the 'reset' turn logic, meaning that the robot will overrun the center-point when turnFactor reaches 24000... Then the new spiral will be 
