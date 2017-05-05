@@ -1,7 +1,7 @@
 
 /**
  * @file    Custom_Motor.c
- * @brief   Custom file for defining motor movement methods.
+ * @brief   Custom file for defining motor movement functions.
 */
 
 #include <project.h>
@@ -13,9 +13,9 @@ void Custom_backward(uint8 speed);
 void Turn(uint32 turn, int dir_flag);
 void Ultrasharp_turn(uint32 delay, int dir_flag);
 
-// Custom 'forward' method to calibrate the forward moving direction (default motor_forward() veers 
+// Custom 'forward' function to calibrate the forward moving direction (default motor_forward() veers 
 // to the left due to the physical differences between the two motors).
-// NOTE: The motors should always be stopped by using the default method, because this method 
+// NOTE: The motors should always be stopped by using the default function, because this function 
 // will leave the left motor running if used for that purpose!
 void Custom_forward(uint8 speed)
 {
@@ -25,7 +25,7 @@ void Custom_forward(uint8 speed)
     PWM_WriteCompare2(speed);
 }
 
-// Custom method for backward movement, similar to the forward method defined above.
+// Custom function for backward movement, similar to the forward function defined above.
 void Custom_backward(uint8 speed)
 {
     MotorDirLeft_Write(1); // set LeftMotor backward mode
@@ -34,7 +34,7 @@ void Custom_backward(uint8 speed)
     PWM_WriteCompare2(speed);
 }
 
-// A new turn method that takes direction as an argument.
+// A new turn function that takes direction as an argument.
 // NOTE: the normalization of 'turn' within acceptable limits (0-240) is done in main.c, to make it more transparent.
 void Turn(uint32 turn, int dir_flag)
 {   

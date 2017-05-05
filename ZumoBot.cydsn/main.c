@@ -26,7 +26,7 @@
 #include "Reflectance.h"
 #include "IR.h"
 
-// Declare used methods.
+// Declare used functions.
 int rread(void);
 int get_IR();
 void motor_start();
@@ -41,7 +41,7 @@ void Ultrasharp_turn(uint32 delay, int dir_flag);
 
 int main()
 {
-    // ==================== CRUCIAL DEFS ======================================= //
+    // ==================== CRUCIAL DEFINITIONS ======================================= //
     
     // (Maximum) movement speed of the robot.
     uint8 speed = 240;
@@ -249,6 +249,7 @@ int main()
                 
                 // Store the value of blackDiff in an array and move the other stored values +1 forward
                 // (the stored values of blackDiff will be used to determine turning behavior directly below).
+                // (NOTE: not done with 'for' because there's so few array members.)
                 diffs[2] = diffs[1];
                 diffs[1] = diffs[0];
                 diffs[0] = blackDiff;
@@ -280,8 +281,8 @@ int main()
                     // up for debate; experiments will be needed.
                 }
                 
-                // When moving away from the line, set turn to zero (our abortive attempts at various 'corrective twitch' behaviours were finally 
-                // laid to a well-deserved rest).
+                // When moving away from the line (or close enough to moving away), set turn to zero (our abortive attempts at 
+                // various 'corrective twitch' behaviours were finally laid to a well-deserved rest).
                 if (diff_norm < -100) 
                 { 
                     turn = 0; 
@@ -291,7 +292,7 @@ int main()
                     // 'Base' turn factor. Calibrated with black_threshold to obtain equivalent behavior for the right and left-hand sides.
                     // Produces exponentially larger values with smaller input norm_blackness_2 values. Thus the further away from the line 
                     // we are, the greater the amount of turn (it's a very mild exponent atm; may be increased if needed).
-                    // '8 000' is simply a ball-park constant, to set the component within acceptable limits.
+                    // '9 000' is simply a ball-park constant, to set the component within acceptable limits.
                     turnComp_1 = 9000 * ( black_threshold / powf(norm_blackness_2,1.5) );
                                   
                     // Second turn factor. Used multiplicatively with the first one in order to obtain the second half of the final turn 
@@ -303,7 +304,7 @@ int main()
                     // eliminate possible 'turbulence' (due to measurement inaccuracy) on the borderline between negative and positive diff values.
                     
                     // The final turn equation combines the raw flatness of the first turn factor with the refinement that comes from multiplying it with the second one.
-                    // The robot will not turn tight corners reliably without having a non-zero turn factor at all times, so the first element was made additive;
+                    // The robot would not turn tight corners reliably without having a non-zero turn factor at all times, so the first element was made additive;
                     // minimum turn is about 60 atm, and this seems to give nice, smooth results.
                     turn = turnComp_1 + turnComp_1*turnComp_2;
                     
