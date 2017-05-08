@@ -1,21 +1,12 @@
 /**
 * @mainpage ZumoBot Project
-* @brief    You can make your own ZumoBot with various sensors.
-* @details  <br><br>
-    <p>
-    <B>General</B><br>
-    You will use Pololu Zumo Shields for your robot project with CY8CKIT-059(PSoC 5LP) from Cypress semiconductor.This 
-    library has basic methods of various sensors and communications so that you can make what you want with them. <br> 
-    <br><br>
-    </p>
+* @brief    PROJECT MOCHA -- race version of the robot project.
 */
 /**
  * @file    main.c
  * @brief   
  * @details  ** You should enable global interrupt for operating properly. **<br>&nbsp;&nbsp;&nbsp;CyGlobalIntEnable;<br>
 */
-
-// TEAM QAHVIQUPPI presents: PROJECT MOCHA 9000™ (TOP SECRET! EYES ONLY KEIJO LÄNSIKUNNAS)
 
 #include <project.h>
 #include <stdio.h>
@@ -35,9 +26,7 @@ void motor_turn(uint8 l_speed, uint8 r_speed, uint32 delay);
 void reflectance_set_threshold(uint16_t l3, uint16_t l1, uint16_t r1, uint16_t r3);
 void Measure_Voltage();
 void Custom_forward(uint8 speed);
-void Custom_backward(uint8 speed);
 void Turn(uint32 turn, int dir_flag);
-void Ultrasharp_turn(uint32 delay, int dir_flag);
 
 int main()
 {
@@ -52,10 +41,10 @@ int main()
     uint32 turnComp_2 = 0;
     
     // Reflectance thresholds (determined experimentally) for use in different movement behaviours.
-    int black_threshold_l3 = 16000; // actual line edge value: somewhere betwen 20 000 - 21 000.
+    int black_threshold_l3 = 21000; // actual line edge value: somewhere betwen 20 000 - 21 000.
     int black_threshold_l1 = 18000; // 'sure bet' working value: 17 500 // actual line edge value: ~16 000 // 18 000
-    int black_threshold_r1 = 22500; // 'sure bet' working value: 22 000 // actual line edge value: ~18 000 // 22 600
-    int black_threshold_r3 = 16000; // actual line edge value: somewhere between 20 000 - 21 500.
+    int black_threshold_r1 = 22500; // 'sure bet' working value: 22 000 // actual line edge value: ~18 000 // 22 500
+    int black_threshold_r3 = 21000; // actual line edge value: somewhere between 20 000 - 21 500.
         
     //int white_threshold_l3 = 5793;
     int white_threshold_l1 = 4500;
@@ -74,7 +63,7 @@ int main()
     // Needed for using the button to start the robot's movement routine.
     int buttonPress = 0;
    
-    // Direction flag for correct turning behaviour. '1' = 'left', '2' = 'right'.
+    // Direction flag for correct turning behaviour. '0' = 'left turn', '1' = 'right turn'.
     int dir_flag = 0;
     
     // For counting blackLines (to stop the robot at race end).
@@ -127,7 +116,7 @@ int main()
     BatteryLed_Write(0); // Switch led off 
     
     
-    // To start the robot's movement routine, press the button.
+    // Wait for button press to start the robot's movement routine.
     while (buttonPress == 0) 
     {
         button = SW1_Read();
@@ -144,7 +133,7 @@ int main()
     while (firstStop_flag == 0)
     {
     
-        // Go forward at low speed until meeting the horizontal black line.
+        // Go forward at low speed until meeting the first horizontal black line.
         // Then wait for the IR signal to proceed.
         Custom_forward(speed/2.5);
         
@@ -170,54 +159,51 @@ int main()
     
     }
     
+    
     // Wait for IR signal. Upon getting it, proceed forward at full speed for 0.4 seconds.
     IR_val = get_IR();
     if (IR_val) 
     {
         Custom_forward(speed);
-        CyDelay(400); // This stops any interference with the stopping logic in the main loop, and gives a nice 'initial spurt'. Inelegant, but it works!
+        CyDelay(400); // This stops any interference with the stopping logic in the main movement loop, and gives a nice 'initial spurt'. Inelegant, but it works!
     }
     
-    #endif
-     
-    #if (1)
     
+    #endif
+   
     // Giant loop to run the movement logic in.
     while(exitMainLoop == 0)
     {    
-        // Start going forward.
-        Custom_forward(speed);
-    
-        reflectance_read(&ref); // raw reflectance value ('blackness') from the sensor; 0 - 23 999
-        //printf("%d %d %d %d \r\n", ref.l3, ref.l1, ref.r1, ref.r3);       //print out each period of reflectance sensors
-        reflectance_digital(&dig);      //print out 0 or 1 according to results of reflectance period
-        //printf("%d %d %d %d \r\n", dig.l3, dig.l1, dig.r1, dig.r3);        //print out 0 or 1 according to results of reflectance period
-        //CyDelay(500); // comment this delay out when doing movement tests / racing !!!
-        
-        
+
         // Line-following logic.
         // NOTE: due to the calibration of the motor speeds, 240 (255 - 15) is our current max speed!
+        
+        // Start going forward.
+        Custom_forward(speed);
+        
+        // Read initial blackness value. (This only needs to be done once, hence it's outside the turn loop.)
+        reflectance_read(&ref); // raw reflectance value ('blackness') from the sensor; 0 - 23 999
+        reflectance_digital(&dig); // print out 0 or 1 according to results of reflectance period
+        
+        if (dig.l1 == 1) 
+        {
+            blackness_1 = ref.l1;
+        } else if (dig.r1 == 1) {
+            blackness_1 = ref.r1;   
+        }   
         
         // If-switch between left and right sensor activation (affects turning logic directly below).
         if (dig.l1 == 1) 
         {
-            dir_flag = 1;
+            dir_flag = 1; // left sensor activated, so we must turn to the RIGHT
             digital = dig.l1;
-            
-            blackness_1 = ref.l1;
-            CyDelay(1);
-            
             black_threshold = black_threshold_l1;
             maxDiff = maxDiff_l1;
    
         } else if (dig.r1 == 1) {
         
-            dir_flag = 2;
+            dir_flag = 0; // right sensor activated, so we must turn to the LEFT
             digital = dig.r1;
-            
-            blackness_1 = ref.r1;
-            CyDelay(1);
-            
             black_threshold = black_threshold_r1;
             maxDiff = maxDiff_r1;
             
@@ -230,7 +216,7 @@ int main()
             // When the robot starts to veer off to the left or right, do a corrective turn in the opposite direction.
             do {
                 
-                // Obtain a second ref value (1 millisecond later).
+                // Obtain a second blackness value (1 millisecond later).
                 reflectance_read(&ref);
                 reflectance_digital(&dig); // needed to check if the turn should be ended
                 
@@ -260,7 +246,7 @@ int main()
                 // Needed for normalizing 'freak' blackness values (explained below).
                 diff_prev_ave = (diffs[2] + diffs[1]) / 2;
                 
-                // Normalize diff_ave (needed for use in the exponential component of 'turn', to prevent potential 'freak' behaviour).
+                // Normalize diff_ave (needed for use in the exponential 2nd component of 'turn', to prevent potential 'freak' behaviour).
                 diff_norm = diff_ave;
                 if (diff_norm > 2000.0) { diff_norm = 2000.0; } // 2 000 seems like a reasonable limit, based on measured diff values
                 
@@ -299,7 +285,7 @@ int main()
                     // equation (1.+ 1.*2.). The larger the measured (and normalized) difference in blackness values, the larger turn becomes, 
                     // again exponentially, but this time with a more severe exponent (because diff should dominate turn behaviour).
                     // Calibrated with maxDiff to obtain equivalent behaviour for the left and right-hand sides.
-                    turnComp_2 = 0.095 * ( powf( fabsf(diff_norm), 1.85 ) / maxDiff ); 
+                    turnComp_2 = 0.095 * ( powf( fabsf(diff_norm), 1.83 ) / maxDiff ); 
                     // NOTE: using the absolute value causes 'wrong' turn behaviour between diff -100-0, but it's worth it to 
                     // eliminate possible 'turbulence' (due to measurement inaccuracy) on the borderline between negative and positive diff values.
                     
@@ -318,8 +304,6 @@ int main()
                         turn = 240;                 
                     }
                 }
-                                
-                //printf("diff_norm: %f, turnComp_1: %lu, turn: %lu \n", diff_norm, turnComp_1, turn);
                                                                                                        
                 // Execute the turn (right turn if the left sensor activated, left turn if the right one activated).
                 Turn(turn, dir_flag);
@@ -327,9 +311,8 @@ int main()
                 // Store the value of the second blackness measurement to the variable for the first.
                 // As the loop continues, blackness_2's value is stored in blackness_1 and then blackness_2 gets a new, measured value; etc.
                 blackness_1 = blackness_2;
-                
-                
-                //Line recognition logic (needed for stopping).
+              
+                // Line recognition logic (needed for stopping).
                 if (dig.l3 == 0 && dig.r3 == 0){
                     inBlack = 1;
                 }
@@ -346,8 +329,7 @@ int main()
                 }
                 
                 CyDelay(1);
-               
-                         
+                      
             } while (digital == 1);
                                                 
             // Since the turn has ended, reset the stored diff values back to zero, so the next turn can have a fresh start with new values.
@@ -358,8 +340,7 @@ int main()
             }
           
             // For added safety, set turn to zero... Should not be necessary, but you never know.
-            turn = 0;
-            dir_flag = 0; // for safety as well...                                          
+            turn = 0;                                         
         } 
           
         // Line recognition logic (needed for stopping).
@@ -378,6 +359,7 @@ int main()
             exitMainLoop = 1;
         }  
         
+        /*
         // For measuring the battery voltage at regular intervals. 
         // 80000 'cycles' should equal ~80 seconds, due to the delay that is used below (1).
         // NOTE: the cycle limit will have to be adjusted each time we add delays to the while loop! 
@@ -389,125 +371,14 @@ int main()
             Measure_Voltage();
             cycles = 0;
         }
+        */
         
-        CyDelay(1);   
+        CyDelay(1); 
+        
     }  
     
-    //empty loop to end with
+    // empty loop to end with
     while(1) {}
-    
-    #endif
-    
-    // SUMO LOGIC ('THE SPIRAL HUNTER™') //////////////////////////////////////////////////////////////////////////////////////////
-
-    #if(1)
-
-	int turnFactor = 12000;
-	int outwardFlag = 1;
-    int turn_flag = 1;   
-    uint32 turnDel;
-
-    // Full speed ahead for 0.5 seconds (to find the center).    
-    Custom_forward(speed);
-    CyDelay(500); // <== experimental value; enough to make it to the center, or close to it.
-
-    // Turn to the left (direction is arbitrary at this juncture).
-	dir_flag = 1;
-    
-    // Loop for running the main 'hunt' logic.
-    while (1) 
-    {
-        
-        CyDelay(1);
-   
-        if (turn_flag == 1) 
-        {
-
-            // This logic results in the robot moving in a spiral pattern (until it detects the other robot, which is when 
-            // it speeds straight ahead in a 'hunting move'). The first spiral will run from the center-point to the outer edge; 
-            // then back to the center; then back out again; etc. (However, see NOTE at the very bottom.)
-            if (outwardFlag == 1) 
-            {
-            	turnFactor--; // drops to zero in a bit over 12 seconds
-            	if (turnFactor <= 0) 
-        	    {
-    	            outwardFlag = 0;
-            	}
-                
-             } else if (outwardFlag == 0) {
-                
-        	    turnFactor++; // ~12 seconds to get back to 12000
-        	    if (turnFactor >= 12000)
-        	    {
-        	        outwardFlag = 1;
-                }
-             }
-
-        // Execute the turn.    
-        Turn(turnFactor/50, dir_flag);
-        
-        }
-     
-        // 'Ramming' logic.
-        // If the ultrasound sensor detects an object within 20 'units', 
-        // drive towards it at full speed and disable turn logic (until meeting black line).
-        if (Ultra_GetDistance() < 20) // <== experimental 'hunt distance'
-        {
-            Custom_forward(speed);
-    	    turn_flag = 0;   
-        }
-            
-        // read blackness value
-        reflectance_read(&ref);
-        reflectance_digital(&dig);
-        
-        // (These ifs could be refined further, but it's more work than it's worth, imo.)      
-        // If both sensors are activated, back up for a bit and then re-start outward turn.
-        if (dig.l3 == 0 && dig.r3 == 0) {
-            
-            Custom_backward(240);
-            CyDelay(500); // dummy value
-            MotorDirLeft_Write(0);
-            MotorDirRight_Write(0);
-            dir_flag = 2;
-	        turnFactor = 5000; // dummy value
-	        outwardFlag = 1;
-	        turn_flag = 1;
-        
-          // If the left sensor is activated, turn sharply to the right and then begin inward spiral turn.  
-        } else if (dig.l3 == 0) {
-            
-            turnDel = 480000/ref.l3; // 480k is an experimental constant; leads to a very sharp turn
-            Ultrasharp_turn(turnDel,2);
-            MotorDirLeft_Write(0);
-            MotorDirRight_Write(0);
-            dir_flag = 1;
-    	    turnFactor = 5000;
-    	    outwardFlag = 0;
-    	    turn_flag = 1;
-                
-          // If the right sensor is activated, turn sharply to the left and then begin inward spiral turn.    
-        } else if (dig.r3 == 0) {
-                
-            turnDel = 480000/ref.r3; // // 480k is an experimental constant; leads to a very sharp turn
-            Ultrasharp_turn(turnDel,1);
-            MotorDirLeft_Write(0);
-            MotorDirRight_Write(0);
-            dir_flag = 2;
-	        turnFactor = 5000;
-	        outwardFlag = 0;
-	        turn_flag = 1;
-        } 
-
-    	// NOTE: The robot will get 'desynched' after one or more 'hunt' episodes, because the angle of approach to the black line affects the new 'starting point' 
-    	// of the 'reset' turn logic, meaning that the robot will overrun the center-point when turnFactor reaches max value... Then the new spiral will be 
-    	// similarly 'desynchronized'; etc. The perfect spiral pattern that was in effect before the hunt(s) can never be reached again, because there's no 
-    	// way to find the center-point again after the very beginning. However, it should not matter a whole lot, because the overall movement pattern will 		
-    	// remain spiral-ish despite these small distortions.
-        
-    }
-       
-    #endif    
     
 }
     
