@@ -6,7 +6,7 @@
     <p>
     <B>General</B><br>
     The function Measure_Voltage() was used during development to measure the robot's battery voltage level -- once at robot start and then every 80 seconds 
-    (or thereabouts) while the robot was on. The logic was deleted from main.c in order not to interfere with the race and sumo contest; however, it is  
+    (or thereabouts) while the robot was on. The function was deleted from main.c in order not to interfere with the race and sumo contest; however, it is  
     included here for review.<br>
     <br><br>
     </p>
@@ -56,7 +56,7 @@ void Measure_Voltage()
         // flurry of extremely short and sharp beeps.
         // EDIT: Added flashing light effects to go with the beeps :)
         if (volts > 0.5) // a lenient 'null check' is needed to prevent alarms when the robot is off but the chip is on. NOTE: we still had continuous beeping
-                         // as startup occasionally, so the problem was not fully fixed with this check.
+                         // at startup occasionally, so the problem was not fully fixed with this check.
         {
         
             if (volts >= 5.0)
