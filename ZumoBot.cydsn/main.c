@@ -42,7 +42,7 @@ int main()
     
     // Reflectance thresholds (determined experimentally) for use in different movement behaviours.
     int black_threshold_l3 = 21000; // actual line edge value: somewhere betwen 20 000 - 21 000.
-    int black_threshold_l1 = 18000; // actual line edge value: ~16 000
+    int black_threshold_l1 = 18500; // actual line edge value: ~16 000
     int black_threshold_r1 = 22500; // actual line edge value: ~18 000
     int black_threshold_r3 = 21000; // actual line edge value: somewhere between 20 000 - 21 500.
     
@@ -125,7 +125,7 @@ int main()
     
         // Go forward at low speed until meeting the first horizontal black line.
         // Then wait for the IR signal to proceed.
-        Custom_forward(speed/2.5);
+        Custom_forward(speed/3.5);
         
         reflectance_read(&ref);
         reflectance_digital(&dig);
@@ -153,7 +153,7 @@ int main()
     if (IR_val) 
     {
         Custom_forward(speed);
-        CyDelay(300); // This stops any interference with the stopping logic in the main movement loop, and gives a nice 'initial spurt'. Inelegant, but it works!
+        CyDelay(400); // This stops any interference with the stopping logic in the main movement loop, and gives a nice 'initial spurt'. Inelegant, but it works!
     }
    
     // Giant loop to run the movement logic in.
@@ -342,7 +342,7 @@ int main()
     
     // empty loop to end with
     while(1) {}
-    
+
 }
     
 // ===================================================================================================================== //
